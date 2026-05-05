@@ -47,13 +47,13 @@ body{
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 3.5rem;height:192px;
+  padding:0 3.5rem;min-height:200px;
   background:rgba(255,255,255,.95);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
 }
 .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
-.nav-logo svg{flex-shrink:0;}
+.nav-logo>svg{flex-shrink:0;width:180px !important;height:180px !important;display:block;}
 .nav-wordmark{display:flex;flex-direction:column;gap:1px;}
 .nav-name{
   font-family:'Montserrat',sans-serif;
