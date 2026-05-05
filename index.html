@@ -1,684 +1,1271 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<!--
-  ╔══════════════════════════════════════════════════════════════════════════╗
-  ║  ROSSITER CONSULTING — BRAND TEMPLATE v3.0                              ║
-  ╠══════════════════════════════════════════════════════════════════════════╣
-  ║  INSTRUÇÕES PARA A IA:                                                  ║
-  ║                                                                         ║
-  ║  Template oficial da Rossiter Consulting com suporte A/B de modos.     ║
-  ║  NUNCA altere: paleta de cores, tipografia, logo SVG.                   ║
-  ║                                                                         ║
-  ║  CONTROLE DE MODO:                                                      ║
-  ║    Altere a variável RC_DEFAULT_MODE no <script> no final do body.      ║
-  ║    'light' → modo padrão (recomendado para produção)                    ║
-  ║    'dark'  → modo escuro (variante de teste)                            ║
-  ║                                                                         ║
-  ║  PARA A/B TEST:                                                         ║
-  ║    O switcher de modo está disponível via ?mode=light ou ?mode=dark     ║
-  ║    na URL. Use ferramentas como Google Optimize, Hotjar ou qualquer     ║
-  ║    sistema de split test para alternar entre os dois.                   ║
-  ║                                                                         ║
-  ║  LAYOUTS DE DOCUMENTO (use <body class="mode-light doc-mode">):         ║
-  ║    .doc-layout     → proposta comercial                                 ║
-  ║    .report-layout  → relatório / auditoria                              ║
-  ║    .letter-layout  → carta / email                                      ║
-  ║                                                                         ║
-  ║  VARIÁVEIS A SUBSTITUIR: {{TITULO}}, {{CLIENTE}}, {{DATA}}, etc.        ║
-  ╚══════════════════════════════════════════════════════════════════════════╝
--->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{TITULO}} — Rossiter Consulting</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rossiter Consulting · Sistemas de Gestão · Lean Six Sigma · Alemanha · Brasil</title>
+<meta name="description" content="Consultoria especializada em Sistemas de Gestão ISO e Lean Six Sigma para engenharia, construção e indústria. Sede na Alemanha, operação no Brasil. Lead Auditor IMS, Master Black Belt, International Welding Engineer.">
+<meta name="author" content="Eduardo Rossiter">
+<meta property="og:title" content="Rossiter Consulting · Quality · Lean · Excellence">
+<meta property="og:description" content="Sistemas de Gestão ISO e Lean Six Sigma. Alemanha · Brasil.">
+<meta property="og:url" content="https://rossiter.de">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://rossiter.de">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:#ffffff;
+  color:#0c1828;
+  font-family:'Montserrat',sans-serif;
+  font-weight:300;
+  font-size:16px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 
-  <style>
-    /* ═══════════════════════════════════════════════════════
-       DESIGN TOKENS — NUNCA ALTERAR
-       ═══════════════════════════════════════════════════════ */
-    :root {
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-body:    'DM Sans', sans-serif;
-      --font-mono:    'DM Mono', monospace;
-      --sp-xs:.5rem; --sp-sm:1rem; --sp-md:1.5rem;
-      --sp-lg:2.5rem; --sp-xl:4rem; --sp-2xl:6.5rem;
-    }
+/* ── VARS ── */
+:root{
+  --navy:   #0a1628;
+  --blue-1: #0f2040;
+  --blue-2: #1a3468;
+  --blue-3: #2050a0;
+  --blue-4: #2c66c8;
+  --blue-5: #4484e0;
+  --text:   #0c1828;
+  --text-2: rgba(12,24,40,.62);
+  --text-3: rgba(12,24,40,.4);
+  --border: rgba(12,24,40,.1);
+  --bg-off: #f5f7fb;
+}
 
-    /* ── LIGHT MODE (padrão / produção) ── */
-    body, body.mode-light {
-      --bg:          #ffffff;
-      --bg-2:        #f4f7fb;
-      --bg-3:        #eaeff7;
-      --bg-4:        #dde5f0;
-      --border-1:    rgba(26,60,120,0.07);
-      --border-2:    rgba(26,60,120,0.16);
-      --border-3:    rgba(26,60,120,0.32);
-      --text-1:      #0c1828;
-      --text-2:      rgba(12,24,40,0.65);
-      --text-3:      rgba(12,24,40,0.42);
-      --text-4:      rgba(12,24,40,0.2);
-      --accent:      #1e3e7c;
-      --accent-mid:  #2c5aaa;
-      --accent-lt:   #3a72c8;
-      --accent-dim:  rgba(30,62,124,0.06);
-      --accent-dim2: rgba(30,62,124,0.1);
-      --nav-bg:      rgba(255,255,255,0.92);
-      --shadow:      rgba(12,24,40,0.08);
-    }
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3.5rem;height:72px;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.nav-logo svg{flex-shrink:0;}
+.nav-wordmark{display:flex;flex-direction:column;gap:1px;}
+.nav-name{
+  font-family:'Montserrat',sans-serif;
+  font-size:20px;font-weight:200;
+  letter-spacing:3px;color:var(--text);line-height:1;
+}
+.nav-sub{
+  font-family:'Montserrat',sans-serif;
+  font-size:7px;font-weight:400;
+  letter-spacing:4px;text-transform:uppercase;
+  color:var(--blue-3);line-height:1;
+}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{
+  font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-3);text-decoration:none;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--blue-3);}
+.nav-cta{
+  display:inline-block;
+  background:var(--blue-2);color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:12px 28px;text-decoration:none;
+  transition:background .2s,transform .2s;
+}
+.nav-cta:hover{background:var(--blue-3);transform:translateY(-1px);}
 
-    /* ── DARK MODE (variante A/B) ── */
-    body.mode-dark {
-      --bg:          #070a0f;
-      --bg-2:        #0a1220;
-      --bg-3:        #0f1a2e;
-      --bg-4:        #141e30;
-      --border-1:    rgba(74,120,168,0.12);
-      --border-2:    rgba(74,120,168,0.28);
-      --border-3:    rgba(74,120,168,0.52);
-      --text-1:      #d8eeff;
-      --text-2:      rgba(216,238,255,0.65);
-      --text-3:      rgba(216,238,255,0.38);
-      --text-4:      rgba(216,238,255,0.18);
-      --accent:      #5294d8;
-      --accent-mid:  #6aacf0;
-      --accent-lt:   #84ceff;
-      --accent-dim:  rgba(82,148,216,0.08);
-      --accent-dim2: rgba(82,148,216,0.14);
-      --nav-bg:      rgba(7,10,15,0.9);
-      --shadow:      rgba(0,0,0,0.3);
-    }
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding-top:72px;
+  background:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(12,24,40,.045) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(12,24,40,.045) 1px,transparent 1px);
+  background-size:72px 72px;
+  pointer-events:none;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 4rem 5rem 4.5rem;
+  position:relative;z-index:1;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blue-3);
+  border:1px solid rgba(32,80,160,.25);
+  padding:7px 14px;width:fit-content;
+  background:rgba(32,80,160,.04);
+  margin-bottom:2.5rem;
+}
+.hero-badge::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--blue-4);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero-title{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(2.8rem,4.5vw,4.4rem);
+  font-weight:400;line-height:1.1;
+  letter-spacing:-.02em;
+  color:var(--text);
+  margin-bottom:1.5rem;
+}
+.hero-title em{
+  font-style:italic;
+  color:var(--blue-3);
+}
+.hero-sub{
+  font-size:17px;font-weight:300;
+  color:var(--text-2);line-height:1.8;
+  max-width:460px;
+  margin-bottom:1.5rem;
+}
+.hero-slogan{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:2.75rem;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{
+  display:inline-block;
+  background:var(--blue-2);color:#fff !important;
+  font-family:'Montserrat',sans-serif;
+  font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:15px 36px;text-decoration:none;
+  transition:background .25s,transform .2s;
+}
+.btn-primary:hover{background:var(--blue-3);transform:translateY(-2px);}
+.btn-secondary{
+  display:inline-block;
+  background:transparent;color:var(--text) !important;
+  font-family:'Montserrat',sans-serif;
+  font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:14px 36px;text-decoration:none;
+  border:1.5px solid rgba(12,24,40,.2);
+  transition:border-color .25s,color .25s;
+}
+.btn-secondary:hover{border-color:var(--blue-3);color:var(--blue-3) !important;}
+.hero-right{
+  display:flex;align-items:center;justify-content:center;
+  padding:5rem 3rem;
+  position:relative;z-index:1;
+  background:var(--bg-off);
+  border-left:1px solid var(--border);
+}
+.hero-logo-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:2rem;
+}
+.hero-stats{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--border);
+  width:100%;max-width:360px;
+}
+.hero-stat{
+  background:#fff;padding:1.5rem 1.25rem;
+  position:relative;overflow:hidden;
+}
+.hero-stat::after{
+  content:'';position:absolute;top:0;left:0;
+  width:2px;height:100%;
+  background:var(--blue-4);opacity:0;
+  transition:opacity .3s;
+}
+.hero-stat:hover::after{opacity:1;}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;font-weight:500;
+  color:var(--blue-2);line-height:1;
+  margin-bottom:6px;
+}
+.stat-label{font-size:12px;color:var(--text-3);line-height:1.4;}
 
-    /* ═══════════════════════════════════════════════════════
-       RESET & BASE
-       ═══════════════════════════════════════════════════════ */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-    body{
-      background:var(--bg); color:var(--text-1);
-      font-family:var(--font-body); font-weight:300;
-      font-size:16px; line-height:1.75;
-      -webkit-font-smoothing:antialiased;
-      transition:background 0.4s, color 0.4s;
-    }
-    a{color:var(--accent-lt);text-decoration:none;transition:color 0.2s;}
-    body.mode-light a{color:var(--accent);}
+/* ── SECTION BASE ── */
+section{padding:6rem 4.5rem;}
+.section-alt{background:var(--bg-off);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.container{max-width:1200px;margin:0 auto;}
+.section-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--blue-3);display:block;margin-bottom:.9rem;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,3.5vw,3rem);font-weight:400;
+  line-height:1.2;color:var(--text);
+  margin-bottom:1.5rem;
+}
+.section-title em{font-style:italic;color:var(--blue-3);}
+.section-lead{
+  font-size:17px;font-weight:300;
+  color:var(--text-2);line-height:1.85;
+  max-width:580px;
+}
+hr.rule{
+  width:100%;height:1px;border:none;
+  background:linear-gradient(to right,transparent,var(--border),transparent);
+}
 
-    /* ═══════════════════════════════════════════════════════
-       MODE SWITCHER UI
-       ═══════════════════════════════════════════════════════ */
-    .mode-switcher {
-      position:fixed; bottom:1.5rem; right:1.5rem; z-index:999;
-      display:flex; align-items:center; gap:0.5rem;
-      background:var(--bg-3); border:1px solid var(--border-2);
-      padding:0.4rem 0.75rem;
-      font-family:var(--font-mono); font-size:0.6rem; letter-spacing:0.1em;
-      color:var(--text-3); cursor:pointer;
-      transition:all 0.2s; box-shadow:0 2px 12px var(--shadow);
-    }
-    .mode-switcher:hover{border-color:var(--border-3);color:var(--text-2);}
-    .mode-switcher .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-lt);transition:background 0.3s;}
+/* ── ABOUT ── */
+.about-grid{
+  display:grid;grid-template-columns:1fr 1.6fr;
+  gap:5rem;align-items:start;
+}
+.cred-list{display:grid;gap:1px;background:var(--border);margin-top:1.5rem;}
+.cred{
+  background:#fff;padding:1.1rem 1.25rem;
+  display:flex;gap:.9rem;align-items:flex-start;
+  border-left:2px solid transparent;
+  transition:border-color .25s;
+}
+.cred:hover{border-left-color:var(--blue-4);}
+.cred-icon{
+  width:34px;height:34px;flex-shrink:0;
+  border:1px solid rgba(32,80,160,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:400;
+  color:var(--blue-3);letter-spacing:.04em;
+}
+.cred-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;}
+.cred-desc{font-size:12px;color:var(--text-3);line-height:1.5;}
+.pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.5rem;}
+.pill{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--blue-3);
+  border:1px solid rgba(32,80,160,.2);
+  padding:4px 10px;
+}
 
-    /* ═══════════════════════════════════════════════════════
-       LOGO SYMBOL — tamanhos via classe
-       ═══════════════════════════════════════════════════════ */
-    .rc-symbol     {display:block;width:48px;height:48px;}
-    .rc-symbol.xs  {width:28px;height:28px;}
-    .rc-symbol.sm  {width:38px;height:38px;}
-    .rc-symbol.lg  {width:80px;height:80px;}
-    .rc-symbol.xl  {width:120px;height:120px;}
-    .rc-symbol svg {display:block;width:100%;height:100%;}
+/* ── SERVICES ── */
+.services-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:end;
+  padding-bottom:3rem;margin-bottom:3rem;
+  border-bottom:1px solid var(--border);
+}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+}
+.service-card{
+  background:#fff;padding:2rem 1.75rem;
+  position:relative;overflow:hidden;
+  transition:background .25s;
+}
+.service-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:2px;background:var(--blue-3);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s ease;
+}
+.service-card:hover::before{transform:scaleX(1);}
+.service-card:hover{background:var(--bg-off);}
+.card-num{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:.16em;color:var(--text-3);
+  margin-bottom:1.1rem;
+}
+.card-line{
+  width:24px;height:2px;background:var(--blue-3);
+  margin-bottom:1.1rem;transition:width .3s;
+}
+.service-card:hover .card-line{width:44px;}
+.card-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;font-weight:400;
+  color:var(--text);margin-bottom:.55rem;line-height:1.35;
+}
+.card-body{font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:1.1rem;}
+.tags{display:flex;flex-wrap:wrap;gap:.3rem;}
+.tag{
+  font-family:'DM Mono',monospace;font-size:9.5px;
+  letter-spacing:.06em;color:var(--text-3);
+  border:1px solid var(--border);padding:3px 8px;
+}
+.service-cta{
+  background:rgba(32,80,160,.04);
+  border-top:2px solid var(--blue-3);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:1rem;padding:2rem;
+}
+.service-cta p{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-style:italic;
+  color:var(--blue-2);text-align:center;
+}
 
-    /* ── LOGO HORIZONTAL ── */
-    .logo-h{display:inline-flex;align-items:center;gap:0.8rem;text-decoration:none;}
-    .logo-h .rc-name{font-family:var(--font-body);font-size:1.05rem;font-weight:600;letter-spacing:0.08em;color:var(--text-1);line-height:1.1;}
-    .logo-h .rc-sub{font-family:var(--font-mono);font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent-mid);}
+/* ── DIFFERENTIALS ── */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3.5rem;}
+.diff{position:relative;padding-top:1rem;}
+.diff-num{
+  font-family:'Playfair Display',serif;font-size:5rem;
+  font-weight:500;color:rgba(32,80,160,.07);
+  line-height:1;position:absolute;top:-1rem;left:-.5rem;
+  pointer-events:none;user-select:none;
+}
+.diff-content{position:relative;}
+.diff-rule{
+  width:36px;height:2px;background:var(--blue-3);
+  border:none;margin-bottom:1.1rem;
+}
+.diff-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:400;
+  color:var(--text);margin-bottom:.65rem;line-height:1.4;
+}
+.diff-body{font-size:13.5px;color:var(--text-2);line-height:1.8;}
+.diff-metric{
+  display:inline-flex;align-items:baseline;gap:.3rem;
+  margin-top:1rem;padding:.5rem 1rem;
+  background:rgba(32,80,160,.06);
+  border-left:2px solid var(--blue-4);
+}
+.metric-num{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:500;color:var(--blue-2);
+}
+.metric-label{font-size:12px;color:var(--text-3);}
 
-    /* ── LOGO VERTICAL ── */
-    .logo-v{display:inline-flex;flex-direction:column;align-items:center;gap:0.65rem;text-decoration:none;}
-    .logo-v .rc-name{font-family:var(--font-body);font-size:1.3rem;font-weight:600;letter-spacing:0.1em;color:var(--text-1);}
-    .logo-v .rc-sub{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent-mid);}
-    .logo-v .rc-rule{width:100%;height:.5px;background:var(--border-2);}
-    .logo-v .rc-slogan{font-family:var(--font-mono);font-size:0.52rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-4);}
+/* ── PROCESS ── */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);}
+.step{padding:2rem 1.5rem 2rem 0;position:relative;}
+.step:not(:last-child)::after{
+  content:'';position:absolute;top:2.3rem;right:0;
+  width:100%;height:1px;
+  background:linear-gradient(to right,var(--blue-4),rgba(12,24,40,.08));
+}
+.step-num{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:.14em;color:var(--blue-3);margin-bottom:.8rem;
+}
+.step-dot{
+  width:8px;height:8px;border:1.5px solid var(--blue-4);
+  border-radius:50%;background:#fff;
+  margin-bottom:1.2rem;position:relative;z-index:1;
+}
+.step-title{
+  font-family:'Playfair Display',serif;
+  font-size:.95rem;font-weight:400;
+  color:var(--text);margin-bottom:.4rem;
+}
+.step-desc{font-size:13px;color:var(--text-3);line-height:1.7;}
 
-    /* ═══════════════════════════════════════════════════════
-       NAVIGATION
-       ═══════════════════════════════════════════════════════ */
-    .rc-nav{
-      position:sticky;top:0;z-index:100;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:1rem 3rem;
-      background:var(--nav-bg);
-      backdrop-filter:blur(18px);
-      border-bottom:1px solid var(--border-1);
-      transition:background 0.4s, border-color 0.4s;
-    }
-    .rc-nav__links{display:flex;gap:2rem;list-style:none;}
-    .rc-nav__links a{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-3);text-decoration:none;transition:color 0.2s;}
-    .rc-nav__links a:hover{color:var(--accent-lt);}
-    body.mode-light .rc-nav__links a:hover{color:var(--accent);}
+/* ── FOUNDER ── */
+.founder-grid{display:grid;grid-template-columns:280px 1fr;gap:5rem;align-items:start;}
+.founder-avatar{
+  aspect-ratio:1;background:var(--bg-off);
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.founder-avatar-label{
+  position:absolute;bottom:.75rem;right:.75rem;
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--text-3);letter-spacing:.08em;
+}
+.founder-name{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;font-weight:400;
+  color:var(--text);margin-bottom:.2rem;
+}
+.founder-role{
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blue-3);margin-bottom:1.5rem;
+}
+.founder-bio{
+  font-size:15px;color:var(--text-2);
+  line-height:1.9;margin-bottom:1.5rem;
+}
+.cert-badges{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem;}
+.cert{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--blue-2);background:rgba(32,80,160,.06);
+  border:1px solid rgba(32,80,160,.2);padding:5px 12px;
+}
+.founder-langs{font-size:13px;color:var(--text-3);}
+.founder-langs span{color:var(--text-2);}
 
-    /* ═══════════════════════════════════════════════════════
-       TYPOGRAPHY
-       ═══════════════════════════════════════════════════════ */
-    .t-display{font-family:var(--font-display);font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:400;line-height:1.12;letter-spacing:-.01em;color:var(--text-1);}
-    .t-display em{font-style:italic;color:var(--accent-lt);}
-    body.mode-light .t-display em{color:var(--accent-mid);}
-    .t-h1{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.5rem);font-weight:400;line-height:1.2;color:var(--text-1);}
-    .t-h1 em{font-style:italic;color:var(--accent-lt);}
-    body.mode-light .t-h1 em{color:var(--accent-mid);}
-    .t-h2{font-family:var(--font-display);font-size:clamp(1.15rem,2vw,1.6rem);font-weight:400;line-height:1.3;color:var(--text-1);}
-    .t-h3{font-family:var(--font-body);font-size:1rem;font-weight:500;color:var(--text-1);}
-    .t-body{font-size:.93rem;font-weight:300;color:var(--text-2);line-height:1.85;}
-    .t-sm{font-size:.8rem;font-weight:300;color:var(--text-2);line-height:1.8;}
-    .t-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-lt);}
-    body.mode-light .t-label{color:var(--accent-mid);}
-    .t-mono{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em;color:var(--text-3);}
+/* ── CTA FINAL ── */
+.cta-section{
+  background:var(--navy);color:#d8eeff;
+  text-align:center;padding:7rem 4.5rem;
+  position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(44,102,200,.15),transparent);
+  pointer-events:none;
+}
+.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.cta-eyebrow{
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(216,238,255,.45);display:block;margin-bottom:1.1rem;
+}
+.cta-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,4vw,3.4rem);font-weight:400;
+  line-height:1.15;color:#d8eeff;margin-bottom:1.1rem;
+}
+.cta-title em{font-style:italic;color:#84ceff;}
+.cta-sub{
+  font-size:17px;font-weight:300;
+  color:rgba(216,238,255,.6);line-height:1.8;
+  margin-bottom:3rem;
+}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;}
+.btn-cta{
+  display:inline-block;
+  background:rgba(44,102,200,.9);color:#fff !important;
+  font-family:'Montserrat',sans-serif;
+  font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:16px 40px;text-decoration:none;
+  border:1px solid rgba(100,160,240,.3);
+  transition:background .25s,transform .2s;
+}
+.btn-cta:hover{background:var(--blue-4);transform:translateY(-2px);}
+.btn-cta-ghost{
+  display:inline-block;
+  background:transparent;color:rgba(216,238,255,.7) !important;
+  font-family:'Montserrat',sans-serif;
+  font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:15px 40px;text-decoration:none;
+  border:1px solid rgba(216,238,255,.2);
+  transition:border-color .25s,color .25s;
+}
+.btn-cta-ghost:hover{border-color:rgba(216,238,255,.5);color:#d8eeff !important;}
+.cta-note{
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:.12em;color:rgba(216,238,255,.3);
+}
 
-    /* ═══════════════════════════════════════════════════════
-       BUTTONS
-       ═══════════════════════════════════════════════════════ */
-    .btn{display:inline-block;font-family:var(--font-body);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.8rem 1.85rem;cursor:pointer;border:none;text-decoration:none;transition:all .25s;}
-    .btn-p{background:var(--accent);color:#fff;}
-    .btn-p:hover{background:var(--accent-mid);color:#fff;transform:translateY(-1px);}
-    body.mode-dark .btn-p{background:var(--accent);}
-    body.mode-dark .btn-p:hover{background:var(--accent-mid);}
-    .btn-o{background:transparent;color:var(--text-2);border:1px solid var(--border-2);}
-    .btn-o:hover{border-color:var(--accent-lt);color:var(--accent-lt);}
-    body.mode-light .btn-o:hover{border-color:var(--accent);color:var(--accent);}
+/* ── FOOTER ── */
+footer{
+  background:#f0f3f8;border-top:1px solid var(--border);
+  padding:2rem 4.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1.25rem;
+}
+.footer-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.footer-name{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:200;letter-spacing:2px;color:var(--text);}
+.footer-sub{font-family:'Montserrat',sans-serif;font-size:7px;font-weight:400;letter-spacing:3.5px;text-transform:uppercase;color:var(--blue-3);}
+.footer-links{display:flex;gap:1.75rem;}
+.footer-links a{font-size:12px;color:var(--text-3);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--blue-3);}
+.footer-copy{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:.05em;}
 
-    /* ═══════════════════════════════════════════════════════
-       SECTION & CONTAINER
-       ═══════════════════════════════════════════════════════ */
-    .rc-section{padding:var(--sp-2xl) 3rem;}
-    .rc-section--alt{background:var(--bg-2);border-top:1px solid var(--border-1);border-bottom:1px solid var(--border-1);}
-    .rc-container{max-width:1160px;margin:0 auto;}
-    .section-hdr{margin-bottom:var(--sp-xl);}
-    .section-hdr .t-label{display:block;margin-bottom:.7rem;}
-    .rc-rule{width:100%;height:1px;border:none;background:linear-gradient(to right,transparent,var(--border-2),transparent);}
-    .rc-rule-accent{width:38px;height:2px;border:none;background:var(--accent-lt);margin-bottom:var(--sp-md);}
-    body.mode-light .rc-rule-accent{background:var(--accent-mid);}
-
-    /* ═══════════════════════════════════════════════════════
-       GRID UTILITIES
-       ═══════════════════════════════════════════════════════ */
-    .g2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border-1);}
-    .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-1);}
-    .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-1);}
-    .g2>*,.g3>*,.g4>*{background:var(--bg);}
-    .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;}
-    .cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;}
-    .cols-1-2{display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;}
-
-    /* ═══════════════════════════════════════════════════════
-       COMPONENTS
-       ═══════════════════════════════════════════════════════ */
-
-    /* STAT CELLS */
-    .rc-stat{background:var(--bg-2);border:1px solid var(--border-1);padding:1.75rem 1.5rem;position:relative;overflow:hidden;transition:border-color .3s;}
-    .rc-stat::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:var(--accent-lt);opacity:0;transition:opacity .3s;}
-    body.mode-light .rc-stat::after{background:var(--accent-mid);}
-    .rc-stat:hover::after{opacity:1;}
-    .rc-stat__num{font-family:var(--font-display);font-size:2.1rem;font-weight:600;color:var(--accent-lt);line-height:1;margin-bottom:.35rem;}
-    body.mode-light .rc-stat__num{color:var(--accent);}
-    .rc-stat__label{font-size:.7rem;color:var(--text-3);line-height:1.4;}
-
-    /* CARDS */
-    .rc-card{background:var(--bg-2);border:1px solid var(--border-1);padding:2rem 1.75rem;position:relative;overflow:hidden;transition:background .25s,border-color .25s;}
-    .rc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-lt);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
-    body.mode-light .rc-card::before{background:var(--accent-mid);}
-    .rc-card:hover::before{transform:scaleX(1);}
-    .rc-card:hover{border-color:var(--border-2);}
-    .rc-card__num{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;color:var(--text-4);margin-bottom:1.2rem;}
-    .rc-card__line{width:26px;height:2px;background:var(--accent-lt);margin-bottom:1.2rem;transition:width .3s;}
-    body.mode-light .rc-card__line{background:var(--accent-mid);}
-    .rc-card:hover .rc-card__line{width:46px;}
-    .rc-card__title{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--text-1);margin-bottom:.5rem;line-height:1.3;}
-    .rc-card__body{font-size:.8rem;color:var(--text-2);line-height:1.75;margin-bottom:1.1rem;}
-    .rc-card__tags{display:flex;flex-wrap:wrap;gap:.3rem;}
-    .rc-tag{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.07em;color:var(--text-3);border:1px solid var(--border-1);padding:.17rem .5rem;}
-
-    /* CREDENTIALS */
-    .rc-cred{background:var(--bg-3);border:1px solid var(--border-1);padding:1.2rem;display:flex;gap:.9rem;align-items:flex-start;}
-    .rc-cred__icon{width:36px;height:36px;flex-shrink:0;border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.58rem;font-weight:500;color:var(--accent-lt);}
-    body.mode-light .rc-cred__icon{color:var(--accent-mid);}
-    .rc-cred__title{font-size:.8rem;font-weight:500;color:var(--text-1);margin-bottom:.15rem;}
-    .rc-cred__desc{font-size:.7rem;color:var(--text-3);line-height:1.5;}
-
-    /* PROCESS STEPS */
-    .rc-steps{display:grid;grid-template-columns:repeat(4,1fr);}
-    .rc-step{padding:1.75rem 1.5rem 1.75rem 0;position:relative;}
-    .rc-step:not(:last-child)::after{content:'';position:absolute;top:2.15rem;right:0;width:100%;height:1px;background:linear-gradient(to right,var(--accent-lt),var(--border-1));}
-    body.mode-light .rc-step:not(:last-child)::after{background:linear-gradient(to right,var(--accent-mid),var(--border-1));}
-    .rc-step__num{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;color:var(--accent-lt);margin-bottom:.8rem;}
-    body.mode-light .rc-step__num{color:var(--accent-mid);}
-    .rc-step__dot{width:8px;height:8px;border:1px solid var(--accent-lt);border-radius:50%;background:var(--bg);margin-bottom:1.2rem;position:relative;z-index:1;}
-    body.mode-light .rc-step__dot{border-color:var(--accent-mid);}
-    .rc-step__title{font-family:var(--font-display);font-size:.93rem;font-weight:500;color:var(--text-1);margin-bottom:.35rem;}
-    .rc-step__desc{font-size:.76rem;color:var(--text-3);line-height:1.65;}
-
-    /* DIFFERENTIALS */
-    .rc-diff{position:relative;padding-top:1rem;}
-    .rc-diff__bg{font-family:var(--font-display);font-size:5rem;font-weight:600;color:var(--accent-dim2);line-height:1;position:absolute;top:-1rem;left:-.5rem;pointer-events:none;user-select:none;}
-    .rc-diff__title{font-family:var(--font-display);font-size:1rem;font-weight:500;color:var(--text-1);margin-bottom:.55rem;line-height:1.4;position:relative;}
-    .rc-diff__body{font-size:.83rem;color:var(--text-2);line-height:1.75;position:relative;}
-    .rc-diff__metric{display:inline-flex;align-items:baseline;gap:.3rem;margin-top:.9rem;padding:.42rem .9rem;background:var(--accent-dim2);border-left:2px solid var(--accent-lt);}
-    body.mode-light .rc-diff__metric{border-left-color:var(--accent-mid);}
-    .rc-diff__metric-num{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--accent-lt);}
-    body.mode-light .rc-diff__metric-num{color:var(--accent);}
-    .rc-diff__metric-label{font-size:.68rem;color:var(--text-3);}
-
-    /* PILLS / BADGES */
-    .rc-pill{display:inline-block;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-lt);border:1px solid var(--border-2);padding:.22rem .62rem;}
-    body.mode-light .rc-pill{color:var(--accent);}
-    .rc-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-lt);border:1px solid var(--border-2);padding:.3rem .78rem;background:var(--accent-dim);}
-    body.mode-light .rc-badge{color:var(--accent);}
-    .rc-badge::before{content:'';width:5px;height:5px;background:var(--accent-lt);border-radius:50%;}
-    body.mode-light .rc-badge::before{background:var(--accent-mid);}
-
-    /* FOUNDER AVATAR */
-    .founder-avatar{aspect-ratio:1;background:var(--bg-3);border:1px solid var(--border-1);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;max-width:240px;}
-    .founder-avatar-label{position:absolute;bottom:.7rem;right:.7rem;font-family:var(--font-mono);font-size:.58rem;color:var(--text-4);letter-spacing:.1em;}
-
-    /* ═══════════════════════════════════════════════════════
-       DOCUMENT LAYOUTS (mode-light + doc-mode)
-       ═══════════════════════════════════════════════════════ */
-    .doc-mode .rc-nav,
-    .doc-mode .mode-switcher,
-    .doc-mode .rc-footer { display:none; }
-
-    /* ── Proposta Comercial ── */
-    .doc-layout{max-width:860px;margin:0 auto;padding:4rem 3.5rem;}
-    .doc-layout .doc-header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:2rem;border-bottom:2px solid var(--border-1);margin-bottom:3rem;}
-    .doc-layout .doc-title{font-family:var(--font-display);font-size:1.85rem;font-weight:400;color:var(--text-1);margin-bottom:.3rem;}
-    .doc-layout .doc-subtitle{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);}
-    .doc-layout .doc-meta{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.07em;color:var(--text-3);line-height:1.9;text-align:right;}
-    .doc-layout .doc-meta strong{color:var(--text-2);font-weight:500;}
-    .doc-layout .doc-intro{background:var(--bg-2);border-left:3px solid var(--accent-mid);padding:1.2rem 1.5rem;margin-bottom:2.75rem;font-size:.88rem;color:var(--text-2);line-height:1.85;}
-    .doc-layout .doc-section{margin-bottom:2.5rem;}
-    .doc-layout .doc-section-title{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border-1);}
-    .doc-layout .doc-body{font-size:.88rem;color:var(--text-2);line-height:1.9;}
-    .doc-layout .doc-body p{margin-bottom:.9rem;}
-    .doc-layout .doc-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:.9rem;}
-    .doc-layout .doc-table th{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);padding:.55rem 1rem;text-align:left;border-bottom:1px solid var(--border-2);}
-    .doc-layout .doc-table td{padding:.8rem 1rem;color:var(--text-2);border-bottom:1px solid var(--border-1);vertical-align:top;}
-    .doc-layout .doc-table tr:last-child td{border-bottom:none;}
-    .doc-layout .doc-table .td-hl{font-weight:500;color:var(--text-1);}
-    .doc-layout .doc-table .td-total{font-family:var(--font-display);font-size:.95rem;font-weight:500;color:var(--accent);}
-    .doc-layout .doc-footer-bar{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--border-1);display:flex;justify-content:space-between;align-items:center;}
-    .doc-layout .doc-contact{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.07em;color:var(--text-3);line-height:1.8;}
-    .doc-layout .doc-contact strong{color:var(--accent-mid);font-weight:500;}
-
-    /* ── Relatório / Auditoria ── */
-    .report-layout{max-width:960px;margin:0 auto;padding:4rem 3.5rem;}
-    .report-layout .report-cover{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:2.5rem;border-bottom:2px solid var(--border-1);margin-bottom:3.5rem;}
-    .report-layout .report-title{font-family:var(--font-display);font-size:2rem;font-weight:400;color:var(--text-1);margin-bottom:.4rem;}
-    .report-layout .report-client{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
-    .report-layout .report-meta{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.07em;color:var(--text-3);line-height:1.9;text-align:right;}
-    .report-layout .report-section{margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border-1);}
-    .report-layout .report-section:last-child{border-bottom:none;}
-    .report-layout .report-section-title{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
-    .report-layout .finding{padding:1.1rem 1.4rem;margin-bottom:.8rem;border-left:3px solid var(--border-2);background:var(--bg-2);}
-    .report-layout .finding.nc{border-left-color:#c0392b;}
-    .report-layout .finding.obs{border-left-color:#d4880a;}
-    .report-layout .finding.ok{border-left-color:#27ae60;}
-    .report-layout .finding.info{border-left-color:var(--accent-mid);}
-    .report-layout .finding__label{font-family:var(--font-mono);font-size:.57rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.3rem;}
-    .report-layout .finding.nc .finding__label{color:#c0392b;}
-    .report-layout .finding.obs .finding__label{color:#d4880a;}
-    .report-layout .finding.ok .finding__label{color:#27ae60;}
-    .report-layout .finding.info .finding__label{color:var(--accent-mid);}
-    .report-layout .finding__text{font-size:.83rem;color:var(--text-2);line-height:1.75;}
-    .report-layout .score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-1);margin:1.5rem 0;}
-    .report-layout .score-cell{background:var(--bg);padding:1.2rem 1rem;}
-    .report-layout .score-num{font-family:var(--font-display);font-size:1.75rem;font-weight:500;color:var(--accent);}
-    .report-layout .score-label{font-size:.68rem;color:var(--text-3);margin-top:.2rem;}
-
-    /* ── Carta / Email ── */
-    .letter-layout{max-width:700px;margin:0 auto;padding:4rem 3.5rem;}
-    .letter-layout .letter-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border-1);}
-    .letter-layout .letter-date{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;color:var(--text-3);}
-    .letter-layout .letter-to{font-size:.86rem;color:var(--text-2);line-height:1.7;margin-bottom:2rem;}
-    .letter-layout .letter-to strong{color:var(--text-1);font-weight:500;display:block;}
-    .letter-layout .letter-body{font-size:.88rem;color:var(--text-2);line-height:1.95;}
-    .letter-layout .letter-body p{margin-bottom:1rem;}
-    .letter-layout .letter-sig{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border-1);}
-    .letter-layout .sig-name{font-family:var(--font-display);font-size:1.05rem;font-weight:500;color:var(--text-1);margin-bottom:.12rem;}
-    .letter-layout .sig-role{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:.7rem;}
-    .letter-layout .sig-contact{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.05em;color:var(--text-3);line-height:1.8;}
-
-    /* ═══════════════════════════════════════════════════════
-       FOOTER
-       ═══════════════════════════════════════════════════════ */
-    .rc-footer{background:var(--bg-3);border-top:1px solid var(--border-1);padding:2.25rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem;}
-    .rc-footer__links{display:flex;gap:1.75rem;}
-    .rc-footer__links a{font-size:.68rem;color:var(--text-4);text-decoration:none;transition:color .2s;}
-    .rc-footer__links a:hover{color:var(--accent-lt);}
-    body.mode-light .rc-footer__links a:hover{color:var(--accent);}
-    .rc-footer__copy{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.06em;color:var(--text-4);}
-
-    /* ═══════════════════════════════════════════════════════
-       ANIMATIONS
-       ═══════════════════════════════════════════════════════ */
-    .fade-in{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
-    .fade-in.visible{opacity:1;transform:translateY(0);}
-    @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
-    .pulse{animation:pulse-dot 2s infinite;}
-
-    /* ═══════════════════════════════════════════════════════
-       PRINT
-       ═══════════════════════════════════════════════════════ */
-    @media print{
-      .rc-nav,.mode-switcher,.rc-footer{display:none!important;}
-      body{background:#fff!important;color:#0c1828!important;}
-      .rc-card,.rc-stat,.rc-cred{break-inside:avoid;}
-    }
-
-    /* ═══════════════════════════════════════════════════════
-       RESPONSIVE
-       ═══════════════════════════════════════════════════════ */
-    @media(max-width:860px){
-      .rc-nav{padding:1rem 1.5rem;}
-      .rc-nav__links{display:none;}
-      .rc-section{padding:var(--sp-xl) 1.5rem;}
-      .g2,.g3,.g4{grid-template-columns:1fr;}
-      .cols-2,.cols-3,.cols-1-2{grid-template-columns:1fr;gap:2rem;}
-      .rc-steps{grid-template-columns:1fr 1fr;}
-      .rc-footer{flex-direction:column;text-align:center;}
-      .doc-layout,.report-layout,.letter-layout{padding:2rem 1.5rem;}
-      .doc-layout .doc-header,.report-layout .report-cover,.letter-layout .letter-header{flex-direction:column;gap:1.25rem;}
-      .doc-layout .doc-meta,.report-layout .report-meta{text-align:left;}
-      .report-layout .score-grid{grid-template-columns:repeat(2,1fr);}
-      .mode-switcher{bottom:1rem;right:1rem;}
-    }
-  </style>
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 1.5rem;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:3rem 1.5rem;}
+  section{padding:4rem 1.5rem;}
+  .about-grid,.services-header,.founder-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .services-grid{grid-template-columns:1fr;}
+  .diff-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .steps{grid-template-columns:1fr 1fr;}
+  footer{flex-direction:column;text-align:center;}
+}
+</style>
 </head>
+<body>
 
-<!-- ═══════════════════════════════════════════════════════════
-     LOGO SVG — REFERÊNCIA PARA COPIAR/COLAR
-     Substitua os IDs únicos (ex: "a0","a1"…) se usar múltiplas
-     instâncias na mesma página.
-     ═══════════════════════════════════════════════════════════
-
-  VERSÃO DARK (fundos escuros):
-  Esferas: s0=#3a5c88/s3=#5294d8/s5=#6ebcf8/s7=#a8dcff
-  Centro:  #b8e8ff → #4a90d8 → #1a3e78
-
-  VERSÃO LIGHT (fundos claros):
-  Esferas: s0=#2a4878/s3=#2c5aaa/s5=#3a72c8/s7=#4888e0
-  Centro:  #6aacf8 → #2c62c0 → #103060
-
-  Estrutura do símbolo:
-  1. Hex externo duplo: R=175 e R=170 (stroke #4a78a8 dark / #2050a0 light)
-  2. Hex interno: R=133 (stroke mais suave)
-  3. Ring 4 (R=152, r=13): 18 esferas
-  4. Ring 3 (R=110, r=9): 12 esferas
-  5. Ring 2 (R=72, r=6): 12 esferas
-  6. Ring 1 (R=36, r=3.5): 6 esferas
-  7. Centro (r=18): esfera focal + especular
-  8. Eixos: horizontal + diagonal 60°
--->
-
-<body class="mode-light">
-
-<!-- ═══════════════════════════ NAVIGATION ═══════════════════════════ -->
-<nav class="rc-nav">
-  <a href="#" class="logo-h">
-    <div class="rc-symbol sm">
-      <svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="a0" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#2a4878"/><stop offset="45%" stop-color="#12244a"/><stop offset="100%" stop-color="#060e20"/></radialGradient>
-          <radialGradient id="a1" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#2a5090"/><stop offset="45%" stop-color="#142858"/><stop offset="100%" stop-color="#060e28"/></radialGradient>
-          <radialGradient id="a2" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#2c5aaa"/><stop offset="45%" stop-color="#163070"/><stop offset="100%" stop-color="#081230"/></radialGradient>
-          <radialGradient id="a3" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#3068c0"/><stop offset="45%" stop-color="#1a3880"/><stop offset="100%" stop-color="#081538"/></radialGradient>
-          <radialGradient id="a4" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#3a72c8"/><stop offset="45%" stop-color="#1e4090"/><stop offset="100%" stop-color="#0a1840"/></radialGradient>
-          <radialGradient id="a5" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#4080d8"/><stop offset="45%" stop-color="#2248a0"/><stop offset="100%" stop-color="#0c1c48"/></radialGradient>
-          <radialGradient id="a6" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#4888e0"/><stop offset="45%" stop-color="#2650b0"/><stop offset="100%" stop-color="#0e2050"/></radialGradient>
-          <radialGradient id="a7" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#5295ec"/><stop offset="45%" stop-color="#2c5ac0"/><stop offset="100%" stop-color="#102458"/></radialGradient>
-          <radialGradient id="ac" cx="32%" cy="28%" r="68%"><stop offset="0%" stop-color="#6aacf8"/><stop offset="35%" stop-color="#2c62c0"/><stop offset="75%" stop-color="#103060"/><stop offset="100%" stop-color="#08183a"/></radialGradient>
-          <radialGradient id="ah" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#000" stop-opacity="0.3"/><stop offset="100%" stop-color="#000" stop-opacity="0"/></radialGradient>
-        </defs>
-        <polygon points="340,165 491.6,252.5 491.6,427.5 340,515 188.4,427.5 188.4,252.5" fill="none" stroke="#2050a0" stroke-width="7" opacity="0.5"/>
-        <polygon points="340,170 487.2,255 487.2,425 340,510 192.8,425 192.8,255" fill="none" stroke="#2050a0" stroke-width="7" opacity="0.5"/>
-        <polygon points="340,207 455.2,273.5 455.2,406.5 340,473 224.8,406.5 224.8,273.5" fill="none" stroke="#1a3a80" stroke-width="4" opacity="0.3"/>
-        <circle cx="340" cy="188" r="13" fill="url(#a3)"/><circle cx="471.6" cy="264" r="13" fill="url(#a7)"/><circle cx="471.6" cy="416" r="13" fill="url(#a7)"/><circle cx="340" cy="492" r="13" fill="url(#a3)"/><circle cx="208.4" cy="416" r="13" fill="url(#a0)"/><circle cx="208.4" cy="264" r="13" fill="url(#a0)"/>
-        <circle cx="383.9" cy="213.3" r="13" fill="url(#a5)"/><circle cx="427.7" cy="238.7" r="13" fill="url(#a6)"/><circle cx="471.6" cy="314.7" r="13" fill="url(#a7)"/><circle cx="471.6" cy="365.3" r="13" fill="url(#a7)"/><circle cx="427.7" cy="441.3" r="13" fill="url(#a6)"/><circle cx="383.9" cy="466.7" r="13" fill="url(#a5)"/>
-        <circle cx="296.1" cy="466.7" r="13" fill="url(#a2)"/><circle cx="252.3" cy="441.3" r="13" fill="url(#a1)"/><circle cx="208.4" cy="365.3" r="13" fill="url(#a0)"/><circle cx="208.4" cy="314.7" r="13" fill="url(#a0)"/><circle cx="252.3" cy="238.7" r="13" fill="url(#a1)"/><circle cx="296.1" cy="213.3" r="13" fill="url(#a2)"/>
-        <circle cx="340" cy="230" r="9" fill="url(#a3)"/><circle cx="435.3" cy="285" r="9" fill="url(#a6)"/><circle cx="435.3" cy="395" r="9" fill="url(#a6)"/><circle cx="340" cy="450" r="9" fill="url(#a3)"/><circle cx="244.7" cy="395" r="9" fill="url(#a1)"/><circle cx="244.7" cy="285" r="9" fill="url(#a1)"/>
-        <circle cx="387.7" cy="257.5" r="9" fill="url(#a5)"/><circle cx="435.3" cy="340" r="9" fill="url(#a6)"/><circle cx="387.7" cy="422.5" r="9" fill="url(#a5)"/><circle cx="292.4" cy="422.5" r="9" fill="url(#a2)"/><circle cx="244.7" cy="340" r="9" fill="url(#a1)"/><circle cx="292.4" cy="257.5" r="9" fill="url(#a2)"/>
-        <circle cx="340" cy="268" r="6" fill="url(#a3)"/><circle cx="402.4" cy="304" r="6" fill="url(#a5)"/><circle cx="402.4" cy="376" r="6" fill="url(#a5)"/><circle cx="340" cy="412" r="6" fill="url(#a3)"/><circle cx="277.6" cy="376" r="6" fill="url(#a2)"/><circle cx="277.6" cy="304" r="6" fill="url(#a2)"/>
-        <circle cx="371.2" cy="286" r="6" fill="url(#a4)"/><circle cx="402.4" cy="340" r="6" fill="url(#a5)"/><circle cx="371.2" cy="394" r="6" fill="url(#a4)"/><circle cx="308.8" cy="394" r="6" fill="url(#a3)"/><circle cx="277.6" cy="340" r="6" fill="url(#a2)"/><circle cx="308.8" cy="286" r="6" fill="url(#a3)"/>
-        <circle cx="340" cy="304" r="3.5" fill="url(#a3)"/><circle cx="371.2" cy="322" r="3.5" fill="url(#a4)"/><circle cx="371.2" cy="358" r="3.5" fill="url(#a4)"/><circle cx="340" cy="376" r="3.5" fill="url(#a3)"/><circle cx="308.8" cy="358" r="3.5" fill="url(#a3)"/><circle cx="308.8" cy="322" r="3.5" fill="url(#a3)"/>
-        <ellipse cx="344" cy="349" rx="16" ry="5.5" fill="url(#ah)"/>
-        <circle cx="340" cy="340" r="18" fill="url(#ac)"/>
-        <ellipse cx="333" cy="333" rx="5" ry="3.5" fill="white" opacity="0.18" transform="rotate(-20,333,333)"/>
-        <line x1="165" y1="340" x2="515" y2="340" stroke="#2050a0" stroke-width="3" opacity="0.3"/>
-        <line x1="252.5" y1="491.6" x2="427.5" y2="188.4" stroke="#2050a0" stroke-width="3" opacity="0.3"/>
-      </svg>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 1120 1120" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="navs0" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#0d1e35"/>
+      <stop offset="45%" stop-color="#0d1e35" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#060e1c"/>
+    </radialGradient>
+    <radialGradient id="navs1" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#102240"/>
+      <stop offset="45%" stop-color="#102240" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#080f22"/>
+    </radialGradient>
+    <radialGradient id="navs2" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#142d55"/>
+      <stop offset="45%" stop-color="#142d55" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0a1530"/>
+    </radialGradient>
+    <radialGradient id="navs3" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#1a3a6e"/>
+      <stop offset="45%" stop-color="#1a3a6e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0d1c42"/>
+    </radialGradient>
+    <radialGradient id="navs4" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#1e4a8a"/>
+      <stop offset="45%" stop-color="#1e4a8a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#102256"/>
+    </radialGradient>
+    <radialGradient id="navs5" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#2860aa"/>
+      <stop offset="45%" stop-color="#2860aa" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#142e6a"/>
+    </radialGradient>
+    <radialGradient id="navs6" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#3478cc"/>
+      <stop offset="45%" stop-color="#3478cc" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1a3c88"/>
+    </radialGradient>
+    <radialGradient id="navs7" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#4a96e8"/>
+      <stop offset="45%" stop-color="#4a96e8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1e4898"/>
+    </radialGradient>
+    <radialGradient id="navs8" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#62b0f8"/>
+      <stop offset="45%" stop-color="#62b0f8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#2458aa"/>
+    </radialGradient>
+    <radialGradient id="navsc" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#8ac8ff"/>
+      <stop offset="40%" stop-color="#3a80d8"/>
+      <stop offset="75%" stop-color="#1a3e7a"/>
+      <stop offset="100%" stop-color="#0a1830"/>
+    </radialGradient>
+    <radialGradient id="navsh" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+    <polygon points="560.0,318.0 769.6,439.0 769.6,681.0 560.0,802.0 350.4,681.0 350.4,439.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
+    <polygon points="560.0,312.0 774.8,436.0 774.8,684.0 560.0,808.0 345.2,684.0 345.2,436.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
+    <polygon points="560.0,378.0 717.6,469.0 717.6,651.0 560.0,742.0 402.4,651.0 402.4,469.0"   fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.35"/>
+  
+    <line x1="300" y1="560" x2="820" y2="560" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
+    <line x1="430.0" y1="785.2" x2="690.0" y2="334.8" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
+  
+    <circle cx="560.0" cy="340.0" r="28" fill="url(#navs4)"/>
+    <circle cx="623.5" cy="376.7" r="28" fill="url(#navs5)"/>
+    <circle cx="687.0" cy="413.3" r="28" fill="url(#navs7)"/>
+    <circle cx="750.5" cy="450.0" r="28" fill="url(#navs8)"/>
+    <circle cx="750.5" cy="523.3" r="28" fill="url(#navs8)"/>
+    <circle cx="750.5" cy="596.7" r="28" fill="url(#navs8)"/>
+    <circle cx="750.5" cy="670.0" r="28" fill="url(#navs8)"/>
+    <circle cx="687.0" cy="706.7" r="28" fill="url(#navs7)"/>
+    <circle cx="623.5" cy="743.3" r="28" fill="url(#navs5)"/>
+    <circle cx="560.0" cy="780.0" r="28" fill="url(#navs4)"/>
+    <circle cx="496.5" cy="743.3" r="28" fill="url(#navs3)"/>
+    <circle cx="433.0" cy="706.7" r="28" fill="url(#navs1)"/>
+    <circle cx="369.5" cy="670.0" r="28" fill="url(#navs0)"/>
+    <circle cx="369.5" cy="596.7" r="28" fill="url(#navs0)"/>
+    <circle cx="369.5" cy="523.3" r="28" fill="url(#navs0)"/>
+    <circle cx="369.5" cy="450.0" r="28" fill="url(#navs0)"/>
+    <circle cx="433.0" cy="413.3" r="28" fill="url(#navs1)"/>
+    <circle cx="496.5" cy="376.7" r="28" fill="url(#navs3)"/>
+    <circle cx="560.0" cy="400.0" r="20" fill="url(#navs4)"/>
+    <circle cx="629.3" cy="440.0" r="20" fill="url(#navs5)"/>
+    <circle cx="698.6" cy="480.0" r="20" fill="url(#navs7)"/>
+    <circle cx="698.6" cy="560.0" r="20" fill="url(#navs7)"/>
+    <circle cx="698.6" cy="640.0" r="20" fill="url(#navs7)"/>
+    <circle cx="629.3" cy="680.0" r="20" fill="url(#navs5)"/>
+    <circle cx="560.0" cy="720.0" r="20" fill="url(#navs4)"/>
+    <circle cx="490.7" cy="680.0" r="20" fill="url(#navs3)"/>
+    <circle cx="421.4" cy="640.0" r="20" fill="url(#navs1)"/>
+    <circle cx="421.4" cy="560.0" r="20" fill="url(#navs1)"/>
+    <circle cx="421.4" cy="480.0" r="20" fill="url(#navs1)"/>
+    <circle cx="490.7" cy="440.0" r="20" fill="url(#navs3)"/>
+    <circle cx="560.0" cy="456.0" r="13" fill="url(#navs4)"/>
+    <circle cx="605.0" cy="482.0" r="13" fill="url(#navs5)"/>
+    <circle cx="650.1" cy="508.0" r="13" fill="url(#navs6)"/>
+    <circle cx="650.1" cy="560.0" r="13" fill="url(#navs6)"/>
+    <circle cx="650.1" cy="612.0" r="13" fill="url(#navs6)"/>
+    <circle cx="605.0" cy="638.0" r="13" fill="url(#navs5)"/>
+    <circle cx="560.0" cy="664.0" r="13" fill="url(#navs4)"/>
+    <circle cx="515.0" cy="638.0" r="13" fill="url(#navs3)"/>
+    <circle cx="469.9" cy="612.0" r="13" fill="url(#navs2)"/>
+    <circle cx="469.9" cy="560.0" r="13" fill="url(#navs2)"/>
+    <circle cx="469.9" cy="508.0" r="13" fill="url(#navs2)"/>
+    <circle cx="515.0" cy="482.0" r="13" fill="url(#navs3)"/>
+    <circle cx="560.0" cy="508.0" r="7" fill="url(#navs4)"/>
+    <circle cx="605.0" cy="534.0" r="7" fill="url(#navs5)"/>
+    <circle cx="605.0" cy="586.0" r="7" fill="url(#navs5)"/>
+    <circle cx="560.0" cy="612.0" r="7" fill="url(#navs4)"/>
+    <circle cx="515.0" cy="586.0" r="7" fill="url(#navs3)"/>
+    <circle cx="515.0" cy="534.0" r="7" fill="url(#navs3)"/>
+    <ellipse cx="566" cy="570" rx="22" ry="8" fill="url(#navsh)"/>
+    <circle cx="560" cy="560" r="26" fill="url(#navsc)"/>
+    <ellipse cx="553" cy="552" rx="8" ry="5.5" fill="white" opacity="0.15" transform="rotate(-20,553,552)"/>
+</svg>
+    <div class="nav-wordmark">
+      <span class="nav-name">ROSSITER</span>
+      <span class="nav-sub">Consulting</span>
     </div>
-    <div><div class="rc-name">ROSSITER</div><div class="rc-sub">Consulting</div></div>
   </a>
-  <ul class="rc-nav__links">
+  <ul class="nav-links">
     <li><a href="#servicos">Serviços</a></li>
     <li><a href="#diferenciais">Diferenciais</a></li>
     <li><a href="#processo">Processo</a></li>
     <li><a href="#fundador">Fundador</a></li>
   </ul>
-  <a href="#contato" class="btn btn-p">Diagnóstico Gratuito</a>
+  <a href="#contato" class="nav-cta">Diagnóstico Gratuito</a>
 </nav>
 
-<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
-<section class="rc-section" style="padding-top:6rem;background:var(--bg);position:relative;overflow:hidden;">
-  <!-- grid overlay -->
-  <div style="position:absolute;inset:0;background-image:linear-gradient(var(--border-1) 1px,transparent 1px),linear-gradient(90deg,var(--border-1) 1px,transparent 1px);background-size:60px 60px;opacity:.7;pointer-events:none;"></div>
-  <div class="rc-container" style="position:relative;z-index:1;">
-    <div class="cols-2" style="align-items:center;">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="hero-badge">Consultoria Especializada · DE · BR</div>
+    <h1 class="hero-title">
+      Sistemas que<br><em>funcionam</em><br>na sua rotina.
+    </h1>
+    <p class="hero-sub">
+      Implantação e evolução de Sistemas de Gestão ISO e Lean Six Sigma para engenharia, construção e indústria pesada. Sede na Alemanha. Operação no Brasil.
+    </p>
+    <p class="hero-slogan">Quality &nbsp;·&nbsp; Lean &nbsp;·&nbsp; Excellence</p>
+    <div class="hero-actions">
+      <a href="#contato" class="btn-primary">Agendar Diagnóstico Gratuito</a>
+      <a href="#servicos" class="btn-secondary">Ver Serviços</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-logo-wrap">
+      <svg viewBox="0 0 1120 1120" width="340" height="340" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="heros0" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#0d1e35"/>
+      <stop offset="45%" stop-color="#0d1e35" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#060e1c"/>
+    </radialGradient>
+    <radialGradient id="heros1" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#102240"/>
+      <stop offset="45%" stop-color="#102240" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#080f22"/>
+    </radialGradient>
+    <radialGradient id="heros2" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#142d55"/>
+      <stop offset="45%" stop-color="#142d55" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0a1530"/>
+    </radialGradient>
+    <radialGradient id="heros3" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#1a3a6e"/>
+      <stop offset="45%" stop-color="#1a3a6e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0d1c42"/>
+    </radialGradient>
+    <radialGradient id="heros4" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#1e4a8a"/>
+      <stop offset="45%" stop-color="#1e4a8a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#102256"/>
+    </radialGradient>
+    <radialGradient id="heros5" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#2860aa"/>
+      <stop offset="45%" stop-color="#2860aa" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#142e6a"/>
+    </radialGradient>
+    <radialGradient id="heros6" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#3478cc"/>
+      <stop offset="45%" stop-color="#3478cc" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1a3c88"/>
+    </radialGradient>
+    <radialGradient id="heros7" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#4a96e8"/>
+      <stop offset="45%" stop-color="#4a96e8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1e4898"/>
+    </radialGradient>
+    <radialGradient id="heros8" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#62b0f8"/>
+      <stop offset="45%" stop-color="#62b0f8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#2458aa"/>
+    </radialGradient>
+    <radialGradient id="herosc" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#8ac8ff"/>
+      <stop offset="40%" stop-color="#3a80d8"/>
+      <stop offset="75%" stop-color="#1a3e7a"/>
+      <stop offset="100%" stop-color="#0a1830"/>
+    </radialGradient>
+    <radialGradient id="herosh" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+    <polygon points="560.0,318.0 769.6,439.0 769.6,681.0 560.0,802.0 350.4,681.0 350.4,439.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
+    <polygon points="560.0,312.0 774.8,436.0 774.8,684.0 560.0,808.0 345.2,684.0 345.2,436.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
+    <polygon points="560.0,378.0 717.6,469.0 717.6,651.0 560.0,742.0 402.4,651.0 402.4,469.0"   fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.35"/>
+  
+    <line x1="300" y1="560" x2="820" y2="560" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
+    <line x1="430.0" y1="785.2" x2="690.0" y2="334.8" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
+  
+    <circle cx="560.0" cy="340.0" r="28" fill="url(#heros4)"/>
+    <circle cx="623.5" cy="376.7" r="28" fill="url(#heros5)"/>
+    <circle cx="687.0" cy="413.3" r="28" fill="url(#heros7)"/>
+    <circle cx="750.5" cy="450.0" r="28" fill="url(#heros8)"/>
+    <circle cx="750.5" cy="523.3" r="28" fill="url(#heros8)"/>
+    <circle cx="750.5" cy="596.7" r="28" fill="url(#heros8)"/>
+    <circle cx="750.5" cy="670.0" r="28" fill="url(#heros8)"/>
+    <circle cx="687.0" cy="706.7" r="28" fill="url(#heros7)"/>
+    <circle cx="623.5" cy="743.3" r="28" fill="url(#heros5)"/>
+    <circle cx="560.0" cy="780.0" r="28" fill="url(#heros4)"/>
+    <circle cx="496.5" cy="743.3" r="28" fill="url(#heros3)"/>
+    <circle cx="433.0" cy="706.7" r="28" fill="url(#heros1)"/>
+    <circle cx="369.5" cy="670.0" r="28" fill="url(#heros0)"/>
+    <circle cx="369.5" cy="596.7" r="28" fill="url(#heros0)"/>
+    <circle cx="369.5" cy="523.3" r="28" fill="url(#heros0)"/>
+    <circle cx="369.5" cy="450.0" r="28" fill="url(#heros0)"/>
+    <circle cx="433.0" cy="413.3" r="28" fill="url(#heros1)"/>
+    <circle cx="496.5" cy="376.7" r="28" fill="url(#heros3)"/>
+    <circle cx="560.0" cy="400.0" r="20" fill="url(#heros4)"/>
+    <circle cx="629.3" cy="440.0" r="20" fill="url(#heros5)"/>
+    <circle cx="698.6" cy="480.0" r="20" fill="url(#heros7)"/>
+    <circle cx="698.6" cy="560.0" r="20" fill="url(#heros7)"/>
+    <circle cx="698.6" cy="640.0" r="20" fill="url(#heros7)"/>
+    <circle cx="629.3" cy="680.0" r="20" fill="url(#heros5)"/>
+    <circle cx="560.0" cy="720.0" r="20" fill="url(#heros4)"/>
+    <circle cx="490.7" cy="680.0" r="20" fill="url(#heros3)"/>
+    <circle cx="421.4" cy="640.0" r="20" fill="url(#heros1)"/>
+    <circle cx="421.4" cy="560.0" r="20" fill="url(#heros1)"/>
+    <circle cx="421.4" cy="480.0" r="20" fill="url(#heros1)"/>
+    <circle cx="490.7" cy="440.0" r="20" fill="url(#heros3)"/>
+    <circle cx="560.0" cy="456.0" r="13" fill="url(#heros4)"/>
+    <circle cx="605.0" cy="482.0" r="13" fill="url(#heros5)"/>
+    <circle cx="650.1" cy="508.0" r="13" fill="url(#heros6)"/>
+    <circle cx="650.1" cy="560.0" r="13" fill="url(#heros6)"/>
+    <circle cx="650.1" cy="612.0" r="13" fill="url(#heros6)"/>
+    <circle cx="605.0" cy="638.0" r="13" fill="url(#heros5)"/>
+    <circle cx="560.0" cy="664.0" r="13" fill="url(#heros4)"/>
+    <circle cx="515.0" cy="638.0" r="13" fill="url(#heros3)"/>
+    <circle cx="469.9" cy="612.0" r="13" fill="url(#heros2)"/>
+    <circle cx="469.9" cy="560.0" r="13" fill="url(#heros2)"/>
+    <circle cx="469.9" cy="508.0" r="13" fill="url(#heros2)"/>
+    <circle cx="515.0" cy="482.0" r="13" fill="url(#heros3)"/>
+    <circle cx="560.0" cy="508.0" r="7" fill="url(#heros4)"/>
+    <circle cx="605.0" cy="534.0" r="7" fill="url(#heros5)"/>
+    <circle cx="605.0" cy="586.0" r="7" fill="url(#heros5)"/>
+    <circle cx="560.0" cy="612.0" r="7" fill="url(#heros4)"/>
+    <circle cx="515.0" cy="586.0" r="7" fill="url(#heros3)"/>
+    <circle cx="515.0" cy="534.0" r="7" fill="url(#heros3)"/>
+    <ellipse cx="566" cy="570" rx="22" ry="8" fill="url(#herosh)"/>
+    <circle cx="560" cy="560" r="26" fill="url(#herosc)"/>
+    <ellipse cx="553" cy="552" rx="8" ry="5.5" fill="white" opacity="0.15" transform="rotate(-20,553,552)"/>
+</svg>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="stat-num">16+</div><div class="stat-label">Anos em indústria pesada global</div></div>
+        <div class="hero-stat"><div class="stat-num">€1,9M</div><div class="stat-label">Impacto documentado / ano</div></div>
+        <div class="hero-stat"><div class="stat-num">−45%</div><div class="stat-label">Redução de defeitos</div></div>
+        <div class="hero-stat"><div class="stat-num">100+</div><div class="stat-label">Projetos simultâneos</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ABOUT -->
+<section class="section-alt" id="sobre">
+  <div class="container">
+    <div class="about-grid">
       <div>
-        <span class="rc-badge pulse" style="margin-bottom:1.75rem;display:inline-flex;">Consultoria Especializada</span>
-        <h1 class="t-display" style="margin-bottom:1.1rem;">Sistemas que<br><em>funcionam</em><br>na sua rotina.</h1>
-        <p class="t-body" style="max-width:420px;margin-bottom:1.6rem;">Implantação e evolução de Sistemas de Gestão ISO e Lean Six Sigma para engenharia, construção e indústria. Sede na Alemanha. Operação no Brasil.</p>
-        <p class="t-mono" style="margin-bottom:1.75rem;letter-spacing:.2em;">Quality &nbsp;·&nbsp; Lean &nbsp;·&nbsp; Excellence</p>
-        <div style="display:flex;gap:.85rem;flex-wrap:wrap;">
-          <a href="#contato" class="btn btn-p">Fale Conosco</a>
-          <a href="#servicos" class="btn btn-o">Ver Serviços</a>
-        </div>
-      </div>
-      <div class="g2">
-        <div class="rc-stat"><div class="rc-stat__num">16+</div><div class="rc-stat__label">Anos em indústria pesada global</div></div>
-        <div class="rc-stat"><div class="rc-stat__num">€1,9M</div><div class="rc-stat__label">Impacto documentado por ano</div></div>
-        <div class="rc-stat"><div class="rc-stat__num">−45%</div><div class="rc-stat__label">Redução de defeitos</div></div>
-        <div class="rc-stat"><div class="rc-stat__num">100+</div><div class="rc-stat__label">Projetos simultâneos</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="rc-rule">
-
-<!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
-<section class="rc-section rc-section--alt">
-  <div class="rc-container">
-    <div class="cols-2">
-      <div>
-        <span class="t-label" style="display:block;margin-bottom:.75rem;">Quem somos</span>
-        <h2 class="t-h1" style="margin-bottom:1.5rem;">Consultoria<br>sem <em>gaveta.</em></h2>
-        <div style="display:grid;gap:1px;background:var(--border-1);">
-          <div class="rc-cred"><div class="rc-cred__icon">IMS</div><div><div class="rc-cred__title">Lead Auditor IMS</div><div class="rc-cred__desc">ISO 9001 · 14001 · 45001 — Exemplar Global RTP</div></div></div>
-          <div class="rc-cred"><div class="rc-cred__icon">MBB</div><div><div class="rc-cred__title">Master Black Belt</div><div class="rc-cred__desc">Lean Six Sigma — resultados corporativos em escala global</div></div></div>
-          <div class="rc-cred"><div class="rc-cred__icon">IWE</div><div><div class="rc-cred__title">Intl. Welding Engineer</div><div class="rc-cred__desc">DVS / IIW — ISO 3834, WPS/PQR, soldadores</div></div></div>
-        </div>
-      </div>
-      <div>
-        <p class="t-body" style="margin-bottom:1.25rem;">A Rossiter Consulting é especializada em Sistemas de Gestão e Lean Six Sigma. Trabalhamos com engenharia, construção e indústria pesada — setores que exigem mais do que documentação: exigem sistemas que entram em operação e se sustentam.</p>
-        <p class="t-body" style="margin-bottom:1.5rem;">Não vendemos diagnósticos que ficam em apresentações. Trabalhamos com gates de implementação e medição de adoção real. O que importa é o sistema funcionando na sua rotina, com sua equipe, nos seus processos.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:.38rem;">
-          <span class="rc-pill">ISO 9001</span><span class="rc-pill">ISO 14001</span><span class="rc-pill">ISO 45001</span><span class="rc-pill">SGI</span><span class="rc-pill">Lean Six Sigma</span><span class="rc-pill">DMAIC</span><span class="rc-pill">ISO 3834</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════ SERVICES ═══════════════════════════ -->
-<section class="rc-section" id="servicos">
-  <div class="rc-container">
-    <div class="section-hdr">
-      <span class="t-label">O que entregamos</span>
-      <h2 class="t-h1" style="margin-top:.6rem;">Cinco frentes. <em>Um parceiro.</em></h2>
-    </div>
-    <div class="g3">
-      <div class="rc-card"><div class="rc-card__num">01 — Principal</div><div class="rc-card__line"></div><h3 class="rc-card__title">Sistemas de Gestão</h3><p class="rc-card__body">Implantação, evolução e manutenção de SGQ, SGA, SSO e SGI integrado. Do diagnóstico à certificação e além.</p><div class="rc-card__tags"><span class="rc-tag">ISO 9001</span><span class="rc-tag">ISO 14001</span><span class="rc-tag">ISO 45001</span><span class="rc-tag">SGI</span><span class="rc-tag">8D/CAPA</span></div></div>
-      <div class="rc-card"><div class="rc-card__num">02 — Principal</div><div class="rc-card__line"></div><h3 class="rc-card__title">Lean Six Sigma</h3><p class="rc-card__body">Diagnóstico operacional, projetos DMAIC, redução de COPQ e formação de belts internos.</p><div class="rc-card__tags"><span class="rc-tag">DMAIC</span><span class="rc-tag">VSM</span><span class="rc-tag">5S</span><span class="rc-tag">CEP</span><span class="rc-tag">Yellow/Green/Black</span></div></div>
-      <div class="rc-card"><div class="rc-card__num">03</div><div class="rc-card__line"></div><h3 class="rc-card__title">Qualidade em Projetos</h3><p class="rc-card__body">PQP, ITP, MDR, FMEA e gestão de fornecedores para contratos com requisitos rigorosos de cliente.</p><div class="rc-card__tags"><span class="rc-tag">APQP</span><span class="rc-tag">PPAP</span><span class="rc-tag">FMEA</span><span class="rc-tag">ITP</span><span class="rc-tag">2nd Party Audit</span></div></div>
-      <div class="rc-card"><div class="rc-card__num">04</div><div class="rc-card__line"></div><h3 class="rc-card__title">Treinamentos</h3><p class="rc-card__body">Formação de auditores internos, certificação de belts e ferramentas da qualidade. PT · EN · DE.</p><div class="rc-card__tags"><span class="rc-tag">Auditores ISO</span><span class="rc-tag">Lean Six Sigma</span><span class="rc-tag">8D · FMEA · CEP</span></div></div>
-      <div class="rc-card"><div class="rc-card__num">05 — Complementar</div><div class="rc-card__line"></div><h3 class="rc-card__title">Engenharia de Solda</h3><p class="rc-card__body">ISO 3834, qualificação WPS/PQR, soldadores e NDT para fabricação soldada crítica.</p><div class="rc-card__tags"><span class="rc-tag">ISO 3834</span><span class="rc-tag">WPS/PQR</span><span class="rc-tag">NDT</span><span class="rc-tag">ASME IX</span><span class="rc-tag">ISO 15614</span></div></div>
-      <div class="rc-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;background:var(--accent-dim);border-top:2px solid var(--accent-mid);">
-        <p style="font-family:var(--font-display);font-size:.95rem;color:var(--accent);text-align:center;line-height:1.4;">Não sabe por onde começar?</p>
-        <p class="t-sm" style="text-align:center;">O diagnóstico inicial é gratuito e sem compromisso.</p>
-        <a href="#contato" class="btn btn-p" style="font-size:.66rem;padding:.6rem 1.4rem;">Agendar Diagnóstico</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="rc-rule">
-
-<!-- ═══════════════════════════ DIFFERENTIALS ═══════════════════════════ -->
-<section class="rc-section rc-section--alt" id="diferenciais">
-  <div class="rc-container">
-    <div class="section-hdr">
-      <span class="t-label">Por que a Rossiter</span>
-      <h2 class="t-h1" style="margin-top:.6rem;">O diferencial está <em>nos números.</em></h2>
-    </div>
-    <div class="cols-3">
-      <div class="rc-diff fade-in"><div class="rc-diff__bg">01</div><hr class="rc-rule-accent"><h3 class="rc-diff__title">Credenciais raras em um único consultor</h3><p class="rc-diff__body">Lead Auditor IMS, Master Black Belt e IWE — as três certificações em um único profissional. Projetos integrados sem articular consultorias diferentes.</p></div>
-      <div class="rc-diff fade-in"><div class="rc-diff__bg">02</div><hr class="rc-rule-accent"><h3 class="rc-diff__title">Experiência corporativa com resultados documentados</h3><p class="rc-diff__body">Head of Quality Control EMEA — thyssenkrupp / FLSmidth. 100+ projetos simultâneos, 30+ inspetores em 5 países.</p><div class="rc-diff__metric"><span class="rc-diff__metric-num">€1,9M+</span><span class="rc-diff__metric-label">/ano de impacto</span></div></div>
-      <div class="rc-diff fade-in"><div class="rc-diff__bg">03</div><hr class="rc-rule-accent"><h3 class="rc-diff__title">Sistemas que se sustentam, não consultoria de gaveta</h3><p class="rc-diff__body">Gates de implementação e medição de adoção real. O sistema funcionando na rotina — não o volume de páginas entregues.</p><div class="rc-diff__metric"><span class="rc-diff__metric-num">−60%</span><span class="rc-diff__metric-label">repeat findings</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════ PROCESS ═══════════════════════════ -->
-<section class="rc-section" id="processo">
-  <div class="rc-container">
-    <div class="section-hdr">
-      <span class="t-label">Como trabalhamos</span>
-      <h2 class="t-h1" style="margin-top:.6rem;">Quatro passos. <em>Zero burocracia.</em></h2>
-    </div>
-    <div class="rc-steps">
-      <div class="rc-step fade-in"><div class="rc-step__num">Passo 01</div><div class="rc-step__dot"></div><div class="rc-step__title">Diagnóstico Gratuito</div><p class="rc-step__desc">Videochamada de 30–60 min. Entendemos onde e se faz sentido avançar.</p></div>
-      <div class="rc-step fade-in"><div class="rc-step__num">Passo 02</div><div class="rc-step__dot"></div><div class="rc-step__title">Avaliação Escrita</div><p class="rc-step__desc">Leitura do cenário por escrito. Sem custo, sem compromisso.</p></div>
-      <div class="rc-step fade-in"><div class="rc-step__num">Passo 03</div><div class="rc-step__dot"></div><div class="rc-step__title">Proposta Formal</div><p class="rc-step__desc">Escopo, prazo, equipe, entregáveis e preço detalhados.</p></div>
-      <div class="rc-step fade-in"><div class="rc-step__num">Passo 04</div><div class="rc-step__dot"></div><div class="rc-step__title">Execução Híbrida</div><p class="rc-step__desc">Presencial no Brasil + condução técnica remota da Alemanha.</p></div>
-    </div>
-  </div>
-</section>
-
-<hr class="rc-rule">
-
-<!-- ═══════════════════════════ FOUNDER ═══════════════════════════ -->
-<section class="rc-section rc-section--alt" id="fundador">
-  <div class="rc-container">
-    <div class="cols-1-2">
-      <div>
-        <span class="t-label" style="display:block;margin-bottom:1rem;">Quem lidera</span>
-        <div class="founder-avatar">
-          <div class="rc-symbol lg" style="opacity:.5;">
-            <svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
-              <defs><radialGradient id="fc2" cx="32%" cy="28%" r="68%"><stop offset="0%" stop-color="#5295ec"/><stop offset="35%" stop-color="#2050a0"/><stop offset="100%" stop-color="#081030"/></radialGradient></defs>
-              <polygon points="340,165 491.6,252.5 491.6,427.5 340,515 188.4,427.5 188.4,252.5" fill="none" stroke="#2050a0" stroke-width="8" opacity="0.4"/>
-              <polygon points="340,170 487.2,255 487.2,425 340,510 192.8,425 192.8,255" fill="none" stroke="#2050a0" stroke-width="8" opacity="0.4"/>
-              <circle cx="340" cy="340" r="18" fill="url(#fc2)"/>
-            </svg>
+        <span class="section-eyebrow">Quem somos</span>
+        <h2 class="section-title">Consultoria<br>sem <em>gaveta.</em></h2>
+        <div class="cred-list">
+          <div class="cred">
+            <div class="cred-icon">IMS</div>
+            <div>
+              <div class="cred-title">Lead Auditor IMS</div>
+              <div class="cred-desc">ISO 9001 · ISO 14001 · ISO 45001 — Exemplar Global RTP</div>
+            </div>
           </div>
+          <div class="cred">
+            <div class="cred-icon">MBB</div>
+            <div>
+              <div class="cred-title">Master Black Belt</div>
+              <div class="cred-desc">Lean Six Sigma — resultados corporativos documentados em escala global</div>
+            </div>
+          </div>
+          <div class="cred">
+            <div class="cred-icon">IWE</div>
+            <div>
+              <div class="cred-title">Intl. Welding Engineer</div>
+              <div class="cred-desc">DVS / IIW — ISO 3834, WPS/PQR, qualificação de soldadores</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:17px;font-weight:300;color:var(--text-2);line-height:1.9;margin-bottom:1.5rem;">
+          A Rossiter Consulting é especializada em Sistemas de Gestão e Lean Six Sigma. Trabalhamos com engenharia, construção e indústria pesada — setores que exigem mais do que documentação: exigem sistemas que entram em operação e se sustentam.
+        </p>
+        <p style="font-size:17px;font-weight:300;color:var(--text-2);line-height:1.9;margin-bottom:2rem;">
+          Não vendemos diagnósticos que ficam em apresentações. Trabalhamos com gates de implementação e medição de adoção real. O que importa é o sistema funcionando na sua rotina, com sua equipe, nos seus processos.
+        </p>
+        <div class="pills">
+          <span class="pill">ISO 9001</span>
+          <span class="pill">ISO 14001</span>
+          <span class="pill">ISO 45001</span>
+          <span class="pill">SGI</span>
+          <span class="pill">Lean Six Sigma</span>
+          <span class="pill">DMAIC</span>
+          <span class="pill">ISO 3834</span>
+          <span class="pill">8D / CAPA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicos">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <span class="section-eyebrow">O que entregamos</span>
+        <h2 class="section-title">Cinco frentes.<br><em>Um parceiro.</em></h2>
+      </div>
+      <p style="font-size:16px;color:var(--text-2);line-height:1.85;">
+        Cada frente é liderada diretamente pelo consultor responsável — sem camadas intermediárias, sem subcontratação oculta. Você fala com quem executa.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="card-num">01 — Principal</div>
+        <div class="card-line"></div>
+        <h3 class="card-title">Sistemas de Gestão</h3>
+        <p class="card-body">Implantação, evolução e manutenção de SGQ, SGA, SSO e SGI integrado. Do diagnóstico inicial à certificação, ou da manutenção de um sistema existente à próxima versão normativa.</p>
+        <div class="tags"><span class="tag">ISO 9001</span><span class="tag">ISO 14001</span><span class="tag">ISO 45001</span><span class="tag">SGI</span><span class="tag">Auditoria Interna</span><span class="tag">8D/CAPA</span></div>
+      </div>
+      <div class="service-card">
+        <div class="card-num">02 — Principal</div>
+        <div class="card-line"></div>
+        <h3 class="card-title">Lean Six Sigma</h3>
+        <p class="card-body">Diagnóstico operacional, projetos DMAIC para redução de perdas e variabilidade, redução de COPQ, mapeamento de valor e formação de belts internos.</p>
+        <div class="tags"><span class="tag">DMAIC</span><span class="tag">VSM</span><span class="tag">5S</span><span class="tag">CEP</span><span class="tag">Yellow / Green / Black Belt</span></div>
+      </div>
+      <div class="service-card">
+        <div class="card-num">03</div>
+        <div class="card-line"></div>
+        <h3 class="card-title">Qualidade em Projetos</h3>
+        <p class="card-body">PQP, ITP, MDR, FMEA e gestão de fornecedores para contratos de engenharia e obras com requisitos rigorosos de cliente.</p>
+        <div class="tags"><span class="tag">APQP</span><span class="tag">PPAP</span><span class="tag">FMEA</span><span class="tag">ITP</span><span class="tag">2nd Party Audit</span></div>
+      </div>
+      <div class="service-card">
+        <div class="card-num">04</div>
+        <div class="card-line"></div>
+        <h3 class="card-title">Treinamentos</h3>
+        <p class="card-body">Formação de auditores internos, certificação de belts e capacitação em ferramentas da qualidade. Conduzidos em português, inglês ou alemão — presenciais ou remotos.</p>
+        <div class="tags"><span class="tag">Auditores ISO</span><span class="tag">Lean Six Sigma</span><span class="tag">8D · FMEA · CEP</span><span class="tag">Presencial / Remoto</span></div>
+      </div>
+      <div class="service-card">
+        <div class="card-num">05 — Complementar</div>
+        <div class="card-line"></div>
+        <h3 class="card-title">Engenharia de Solda</h3>
+        <p class="card-body">Implantação ISO 3834, qualificação de WPS/PQR, qualificação de soldadores e coordenação de NDT para fabricação soldada crítica.</p>
+        <div class="tags"><span class="tag">ISO 3834</span><span class="tag">WPS / PQR</span><span class="tag">NDT</span><span class="tag">ISO 15614</span><span class="tag">ASME IX</span></div>
+      </div>
+      <div class="service-cta">
+        <p>Não sabe por onde começar?</p>
+        <p style="font-size:13px;color:var(--text-2);font-family:'Montserrat',sans-serif;font-style:normal;text-align:center;line-height:1.6;">O diagnóstico inicial é gratuito, sem compromisso e começa com uma conversa de 30 minutos.</p>
+        <a href="#contato" class="btn-primary" style="font-size:11px;padding:12px 28px;">Agendar agora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- DIFFERENTIALS -->
+<section class="section-alt" id="diferenciais">
+  <div class="container">
+    <span class="section-eyebrow">Por que a Rossiter</span>
+    <h2 class="section-title">O diferencial está <em>nos números.</em></h2>
+    <div class="diff-grid" style="margin-top:3.5rem;">
+      <div class="diff">
+        <div class="diff-num">01</div>
+        <div class="diff-content">
+          <hr class="diff-rule">
+          <h3 class="diff-title">Credenciais raras em um único consultor</h3>
+          <p class="diff-body">Lead Auditor IMS, Master Black Belt e International Welding Engineer — as três certificações em um único profissional são incomuns no mercado. Permitem conduzir projetos integrados de sistema de gestão, melhoria contínua e qualidade técnica sem precisar articular consultorias diferentes.</p>
+        </div>
+      </div>
+      <div class="diff">
+        <div class="diff-num">02</div>
+        <div class="diff-content">
+          <hr class="diff-rule">
+          <h3 class="diff-title">Experiência corporativa com resultados documentados</h3>
+          <p class="diff-body">Head of Quality Control EMEA na thyssenkrupp / FLSmidth — responsável por 100+ projetos simultâneos e rede de 30+ inspetores em 5 países.</p>
+          <div class="diff-metric">
+            <span class="metric-num">€1,9M+</span>
+            <span class="metric-label">/ ano de impacto documentado</span>
+          </div>
+        </div>
+      </div>
+      <div class="diff">
+        <div class="diff-num">03</div>
+        <div class="diff-content">
+          <hr class="diff-rule">
+          <h3 class="diff-title">Sistemas que se sustentam, não consultoria de gaveta</h3>
+          <p class="diff-body">Gates de implementação e medição de adoção real. O que vale é o sistema funcionando na rotina do cliente — não o volume de páginas entregues.</p>
+          <div class="diff-metric">
+            <span class="metric-num">−60%</span>
+            <span class="metric-label">repeat findings em auditorias internas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="processo">
+  <div class="container">
+    <span class="section-eyebrow">Como trabalhamos</span>
+    <h2 class="section-title">Quatro passos. <em>Zero burocracia.</em></h2>
+    <div class="steps" style="margin-top:3rem;">
+      <div class="step">
+        <div class="step-num">Passo 01</div>
+        <div class="step-dot"></div>
+        <div class="step-title">Diagnóstico Gratuito</div>
+        <p class="step-desc">Videochamada de 30–60 minutos. Nos apresentamos, entendemos onde e se faz sentido avançar — sem custo, sem compromisso.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Passo 02</div>
+        <div class="step-dot"></div>
+        <div class="step-title">Avaliação Escrita</div>
+        <p class="step-desc">Após a conversa, envio por escrito uma leitura do cenário e onde consigo agregar. Sem custo e sem compromisso.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Passo 03</div>
+        <div class="step-dot"></div>
+        <div class="step-title">Proposta Formal</div>
+        <p class="step-desc">Somente se houver aderência mútua — proposta com escopo, prazo, equipe, entregáveis e preço. Fase por fase, sem amarra de longo prazo.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Passo 04</div>
+        <div class="step-dot"></div>
+        <div class="step-title">Execução Híbrida</div>
+        <p class="step-desc">Visitas presenciais ao cliente no Brasil + trabalho técnico e condução remota desde a Alemanha. Documentos curtos, validados em uso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- FOUNDER -->
+<section class="section-alt" id="fundador">
+  <div class="container">
+    <div class="founder-grid">
+      <div>
+        <span class="section-eyebrow">Quem lidera</span>
+        <div class="founder-avatar" style="margin-top:1rem;">
+          <div style="opacity:.35;width:110px;height:110px;"><svg viewBox="0 0 1120 1120" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="avs0" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#0d1e35"/>
+      <stop offset="45%" stop-color="#0d1e35" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#060e1c"/>
+    </radialGradient>
+    <radialGradient id="avs1" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#102240"/>
+      <stop offset="45%" stop-color="#102240" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#080f22"/>
+    </radialGradient>
+    <radialGradient id="avs2" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#142d55"/>
+      <stop offset="45%" stop-color="#142d55" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0a1530"/>
+    </radialGradient>
+    <radialGradient id="avs3" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#1a3a6e"/>
+      <stop offset="45%" stop-color="#1a3a6e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0d1c42"/>
+    </radialGradient>
+    <radialGradient id="avs4" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#1e4a8a"/>
+      <stop offset="45%" stop-color="#1e4a8a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#102256"/>
+    </radialGradient>
+    <radialGradient id="avs5" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#2860aa"/>
+      <stop offset="45%" stop-color="#2860aa" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#142e6a"/>
+    </radialGradient>
+    <radialGradient id="avs6" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#3478cc"/>
+      <stop offset="45%" stop-color="#3478cc" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1a3c88"/>
+    </radialGradient>
+    <radialGradient id="avs7" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#4a96e8"/>
+      <stop offset="45%" stop-color="#4a96e8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1e4898"/>
+    </radialGradient>
+    <radialGradient id="avs8" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#62b0f8"/>
+      <stop offset="45%" stop-color="#62b0f8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#2458aa"/>
+    </radialGradient>
+    <radialGradient id="avsc" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#8ac8ff"/>
+      <stop offset="40%" stop-color="#3a80d8"/>
+      <stop offset="75%" stop-color="#1a3e7a"/>
+      <stop offset="100%" stop-color="#0a1830"/>
+    </radialGradient>
+    <radialGradient id="avsh" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+    <polygon points="560.0,318.0 769.6,439.0 769.6,681.0 560.0,802.0 350.4,681.0 350.4,439.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
+    <polygon points="560.0,312.0 774.8,436.0 774.8,684.0 560.0,808.0 345.2,684.0 345.2,436.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
+    <polygon points="560.0,378.0 717.6,469.0 717.6,651.0 560.0,742.0 402.4,651.0 402.4,469.0"   fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.35"/>
+  
+    <line x1="300" y1="560" x2="820" y2="560" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
+    <line x1="430.0" y1="785.2" x2="690.0" y2="334.8" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
+  
+    <circle cx="560.0" cy="340.0" r="28" fill="url(#avs4)"/>
+    <circle cx="623.5" cy="376.7" r="28" fill="url(#avs5)"/>
+    <circle cx="687.0" cy="413.3" r="28" fill="url(#avs7)"/>
+    <circle cx="750.5" cy="450.0" r="28" fill="url(#avs8)"/>
+    <circle cx="750.5" cy="523.3" r="28" fill="url(#avs8)"/>
+    <circle cx="750.5" cy="596.7" r="28" fill="url(#avs8)"/>
+    <circle cx="750.5" cy="670.0" r="28" fill="url(#avs8)"/>
+    <circle cx="687.0" cy="706.7" r="28" fill="url(#avs7)"/>
+    <circle cx="623.5" cy="743.3" r="28" fill="url(#avs5)"/>
+    <circle cx="560.0" cy="780.0" r="28" fill="url(#avs4)"/>
+    <circle cx="496.5" cy="743.3" r="28" fill="url(#avs3)"/>
+    <circle cx="433.0" cy="706.7" r="28" fill="url(#avs1)"/>
+    <circle cx="369.5" cy="670.0" r="28" fill="url(#avs0)"/>
+    <circle cx="369.5" cy="596.7" r="28" fill="url(#avs0)"/>
+    <circle cx="369.5" cy="523.3" r="28" fill="url(#avs0)"/>
+    <circle cx="369.5" cy="450.0" r="28" fill="url(#avs0)"/>
+    <circle cx="433.0" cy="413.3" r="28" fill="url(#avs1)"/>
+    <circle cx="496.5" cy="376.7" r="28" fill="url(#avs3)"/>
+    <circle cx="560.0" cy="400.0" r="20" fill="url(#avs4)"/>
+    <circle cx="629.3" cy="440.0" r="20" fill="url(#avs5)"/>
+    <circle cx="698.6" cy="480.0" r="20" fill="url(#avs7)"/>
+    <circle cx="698.6" cy="560.0" r="20" fill="url(#avs7)"/>
+    <circle cx="698.6" cy="640.0" r="20" fill="url(#avs7)"/>
+    <circle cx="629.3" cy="680.0" r="20" fill="url(#avs5)"/>
+    <circle cx="560.0" cy="720.0" r="20" fill="url(#avs4)"/>
+    <circle cx="490.7" cy="680.0" r="20" fill="url(#avs3)"/>
+    <circle cx="421.4" cy="640.0" r="20" fill="url(#avs1)"/>
+    <circle cx="421.4" cy="560.0" r="20" fill="url(#avs1)"/>
+    <circle cx="421.4" cy="480.0" r="20" fill="url(#avs1)"/>
+    <circle cx="490.7" cy="440.0" r="20" fill="url(#avs3)"/>
+    <circle cx="560.0" cy="456.0" r="13" fill="url(#avs4)"/>
+    <circle cx="605.0" cy="482.0" r="13" fill="url(#avs5)"/>
+    <circle cx="650.1" cy="508.0" r="13" fill="url(#avs6)"/>
+    <circle cx="650.1" cy="560.0" r="13" fill="url(#avs6)"/>
+    <circle cx="650.1" cy="612.0" r="13" fill="url(#avs6)"/>
+    <circle cx="605.0" cy="638.0" r="13" fill="url(#avs5)"/>
+    <circle cx="560.0" cy="664.0" r="13" fill="url(#avs4)"/>
+    <circle cx="515.0" cy="638.0" r="13" fill="url(#avs3)"/>
+    <circle cx="469.9" cy="612.0" r="13" fill="url(#avs2)"/>
+    <circle cx="469.9" cy="560.0" r="13" fill="url(#avs2)"/>
+    <circle cx="469.9" cy="508.0" r="13" fill="url(#avs2)"/>
+    <circle cx="515.0" cy="482.0" r="13" fill="url(#avs3)"/>
+    <circle cx="560.0" cy="508.0" r="7" fill="url(#avs4)"/>
+    <circle cx="605.0" cy="534.0" r="7" fill="url(#avs5)"/>
+    <circle cx="605.0" cy="586.0" r="7" fill="url(#avs5)"/>
+    <circle cx="560.0" cy="612.0" r="7" fill="url(#avs4)"/>
+    <circle cx="515.0" cy="586.0" r="7" fill="url(#avs3)"/>
+    <circle cx="515.0" cy="534.0" r="7" fill="url(#avs3)"/>
+    <ellipse cx="566" cy="570" rx="22" ry="8" fill="url(#avsh)"/>
+    <circle cx="560" cy="560" r="26" fill="url(#avsc)"/>
+    <ellipse cx="553" cy="552" rx="8" ry="5.5" fill="white" opacity="0.15" transform="rotate(-20,553,552)"/>
+</svg></div>
           <span class="founder-avatar-label">ER</span>
         </div>
       </div>
       <div>
-        <h2 style="font-family:var(--font-display);font-size:1.9rem;font-weight:400;color:var(--text-1);margin-bottom:.2rem;">Eduardo Rossiter</h2>
-        <p class="t-label" style="margin-bottom:1.4rem;">Fundador · Consultor Principal</p>
-        <p class="t-body" style="margin-bottom:1.4rem;">Engenheiro Mecânico (UFBA), MSc Energy Engineering pela RWTH Aachen, doutorado em fase final pelo Instituto de Soldagem da RWTH Aachen. Co-inventor da Patente Europeia EP3374084. 16+ anos em indústria pesada global, com os últimos como Head of Quality Control EMEA na thyssenkrupp Mining Technologies / FLSmidth — responsável por 100+ projetos simultâneos e rede de 30+ inspetores em 5 países.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:.38rem;margin-bottom:1.4rem;">
-          <span class="rc-pill">Lead Auditor IMS</span><span class="rc-pill">Master Black Belt</span><span class="rc-pill">Intl. Welding Engineer</span><span class="rc-pill">Exemplar Global RTP</span><span class="rc-pill">DVS / IIW</span>
+        <h2 class="founder-name">Eduardo Rossiter</h2>
+        <p class="founder-role">Fundador · Consultor Principal</p>
+        <p class="founder-bio">
+          Engenheiro Mecânico (UFBA), MSc Energy Engineering pela RWTH Aachen, doutorado em fase final pelo Instituto de Soldagem da RWTH Aachen. Co-inventor da Patente Europeia EP3374084. 16+ anos em indústria pesada global, com os últimos como Head of Quality Control EMEA na thyssenkrupp Mining Technologies / FLSmidth — responsável por 100+ projetos simultâneos e rede de 30+ inspetores em 5 países.
+        </p>
+        <div class="cert-badges">
+          <span class="cert">Lead Auditor IMS</span>
+          <span class="cert">Master Black Belt LSS</span>
+          <span class="cert">Intl. Welding Engineer</span>
+          <span class="cert">Exemplar Global RTP</span>
+          <span class="cert">DVS / IIW</span>
         </div>
-        <p class="t-mono">Idiomas: &nbsp;Português · Inglês · Alemão · Espanhol</p>
+        <p class="founder-langs">Idiomas: <span>Português · Inglês · Alemão · Espanhol</span></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════ CTA ═══════════════════════════ -->
-<section class="rc-section" id="contato" style="text-align:center;background:var(--bg-2);border-top:1px solid var(--border-1);">
-  <div class="rc-container" style="max-width:580px;">
-    <span class="t-label" style="display:block;margin-bottom:.85rem;">Próximo passo</span>
-    <h2 class="t-display" style="font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:1rem;">Pronto para um sistema que <em>funciona</em>?</h2>
-    <p class="t-body" style="margin-bottom:2.25rem;">O diagnóstico inicial é gratuito, sem compromisso e começa com uma conversa de 30 minutos. Identificamos juntos onde e como faz sentido avançar.</p>
-    <div style="display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.1rem;">
-      <a href="mailto:edurossiter@hotmail.com" class="btn btn-p">edurossiter@hotmail.com</a>
-      <a href="https://linkedin.com/in/edurossiter" class="btn btn-o" target="_blank">LinkedIn</a>
+<!-- CTA -->
+<section class="cta-section" id="contato">
+  <div class="cta-inner">
+    <span class="cta-eyebrow">Próximo passo</span>
+    <h2 class="cta-title">Pronto para um sistema que <em>funciona</em>?</h2>
+    <p class="cta-sub">
+      O diagnóstico inicial é gratuito, sem compromisso e começa com uma conversa de 30 minutos. Identificamos juntos onde e como faz sentido avançar.
+    </p>
+    <div class="cta-actions">
+      <a href="mailto:edurossiter@hotmail.com" class="btn-cta">edurossiter@hotmail.com</a>
+      <a href="https://linkedin.com/in/edurossiter" class="btn-cta-ghost" target="_blank">LinkedIn →</a>
     </div>
-    <p class="t-mono">+49 176 2111 0258 &nbsp;·&nbsp; Alemanha / Brasil</p>
+    <p class="cta-note"><a href="tel:+4917621110258" style="color:inherit;text-decoration:none;">+49 176 2111 0258</a> &nbsp;·&nbsp; Alemanha / Brasil</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
-<footer class="rc-footer">
-  <a href="#" class="logo-h" style="text-decoration:none;">
-    <div class="rc-symbol xs">
-      <svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
-        <defs><radialGradient id="ftf" cx="32%" cy="28%" r="68%"><stop offset="0%" stop-color="#5295ec"/><stop offset="35%" stop-color="#2050a0"/><stop offset="100%" stop-color="#081030"/></radialGradient></defs>
-        <polygon points="340,165 491.6,252.5 491.6,427.5 340,515 188.4,427.5 188.4,252.5" fill="none" stroke="#2050a0" stroke-width="8" opacity="0.5"/>
-        <polygon points="340,170 487.2,255 487.2,425 340,510 192.8,425 192.8,255" fill="none" stroke="#2050a0" stroke-width="8" opacity="0.5"/>
-        <circle cx="340" cy="340" r="18" fill="url(#ftf)"/>
-      </svg>
+<!-- FOOTER -->
+<footer>
+  <a href="#top" class="footer-logo">
+    <svg viewBox="0 0 1120 1120" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="fts0" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#0d1e35"/>
+      <stop offset="45%" stop-color="#0d1e35" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#060e1c"/>
+    </radialGradient>
+    <radialGradient id="fts1" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#102240"/>
+      <stop offset="45%" stop-color="#102240" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#080f22"/>
+    </radialGradient>
+    <radialGradient id="fts2" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#142d55"/>
+      <stop offset="45%" stop-color="#142d55" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0a1530"/>
+    </radialGradient>
+    <radialGradient id="fts3" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#1a3a6e"/>
+      <stop offset="45%" stop-color="#1a3a6e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0d1c42"/>
+    </radialGradient>
+    <radialGradient id="fts4" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#1e4a8a"/>
+      <stop offset="45%" stop-color="#1e4a8a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#102256"/>
+    </radialGradient>
+    <radialGradient id="fts5" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#2860aa"/>
+      <stop offset="45%" stop-color="#2860aa" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#142e6a"/>
+    </radialGradient>
+    <radialGradient id="fts6" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#3478cc"/>
+      <stop offset="45%" stop-color="#3478cc" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1a3c88"/>
+    </radialGradient>
+    <radialGradient id="fts7" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#4a96e8"/>
+      <stop offset="45%" stop-color="#4a96e8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1e4898"/>
+    </radialGradient>
+    <radialGradient id="fts8" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#62b0f8"/>
+      <stop offset="45%" stop-color="#62b0f8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#2458aa"/>
+    </radialGradient>
+    <radialGradient id="ftsc" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#8ac8ff"/>
+      <stop offset="40%" stop-color="#3a80d8"/>
+      <stop offset="75%" stop-color="#1a3e7a"/>
+      <stop offset="100%" stop-color="#0a1830"/>
+    </radialGradient>
+    <radialGradient id="ftsh" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+    <polygon points="560.0,318.0 769.6,439.0 769.6,681.0 560.0,802.0 350.4,681.0 350.4,439.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
+    <polygon points="560.0,312.0 774.8,436.0 774.8,684.0 560.0,808.0 345.2,684.0 345.2,436.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
+    <polygon points="560.0,378.0 717.6,469.0 717.6,651.0 560.0,742.0 402.4,651.0 402.4,469.0"   fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.35"/>
+  
+    <line x1="300" y1="560" x2="820" y2="560" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
+    <line x1="430.0" y1="785.2" x2="690.0" y2="334.8" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
+  
+    <circle cx="560.0" cy="340.0" r="28" fill="url(#fts4)"/>
+    <circle cx="623.5" cy="376.7" r="28" fill="url(#fts5)"/>
+    <circle cx="687.0" cy="413.3" r="28" fill="url(#fts7)"/>
+    <circle cx="750.5" cy="450.0" r="28" fill="url(#fts8)"/>
+    <circle cx="750.5" cy="523.3" r="28" fill="url(#fts8)"/>
+    <circle cx="750.5" cy="596.7" r="28" fill="url(#fts8)"/>
+    <circle cx="750.5" cy="670.0" r="28" fill="url(#fts8)"/>
+    <circle cx="687.0" cy="706.7" r="28" fill="url(#fts7)"/>
+    <circle cx="623.5" cy="743.3" r="28" fill="url(#fts5)"/>
+    <circle cx="560.0" cy="780.0" r="28" fill="url(#fts4)"/>
+    <circle cx="496.5" cy="743.3" r="28" fill="url(#fts3)"/>
+    <circle cx="433.0" cy="706.7" r="28" fill="url(#fts1)"/>
+    <circle cx="369.5" cy="670.0" r="28" fill="url(#fts0)"/>
+    <circle cx="369.5" cy="596.7" r="28" fill="url(#fts0)"/>
+    <circle cx="369.5" cy="523.3" r="28" fill="url(#fts0)"/>
+    <circle cx="369.5" cy="450.0" r="28" fill="url(#fts0)"/>
+    <circle cx="433.0" cy="413.3" r="28" fill="url(#fts1)"/>
+    <circle cx="496.5" cy="376.7" r="28" fill="url(#fts3)"/>
+    <circle cx="560.0" cy="400.0" r="20" fill="url(#fts4)"/>
+    <circle cx="629.3" cy="440.0" r="20" fill="url(#fts5)"/>
+    <circle cx="698.6" cy="480.0" r="20" fill="url(#fts7)"/>
+    <circle cx="698.6" cy="560.0" r="20" fill="url(#fts7)"/>
+    <circle cx="698.6" cy="640.0" r="20" fill="url(#fts7)"/>
+    <circle cx="629.3" cy="680.0" r="20" fill="url(#fts5)"/>
+    <circle cx="560.0" cy="720.0" r="20" fill="url(#fts4)"/>
+    <circle cx="490.7" cy="680.0" r="20" fill="url(#fts3)"/>
+    <circle cx="421.4" cy="640.0" r="20" fill="url(#fts1)"/>
+    <circle cx="421.4" cy="560.0" r="20" fill="url(#fts1)"/>
+    <circle cx="421.4" cy="480.0" r="20" fill="url(#fts1)"/>
+    <circle cx="490.7" cy="440.0" r="20" fill="url(#fts3)"/>
+    <circle cx="560.0" cy="456.0" r="13" fill="url(#fts4)"/>
+    <circle cx="605.0" cy="482.0" r="13" fill="url(#fts5)"/>
+    <circle cx="650.1" cy="508.0" r="13" fill="url(#fts6)"/>
+    <circle cx="650.1" cy="560.0" r="13" fill="url(#fts6)"/>
+    <circle cx="650.1" cy="612.0" r="13" fill="url(#fts6)"/>
+    <circle cx="605.0" cy="638.0" r="13" fill="url(#fts5)"/>
+    <circle cx="560.0" cy="664.0" r="13" fill="url(#fts4)"/>
+    <circle cx="515.0" cy="638.0" r="13" fill="url(#fts3)"/>
+    <circle cx="469.9" cy="612.0" r="13" fill="url(#fts2)"/>
+    <circle cx="469.9" cy="560.0" r="13" fill="url(#fts2)"/>
+    <circle cx="469.9" cy="508.0" r="13" fill="url(#fts2)"/>
+    <circle cx="515.0" cy="482.0" r="13" fill="url(#fts3)"/>
+    <circle cx="560.0" cy="508.0" r="7" fill="url(#fts4)"/>
+    <circle cx="605.0" cy="534.0" r="7" fill="url(#fts5)"/>
+    <circle cx="605.0" cy="586.0" r="7" fill="url(#fts5)"/>
+    <circle cx="560.0" cy="612.0" r="7" fill="url(#fts4)"/>
+    <circle cx="515.0" cy="586.0" r="7" fill="url(#fts3)"/>
+    <circle cx="515.0" cy="534.0" r="7" fill="url(#fts3)"/>
+    <ellipse cx="566" cy="570" rx="22" ry="8" fill="url(#ftsh)"/>
+    <circle cx="560" cy="560" r="26" fill="url(#ftsc)"/>
+    <ellipse cx="553" cy="552" rx="8" ry="5.5" fill="white" opacity="0.15" transform="rotate(-20,553,552)"/>
+</svg>
+    <div>
+      <div class="footer-name">ROSSITER</div>
+      <div class="footer-sub">Consulting</div>
     </div>
-    <div><div class="rc-name" style="font-size:.85rem;">ROSSITER</div><div class="rc-sub" style="font-size:.46rem;">Consulting</div></div>
   </a>
-  <nav class="rc-footer__links">
-    <a href="#">A empresa</a><a href="#">Serviços</a><a href="#">Fundador</a><a href="#">Contato</a>
+  <nav class="footer-links">
+    <a href="#sobre">A empresa</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#fundador">Fundador</a>
+    <a href="#contato">Contato</a>
   </nav>
-  <span class="rc-footer__copy">© 2026 Rossiter Consulting &nbsp;·&nbsp; DE · BR</span>
+  <span class="footer-copy">© 2026 Rossiter Consulting · DE · BR</span>
 </footer>
 
-<!-- ═══════════════════════════ MODE SWITCHER ═══════════════════════════ -->
-<button class="mode-switcher" id="modeSwitcher" title="Alternar modo (A/B)">
-  <span class="dot"></span>
-  <span id="modeLabel">LIGHT</span>
-</button>
-
-<script>
-  // ── A/B MODE CONTROL ──────────────────────────────────────────────
-  // Para testes: adicione ?mode=dark ou ?mode=light na URL
-  // Para produção: altere RC_DEFAULT_MODE abaixo
-  const RC_DEFAULT_MODE = 'light';   // 'light' | 'dark'
-
-  const params = new URLSearchParams(window.location.search);
-  const urlMode = params.get('mode');
-  let currentMode = urlMode || localStorage.getItem('rc_mode') || RC_DEFAULT_MODE;
-
-  function applyMode(mode) {
-    document.body.classList.remove('mode-light','mode-dark');
-    document.body.classList.add('mode-' + mode);
-    document.getElementById('modeLabel').textContent = mode.toUpperCase();
-    localStorage.setItem('rc_mode', mode);
-    currentMode = mode;
-  }
-
-  applyMode(currentMode);
-
-  document.getElementById('modeSwitcher').addEventListener('click', () => {
-    applyMode(currentMode === 'light' ? 'dark' : 'light');
-  });
-
-  // ── FADE-IN ON SCROLL ─────────────────────────────────────────────
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach((e,i) => {
-      if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'), i*70);
-    });
-  }, {threshold:0.08});
-  document.querySelectorAll('.rc-card,.rc-stat,.rc-step,.rc-cred,.rc-diff,.fade-in').forEach(el=>{
-    el.classList.add('fade-in'); obs.observe(el);
-  });
-</script>
 </body>
 </html>
