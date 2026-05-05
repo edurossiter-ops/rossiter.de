@@ -47,7 +47,7 @@ body{
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 3.5rem;min-height:200px;
+  padding:8px 3.5rem;min-height:200px;overflow:visible;
   background:rgba(255,255,255,.95);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
@@ -89,7 +89,7 @@ nav{
   min-height:100vh;
   display:grid;
   grid-template-columns:1fr 1fr;
-  padding-top:72px;
+  padding-top:200px;
   background:#fff;
   position:relative;
   overflow:hidden;
@@ -567,7 +567,7 @@ footer{
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <svg viewBox="330 310 460 490" width="180" height="180" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="330 310 460 490" width="180" height="180" style="width:180px;height:180px;min-width:180px;min-height:180px;display:block;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="navs0" cx="35%" cy="30%" r="65%">
       <stop offset="0%" stop-color="#0d1e35"/>
