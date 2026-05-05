@@ -47,13 +47,13 @@ body{
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:8px 3.5rem;min-height:200px;overflow:visible;
+  padding:0 3.5rem;height:110px;
   background:rgba(255,255,255,.95);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
 }
 .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
-.nav-logo>svg{flex-shrink:0;width:180px !important;height:180px !important;display:block;}
+.nav-logo>img{flex-shrink:0;width:90px;height:90px;display:block;}
 .nav-wordmark{display:flex;flex-direction:column;gap:1px;}
 .nav-name{
   font-family:'Montserrat',sans-serif;
@@ -89,7 +89,7 @@ nav{
   min-height:100vh;
   display:grid;
   grid-template-columns:1fr 1fr;
-  padding-top:200px;
+  padding-top:110px;
   background:#fff;
   position:relative;
   overflow:hidden;
@@ -567,124 +567,7 @@ footer{
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <svg viewBox="330 310 460 490" width="180" height="180" style="width:180px;height:180px;min-width:180px;min-height:180px;display:block;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="navs0" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#0d1e35"/>
-      <stop offset="45%" stop-color="#0d1e35" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#060e1c"/>
-    </radialGradient>
-    <radialGradient id="navs1" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#102240"/>
-      <stop offset="45%" stop-color="#102240" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#080f22"/>
-    </radialGradient>
-    <radialGradient id="navs2" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#142d55"/>
-      <stop offset="45%" stop-color="#142d55" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#0a1530"/>
-    </radialGradient>
-    <radialGradient id="navs3" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#1a3a6e"/>
-      <stop offset="45%" stop-color="#1a3a6e" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#0d1c42"/>
-    </radialGradient>
-    <radialGradient id="navs4" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#1e4a8a"/>
-      <stop offset="45%" stop-color="#1e4a8a" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#102256"/>
-    </radialGradient>
-    <radialGradient id="navs5" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#2860aa"/>
-      <stop offset="45%" stop-color="#2860aa" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#142e6a"/>
-    </radialGradient>
-    <radialGradient id="navs6" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#3478cc"/>
-      <stop offset="45%" stop-color="#3478cc" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#1a3c88"/>
-    </radialGradient>
-    <radialGradient id="navs7" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#4a96e8"/>
-      <stop offset="45%" stop-color="#4a96e8" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#1e4898"/>
-    </radialGradient>
-    <radialGradient id="navs8" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#62b0f8"/>
-      <stop offset="45%" stop-color="#62b0f8" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#2458aa"/>
-    </radialGradient>
-    <radialGradient id="navsc" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#8ac8ff"/>
-      <stop offset="40%" stop-color="#3a80d8"/>
-      <stop offset="75%" stop-color="#1a3e7a"/>
-      <stop offset="100%" stop-color="#0a1830"/>
-    </radialGradient>
-    <radialGradient id="navsh" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#000000" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  
-    <polygon points="560.0,318.0 769.6,439.0 769.6,681.0 560.0,802.0 350.4,681.0 350.4,439.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
-    <polygon points="560.0,312.0 774.8,436.0 774.8,684.0 560.0,808.0 345.2,684.0 345.2,436.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
-    <polygon points="560.0,378.0 717.6,469.0 717.6,651.0 560.0,742.0 402.4,651.0 402.4,469.0"   fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.35"/>
-  
-    <line x1="300" y1="560" x2="820" y2="560" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
-    <line x1="430.0" y1="785.2" x2="690.0" y2="334.8" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
-  
-    <circle cx="560.0" cy="340.0" r="28" fill="url(#navs4)"/>
-    <circle cx="623.5" cy="376.7" r="28" fill="url(#navs5)"/>
-    <circle cx="687.0" cy="413.3" r="28" fill="url(#navs7)"/>
-    <circle cx="750.5" cy="450.0" r="28" fill="url(#navs8)"/>
-    <circle cx="750.5" cy="523.3" r="28" fill="url(#navs8)"/>
-    <circle cx="750.5" cy="596.7" r="28" fill="url(#navs8)"/>
-    <circle cx="750.5" cy="670.0" r="28" fill="url(#navs8)"/>
-    <circle cx="687.0" cy="706.7" r="28" fill="url(#navs7)"/>
-    <circle cx="623.5" cy="743.3" r="28" fill="url(#navs5)"/>
-    <circle cx="560.0" cy="780.0" r="28" fill="url(#navs4)"/>
-    <circle cx="496.5" cy="743.3" r="28" fill="url(#navs3)"/>
-    <circle cx="433.0" cy="706.7" r="28" fill="url(#navs1)"/>
-    <circle cx="369.5" cy="670.0" r="28" fill="url(#navs0)"/>
-    <circle cx="369.5" cy="596.7" r="28" fill="url(#navs0)"/>
-    <circle cx="369.5" cy="523.3" r="28" fill="url(#navs0)"/>
-    <circle cx="369.5" cy="450.0" r="28" fill="url(#navs0)"/>
-    <circle cx="433.0" cy="413.3" r="28" fill="url(#navs1)"/>
-    <circle cx="496.5" cy="376.7" r="28" fill="url(#navs3)"/>
-    <circle cx="560.0" cy="400.0" r="20" fill="url(#navs4)"/>
-    <circle cx="629.3" cy="440.0" r="20" fill="url(#navs5)"/>
-    <circle cx="698.6" cy="480.0" r="20" fill="url(#navs7)"/>
-    <circle cx="698.6" cy="560.0" r="20" fill="url(#navs7)"/>
-    <circle cx="698.6" cy="640.0" r="20" fill="url(#navs7)"/>
-    <circle cx="629.3" cy="680.0" r="20" fill="url(#navs5)"/>
-    <circle cx="560.0" cy="720.0" r="20" fill="url(#navs4)"/>
-    <circle cx="490.7" cy="680.0" r="20" fill="url(#navs3)"/>
-    <circle cx="421.4" cy="640.0" r="20" fill="url(#navs1)"/>
-    <circle cx="421.4" cy="560.0" r="20" fill="url(#navs1)"/>
-    <circle cx="421.4" cy="480.0" r="20" fill="url(#navs1)"/>
-    <circle cx="490.7" cy="440.0" r="20" fill="url(#navs3)"/>
-    <circle cx="560.0" cy="456.0" r="13" fill="url(#navs4)"/>
-    <circle cx="605.0" cy="482.0" r="13" fill="url(#navs5)"/>
-    <circle cx="650.1" cy="508.0" r="13" fill="url(#navs6)"/>
-    <circle cx="650.1" cy="560.0" r="13" fill="url(#navs6)"/>
-    <circle cx="650.1" cy="612.0" r="13" fill="url(#navs6)"/>
-    <circle cx="605.0" cy="638.0" r="13" fill="url(#navs5)"/>
-    <circle cx="560.0" cy="664.0" r="13" fill="url(#navs4)"/>
-    <circle cx="515.0" cy="638.0" r="13" fill="url(#navs3)"/>
-    <circle cx="469.9" cy="612.0" r="13" fill="url(#navs2)"/>
-    <circle cx="469.9" cy="560.0" r="13" fill="url(#navs2)"/>
-    <circle cx="469.9" cy="508.0" r="13" fill="url(#navs2)"/>
-    <circle cx="515.0" cy="482.0" r="13" fill="url(#navs3)"/>
-    <circle cx="560.0" cy="508.0" r="7" fill="url(#navs4)"/>
-    <circle cx="605.0" cy="534.0" r="7" fill="url(#navs5)"/>
-    <circle cx="605.0" cy="586.0" r="7" fill="url(#navs5)"/>
-    <circle cx="560.0" cy="612.0" r="7" fill="url(#navs4)"/>
-    <circle cx="515.0" cy="586.0" r="7" fill="url(#navs3)"/>
-    <circle cx="515.0" cy="534.0" r="7" fill="url(#navs3)"/>
-    <ellipse cx="566" cy="570" rx="22" ry="8" fill="url(#navsh)"/>
-    <circle cx="560" cy="560" r="26" fill="url(#navsc)"/>
-    <ellipse cx="553" cy="552" rx="8" ry="5.5" fill="white" opacity="0.15" transform="rotate(-20,553,552)"/>
-</svg>
+    <img src="rossiter-logo.png" width="90" height="90" alt="Rossiter Consulting" style="flex-shrink:0;">
     <div class="nav-wordmark">
       <span class="nav-name">ROSSITER</span>
       <span class="nav-sub">Consulting</span>
@@ -718,124 +601,7 @@ footer{
   </div>
   <div class="hero-right">
     <div class="hero-logo-wrap">
-      <svg viewBox="0 0 1120 1120" width="340" height="340" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="heros0" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#0d1e35"/>
-      <stop offset="45%" stop-color="#0d1e35" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#060e1c"/>
-    </radialGradient>
-    <radialGradient id="heros1" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#102240"/>
-      <stop offset="45%" stop-color="#102240" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#080f22"/>
-    </radialGradient>
-    <radialGradient id="heros2" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#142d55"/>
-      <stop offset="45%" stop-color="#142d55" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#0a1530"/>
-    </radialGradient>
-    <radialGradient id="heros3" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#1a3a6e"/>
-      <stop offset="45%" stop-color="#1a3a6e" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#0d1c42"/>
-    </radialGradient>
-    <radialGradient id="heros4" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#1e4a8a"/>
-      <stop offset="45%" stop-color="#1e4a8a" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#102256"/>
-    </radialGradient>
-    <radialGradient id="heros5" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#2860aa"/>
-      <stop offset="45%" stop-color="#2860aa" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#142e6a"/>
-    </radialGradient>
-    <radialGradient id="heros6" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#3478cc"/>
-      <stop offset="45%" stop-color="#3478cc" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#1a3c88"/>
-    </radialGradient>
-    <radialGradient id="heros7" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#4a96e8"/>
-      <stop offset="45%" stop-color="#4a96e8" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#1e4898"/>
-    </radialGradient>
-    <radialGradient id="heros8" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#62b0f8"/>
-      <stop offset="45%" stop-color="#62b0f8" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#2458aa"/>
-    </radialGradient>
-    <radialGradient id="herosc" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#8ac8ff"/>
-      <stop offset="40%" stop-color="#3a80d8"/>
-      <stop offset="75%" stop-color="#1a3e7a"/>
-      <stop offset="100%" stop-color="#0a1830"/>
-    </radialGradient>
-    <radialGradient id="herosh" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#000000" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  
-    <polygon points="560.0,318.0 769.6,439.0 769.6,681.0 560.0,802.0 350.4,681.0 350.4,439.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
-    <polygon points="560.0,312.0 774.8,436.0 774.8,684.0 560.0,808.0 345.2,684.0 345.2,436.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
-    <polygon points="560.0,378.0 717.6,469.0 717.6,651.0 560.0,742.0 402.4,651.0 402.4,469.0"   fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.35"/>
-  
-    <line x1="300" y1="560" x2="820" y2="560" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
-    <line x1="430.0" y1="785.2" x2="690.0" y2="334.8" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
-  
-    <circle cx="560.0" cy="340.0" r="28" fill="url(#heros4)"/>
-    <circle cx="623.5" cy="376.7" r="28" fill="url(#heros5)"/>
-    <circle cx="687.0" cy="413.3" r="28" fill="url(#heros7)"/>
-    <circle cx="750.5" cy="450.0" r="28" fill="url(#heros8)"/>
-    <circle cx="750.5" cy="523.3" r="28" fill="url(#heros8)"/>
-    <circle cx="750.5" cy="596.7" r="28" fill="url(#heros8)"/>
-    <circle cx="750.5" cy="670.0" r="28" fill="url(#heros8)"/>
-    <circle cx="687.0" cy="706.7" r="28" fill="url(#heros7)"/>
-    <circle cx="623.5" cy="743.3" r="28" fill="url(#heros5)"/>
-    <circle cx="560.0" cy="780.0" r="28" fill="url(#heros4)"/>
-    <circle cx="496.5" cy="743.3" r="28" fill="url(#heros3)"/>
-    <circle cx="433.0" cy="706.7" r="28" fill="url(#heros1)"/>
-    <circle cx="369.5" cy="670.0" r="28" fill="url(#heros0)"/>
-    <circle cx="369.5" cy="596.7" r="28" fill="url(#heros0)"/>
-    <circle cx="369.5" cy="523.3" r="28" fill="url(#heros0)"/>
-    <circle cx="369.5" cy="450.0" r="28" fill="url(#heros0)"/>
-    <circle cx="433.0" cy="413.3" r="28" fill="url(#heros1)"/>
-    <circle cx="496.5" cy="376.7" r="28" fill="url(#heros3)"/>
-    <circle cx="560.0" cy="400.0" r="20" fill="url(#heros4)"/>
-    <circle cx="629.3" cy="440.0" r="20" fill="url(#heros5)"/>
-    <circle cx="698.6" cy="480.0" r="20" fill="url(#heros7)"/>
-    <circle cx="698.6" cy="560.0" r="20" fill="url(#heros7)"/>
-    <circle cx="698.6" cy="640.0" r="20" fill="url(#heros7)"/>
-    <circle cx="629.3" cy="680.0" r="20" fill="url(#heros5)"/>
-    <circle cx="560.0" cy="720.0" r="20" fill="url(#heros4)"/>
-    <circle cx="490.7" cy="680.0" r="20" fill="url(#heros3)"/>
-    <circle cx="421.4" cy="640.0" r="20" fill="url(#heros1)"/>
-    <circle cx="421.4" cy="560.0" r="20" fill="url(#heros1)"/>
-    <circle cx="421.4" cy="480.0" r="20" fill="url(#heros1)"/>
-    <circle cx="490.7" cy="440.0" r="20" fill="url(#heros3)"/>
-    <circle cx="560.0" cy="456.0" r="13" fill="url(#heros4)"/>
-    <circle cx="605.0" cy="482.0" r="13" fill="url(#heros5)"/>
-    <circle cx="650.1" cy="508.0" r="13" fill="url(#heros6)"/>
-    <circle cx="650.1" cy="560.0" r="13" fill="url(#heros6)"/>
-    <circle cx="650.1" cy="612.0" r="13" fill="url(#heros6)"/>
-    <circle cx="605.0" cy="638.0" r="13" fill="url(#heros5)"/>
-    <circle cx="560.0" cy="664.0" r="13" fill="url(#heros4)"/>
-    <circle cx="515.0" cy="638.0" r="13" fill="url(#heros3)"/>
-    <circle cx="469.9" cy="612.0" r="13" fill="url(#heros2)"/>
-    <circle cx="469.9" cy="560.0" r="13" fill="url(#heros2)"/>
-    <circle cx="469.9" cy="508.0" r="13" fill="url(#heros2)"/>
-    <circle cx="515.0" cy="482.0" r="13" fill="url(#heros3)"/>
-    <circle cx="560.0" cy="508.0" r="7" fill="url(#heros4)"/>
-    <circle cx="605.0" cy="534.0" r="7" fill="url(#heros5)"/>
-    <circle cx="605.0" cy="586.0" r="7" fill="url(#heros5)"/>
-    <circle cx="560.0" cy="612.0" r="7" fill="url(#heros4)"/>
-    <circle cx="515.0" cy="586.0" r="7" fill="url(#heros3)"/>
-    <circle cx="515.0" cy="534.0" r="7" fill="url(#heros3)"/>
-    <ellipse cx="566" cy="570" rx="22" ry="8" fill="url(#herosh)"/>
-    <circle cx="560" cy="560" r="26" fill="url(#herosc)"/>
-    <ellipse cx="553" cy="552" rx="8" ry="5.5" fill="white" opacity="0.15" transform="rotate(-20,553,552)"/>
-</svg>
+      <img src="rossiter-logo.png" width="340" height="340" alt="Rossiter Consulting">
       <div class="hero-stats">
         <div class="hero-stat"><div class="stat-num">16+</div><div class="stat-label">Anos em indústria pesada global</div></div>
         <div class="hero-stat"><div class="stat-num">€1,9M</div><div class="stat-label">Impacto documentado / ano</div></div>
@@ -1044,126 +810,8 @@ footer{
     <div class="founder-grid">
       <div>
         <span class="section-eyebrow">Quem lidera</span>
-        <div class="founder-avatar" style="margin-top:1rem;">
-          <div style="opacity:.35;width:110px;height:110px;"><svg viewBox="0 0 1120 1120" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="avs0" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#0d1e35"/>
-      <stop offset="45%" stop-color="#0d1e35" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#060e1c"/>
-    </radialGradient>
-    <radialGradient id="avs1" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#102240"/>
-      <stop offset="45%" stop-color="#102240" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#080f22"/>
-    </radialGradient>
-    <radialGradient id="avs2" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#142d55"/>
-      <stop offset="45%" stop-color="#142d55" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#0a1530"/>
-    </radialGradient>
-    <radialGradient id="avs3" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#1a3a6e"/>
-      <stop offset="45%" stop-color="#1a3a6e" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#0d1c42"/>
-    </radialGradient>
-    <radialGradient id="avs4" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#1e4a8a"/>
-      <stop offset="45%" stop-color="#1e4a8a" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#102256"/>
-    </radialGradient>
-    <radialGradient id="avs5" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#2860aa"/>
-      <stop offset="45%" stop-color="#2860aa" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#142e6a"/>
-    </radialGradient>
-    <radialGradient id="avs6" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#3478cc"/>
-      <stop offset="45%" stop-color="#3478cc" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#1a3c88"/>
-    </radialGradient>
-    <radialGradient id="avs7" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#4a96e8"/>
-      <stop offset="45%" stop-color="#4a96e8" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#1e4898"/>
-    </radialGradient>
-    <radialGradient id="avs8" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#62b0f8"/>
-      <stop offset="45%" stop-color="#62b0f8" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#2458aa"/>
-    </radialGradient>
-    <radialGradient id="avsc" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#8ac8ff"/>
-      <stop offset="40%" stop-color="#3a80d8"/>
-      <stop offset="75%" stop-color="#1a3e7a"/>
-      <stop offset="100%" stop-color="#0a1830"/>
-    </radialGradient>
-    <radialGradient id="avsh" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#000000" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  
-    <polygon points="560.0,318.0 769.6,439.0 769.6,681.0 560.0,802.0 350.4,681.0 350.4,439.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
-    <polygon points="560.0,312.0 774.8,436.0 774.8,684.0 560.0,808.0 345.2,684.0 345.2,436.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
-    <polygon points="560.0,378.0 717.6,469.0 717.6,651.0 560.0,742.0 402.4,651.0 402.4,469.0"   fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.35"/>
-  
-    <line x1="300" y1="560" x2="820" y2="560" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
-    <line x1="430.0" y1="785.2" x2="690.0" y2="334.8" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
-  
-    <circle cx="560.0" cy="340.0" r="28" fill="url(#avs4)"/>
-    <circle cx="623.5" cy="376.7" r="28" fill="url(#avs5)"/>
-    <circle cx="687.0" cy="413.3" r="28" fill="url(#avs7)"/>
-    <circle cx="750.5" cy="450.0" r="28" fill="url(#avs8)"/>
-    <circle cx="750.5" cy="523.3" r="28" fill="url(#avs8)"/>
-    <circle cx="750.5" cy="596.7" r="28" fill="url(#avs8)"/>
-    <circle cx="750.5" cy="670.0" r="28" fill="url(#avs8)"/>
-    <circle cx="687.0" cy="706.7" r="28" fill="url(#avs7)"/>
-    <circle cx="623.5" cy="743.3" r="28" fill="url(#avs5)"/>
-    <circle cx="560.0" cy="780.0" r="28" fill="url(#avs4)"/>
-    <circle cx="496.5" cy="743.3" r="28" fill="url(#avs3)"/>
-    <circle cx="433.0" cy="706.7" r="28" fill="url(#avs1)"/>
-    <circle cx="369.5" cy="670.0" r="28" fill="url(#avs0)"/>
-    <circle cx="369.5" cy="596.7" r="28" fill="url(#avs0)"/>
-    <circle cx="369.5" cy="523.3" r="28" fill="url(#avs0)"/>
-    <circle cx="369.5" cy="450.0" r="28" fill="url(#avs0)"/>
-    <circle cx="433.0" cy="413.3" r="28" fill="url(#avs1)"/>
-    <circle cx="496.5" cy="376.7" r="28" fill="url(#avs3)"/>
-    <circle cx="560.0" cy="400.0" r="20" fill="url(#avs4)"/>
-    <circle cx="629.3" cy="440.0" r="20" fill="url(#avs5)"/>
-    <circle cx="698.6" cy="480.0" r="20" fill="url(#avs7)"/>
-    <circle cx="698.6" cy="560.0" r="20" fill="url(#avs7)"/>
-    <circle cx="698.6" cy="640.0" r="20" fill="url(#avs7)"/>
-    <circle cx="629.3" cy="680.0" r="20" fill="url(#avs5)"/>
-    <circle cx="560.0" cy="720.0" r="20" fill="url(#avs4)"/>
-    <circle cx="490.7" cy="680.0" r="20" fill="url(#avs3)"/>
-    <circle cx="421.4" cy="640.0" r="20" fill="url(#avs1)"/>
-    <circle cx="421.4" cy="560.0" r="20" fill="url(#avs1)"/>
-    <circle cx="421.4" cy="480.0" r="20" fill="url(#avs1)"/>
-    <circle cx="490.7" cy="440.0" r="20" fill="url(#avs3)"/>
-    <circle cx="560.0" cy="456.0" r="13" fill="url(#avs4)"/>
-    <circle cx="605.0" cy="482.0" r="13" fill="url(#avs5)"/>
-    <circle cx="650.1" cy="508.0" r="13" fill="url(#avs6)"/>
-    <circle cx="650.1" cy="560.0" r="13" fill="url(#avs6)"/>
-    <circle cx="650.1" cy="612.0" r="13" fill="url(#avs6)"/>
-    <circle cx="605.0" cy="638.0" r="13" fill="url(#avs5)"/>
-    <circle cx="560.0" cy="664.0" r="13" fill="url(#avs4)"/>
-    <circle cx="515.0" cy="638.0" r="13" fill="url(#avs3)"/>
-    <circle cx="469.9" cy="612.0" r="13" fill="url(#avs2)"/>
-    <circle cx="469.9" cy="560.0" r="13" fill="url(#avs2)"/>
-    <circle cx="469.9" cy="508.0" r="13" fill="url(#avs2)"/>
-    <circle cx="515.0" cy="482.0" r="13" fill="url(#avs3)"/>
-    <circle cx="560.0" cy="508.0" r="7" fill="url(#avs4)"/>
-    <circle cx="605.0" cy="534.0" r="7" fill="url(#avs5)"/>
-    <circle cx="605.0" cy="586.0" r="7" fill="url(#avs5)"/>
-    <circle cx="560.0" cy="612.0" r="7" fill="url(#avs4)"/>
-    <circle cx="515.0" cy="586.0" r="7" fill="url(#avs3)"/>
-    <circle cx="515.0" cy="534.0" r="7" fill="url(#avs3)"/>
-    <ellipse cx="566" cy="570" rx="22" ry="8" fill="url(#avsh)"/>
-    <circle cx="560" cy="560" r="26" fill="url(#avsc)"/>
-    <ellipse cx="553" cy="552" rx="8" ry="5.5" fill="white" opacity="0.15" transform="rotate(-20,553,552)"/>
-</svg></div>
-          <span class="founder-avatar-label">ER</span>
+        <div class="founder-avatar">
+          <img src="eduardo.jpg" alt="Eduardo Rossiter" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
         </div>
       </div>
       <div>
@@ -1252,124 +900,7 @@ Aguardo seu retorno.');
 <!-- FOOTER -->
 <footer>
   <a href="#top" class="footer-logo">
-    <svg viewBox="0 0 1120 1120" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="fts0" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#0d1e35"/>
-      <stop offset="45%" stop-color="#0d1e35" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#060e1c"/>
-    </radialGradient>
-    <radialGradient id="fts1" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#102240"/>
-      <stop offset="45%" stop-color="#102240" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#080f22"/>
-    </radialGradient>
-    <radialGradient id="fts2" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#142d55"/>
-      <stop offset="45%" stop-color="#142d55" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#0a1530"/>
-    </radialGradient>
-    <radialGradient id="fts3" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#1a3a6e"/>
-      <stop offset="45%" stop-color="#1a3a6e" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#0d1c42"/>
-    </radialGradient>
-    <radialGradient id="fts4" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#1e4a8a"/>
-      <stop offset="45%" stop-color="#1e4a8a" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#102256"/>
-    </radialGradient>
-    <radialGradient id="fts5" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#2860aa"/>
-      <stop offset="45%" stop-color="#2860aa" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#142e6a"/>
-    </radialGradient>
-    <radialGradient id="fts6" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#3478cc"/>
-      <stop offset="45%" stop-color="#3478cc" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#1a3c88"/>
-    </radialGradient>
-    <radialGradient id="fts7" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#4a96e8"/>
-      <stop offset="45%" stop-color="#4a96e8" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#1e4898"/>
-    </radialGradient>
-    <radialGradient id="fts8" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#62b0f8"/>
-      <stop offset="45%" stop-color="#62b0f8" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#2458aa"/>
-    </radialGradient>
-    <radialGradient id="ftsc" cx="35%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#8ac8ff"/>
-      <stop offset="40%" stop-color="#3a80d8"/>
-      <stop offset="75%" stop-color="#1a3e7a"/>
-      <stop offset="100%" stop-color="#0a1830"/>
-    </radialGradient>
-    <radialGradient id="ftsh" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#000000" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  
-    <polygon points="560.0,318.0 769.6,439.0 769.6,681.0 560.0,802.0 350.4,681.0 350.4,439.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
-    <polygon points="560.0,312.0 774.8,436.0 774.8,684.0 560.0,808.0 345.2,684.0 345.2,436.0" fill="none" stroke="#3a6090" stroke-width="1.2" opacity="0.55"/>
-    <polygon points="560.0,378.0 717.6,469.0 717.6,651.0 560.0,742.0 402.4,651.0 402.4,469.0"   fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.35"/>
-  
-    <line x1="300" y1="560" x2="820" y2="560" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
-    <line x1="430.0" y1="785.2" x2="690.0" y2="334.8" stroke="#3a6090" stroke-width="0.8" opacity="0.3"/>
-  
-    <circle cx="560.0" cy="340.0" r="28" fill="url(#fts4)"/>
-    <circle cx="623.5" cy="376.7" r="28" fill="url(#fts5)"/>
-    <circle cx="687.0" cy="413.3" r="28" fill="url(#fts7)"/>
-    <circle cx="750.5" cy="450.0" r="28" fill="url(#fts8)"/>
-    <circle cx="750.5" cy="523.3" r="28" fill="url(#fts8)"/>
-    <circle cx="750.5" cy="596.7" r="28" fill="url(#fts8)"/>
-    <circle cx="750.5" cy="670.0" r="28" fill="url(#fts8)"/>
-    <circle cx="687.0" cy="706.7" r="28" fill="url(#fts7)"/>
-    <circle cx="623.5" cy="743.3" r="28" fill="url(#fts5)"/>
-    <circle cx="560.0" cy="780.0" r="28" fill="url(#fts4)"/>
-    <circle cx="496.5" cy="743.3" r="28" fill="url(#fts3)"/>
-    <circle cx="433.0" cy="706.7" r="28" fill="url(#fts1)"/>
-    <circle cx="369.5" cy="670.0" r="28" fill="url(#fts0)"/>
-    <circle cx="369.5" cy="596.7" r="28" fill="url(#fts0)"/>
-    <circle cx="369.5" cy="523.3" r="28" fill="url(#fts0)"/>
-    <circle cx="369.5" cy="450.0" r="28" fill="url(#fts0)"/>
-    <circle cx="433.0" cy="413.3" r="28" fill="url(#fts1)"/>
-    <circle cx="496.5" cy="376.7" r="28" fill="url(#fts3)"/>
-    <circle cx="560.0" cy="400.0" r="20" fill="url(#fts4)"/>
-    <circle cx="629.3" cy="440.0" r="20" fill="url(#fts5)"/>
-    <circle cx="698.6" cy="480.0" r="20" fill="url(#fts7)"/>
-    <circle cx="698.6" cy="560.0" r="20" fill="url(#fts7)"/>
-    <circle cx="698.6" cy="640.0" r="20" fill="url(#fts7)"/>
-    <circle cx="629.3" cy="680.0" r="20" fill="url(#fts5)"/>
-    <circle cx="560.0" cy="720.0" r="20" fill="url(#fts4)"/>
-    <circle cx="490.7" cy="680.0" r="20" fill="url(#fts3)"/>
-    <circle cx="421.4" cy="640.0" r="20" fill="url(#fts1)"/>
-    <circle cx="421.4" cy="560.0" r="20" fill="url(#fts1)"/>
-    <circle cx="421.4" cy="480.0" r="20" fill="url(#fts1)"/>
-    <circle cx="490.7" cy="440.0" r="20" fill="url(#fts3)"/>
-    <circle cx="560.0" cy="456.0" r="13" fill="url(#fts4)"/>
-    <circle cx="605.0" cy="482.0" r="13" fill="url(#fts5)"/>
-    <circle cx="650.1" cy="508.0" r="13" fill="url(#fts6)"/>
-    <circle cx="650.1" cy="560.0" r="13" fill="url(#fts6)"/>
-    <circle cx="650.1" cy="612.0" r="13" fill="url(#fts6)"/>
-    <circle cx="605.0" cy="638.0" r="13" fill="url(#fts5)"/>
-    <circle cx="560.0" cy="664.0" r="13" fill="url(#fts4)"/>
-    <circle cx="515.0" cy="638.0" r="13" fill="url(#fts3)"/>
-    <circle cx="469.9" cy="612.0" r="13" fill="url(#fts2)"/>
-    <circle cx="469.9" cy="560.0" r="13" fill="url(#fts2)"/>
-    <circle cx="469.9" cy="508.0" r="13" fill="url(#fts2)"/>
-    <circle cx="515.0" cy="482.0" r="13" fill="url(#fts3)"/>
-    <circle cx="560.0" cy="508.0" r="7" fill="url(#fts4)"/>
-    <circle cx="605.0" cy="534.0" r="7" fill="url(#fts5)"/>
-    <circle cx="605.0" cy="586.0" r="7" fill="url(#fts5)"/>
-    <circle cx="560.0" cy="612.0" r="7" fill="url(#fts4)"/>
-    <circle cx="515.0" cy="586.0" r="7" fill="url(#fts3)"/>
-    <circle cx="515.0" cy="534.0" r="7" fill="url(#fts3)"/>
-    <ellipse cx="566" cy="570" rx="22" ry="8" fill="url(#ftsh)"/>
-    <circle cx="560" cy="560" r="26" fill="url(#ftsc)"/>
-    <ellipse cx="553" cy="552" rx="8" ry="5.5" fill="white" opacity="0.15" transform="rotate(-20,553,552)"/>
-</svg>
+    <img src="rossiter-logo.png" width="50" height="50" alt="Rossiter Consulting">
     <div>
       <div class="footer-name">ROSSITER</div>
       <div class="footer-sub">Consulting</div>
