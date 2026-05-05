@@ -47,7 +47,7 @@ body{
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 3.5rem;height:72px;
+  padding:0 3.5rem;height:100px;
   background:rgba(255,255,255,.95);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
@@ -68,7 +68,7 @@ nav{
 }
 .nav-links{display:flex;gap:2.5rem;list-style:none;}
 .nav-links a{
-  font-size:14px;font-weight:500;
+  font-size:15px;font-weight:500;
   letter-spacing:.1em;text-transform:uppercase;
   color:var(--text-2);text-decoration:none;
   transition:color .2s;
@@ -78,8 +78,8 @@ nav{
   display:inline-block;
   background:var(--blue-2);color:#fff;
   font-family:'Montserrat',sans-serif;
-  font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  padding:14px 32px;text-decoration:none;
+  font-size:15px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:15px 32px;text-decoration:none;
   transition:background .2s,transform .2s;
 }
 .nav-cta:hover{background:var(--blue-3);transform:translateY(-1px);}
@@ -109,7 +109,7 @@ nav{
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
   font-family:'DM Mono',monospace;
-  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  font-size:14px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--blue-3);
   border:1px solid rgba(32,80,160,.25);
   padding:7px 14px;width:fit-content;
@@ -135,14 +135,14 @@ nav{
   color:var(--blue-3);
 }
 .hero-sub{
-  font-size:20px;font-weight:300;
+  font-size:22px;font-weight:300;
   color:var(--text-2);line-height:1.8;
   max-width:460px;
   margin-bottom:1.5rem;
 }
 .hero-slogan{
   font-family:'DM Mono',monospace;
-  font-size:14px;letter-spacing:.22em;text-transform:uppercase;
+  font-size:16px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--text-2);margin-bottom:2.75rem;
 }
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
@@ -150,8 +150,8 @@ nav{
   display:inline-block;
   background:var(--blue-2);color:#fff !important;
   font-family:'Montserrat',sans-serif;
-  font-size:14px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  padding:16px 40px;text-decoration:none;
+  font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:18px 44px;text-decoration:none;
   transition:background .25s,transform .2s;
 }
 .btn-primary:hover{background:var(--blue-3);transform:translateY(-2px);}
@@ -159,8 +159,8 @@ nav{
   display:inline-block;
   background:transparent;color:var(--text) !important;
   font-family:'Montserrat',sans-serif;
-  font-size:14px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  padding:15px 40px;text-decoration:none;
+  font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:17px 44px;text-decoration:none;
   border:1.5px solid rgba(12,24,40,.2);
   transition:border-color .25s,color .25s;
 }
@@ -197,7 +197,7 @@ nav{
   color:var(--blue-2);line-height:1;
   margin-bottom:6px;
 }
-.stat-label{font-size:14px;color:var(--text-2);line-height:1.4;}
+.stat-label{font-size:16px;color:var(--text-2);line-height:1.4;}
 
 /* ── SECTION BASE ── */
 section{padding:6rem 4.5rem;}
@@ -205,7 +205,7 @@ section{padding:6rem 4.5rem;}
 .container{max-width:1200px;margin:0 auto;}
 .section-eyebrow{
   font-family:'DM Mono',monospace;
-  font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+  font-size:15px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--blue-3);display:block;margin-bottom:.9rem;
 }
 .section-title{
@@ -216,7 +216,7 @@ section{padding:6rem 4.5rem;}
 }
 .section-title em{font-style:italic;color:var(--blue-3);}
 .section-lead{
-  font-size:20px;font-weight:300;
+  font-size:22px;font-weight:300;
   color:var(--text-2);line-height:1.85;
   max-width:580px;
 }
@@ -245,11 +245,11 @@ hr.rule{
   font-family:'DM Mono',monospace;font-size:10px;font-weight:400;
   color:var(--blue-3);letter-spacing:.04em;
 }
-.cred-title{font-size:16px;font-weight:500;color:var(--text);margin-bottom:3px;}
-.cred-desc{font-size:14px;color:var(--text-3);line-height:1.5;}
+.cred-title{font-size:18px;font-weight:500;color:var(--text);margin-bottom:3px;}
+.cred-desc{font-size:16px;color:var(--text-3);line-height:1.5;}
 .pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.5rem;}
 .pill{
-  font-family:'DM Mono',monospace;font-size:12px;
+  font-family:'DM Mono',monospace;font-size:14px;
   letter-spacing:.1em;text-transform:uppercase;
   color:var(--blue-3);
   border:1px solid rgba(32,80,160,.2);
@@ -281,7 +281,7 @@ hr.rule{
 .service-card:hover::before{transform:scaleX(1);}
 .service-card:hover{background:var(--bg-off);}
 .card-num{
-  font-family:'DM Mono',monospace;font-size:10px;
+  font-family:'DM Mono',monospace;font-size:13px;
   letter-spacing:.16em;color:var(--text-3);
   margin-bottom:1.1rem;
 }
@@ -292,13 +292,13 @@ hr.rule{
 .service-card:hover .card-line{width:44px;}
 .card-title{
   font-family:'Playfair Display',serif;
-  font-size:1.35rem;font-weight:400;
+  font-size:1.5rem;font-weight:400;
   color:var(--text);margin-bottom:.55rem;line-height:1.35;
 }
-.card-body{font-size:17px;color:var(--text-2);line-height:1.75;margin-bottom:1.1rem;}
+.card-body{font-size:20px;color:var(--text-2);line-height:1.75;margin-bottom:1.1rem;}
 .tags{display:flex;flex-wrap:wrap;gap:.3rem;}
 .tag{
-  font-family:'DM Mono',monospace;font-size:12px;
+  font-family:'DM Mono',monospace;font-size:14px;
   letter-spacing:.06em;color:var(--text-3);
   border:1px solid var(--border);padding:3px 8px;
 }
@@ -331,10 +331,10 @@ hr.rule{
 }
 .diff-title{
   font-family:'Playfair Display',serif;
-  font-size:1.05rem;font-weight:400;
+  font-size:1.25rem;font-weight:400;
   color:var(--text);margin-bottom:.65rem;line-height:1.4;
 }
-.diff-body{font-size:18px;color:var(--text-2);line-height:1.8;}
+.diff-body{font-size:21px;color:var(--text-2);line-height:1.8;}
 .diff-metric{
   display:inline-flex;align-items:baseline;gap:.3rem;
   margin-top:1rem;padding:.5rem 1rem;
@@ -345,7 +345,7 @@ hr.rule{
   font-family:'Playfair Display',serif;
   font-size:1.5rem;font-weight:500;color:var(--blue-2);
 }
-.metric-label{font-size:12px;color:var(--text-3);}
+.metric-label{font-size:15px;color:var(--text-3);}
 
 /* ── PROCESS ── */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);}
@@ -356,7 +356,7 @@ hr.rule{
   background:linear-gradient(to right,var(--blue-4),rgba(12,24,40,.08));
 }
 .step-num{
-  font-family:'DM Mono',monospace;font-size:10px;
+  font-family:'DM Mono',monospace;font-size:14px;
   letter-spacing:.14em;color:var(--blue-3);margin-bottom:.8rem;
 }
 .step-dot{
@@ -366,10 +366,10 @@ hr.rule{
 }
 .step-title{
   font-family:'Playfair Display',serif;
-  font-size:1.15rem;font-weight:400;
+  font-size:1.3rem;font-weight:400;
   color:var(--text);margin-bottom:.4rem;
 }
-.step-desc{font-size:17px;color:var(--text-3);line-height:1.7;}
+.step-desc{font-size:20px;color:var(--text-3);line-height:1.7;}
 
 /* ── FOUNDER ── */
 .founder-grid{display:grid;grid-template-columns:280px 1fr;gap:5rem;align-items:start;}
@@ -390,22 +390,22 @@ hr.rule{
   color:var(--text);margin-bottom:.2rem;
 }
 .founder-role{
-  font-family:'DM Mono',monospace;font-size:11px;
+  font-family:'DM Mono',monospace;font-size:14px;
   letter-spacing:.16em;text-transform:uppercase;
   color:var(--blue-3);margin-bottom:1.5rem;
 }
 .founder-bio{
-  font-size:18px;color:var(--text-2);
+  font-size:20px;color:var(--text-2);
   line-height:1.9;margin-bottom:1.5rem;
 }
 .cert-badges{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem;}
 .cert{
-  font-family:'DM Mono',monospace;font-size:12px;
+  font-family:'DM Mono',monospace;font-size:14px;
   letter-spacing:.1em;text-transform:uppercase;
   color:var(--blue-2);background:rgba(32,80,160,.06);
   border:1px solid rgba(32,80,160,.2);padding:5px 12px;
 }
-.founder-langs{font-size:16px;color:var(--text-3);}
+.founder-langs{font-size:18px;color:var(--text-3);}
 .founder-langs span{color:var(--text-2);}
 
 /* ── CTA FINAL ── */
@@ -421,7 +421,7 @@ hr.rule{
 }
 .cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 .cta-eyebrow{
-  font-family:'DM Mono',monospace;font-size:11px;
+  font-family:'DM Mono',monospace;font-size:14px;
   letter-spacing:.2em;text-transform:uppercase;
   color:rgba(216,238,255,.45);display:block;margin-bottom:1.1rem;
 }
@@ -432,8 +432,8 @@ hr.rule{
 }
 .cta-title em{font-style:italic;color:#84ceff;}
 .cta-sub{
-  font-size:20px;font-weight:300;
-  color:rgba(216,238,255,.75);line-height:1.8;
+  font-size:22px;font-weight:300;
+  color:rgba(216,238,255,.85);line-height:1.8;
   margin-bottom:3rem;
 }
 .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;}
@@ -491,6 +491,75 @@ footer{
   .steps{grid-template-columns:1fr 1fr;}
   footer{flex-direction:column;text-align:center;}
 }
+
+/* ── WHATSAPP BUTTON ── */
+.btn-whatsapp{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#25d366;color:#fff !important;
+  font-family:'Montserrat',sans-serif;
+  font-size:16px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  padding:18px 44px;text-decoration:none;
+  transition:background .25s,transform .2s;
+}
+.btn-whatsapp:hover{background:#1ebe59;transform:translateY(-2px);}
+.btn-whatsapp svg{flex-shrink:0;}
+
+/* ── CONTACT FORM ── */
+.cta-inner{position:relative;z-index:1;max-width:820px;margin:0 auto;}
+.cta-form-wrap{
+  margin-top:3rem;
+  border-top:1px solid rgba(216,238,255,.15);
+  padding-top:3rem;
+}
+.cta-form-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;font-weight:400;
+  color:#d8eeff;margin-bottom:.5rem;
+  text-align:center;
+}
+.cta-form-sub{
+  font-size:16px;color:rgba(216,238,255,.55);
+  text-align:center;margin-bottom:2rem;
+}
+.cta-form{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+  max-width:640px;margin:0 auto;
+}
+.cta-form .field-full{grid-column:1/-1;}
+.cta-form input{
+  width:100%;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(216,238,255,.2);
+  color:#d8eeff;
+  font-family:'Montserrat',sans-serif;
+  font-size:16px;font-weight:300;
+  padding:14px 18px;
+  outline:none;
+  transition:border-color .2s,background .2s;
+}
+.cta-form input::placeholder{color:rgba(216,238,255,.35);}
+.cta-form input:focus{
+  border-color:rgba(100,180,255,.5);
+  background:rgba(255,255,255,.1);
+}
+.cta-form .btn-submit{
+  grid-column:1/-1;
+  background:var(--blue-4);color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:16px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  padding:18px;border:none;cursor:pointer;
+  transition:background .25s,transform .2s;
+}
+.cta-form .btn-submit:hover{background:var(--blue-5);transform:translateY(-1px);}
+.form-success{
+  display:none;
+  text-align:center;
+  padding:2rem;
+  background:rgba(39,174,96,.1);
+  border:1px solid rgba(39,174,96,.3);
+  color:#7adf9a;
+  font-size:17px;
+}
 </style>
 </head>
 <body>
@@ -498,7 +567,7 @@ footer{
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <svg viewBox="300 300 520 520" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 1120 1120" width="90" height="90" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="navs0" cx="35%" cy="30%" r="65%">
       <stop offset="0%" stop-color="#0d1e35"/>
@@ -811,10 +880,10 @@ footer{
         </div>
       </div>
       <div>
-        <p style="font-size:20px;font-weight:300;color:var(--text-2);line-height:1.9;margin-bottom:1.5rem;">
+        <p style="font-size:22px;font-weight:300;color:var(--text-2);line-height:1.9;margin-bottom:1.5rem;">
           A Rossiter Consulting é especializada em Sistemas de Gestão e Lean Six Sigma. Trabalhamos com engenharia, construção e indústria pesada — setores que exigem mais do que documentação: exigem sistemas que entram em operação e se sustentam.
         </p>
-        <p style="font-size:20px;font-weight:300;color:var(--text-2);line-height:1.9;margin-bottom:2rem;">
+        <p style="font-size:22px;font-weight:300;color:var(--text-2);line-height:1.9;margin-bottom:2rem;">
           Não vendemos diagnósticos que ficam em apresentações. Trabalhamos com gates de implementação e medição de adoção real. O que importa é o sistema funcionando na sua rotina, com sua equipe, nos seus processos.
         </p>
         <div class="pills">
@@ -840,7 +909,7 @@ footer{
         <span class="section-eyebrow">O que entregamos</span>
         <h2 class="section-title">Cinco frentes.<br><em>Um parceiro.</em></h2>
       </div>
-      <p style="font-size:19px;color:var(--text-2);line-height:1.85;">
+      <p style="font-size:22px;color:var(--text-2);line-height:1.85;">
         Cada frente é liderada diretamente pelo consultor responsável — sem camadas intermediárias, sem subcontratação oculta. Você fala com quem executa.
       </p>
     </div>
@@ -976,7 +1045,7 @@ footer{
       <div>
         <span class="section-eyebrow">Quem lidera</span>
         <div class="founder-avatar" style="margin-top:1rem;">
-          <div style="opacity:.35;width:110px;height:110px;"><svg viewBox="300 300 520 520" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+          <div style="opacity:.35;width:110px;height:110px;"><svg viewBox="0 0 1120 1120" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="avs0" cx="35%" cy="30%" r="65%">
       <stop offset="0%" stop-color="#0d1e35"/>
@@ -1125,17 +1194,65 @@ footer{
       O diagnóstico inicial é gratuito, sem compromisso e começa com uma conversa de 30 minutos. Identificamos juntos onde e como faz sentido avançar.
     </p>
     <div class="cta-actions">
-      <a href="mailto:edurossiter@hotmail.com" class="btn-cta">edurossiter@hotmail.com</a>
+      <a href="mailto:edurossiter@hotmail.com" class="btn-cta">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        edurossiter@hotmail.com
+      </a>
+      <a href="https://wa.me/4917621110258" class="btn-whatsapp" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.118 1.523 5.845L0 24l6.338-1.498A11.933 11.933 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.37l-.36-.214-3.733.882.916-3.618-.235-.372A9.786 9.786 0 0 1 2.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
+        +49 176 2111 0258
+      </a>
       <a href="https://linkedin.com/in/edurossiter" class="btn-cta-ghost" target="_blank">LinkedIn →</a>
     </div>
-    <p class="cta-note"><a href="tel:+4917621110258" style="color:inherit;text-decoration:none;">+49 176 2111 0258</a> &nbsp;·&nbsp; Alemanha / Brasil</p>
+    <p class="cta-note">Sede na Alemanha · Operação no Brasil</p>
+
+    <!-- FORMULÁRIO -->
+    <div class="cta-form-wrap">
+      <h3 class="cta-form-title">Agendar consulta gratuita</h3>
+      <p class="cta-form-sub">Preencha abaixo e entraremos em contacto em até 24 horas.</p>
+      <form class="cta-form" id="consultaForm" onsubmit="submitForm(event)">
+        <input type="text" name="nome" placeholder="Seu nome *" required>
+        <input type="text" name="empresa" placeholder="Nome da empresa *" required>
+        <input type="email" name="email" class="field-full" placeholder="Seu e-mail *" required>
+        <button type="submit" class="btn-submit">Solicitar Diagnóstico Gratuito →</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        ✓ Mensagem recebida! Eduardo entrará em contacto em breve.
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+function submitForm(e) {
+  e.preventDefault();
+  const form = document.getElementById('consultaForm');
+  const success = document.getElementById('formSuccess');
+  const data = new FormData(form);
+  const nome = data.get('nome');
+  const empresa = data.get('empresa');
+  const email = data.get('email');
+  // Abre email com os dados preenchidos
+  const subject = encodeURIComponent('Solicitação de Diagnóstico Gratuito — ' + empresa);
+  const body = encodeURIComponent('Olá Eduardo,
+
+Gostaria de agendar um diagnóstico gratuito.
+
+Nome: ' + nome + '
+Empresa: ' + empresa + '
+E-mail: ' + email + '
+
+Aguardo seu retorno.');
+  window.location.href = 'mailto:edurossiter@hotmail.com?subject=' + subject + '&body=' + body;
+  form.style.display = 'none';
+  success.style.display = 'block';
+}
+</script>
 
 <!-- FOOTER -->
 <footer>
   <a href="#top" class="footer-logo">
-    <svg viewBox="300 300 520 520" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 1120 1120" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="fts0" cx="35%" cy="30%" r="65%">
       <stop offset="0%" stop-color="#0d1e35"/>
