@@ -1,919 +1,1568 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rossiter Consulting · Sistemas de Gestão · Lean Six Sigma · Alemanha · Brasil</title> 
-<meta name="description" content="Consultoria especializada em Sistemas de Gestão ISO e Lean Six Sigma para engenharia, construção e indústria. Sede na Alemanha, operação no Brasil. Lead Auditor IMS, Master Black Belt, International Welding Engineer.">
-<meta name="author" content="Eduardo Rossiter">
-<meta property="og:title" content="Rossiter Consulting · Quality · Lean · Excellence">
-<meta property="og:description" content="Sistemas de Gestão ISO e Lean Six Sigma. Alemanha · Brasil.">
-<meta property="og:url" content="https://rossiter.de">
-<meta property="og:type" content="website">
-<link rel="canonical" href="https://rossiter.de">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rossiter Consulting — Excelência Operacional Industrial</title>
+<meta name="description" content="Eduardo Rossiter: Lead Auditor IMS, Master Black Belt, International Welding Engineer. Excelência operacional em indústrias que não podem falhar."/>
+<meta property="og:title" content="Rossiter Consulting — Excelência Operacional Industrial"/>
+<meta property="og:description" content="Especialista solo em sistemas de gestão ISO, Lean Six Sigma e engenharia de qualidade. Operações que funcionam quando o projeto termina."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  background:#ffffff;
-  color:#0c1828;
-  font-family:'Montserrat',sans-serif;
-  font-weight:300;
-  font-size:16px;
-  line-height:1.75;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
- 
-/* ── VARS ── */
+
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:4rem}
+body{min-height:100dvh;font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:15px;line-height:1.6;color:#e8e6e0;background:#000;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+ul,ol{list-style:none}
+input,button,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:none}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{text-wrap:balance;line-height:1}
+p{text-wrap:pretty}
+::selection{background:rgba(58,114,200,.18);color:#fff}
+:focus-visible{outline:1px solid #3a72c8;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ─── TOKENS ─── */
 :root{
-  --navy:   #0a1628;
-  --blue-1: #0f2040;
-  --blue-2: #1a3468;
-  --blue-3: #2050a0;
-  --blue-4: #2c66c8;
-  --blue-5: #4484e0;
-  --text:   #0c1828;
-  --text-2: rgba(12,24,40,.82);
-  --text-3: rgba(12,24,40,.6);
-  --border: rgba(12,24,40,.14);
-  --bg-off: #f5f7fb;
+  --black:#000;
+  --white:#fff;
+  --grey-90:#e8e6e0;
+  --grey-60:#888682;
+  --grey-30:#3a3936;
+  --grey-15:#1a1917;
+  --blue:#3a72c8;
+  --blue-dim:#2a569a;
+  --mono:'DM Mono','Courier New',monospace;
+  --sans:'Inter','Helvetica Neue',Arial,sans-serif;
+  --gutter:clamp(1.5rem,5vw,5rem);
+  --section-v:clamp(5rem,10vw,9rem);
 }
- 
-/* ── NAV ── */
-nav{
+
+/* ─── NAV ─── */
+.nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 3.5rem;height:110px;
-  background:rgba(255,255,255,.95);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-}
-.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
-.nav-logo>img{flex-shrink:0;width:90px;height:90px;display:block;}
-.nav-wordmark{display:flex;flex-direction:column;gap:1px;}
-.nav-name{
-  font-family:'Montserrat',sans-serif;
-  font-size:20px;font-weight:200;
-  letter-spacing:3px;color:var(--text);line-height:1;
-}
-.nav-sub{
-  font-family:'Montserrat',sans-serif;
-  font-size:7px;font-weight:400;
-  letter-spacing:4px;text-transform:uppercase;
-  color:var(--blue-3);line-height:1;
-}
-.nav-links{display:flex;gap:2.5rem;list-style:none;}
-.nav-links a{
-  font-size:15px;font-weight:500;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--text-2);text-decoration:none;
-  transition:color .2s;
-}
-.nav-links a:hover{color:var(--blue-3);}
-.nav-cta{
-  display:inline-block;
-  background:var(--blue-2);color:#fff;
-  font-family:'Montserrat',sans-serif;
-  font-size:15px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  padding:15px 32px;text-decoration:none;
-  transition:background .2s,transform .2s;
-}
-.nav-cta:hover{background:var(--blue-3);transform:translateY(-1px);}
- 
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  padding-top:110px;
-  background:#fff;
-  position:relative;
-  overflow:hidden;
-}
-.hero-grid{
-  position:absolute;inset:0;
-  background-image:linear-gradient(rgba(12,24,40,.045) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(12,24,40,.045) 1px,transparent 1px);
-  background-size:72px 72px;
-  pointer-events:none;
-}
-.hero-left{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:5rem 4rem 5rem 4.5rem;
-  position:relative;z-index:1;
-}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:'DM Mono',monospace;
-  font-size:14px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--blue-3);
-  border:1px solid rgba(32,80,160,.25);
-  padding:7px 14px;width:fit-content;
-  background:rgba(32,80,160,.04);
-  margin-bottom:2.5rem;
-}
-.hero-badge::before{
-  content:'';width:6px;height:6px;border-radius:50%;
-  background:var(--blue-4);
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
-.hero-title{
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:clamp(2.8rem,4.5vw,4.4rem);
-  font-weight:400;line-height:1.1;
-  letter-spacing:-.02em;
-  color:var(--text);
-  margin-bottom:1.5rem;
-}
-.hero-title em{
-  font-style:italic;
-  color:var(--blue-3);
-}
-.hero-sub{
-  font-size:22px;font-weight:300;
-  color:var(--text-2);line-height:1.8;
-  max-width:460px;
-  margin-bottom:1.5rem;
-}
-.hero-slogan{
-  font-family:'DM Mono',monospace;
-  font-size:16px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--text-2);margin-bottom:2.75rem;
-}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn-primary{
-  display:inline-block;
-  background:var(--blue-2);color:#fff !important;
-  font-family:'Montserrat',sans-serif;
-  font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  padding:18px 44px;text-decoration:none;
-  transition:background .25s,transform .2s;
-}
-.btn-primary:hover{background:var(--blue-3);transform:translateY(-2px);}
-.btn-secondary{
-  display:inline-block;
-  background:transparent;color:var(--text) !important;
-  font-family:'Montserrat',sans-serif;
-  font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  padding:17px 44px;text-decoration:none;
-  border:1.5px solid rgba(12,24,40,.2);
-  transition:border-color .25s,color .25s;
-}
-.btn-secondary:hover{border-color:var(--blue-3);color:var(--blue-3) !important;}
-.hero-right{
-  display:flex;align-items:center;justify-content:center;
-  padding:5rem 3rem;
-  position:relative;z-index:1;
-  background:var(--bg-off);
-  border-left:1px solid var(--border);
-}
-.hero-logo-wrap{
-  display:flex;flex-direction:column;align-items:center;gap:2rem;
-}
-.hero-stats{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:1px;background:var(--border);
-  width:100%;max-width:360px;
-}
-.hero-stat{
-  background:#fff;padding:1.5rem 1.25rem;
-  position:relative;overflow:hidden;
-}
-.hero-stat::after{
-  content:'';position:absolute;top:0;left:0;
-  width:2px;height:100%;
-  background:var(--blue-4);opacity:0;
-  transition:opacity .3s;
-}
-.hero-stat:hover::after{opacity:1;}
-.stat-num{
-  font-family:'Playfair Display',serif;
-  font-size:2.2rem;font-weight:500;
-  color:var(--blue-2);line-height:1;
-  margin-bottom:6px;
-}
-.stat-label{font-size:16px;color:var(--text-2);line-height:1.4;}
- 
-/* ── SECTION BASE ── */
-section{padding:6rem 4.5rem;}
-.section-alt{background:var(--bg-off);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-.container{max-width:1200px;margin:0 auto;}
-.section-eyebrow{
-  font-family:'DM Mono',monospace;
-  font-size:15px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--blue-3);display:block;margin-bottom:.9rem;
-}
-.section-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2rem,3.5vw,3rem);font-weight:400;
-  line-height:1.2;color:var(--text);
-  margin-bottom:1.5rem;
-}
-.section-title em{font-style:italic;color:var(--blue-3);}
-.section-lead{
-  font-size:22px;font-weight:300;
-  color:var(--text-2);line-height:1.85;
-  max-width:580px;
-}
-hr.rule{
-  width:100%;height:1px;border:none;
-  background:linear-gradient(to right,transparent,var(--border),transparent);
-}
- 
-/* ── ABOUT ── */
-.about-grid{
-  display:grid;grid-template-columns:1fr 1.6fr;
-  gap:5rem;align-items:start;
-}
-.cred-list{display:grid;gap:1px;background:var(--border);margin-top:1.5rem;}
-.cred{
-  background:#fff;padding:1.1rem 1.25rem;
-  display:flex;gap:.9rem;align-items:flex-start;
-  border-left:2px solid transparent;
+  background:#000;
+  border-bottom:1px solid transparent;
   transition:border-color .25s;
 }
-.cred:hover{border-left-color:var(--blue-4);}
-.cred-icon{
-  width:34px;height:34px;flex-shrink:0;
-  border:1px solid rgba(32,80,160,.2);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'DM Mono',monospace;font-size:10px;font-weight:400;
-  color:var(--blue-3);letter-spacing:.04em;
+.nav.scrolled{border-bottom-color:var(--grey-30)}
+.nav__inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--gutter);
+  height:60px;
 }
-.cred-title{font-size:18px;font-weight:500;color:var(--text);margin-bottom:3px;}
-.cred-desc{font-size:16px;color:var(--text-3);line-height:1.5;}
-.pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.5rem;}
-.pill{
-  font-family:'DM Mono',monospace;font-size:14px;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--blue-3);
-  border:1px solid rgba(32,80,160,.2);
-  padding:4px 10px;
+.nav__logo{
+  display:flex;align-items:center;gap:.75rem;
+  flex-shrink:0;
 }
- 
-/* ── SERVICES ── */
-.services-header{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:4rem;align-items:end;
-  padding-bottom:3rem;margin-bottom:3rem;
-  border-bottom:1px solid var(--border);
+.nav__chevron{
+  width:22px;height:22px;
+  color:var(--blue);
+  flex-shrink:0;
 }
-.services-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--border);
-}
-.service-card{
-  background:#fff;padding:2rem 1.75rem;
-  position:relative;overflow:hidden;
-  transition:background .25s;
-}
-.service-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;
-  height:2px;background:var(--blue-3);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .4s ease;
-}
-.service-card:hover::before{transform:scaleX(1);}
-.service-card:hover{background:var(--bg-off);}
-.card-num{
-  font-family:'DM Mono',monospace;font-size:13px;
-  letter-spacing:.16em;color:var(--text-3);
-  margin-bottom:1.1rem;
-}
-.card-line{
-  width:24px;height:2px;background:var(--blue-3);
-  margin-bottom:1.1rem;transition:width .3s;
-}
-.service-card:hover .card-line{width:44px;}
-.card-title{
-  font-family:'Playfair Display',serif;
-  font-size:1.5rem;font-weight:400;
-  color:var(--text);margin-bottom:.55rem;line-height:1.35;
-}
-.card-body{font-size:20px;color:var(--text-2);line-height:1.75;margin-bottom:1.1rem;}
-.tags{display:flex;flex-wrap:wrap;gap:.3rem;}
-.tag{
-  font-family:'DM Mono',monospace;font-size:14px;
-  letter-spacing:.06em;color:var(--text-3);
-  border:1px solid var(--border);padding:3px 8px;
-}
-.service-cta{
-  background:rgba(32,80,160,.04);
-  border-top:2px solid var(--blue-3);
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  gap:1rem;padding:2rem;
-}
-.service-cta p{
-  font-family:'Playfair Display',serif;
-  font-size:1rem;font-style:italic;
-  color:var(--blue-2);text-align:center;
-}
- 
-/* ── DIFFERENTIALS ── */
-.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3.5rem;}
-.diff{position:relative;padding-top:1rem;}
-.diff-num{
-  font-family:'Playfair Display',serif;font-size:5rem;
-  font-weight:500;color:rgba(32,80,160,.07);
-  line-height:1;position:absolute;top:-1rem;left:-.5rem;
-  pointer-events:none;user-select:none;
-}
-.diff-content{position:relative;}
-.diff-rule{
-  width:36px;height:2px;background:var(--blue-3);
-  border:none;margin-bottom:1.1rem;
-}
-.diff-title{
-  font-family:'Playfair Display',serif;
-  font-size:1.25rem;font-weight:400;
-  color:var(--text);margin-bottom:.65rem;line-height:1.4;
-}
-.diff-body{font-size:21px;color:var(--text-2);line-height:1.8;}
-.diff-metric{
-  display:inline-flex;align-items:baseline;gap:.3rem;
-  margin-top:1rem;padding:.5rem 1rem;
-  background:rgba(32,80,160,.06);
-  border-left:2px solid var(--blue-4);
-}
-.metric-num{
-  font-family:'Playfair Display',serif;
-  font-size:1.5rem;font-weight:500;color:var(--blue-2);
-}
-.metric-label{font-size:15px;color:var(--text-3);}
- 
-/* ── PROCESS ── */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);}
-.step{padding:2rem 1.5rem 2rem 0;position:relative;}
-.step:not(:last-child)::after{
-  content:'';position:absolute;top:2.3rem;right:0;
-  width:100%;height:1px;
-  background:linear-gradient(to right,var(--blue-4),rgba(12,24,40,.08));
-}
-.step-num{
-  font-family:'DM Mono',monospace;font-size:14px;
-  letter-spacing:.14em;color:var(--blue-3);margin-bottom:.8rem;
-}
-.step-dot{
-  width:8px;height:8px;border:1.5px solid var(--blue-4);
-  border-radius:50%;background:#fff;
-  margin-bottom:1.2rem;position:relative;z-index:1;
-}
-.step-title{
-  font-family:'Playfair Display',serif;
-  font-size:1.3rem;font-weight:400;
-  color:var(--text);margin-bottom:.4rem;
-}
-.step-desc{font-size:20px;color:var(--text-3);line-height:1.7;}
- 
-/* ── FOUNDER ── */
-.founder-grid{display:grid;grid-template-columns:280px 1fr;gap:5rem;align-items:start;}
-.founder-avatar{
-  aspect-ratio:1;background:var(--bg-off);
-  border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-}
-.founder-avatar-label{
-  position:absolute;bottom:.75rem;right:.75rem;
-  font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--text-3);letter-spacing:.08em;
-}
-.founder-name{
-  font-family:'Playfair Display',serif;
-  font-size:2.2rem;font-weight:400;
-  color:var(--text);margin-bottom:.2rem;
-}
-.founder-role{
-  font-family:'DM Mono',monospace;font-size:14px;
+.nav__wordmark{
+  font-family:var(--mono);
+  font-size:11px;font-weight:400;
   letter-spacing:.16em;text-transform:uppercase;
-  color:var(--blue-3);margin-bottom:1.5rem;
+  color:var(--grey-90);
 }
-.founder-bio{
-  font-size:20px;color:var(--text-2);
-  line-height:1.9;margin-bottom:1.5rem;
+.nav__links{
+  display:flex;align-items:center;gap:2.5rem;
 }
-.cert-badges{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem;}
-.cert{
-  font-family:'DM Mono',monospace;font-size:14px;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--blue-2);background:rgba(32,80,160,.06);
-  border:1px solid rgba(32,80,160,.2);padding:5px 12px;
+.nav__links a{
+  font-size:13px;font-weight:400;
+  letter-spacing:.04em;
+  color:var(--grey-90);
+  transition:color .2s;
 }
-.founder-langs{font-size:18px;color:var(--text-3);}
-.founder-langs span{color:var(--text-2);}
- 
-/* ── CTA FINAL ── */
-.cta-section{
-  background:var(--navy);color:#d8eeff;
-  text-align:center;padding:7rem 4.5rem;
-  position:relative;overflow:hidden;
+.nav__links a:hover{color:var(--blue)}
+.nav__contact{
+  font-family:var(--mono);font-size:11px;font-weight:400;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--blue);
+  border:1px solid var(--blue-dim);
+  padding:.4rem 1rem;
+  transition:background .2s,color .2s;
 }
-.cta-section::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(44,102,200,.15),transparent);
+.nav__contact:hover{background:var(--blue);color:#fff}
+.nav__mobile-btn{
+  display:none;color:var(--grey-60);
+  align-items:center;padding:.25rem;
+}
+.nav__mobile-menu{
+  display:none;
+}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;
+  min-height:100svh;
+  background:#000;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-top:60px;
+  overflow:hidden;
+}
+
+/* subtle industrial grid — quase invisível */
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:80px 80px;
   pointer-events:none;
 }
-.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
-.cta-eyebrow{
-  font-family:'DM Mono',monospace;font-size:14px;
+
+/* linha de acento lateral — elemento gráfico único */
+.hero__accent-line{
+  position:absolute;
+  left:var(--gutter);
+  top:0;bottom:0;
+  width:1px;
+  background:linear-gradient(to bottom,transparent,var(--blue) 35%,var(--blue) 65%,transparent);
+  opacity:.35;
+}
+
+.hero__content{
+  position:relative;z-index:1;
+  padding-bottom:clamp(3.5rem,7vh,6rem);
+}
+
+/* HEADLINE ESCALONADA — assinatura tipográfica */
+.hero__headline{
+  font-size:clamp(4rem,10.5vw,13rem);
+  font-weight:900;
+  letter-spacing:-.03em;
+  line-height:.95;
+  color:var(--white);
+  text-transform:uppercase;
+  margin-bottom:clamp(2.5rem,5vh,5rem);
+}
+.hero__headline .line1{
+  display:block;
+  padding-left:var(--gutter);
+}
+.hero__headline .line2{
+  display:block;
+  padding-left:calc(var(--gutter) + clamp(3rem,8vw,10rem));
+  color:var(--white);
+}
+.hero__headline .line3{
+  display:block;
+  padding-left:calc(var(--gutter) + clamp(1rem,3vw,4rem));
+}
+.hero__headline .accent-word{
+  color:var(--blue);
+  font-style:italic;
+}
+
+/* split inferior: sub-texto esquerda + CTA direita */
+.hero__bottom{
+  padding-inline:var(--gutter);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;
+  align-items:end;
+}
+.hero__sub-label{
+  font-family:var(--mono);
+  font-size:11px;font-weight:300;
   letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(216,238,255,.45);display:block;margin-bottom:1.1rem;
+  color:var(--blue);
+  margin-bottom:1rem;
+  display:flex;align-items:center;gap:.75rem;
 }
-.cta-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.2rem,4vw,3.4rem);font-weight:400;
-  line-height:1.15;color:#d8eeff;margin-bottom:1.1rem;
+.hero__sub-label::before{
+  content:'';display:block;
+  width:2rem;height:1px;
+  background:var(--blue);
 }
-.cta-title em{font-style:italic;color:#84ceff;}
-.cta-sub{
-  font-size:22px;font-weight:300;
-  color:rgba(216,238,255,.85);line-height:1.8;
-  margin-bottom:3rem;
+.hero__sub{
+  font-size:clamp(.875rem,1.1vw,1rem);
+  font-weight:300;line-height:1.7;
+  color:var(--grey-60);
+  max-width:42ch;
 }
-.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;}
-.btn-cta{
-  display:inline-block;
-  background:rgba(44,102,200,.9);color:#fff !important;
-  font-family:'Montserrat',sans-serif;
-  font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  padding:16px 40px;text-decoration:none;
-  border:1px solid rgba(100,160,240,.3);
-  transition:background .25s,transform .2s;
+.hero__sub strong{color:var(--grey-90);font-weight:400}
+.hero__cta-wrap{
+  display:flex;flex-direction:column;
+  align-items:flex-end;
+  gap:1.25rem;
 }
-.btn-cta:hover{background:var(--blue-4);transform:translateY(-2px);}
-.btn-cta-ghost{
-  display:inline-block;
-  background:transparent;color:rgba(216,238,255,.7) !important;
-  font-family:'Montserrat',sans-serif;
-  font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  padding:15px 40px;text-decoration:none;
-  border:1px solid rgba(216,238,255,.2);
-  transition:border-color .25s,color .25s;
+.hero__cta{
+  display:inline-flex;align-items:center;gap:.875rem;
+  font-size:14px;font-weight:400;
+  color:var(--white);
+  transition:gap .2s;
 }
-.btn-cta-ghost:hover{border-color:rgba(216,238,255,.5);color:#d8eeff !important;}
-.cta-note{
-  font-family:'DM Mono',monospace;font-size:11px;
-  letter-spacing:.12em;color:rgba(216,238,255,.3);
+.hero__cta:hover{gap:1.25rem}
+.hero__cta:hover .cta-arrow{background:var(--blue-dim)}
+.cta-arrow{
+  width:36px;height:36px;
+  background:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  transition:background .2s;
 }
- 
-/* ── FOOTER ── */
-footer{
-  background:#f0f3f8;border-top:1px solid var(--border);
-  padding:2rem 4.5rem;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:1.25rem;
+.cta-arrow svg{width:14px;height:14px;color:#fff}
+.hero__secondary-cta{
+  font-family:var(--mono);
+  font-size:11px;font-weight:300;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grey-60);
+  border-bottom:1px solid var(--grey-30);
+  padding-bottom:2px;
+  transition:color .2s,border-color .2s;
 }
-.footer-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
-.footer-name{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:200;letter-spacing:2px;color:var(--text);}
-.footer-sub{font-family:'Montserrat',sans-serif;font-size:7px;font-weight:400;letter-spacing:3.5px;text-transform:uppercase;color:var(--blue-3);}
-.footer-links{display:flex;gap:1.75rem;}
-.footer-links a{font-size:14px;color:var(--text-3);text-decoration:none;transition:color .2s;}
-.footer-links a:hover{color:var(--blue-3);}
-.footer-copy{font-family:'DM Mono',monospace;font-size:13px;color:var(--text-3);letter-spacing:.05em;}
- 
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  nav{padding:0 1.5rem;}
-  .nav-links{display:none;}
-  .hero{grid-template-columns:1fr;}
-  .hero-right{display:none;}
-  .hero-left{padding:3rem 1.5rem;}
-  section{padding:4rem 1.5rem;}
-  .about-grid,.services-header,.founder-grid{grid-template-columns:1fr;gap:2.5rem;}
-  .services-grid{grid-template-columns:1fr;}
-  .diff-grid{grid-template-columns:1fr;gap:2.5rem;}
-  .steps{grid-template-columns:1fr 1fr;}
-  footer{flex-direction:column;text-align:center;}
+.hero__secondary-cta:hover{color:var(--grey-90);border-color:var(--grey-60)}
+.hero__scroll{
+  font-family:var(--mono);
+  font-size:10px;letter-spacing:.18em;
+  color:var(--grey-30);
+  padding-inline:var(--gutter);
+  padding-top:1.5rem;
+  padding-bottom:1.75rem;
 }
- 
-/* ── WHATSAPP BUTTON ── */
-.btn-whatsapp{
-  display:inline-flex;align-items:center;gap:10px;
-  background:#25d366;color:#fff !important;
-  font-family:'Montserrat',sans-serif;
-  font-size:16px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
-  padding:18px 44px;text-decoration:none;
-  transition:background .25s,transform .2s;
+
+/* ─── DIVIDER ─── */
+.rule{height:1px;background:var(--grey-30)}
+
+/* ─── STATEMENT (entre hero e fundador) ─── */
+.statement{
+  padding:clamp(4rem,8vw,7rem) var(--gutter);
+  background:#000;
 }
-.btn-whatsapp:hover{background:#1ebe59;transform:translateY(-2px);}
-.btn-whatsapp svg{flex-shrink:0;}
- 
-/* ── CONTACT FORM ── */
-.cta-inner{position:relative;z-index:1;max-width:820px;margin:0 auto;}
-.cta-form-wrap{
-  margin-top:3rem;
-  border-top:1px solid rgba(216,238,255,.15);
-  padding-top:3rem;
+.statement__text{
+  font-size:clamp(1.5rem,3.5vw,3rem);
+  font-weight:300;
+  line-height:1.3;
+  color:var(--grey-90);
+  max-width:28ch;
 }
-.cta-form-title{
-  font-family:'Playfair Display',serif;
-  font-size:1.6rem;font-weight:400;
-  color:#d8eeff;margin-bottom:.5rem;
-  text-align:center;
+.statement__text strong{
+  font-weight:800;
+  color:var(--white);
 }
-.cta-form-sub{
-  font-size:16px;color:rgba(216,238,255,.55);
-  text-align:center;margin-bottom:2rem;
+.statement__text em{
+  font-style:italic;
+  color:var(--blue);
 }
-.cta-form{
-  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
-  max-width:640px;margin:0 auto;
+
+/* ─── FOUNDER ─── */
+.founder{
+  background:var(--grey-15);
+  padding-block:var(--section-v);
 }
-.cta-form .field-full{grid-column:1/-1;}
-.cta-form input{
+.founder__inner{
+  padding-inline:var(--gutter);
+  display:grid;
+  grid-template-columns:1fr 1.6fr;
+  gap:clamp(3rem,6vw,7rem);
+  align-items:start;
+}
+.founder__left{}
+.founder__photo{
+  aspect-ratio:3/4;
+  background:var(--grey-30);
+  position:relative;
+  overflow:hidden;
+  max-height:480px;
+}
+.founder__photo-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(145deg,#1a1917 0%,#2a2926 50%,#1a1917 100%);
+}
+.founder__photo-initials{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(5rem,10vw,10rem);
+  font-weight:900;
+  color:rgba(255,255,255,.06);
+  letter-spacing:-.05em;
+  user-select:none;
+}
+.founder__photo-name{
+  position:absolute;
+  bottom:1.5rem;left:1.5rem;right:1.5rem;
+}
+.founder__photo-name-text{
+  font-size:clamp(1.25rem,2.5vw,1.75rem);
+  font-weight:700;
+  color:var(--white);
+  line-height:1.1;
+  letter-spacing:-.01em;
+}
+.founder__photo-name-role{
+  font-family:var(--mono);
+  font-size:11px;font-weight:300;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grey-60);
+  margin-top:.5rem;
+}
+.founder__credentials{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+  margin-top:1.5rem;
+}
+.cred{
+  font-family:var(--mono);
+  font-size:10px;font-weight:400;
+  letter-spacing:.08em;
+  color:var(--grey-60);
+  border:1px solid var(--grey-30);
+  padding:.25rem .6rem;
+}
+.cred--blue{
+  color:var(--blue);
+  border-color:var(--blue-dim);
+  background:rgba(58,114,200,.07);
+}
+.founder__right{}
+.founder__label{
+  font-family:var(--mono);
+  font-size:10px;font-weight:300;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--grey-60);
+  display:flex;align-items:center;gap:.75rem;
+  margin-bottom:2.5rem;
+}
+.founder__label::after{content:'';flex:0 0 2rem;height:1px;background:var(--grey-30)}
+.founder__heading{
+  font-size:clamp(1.5rem,2.8vw,2.5rem);
+  font-weight:800;
+  color:var(--white);
+  letter-spacing:-.025em;
+  line-height:1.05;
+  margin-bottom:2.5rem;
+  text-transform:uppercase;
+}
+.founder__para{
+  font-size:clamp(.875rem,1.1vw,1rem);
+  font-weight:300;line-height:1.8;
+  color:var(--grey-60);
+  max-width:60ch;
+}
+.founder__para+.founder__para{margin-top:1.5rem}
+.founder__para strong{color:var(--grey-90);font-weight:400}
+.founder__quote{
+  border-left:1px solid var(--blue);
+  padding-left:1.5rem;
+  margin-block:2.5rem;
+  font-size:clamp(1rem,1.5vw,1.25rem);
+  font-weight:300;
+  font-style:italic;
+  line-height:1.5;
+  color:var(--grey-90);
+}
+
+/* ─── CAPABILITIES ─── */
+.capabilities{
+  background:#000;
+  padding-block:var(--section-v);
+}
+.capabilities__header{
+  padding-inline:var(--gutter);
+  margin-bottom:clamp(3rem,5vw,5rem);
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:2rem;
+}
+.capabilities__title-block{}
+.capabilities__eyebrow{
+  font-family:var(--mono);
+  font-size:10px;font-weight:300;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--grey-60);
+  display:flex;align-items:center;gap:.75rem;
+  margin-bottom:1.5rem;
+}
+.capabilities__eyebrow::after{content:'';flex:0 0 2rem;height:1px;background:var(--grey-30)}
+.capabilities__heading{
+  font-size:clamp(2.5rem,6vw,7rem);
+  font-weight:900;
+  letter-spacing:-.04em;
+  line-height:.95;
+  color:var(--white);
+  text-transform:uppercase;
+}
+.capabilities__heading .accent{color:var(--blue);font-style:italic}
+.capabilities__desc{
+  max-width:34ch;
+  font-size:clamp(.8125rem,1vw,.9375rem);
+  font-weight:300;line-height:1.75;
+  color:var(--grey-60);
+  flex-shrink:0;
+  align-self:flex-end;
+}
+
+/* LISTA EDITORIAL — sem cards */
+.cap-list{border-top:1px solid var(--grey-30)}
+.cap{
+  padding-inline:var(--gutter);
+  padding-block:clamp(2.5rem,4vw,3.5rem);
+  border-bottom:1px solid var(--grey-30);
+  display:grid;
+  grid-template-columns:3.5rem 1fr 2.2fr;
+  gap:clamp(1.5rem,3vw,3rem);
+  align-items:start;
+  transition:background .25s;
+}
+.cap:hover{background:var(--grey-15)}
+.cap__num{
+  font-family:var(--mono);
+  font-size:11px;font-weight:300;
+  letter-spacing:.12em;
+  color:var(--grey-30);
+  padding-top:.15em;
+}
+.cap__name{
+  font-size:clamp(1.125rem,2vw,1.75rem);
+  font-weight:800;
+  color:var(--white);
+  letter-spacing:-.02em;
+  line-height:1.1;
+  text-transform:uppercase;
+}
+.cap__tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1rem}
+.tag{
+  font-family:var(--mono);
+  font-size:10px;font-weight:300;
+  letter-spacing:.07em;
+  color:var(--grey-30);
+  border:1px solid var(--grey-30);
+  padding:.2rem .5rem;
+}
+.cap__body{
+  font-size:clamp(.8125rem,1vw,.9375rem);
+  font-weight:300;line-height:1.8;
+  color:var(--grey-60);
+}
+.cap__body strong{color:var(--grey-90);font-weight:400}
+.cap__body p+p{margin-top:1.25rem}
+
+/* ─── ARGUMENT ─── */
+.argument{
+  background:var(--grey-15);
+  padding-block:var(--section-v);
+}
+.argument__inner{padding-inline:var(--gutter)}
+
+/* headline display gigante */
+.argument__display{
+  font-size:clamp(3.5rem,9vw,11rem);
+  font-weight:900;
+  letter-spacing:-.04em;
+  line-height:.93;
+  text-transform:uppercase;
+  color:var(--white);
+  margin-bottom:clamp(3.5rem,6vw,6rem);
+}
+.argument__display .step1{display:block;padding-left:0}
+.argument__display .step2{
+  display:block;
+  padding-left:clamp(3rem,7vw,9rem);
+  color:var(--grey-30);
+}
+.argument__display .step3{
+  display:block;
+  padding-left:clamp(1rem,3vw,4rem);
+}
+.argument__display .blue{color:var(--blue);font-style:italic}
+
+.argument__grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border-top:1px solid var(--grey-30);
+}
+.arg-block{
+  padding:clamp(2rem,3.5vw,3rem);
+  border-bottom:1px solid var(--grey-30);
+}
+.arg-block:nth-child(odd){border-right:1px solid var(--grey-30)}
+.arg-block__label{
+  font-family:var(--mono);
+  font-size:10px;font-weight:300;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--blue);
+  margin-bottom:1rem;
+}
+.arg-block__title{
+  font-size:clamp(1rem,1.6vw,1.375rem);
+  font-weight:700;
+  color:var(--white);
+  letter-spacing:-.015em;
+  line-height:1.2;
+  margin-bottom:1rem;
+}
+.arg-block__text{
+  font-size:clamp(.8125rem,.95vw,.9375rem);
+  font-weight:300;line-height:1.8;
+  color:var(--grey-60);
+}
+.arg-block__text strong{color:var(--grey-90);font-weight:400}
+
+/* ─── METHOD ─── */
+.method{
+  background:#000;
+  padding-block:var(--section-v);
+}
+.method__inner{padding-inline:var(--gutter)}
+.method__header{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,4vw,5rem);
+  margin-bottom:clamp(3rem,5vw,5rem);
+  align-items:end;
+}
+.method__heading{
+  font-size:clamp(3rem,7vw,8rem);
+  font-weight:900;
+  letter-spacing:-.04em;
+  line-height:.95;
+  text-transform:uppercase;
+  color:var(--white);
+}
+.method__heading span{color:var(--blue);font-style:italic}
+.method__desc{
+  font-size:clamp(.8125rem,1vw,.9375rem);
+  font-weight:300;line-height:1.75;
+  color:var(--grey-60);
+}
+.method__desc strong{color:var(--grey-90);font-weight:400}
+.method__steps{border-top:1px solid var(--grey-30)}
+.step{
+  display:grid;
+  grid-template-columns:5rem 1fr;
+  gap:clamp(1.5rem,3vw,3rem);
+  padding-block:clamp(2rem,3.5vw,3rem);
+  border-bottom:1px solid var(--grey-30);
+  align-items:start;
+}
+.step__num{
+  font-family:var(--mono);
+  font-size:11px;font-weight:300;
+  letter-spacing:.1em;
+  color:var(--grey-30);
+  padding-top:.2em;
+}
+.step__title{
+  font-size:clamp(1rem,1.5vw,1.25rem);
+  font-weight:600;
+  color:var(--white);
+  letter-spacing:-.01em;
+  margin-bottom:.75rem;
+}
+.step__text{
+  font-size:clamp(.8125rem,.95vw,.9375rem);
+  font-weight:300;line-height:1.8;
+  color:var(--grey-60);
+}
+.step__text strong{color:var(--grey-90);font-weight:400}
+
+/* ─── CONTACT ─── */
+.contact{
+  background:var(--grey-15);
+  padding-block:var(--section-v);
+}
+.contact__inner{padding-inline:var(--gutter)}
+.contact__heading{
+  font-size:clamp(3.5rem,9vw,11rem);
+  font-weight:900;
+  letter-spacing:-.04em;
+  line-height:.93;
+  text-transform:uppercase;
+  color:var(--white);
+  margin-bottom:clamp(3rem,5vw,5rem);
+}
+.contact__heading .step{
+  display:block;
+}
+.contact__heading .s2{padding-left:clamp(2rem,5vw,7rem)}
+.contact__heading .blue{color:var(--blue);font-style:italic}
+.contact__grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:clamp(3rem,6vw,7rem);
+  align-items:start;
+}
+.contact__left{}
+.contact__body{
+  font-size:clamp(.875rem,1.1vw,1rem);
+  font-weight:300;line-height:1.8;
+  color:var(--grey-60);
+  max-width:46ch;
+  margin-bottom:2.5rem;
+}
+.contact__body strong{color:var(--grey-90);font-weight:400}
+.contact__direct{display:flex;flex-direction:column;gap:1rem}
+.contact__row{display:flex;align-items:baseline;gap:1.5rem}
+.contact__row-label{
+  font-family:var(--mono);
+  font-size:10px;font-weight:300;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--grey-30);
+  flex-shrink:0;
+  min-width:4.5rem;
+}
+.contact__row-val{
+  font-size:clamp(.8125rem,.95vw,.9375rem);
+  font-weight:300;
+  color:var(--grey-60);
+  transition:color .2s;
+}
+a.contact__row-val:hover{color:var(--blue)}
+.contact__right{}
+.contact__form-label{
+  font-family:var(--mono);
+  font-size:10px;font-weight:300;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--grey-60);
+  margin-bottom:1.5rem;
+}
+.form__row{margin-bottom:1rem}
+.form__lbl{
+  display:block;
+  font-family:var(--mono);
+  font-size:10px;font-weight:300;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--grey-30);
+  margin-bottom:.4rem;
+}
+.form__input,.form__textarea{
   width:100%;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(216,238,255,.2);
-  color:#d8eeff;
-  font-family:'Montserrat',sans-serif;
-  font-size:16px;font-weight:300;
-  padding:14px 18px;
+  background:var(--grey-30);
+  border:1px solid transparent;
+  color:var(--grey-90);
+  font-size:14px;font-weight:300;
+  padding:.6rem .875rem;
   outline:none;
+  border-radius:0;-webkit-appearance:none;
   transition:border-color .2s,background .2s;
 }
-.cta-form input::placeholder{color:rgba(216,238,255,.35);}
-.cta-form input:focus{
-  border-color:rgba(100,180,255,.5);
-  background:rgba(255,255,255,.1);
+.form__input:focus,.form__textarea:focus{
+  border-color:var(--blue);
+  background:#1a1917;
 }
-.cta-form .btn-submit{
-  grid-column:1/-1;
-  background:var(--blue-4);color:#fff;
-  font-family:'Montserrat',sans-serif;
-  font-size:16px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  padding:18px;border:none;cursor:pointer;
-  transition:background .25s,transform .2s;
+.form__textarea{resize:vertical;min-height:7rem;line-height:1.6}
+.form__submit{
+  margin-top:1.25rem;
+  display:inline-flex;align-items:center;gap:.875rem;
+  font-size:13px;font-weight:400;
+  color:var(--white);
+  cursor:pointer;
+  transition:gap .2s;
+  background:none;border:none;
+  padding:0;
 }
-.cta-form .btn-submit:hover{background:var(--blue-5);transform:translateY(-1px);}
-.form-success{
-  display:none;
-  text-align:center;
-  padding:2rem;
-  background:rgba(39,174,96,.1);
-  border:1px solid rgba(39,174,96,.3);
-  color:#7adf9a;
-  font-size:17px;
+.form__submit:hover{gap:1.25rem}
+.form__submit:hover .cta-arrow{background:var(--blue-dim)}
+.form__note{
+  margin-top:.875rem;
+  font-family:var(--mono);
+  font-size:10px;font-weight:300;
+  letter-spacing:.1em;
+  color:var(--grey-30);
 }
+
+/* ─── FOOTER ─── */
+.footer{
+  background:#000;
+  border-top:1px solid var(--grey-30);
+  padding-top:3rem;
+  overflow:hidden;
+}
+.footer__inner{
+  padding-inline:var(--gutter);
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:2rem;
+  flex-wrap:wrap;
+  margin-bottom:3rem;
+}
+.footer__tagline{
+  font-size:clamp(.875rem,1.2vw,1rem);
+  font-weight:300;
+  color:var(--grey-60);
+  max-width:34ch;
+  line-height:1.6;
+}
+.footer__tagline strong{color:var(--white);font-weight:400}
+.footer__links{
+  display:flex;gap:2.5rem;
+}
+.footer__links a{
+  font-family:var(--mono);
+  font-size:10px;font-weight:300;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grey-30);
+  transition:color .2s;
+}
+.footer__links a:hover{color:var(--grey-60)}
+.footer__copy{
+  padding-inline:var(--gutter);
+  padding-bottom:1.5rem;
+  font-family:var(--mono);
+  font-size:10px;font-weight:300;
+  letter-spacing:.08em;
+  color:var(--grey-30);
+}
+
+/* ─── FOOTER BLEED TYPE ─── */
+.footer__bleed{
+  font-size:clamp(5rem,18vw,22rem);
+  font-weight:900;
+  letter-spacing:-.05em;
+  line-height:.85;
+  text-transform:uppercase;
+  color:var(--grey-15);
+  white-space:nowrap;
+  padding-left:var(--gutter);
+  user-select:none;
+  pointer-events:none;
+  margin-top:1.5rem;
+}
+
+/* ─── MOBILE ─── */
+@media(max-width:860px){
+  .nav__links,.nav__contact{display:none}
+  .nav__mobile-btn{display:flex}
+
+  .nav__mobile-menu{
+    display:none;
+    position:fixed;left:0;right:0;top:60px;bottom:0;
+    background:#000;
+    padding:2.5rem var(--gutter);
+    flex-direction:column;gap:2rem;
+    z-index:99;
+    overflow-y:auto;
+  }
+  .nav__mobile-menu.open{display:flex}
+  .nav__mobile-menu a{
+    font-size:clamp(1.25rem,4vw,1.75rem);
+    font-weight:600;letter-spacing:-.01em;
+    color:var(--grey-90);
+    text-transform:uppercase;
+  }
+  .nav__mobile-menu a:hover{color:var(--blue)}
+
+  .hero__bottom{grid-template-columns:1fr}
+  .hero__cta-wrap{align-items:flex-start}
+
+  .founder__inner{grid-template-columns:1fr}
+  .founder__photo{max-height:340px}
+
+  .capabilities__header{flex-direction:column;align-items:flex-start}
+  .cap{grid-template-columns:2.5rem 1fr;grid-template-rows:auto auto}
+  .cap__body{grid-column:2}
+
+  .argument__grid{grid-template-columns:1fr}
+  .arg-block:nth-child(odd){border-right:none}
+
+  .method__header{grid-template-columns:1fr}
+
+  .contact__grid{grid-template-columns:1fr}
+
+  .footer__links{flex-wrap:wrap;gap:1.5rem}
+}
+
+@media(max-width:520px){
+  .hero__headline{font-size:clamp(2.75rem,11vw,4.5rem)}
+  .argument__display{font-size:clamp(2.5rem,9vw,4rem)}
+  .contact__heading{font-size:clamp(2.5rem,9vw,4rem)}
+  .method__heading{font-size:clamp(2.5rem,9vw,4rem)}
+  .capabilities__heading{font-size:clamp(2rem,8vw,3.5rem)}
+  .footer__bleed{font-size:clamp(3.5rem,14vw,8rem)}
+}
+
+/* ─── FADE IN ─── */
+.fade{opacity:0;transform:translateY(18px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+.fade.in{opacity:1;transform:none}
+.fade[data-delay="1"]{transition-delay:.1s}
+.fade[data-delay="2"]{transition-delay:.2s}
+.fade[data-delay="3"]{transition-delay:.3s}
+
 </style>
 </head>
 <body>
- 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <img src="rossiter-logo.png" width="90" height="90" alt="Rossiter Consulting" style="flex-shrink:0;">
-    <div class="nav-wordmark">
-      <span class="nav-name">ROSSITER</span>
-      <span class="nav-sub">Consulting</span>
+
+<!-- ─── NAV ─── -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo" aria-label="Rossiter Consulting">
+      <svg class="nav__chevron" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+        <polyline points="6,4 16,11 6,18" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/>
+      </svg>
+      <span class="nav__wordmark">Rossiter Consulting</span>
+    </a>
+
+    <nav aria-label="Principal">
+      <ul class="nav__links" role="list">
+        <li><a href="#especialista">Especialista</a></li>
+        <li><a href="#capacidades">Capacidades</a></li>
+        <li><a href="#metodo">Método</a></li>
+      </ul>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:1.25rem">
+      <a href="#contato" class="nav__contact">Diagnóstico</a>
+      <button class="nav__mobile-btn" id="mobile-btn" aria-label="Menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
     </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#diferenciais">Diferenciais</a></li>
-    <li><a href="#processo">Processo</a></li>
-    <li><a href="#fundador">Fundador</a></li>
-  </ul>
-  <a href="#contato" class="nav-cta">Diagnóstico Gratuito</a>
-</nav>
- 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-grid"></div>
-  <div class="hero-left">
-    <div class="hero-badge">Consultoria Especializada · DE · BR</div>
-    <h1 class="hero-title">
-      Sistemas que<br><em>funcionam</em><br>na sua rotina.
+  </div>
+
+  <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+    <a href="#especialista">Especialista</a>
+    <a href="#capacidades">Capacidades</a>
+    <a href="#metodo">Método</a>
+    <a href="#contato" style="color:var(--blue)!important">Diagnóstico →</a>
+  </div>
+</header>
+
+
+<!-- ─── HERO ─── -->
+<section class="hero" aria-labelledby="hero-h1">
+  <div class="hero__accent-line" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <h1 class="hero__headline" id="hero-h1" aria-label="Excelência operacional em indústrias que não podem falhar">
+      <span class="line1">EXCELÊNCIA</span>
+      <span class="line2">OPERACIONAL</span>
+      <span class="line3">EM INDÚSTRIAS QUE NÃO PODEM <em class="accent-word">FALHAR.</em></span>
     </h1>
-    <p class="hero-sub">
-      Implantação e evolução de Sistemas de Gestão ISO e Lean Six Sigma para engenharia, construção e indústria pesada. Sede na Alemanha. Operação no Brasil.
-    </p>
-    <p class="hero-slogan">Quality &nbsp;·&nbsp; Lean &nbsp;·&nbsp; Excellence</p>
-    <div class="hero-actions">
-      <a href="#contato" class="btn-primary">Agendar Diagnóstico Gratuito</a>
-      <a href="#servicos" class="btn-secondary">Ver Serviços</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-logo-wrap">
-      <img src="rossiter-logo.png" width="340" height="340" alt="Rossiter Consulting">
-      <div class="hero-stats">
-        <div class="hero-stat"><div class="stat-num">16+</div><div class="stat-label">Anos em indústria pesada global</div></div>
-        <div class="hero-stat"><div class="stat-num">€1,9M</div><div class="stat-label">Impacto documentado / ano</div></div>
-        <div class="hero-stat"><div class="stat-num">−45%</div><div class="stat-label">Redução de defeitos</div></div>
-        <div class="hero-stat"><div class="stat-num">100+</div><div class="stat-label">Projetos simultâneos</div></div>
+
+    <div class="hero__bottom">
+      <div>
+        <p class="hero__sub-label">Rossiter Consulting</p>
+        <p class="hero__sub">
+          Sistemas de gestão ISO, Lean Six Sigma e engenharia de qualidade aplicados diretamente por um especialista com histórico real em operações
+          <strong>EMEA e América do Sul.</strong> Sem consultores júnior. Sem PowerPoint no lugar de solução.
+        </p>
+      </div>
+      <div class="hero__cta-wrap">
+        <a href="#contato" class="hero__cta">
+          Agendar diagnóstico
+          <span class="cta-arrow" aria-hidden="true">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+          </span>
+        </a>
+        <a href="#especialista" class="hero__secondary-cta">Conhecer o especialista</a>
       </div>
     </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--grey-30)">SCROLL</span>
   </div>
 </section>
- 
-<hr class="rule">
- 
-<!-- ABOUT -->
-<section class="section-alt" id="sobre">
-  <div class="container">
-    <div class="about-grid">
-      <div>
-        <span class="section-eyebrow">Quem somos</span>
-        <h2 class="section-title">Consultoria<br>sem <em>gaveta.</em></h2>
-        <div class="cred-list">
-          <div class="cred">
-            <div class="cred-icon">IMS</div>
-            <div>
-              <div class="cred-title">Lead Auditor IMS</div>
-              <div class="cred-desc">ISO 9001 · ISO 14001 · ISO 45001 — Exemplar Global RTP</div>
-            </div>
-          </div>
-          <div class="cred">
-            <div class="cred-icon">MBB</div>
-            <div>
-              <div class="cred-title">Master Black Belt</div>
-              <div class="cred-desc">Lean Six Sigma — resultados corporativos documentados em escala global</div>
-            </div>
-          </div>
-          <div class="cred">
-            <div class="cred-icon">IWE</div>
-            <div>
-              <div class="cred-title">Intl. Welding Engineer</div>
-              <div class="cred-desc">DVS / IIW — ISO 3834, WPS/PQR, qualificação de soldadores</div>
-            </div>
-          </div>
+
+
+<!-- ─── STATEMENT ─── -->
+<div class="rule"></div>
+<section class="statement fade" aria-label="Proposta de valor">
+  <p class="statement__text">
+    A maioria dos problemas operacionais não é falta de ferramenta.<br>
+    É falta de <strong>diagnóstico preciso</strong>, execução real<br>
+    e um sistema que <em>sobreviva ao fim do projeto.</em>
+  </p>
+</section>
+<div class="rule"></div>
+
+
+<!-- ─── FOUNDER ─── -->
+<section class="founder" id="especialista" aria-label="O especialista">
+  <div class="founder__inner">
+
+    <div class="founder__left fade">
+      <div class="founder__photo" role="img" aria-label="Eduardo Rossiter">
+        <div class="founder__photo-bg"></div>
+        <div class="founder__photo-initials" aria-hidden="true">ER</div>
+        <div class="founder__photo-name">
+          <p class="founder__photo-name-text">Eduardo<br>Rossiter</p>
+          <p class="founder__photo-name-role">Principal · Rossiter Consulting</p>
         </div>
       </div>
-      <div>
-        <p style="font-size:22px;font-weight:300;color:var(--text-2);line-height:1.9;margin-bottom:1.5rem;">
-          A Rossiter Consulting é especializada em Sistemas de Gestão e Lean Six Sigma. Trabalhamos com engenharia, construção e indústria pesada — setores que exigem mais do que documentação: exigem sistemas que entram em operação e se sustentam.
-        </p>
-        <p style="font-size:22px;font-weight:300;color:var(--text-2);line-height:1.9;margin-bottom:2rem;">
-          Não vendemos diagnósticos que ficam em apresentações. Trabalhamos com gates de implementação e medição de adoção real. O que importa é o sistema funcionando na sua rotina, com sua equipe, nos seus processos.
-        </p>
-        <div class="pills">
-          <span class="pill">ISO 9001</span>
-          <span class="pill">ISO 14001</span>
-          <span class="pill">ISO 45001</span>
-          <span class="pill">SGI</span>
-          <span class="pill">Lean Six Sigma</span>
-          <span class="pill">DMAIC</span>
-          <span class="pill">ISO 3834</span>
-          <span class="pill">8D / CAPA</span>
-        </div>
+      <div class="founder__credentials" role="list" aria-label="Credenciais">
+        <span class="cred cred--blue" role="listitem">Lead Auditor IMS</span>
+        <span class="cred cred--blue" role="listitem">Master Black Belt</span>
+        <span class="cred cred--blue" role="listitem">Intl. Welding Engineer</span>
+        <span class="cred" role="listitem">ISO 9001</span>
+        <span class="cred" role="listitem">ISO 45001</span>
+        <span class="cred" role="listitem">SGI</span>
+        <span class="cred" role="listitem">EMEA</span>
+        <span class="cred" role="listitem">100+ projetos</span>
       </div>
     </div>
-  </div>
-</section>
- 
-<!-- SERVICES -->
-<section id="servicos">
-  <div class="container">
-    <div class="services-header">
-      <div>
-        <span class="section-eyebrow">O que entregamos</span>
-        <h2 class="section-title">Cinco frentes.<br><em>Um parceiro.</em></h2>
-      </div>
-      <p style="font-size:22px;color:var(--text-2);line-height:1.85;">
-        Cada frente é liderada diretamente pelo consultor responsável — sem camadas intermediárias, sem subcontratação oculta. Você fala com quem executa.
+
+    <div class="founder__right">
+      <p class="founder__label">O especialista</p>
+      <h2 class="founder__heading fade">O ARGUMENTO<br>DE CONFIANÇA</h2>
+
+      <p class="founder__para fade" data-delay="1">
+        Há mais de uma década Eduardo Rossiter opera nos estratos onde a convergência de rigor normativo, análise estatística avançada e execução em campo é inegociável. Sua trajetória atravessou a coordenação de qualidade <strong>EMEA na thyssenkrupp / FLSmidth</strong>, gestão de projetos de engenharia em múltiplos países simultaneamente e a liderança de implantações de sistemas integrados de gestão em ambientes industriais de alta complexidade.
+      </p>
+
+      <blockquote class="founder__quote fade" data-delay="2">
+        "A combinação de Lead Auditor IMS, Master Black Belt e International Welding Engineer em uma única pessoa é estatisticamente rara. Cada credencial representa um domínio distinto; os três juntos formam uma perspectiva difícil de replicar."
+      </blockquote>
+
+      <p class="founder__para fade" data-delay="2">
+        O diferencial não está na quantidade de certificações, mas no que elas permitem na prática: <strong>diagnosticar uma não-conformidade normativa, quantificar seu impacto em DPMO e propor a solução técnica em soldagem</strong> — sem precisar de três consultores diferentes, sem perda de contexto entre fases.
+      </p>
+
+      <p class="founder__para fade" data-delay="3">
+        Ao operar como especialista solo, Eduardo entrega acesso direto, sem atrito de hierarquia. <strong>O projeto pertence ao cliente desde o início:</strong> sistemas que funcionam quando a consultoria termina, métricas que o time interno interpreta, rotinas que não dependem de presença permanente.
       </p>
     </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="card-num">01 — Principal</div>
-        <div class="card-line"></div>
-        <h3 class="card-title">Sistemas de Gestão</h3>
-        <p class="card-body">Implantação, evolução e manutenção de SGQ, SGA, SSO e SGI integrado. Do diagnóstico inicial à certificação, ou da manutenção de um sistema existente à próxima versão normativa.</p>
-        <div class="tags"><span class="tag">ISO 9001</span><span class="tag">ISO 14001</span><span class="tag">ISO 45001</span><span class="tag">SGI</span><span class="tag">Auditoria Interna</span><span class="tag">8D/CAPA</span></div>
-      </div>
-      <div class="service-card">
-        <div class="card-num">02 — Principal</div>
-        <div class="card-line"></div>
-        <h3 class="card-title">Lean Six Sigma</h3>
-        <p class="card-body">Diagnóstico operacional, projetos DMAIC para redução de perdas e variabilidade, redução de COPQ, mapeamento de valor e formação de belts internos.</p>
-        <div class="tags"><span class="tag">DMAIC</span><span class="tag">VSM</span><span class="tag">5S</span><span class="tag">CEP</span><span class="tag">Yellow / Green / Black Belt</span></div>
-      </div>
-      <div class="service-card">
-        <div class="card-num">03</div>
-        <div class="card-line"></div>
-        <h3 class="card-title">Qualidade em Projetos</h3>
-        <p class="card-body">PQP, ITP, MDR, FMEA e gestão de fornecedores para contratos de engenharia e obras com requisitos rigorosos de cliente.</p>
-        <div class="tags"><span class="tag">APQP</span><span class="tag">PPAP</span><span class="tag">FMEA</span><span class="tag">ITP</span><span class="tag">2nd Party Audit</span></div>
-      </div>
-      <div class="service-card">
-        <div class="card-num">04</div>
-        <div class="card-line"></div>
-        <h3 class="card-title">Treinamentos</h3>
-        <p class="card-body">Formação de auditores internos, certificação de belts e capacitação em ferramentas da qualidade. Conduzidos em português, inglês ou alemão — presenciais ou remotos.</p>
-        <div class="tags"><span class="tag">Auditores ISO</span><span class="tag">Lean Six Sigma</span><span class="tag">8D · FMEA · CEP</span><span class="tag">Presencial / Remoto</span></div>
-      </div>
-      <div class="service-card">
-        <div class="card-num">05 — Complementar</div>
-        <div class="card-line"></div>
-        <h3 class="card-title">Engenharia de Solda</h3>
-        <p class="card-body">Implantação ISO 3834, qualificação de WPS/PQR, qualificação de soldadores e coordenação de NDT para fabricação soldada crítica.</p>
-        <div class="tags"><span class="tag">ISO 3834</span><span class="tag">WPS / PQR</span><span class="tag">NDT</span><span class="tag">ISO 15614</span><span class="tag">ASME IX</span></div>
-      </div>
-      <div class="service-cta">
-        <p>Não sabe por onde começar?</p>
-        <p style="font-size:13px;color:var(--text-2);font-family:'Montserrat',sans-serif;font-style:normal;text-align:center;line-height:1.6;">O diagnóstico inicial é gratuito, sem compromisso e começa com uma conversa de 30 minutos.</p>
-        <a href="#contato" class="btn-primary" style="font-size:11px;padding:12px 28px;">Agendar agora</a>
-      </div>
-    </div>
+
   </div>
 </section>
- 
-<hr class="rule">
- 
-<!-- DIFFERENTIALS -->
-<section class="section-alt" id="diferenciais">
-  <div class="container">
-    <span class="section-eyebrow">Por que a Rossiter</span>
-    <h2 class="section-title">O diferencial está <em>nos números.</em></h2>
-    <div class="diff-grid" style="margin-top:3.5rem;">
-      <div class="diff">
-        <div class="diff-num">01</div>
-        <div class="diff-content">
-          <hr class="diff-rule">
-          <h3 class="diff-title">Credenciais raras em um único consultor</h3>
-          <p class="diff-body">Lead Auditor IMS, Master Black Belt e International Welding Engineer — as três certificações em um único profissional são incomuns no mercado. Permitem conduzir projetos integrados de sistema de gestão, melhoria contínua e qualidade técnica sem precisar articular consultorias diferentes.</p>
-        </div>
-      </div>
-      <div class="diff">
-        <div class="diff-num">02</div>
-        <div class="diff-content">
-          <hr class="diff-rule">
-          <h3 class="diff-title">Experiência corporativa com resultados documentados</h3>
-          <p class="diff-body">Head of Quality Control EMEA na thyssenkrupp / FLSmidth — responsável por 100+ projetos simultâneos e rede de 30+ inspetores em 5 países.</p>
-          <div class="diff-metric">
-            <span class="metric-num">€1,9M+</span>
-            <span class="metric-label">/ ano de impacto documentado</span>
-          </div>
-        </div>
-      </div>
-      <div class="diff">
-        <div class="diff-num">03</div>
-        <div class="diff-content">
-          <hr class="diff-rule">
-          <h3 class="diff-title">Sistemas que se sustentam, não consultoria de gaveta</h3>
-          <p class="diff-body">Gates de implementação e medição de adoção real. O que vale é o sistema funcionando na rotina do cliente — não o volume de páginas entregues.</p>
-          <div class="diff-metric">
-            <span class="metric-num">−60%</span>
-            <span class="metric-label">repeat findings em auditorias internas</span>
-          </div>
-        </div>
-      </div>
+
+
+<!-- ─── CAPABILITIES ─── -->
+<section class="capabilities" id="capacidades" aria-label="Capacidades">
+
+  <div class="capabilities__header">
+    <div class="capabilities__title-block">
+      <p class="capabilities__eyebrow">Áreas de atuação</p>
+      <h2 class="capabilities__heading">ÁREAS DE<br><span class="accent">ATUAÇÃO</span></h2>
     </div>
-  </div>
-</section>
- 
-<!-- PROCESS -->
-<section id="processo">
-  <div class="container">
-    <span class="section-eyebrow">Como trabalhamos</span>
-    <h2 class="section-title">Quatro passos. <em>Zero burocracia.</em></h2>
-    <div class="steps" style="margin-top:3rem;">
-      <div class="step">
-        <div class="step-num">Passo 01</div>
-        <div class="step-dot"></div>
-        <div class="step-title">Diagnóstico Gratuito</div>
-        <p class="step-desc">Videochamada de 30–60 minutos. Nos apresentamos, entendemos onde e se faz sentido avançar — sem custo, sem compromisso.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">Passo 02</div>
-        <div class="step-dot"></div>
-        <div class="step-title">Avaliação Escrita</div>
-        <p class="step-desc">Após a conversa, envio por escrito uma leitura do cenário e onde consigo agregar. Sem custo e sem compromisso.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">Passo 03</div>
-        <div class="step-dot"></div>
-        <div class="step-title">Proposta Formal</div>
-        <p class="step-desc">Somente se houver aderência mútua — proposta com escopo, prazo, equipe, entregáveis e preço. Fase por fase, sem amarra de longo prazo.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">Passo 04</div>
-        <div class="step-dot"></div>
-        <div class="step-title">Execução Híbrida</div>
-        <p class="step-desc">Visitas presenciais ao cliente no Brasil + trabalho técnico e condução remota desde a Alemanha. Documentos curtos, validados em uso.</p>
-      </div>
-    </div>
-  </div>
-</section>
- 
-<hr class="rule">
- 
-<!-- FOUNDER -->
-<section class="section-alt" id="fundador">
-  <div class="container">
-    <div class="founder-grid">
-      <div>
-        <span class="section-eyebrow">Quem lidera</span>
-        <div class="founder-avatar">
-          <img src="eduardo.jpg" alt="Eduardo Rossiter" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
-        </div>
-      </div>
-      <div>
-        <h2 class="founder-name">Eduardo Rossiter</h2>
-        <p class="founder-role">Fundador · Consultor Principal</p>
-        <p class="founder-bio">
-          Engenheiro Mecânico (UFBA), MSc Energy Engineering pela RWTH Aachen, doutorado em fase final pelo Instituto de Soldagem da RWTH Aachen. Co-inventor da Patente Europeia EP3374084. 16+ anos em indústria pesada global, com os últimos como Head of Quality Control EMEA na thyssenkrupp Mining Technologies / FLSmidth — responsável por 100+ projetos simultâneos e rede de 30+ inspetores em 5 países.
-        </p>
-        <div class="cert-badges">
-          <span class="cert">Lead Auditor IMS</span>
-          <span class="cert">Master Black Belt LSS</span>
-          <span class="cert">Intl. Welding Engineer</span>
-          <span class="cert">Exemplar Global RTP</span>
-          <span class="cert">DVS / IIW</span>
-        </div>
-        <p class="founder-langs">Idiomas: <span>Português · Inglês · Alemão · Espanhol</span></p>
-      </div>
-    </div>
-  </div>
-</section>
- 
-<!-- CTA -->
-<section class="cta-section" id="contato">
-  <div class="cta-inner">
-    <span class="cta-eyebrow">Próximo passo</span>
-    <h2 class="cta-title">Pronto para um sistema que <em>funciona</em>?</h2>
-    <p class="cta-sub">
-      O diagnóstico inicial é gratuito, sem compromisso e começa com uma conversa de 30 minutos. Identificamos juntos onde e como faz sentido avançar.
+    <p class="capabilities__desc fade">
+      Cada prática representa anos de aplicação real em contexto industrial. O ponto de partida é sempre o sistema real da operação — com seus dados, suas restrições e suas pessoas.
     </p>
-    <div class="cta-actions">
-      <a href="mailto:edurossiter@hotmail.com" class="btn-cta">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        edurossiter@hotmail.com
-      </a>
-      <a href="https://wa.me/4917621110258" class="btn-whatsapp" target="_blank">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.118 1.523 5.845L0 24l6.338-1.498A11.933 11.933 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.37l-.36-.214-3.733.882.916-3.618-.235-.372A9.786 9.786 0 0 1 2.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
-        +49 176 2111 0258
-      </a>
-      <a href="https://linkedin.com/in/edurossiter" class="btn-cta-ghost" target="_blank">LinkedIn →</a>
-    </div>
-    <p class="cta-note">Sede na Alemanha · Operação no Brasil</p>
- 
-    <!-- FORMULÁRIO -->
-    <div class="cta-form-wrap">
-      <h3 class="cta-form-title">Agendar consulta gratuita</h3>
-      <p class="cta-form-sub">Preencha abaixo e entraremos em contacto em até 24 horas.</p>
-      <form class="cta-form" id="consultaForm" onsubmit="submitForm(event)">
-        <input type="text" name="nome" placeholder="Seu nome *" required>
-        <input type="text" name="empresa" placeholder="Nome da empresa *" required>
-        <input type="email" name="email" class="field-full" placeholder="Seu e-mail *" required>
-        <button type="submit" class="btn-submit">Solicitar Diagnóstico Gratuito →</button>
-      </form>
-      <div class="form-success" id="formSuccess">
-        ✓ Mensagem recebida! Eduardo entrará em contacto em breve.
+  </div>
+
+  <div class="cap-list">
+
+    <article class="cap fade">
+      <p class="cap__num">01</p>
+      <div>
+        <h3 class="cap__name">Sistemas de Gestão Integrados</h3>
+        <div class="cap__tags">
+          <span class="tag">ISO 9001</span>
+          <span class="tag">ISO 45001</span>
+          <span class="tag">SGI</span>
+          <span class="tag">IMS</span>
+          <span class="tag">Auditoria</span>
+        </div>
       </div>
+      <div class="cap__body">
+        <p>Implantação, diagnóstico e maturação de sistemas integrados de gestão. O trabalho começa pela análise do contexto real — processos existentes, cultura operacional, gaps normativos — e segue até a operacionalização completa, incluindo auditoria interna e preparação para certificação externa.</p>
+        <p><strong>O resultado esperado é um sistema que o time interno entende, usa e sustenta</strong> — não uma pasta de documentos que existe para o auditor externo e é ignorada no chão de fábrica.</p>
+      </div>
+    </article>
+
+    <article class="cap fade">
+      <p class="cap__num">02</p>
+      <div>
+        <h3 class="cap__name">Lean Six Sigma &amp; Análise Estatística</h3>
+        <div class="cap__tags">
+          <span class="tag">DMAIC</span>
+          <span class="tag">SPC</span>
+          <span class="tag">MSA</span>
+          <span class="tag">DOE</span>
+          <span class="tag">Minitab</span>
+          <span class="tag">DPMO</span>
+        </div>
+      </div>
+      <div class="cap__body">
+        <p>Condução de projetos DMAIC de complexidade elevada, com análise estatística real — não uso superficial de ferramentas Lean como atividade de workshop. Inclui análise de sistema de medição, controle estatístico de processo e delineamento de experimentos em contextos industriais com variação significativa.</p>
+        <p><strong>A profundidade técnica permite identificar causas que análises superficiais ignoram</strong> e propor soluções que atacam a causa raiz, não o sintoma visível.</p>
+      </div>
+    </article>
+
+    <article class="cap fade">
+      <p class="cap__num">03</p>
+      <div>
+        <h3 class="cap__name">Engenharia de Qualidade em Projetos</h3>
+        <div class="cap__tags">
+          <span class="tag">IWE · IWT</span>
+          <span class="tag">WPS · PQR</span>
+          <span class="tag">FMEA</span>
+          <span class="tag">END</span>
+          <span class="tag">Inspeção</span>
+        </div>
+      </div>
+      <div class="cap__body">
+        <p>Gestão de qualidade em projetos de engenharia com componentes de soldagem estrutural: elaboração e qualificação de procedimentos de soldagem, coordenação de ensaios não destrutivos e interface técnica com clientes, fornecedores e organismos de inspeção. Experiência em projetos de grande porte com requisitos normativos críticos.</p>
+        <p><strong>Esta combinação elimina o atrito entre departamentos técnicos e de gestão</strong> que frequentemente paralisa projetos de engenharia.</p>
+      </div>
+    </article>
+
+    <article class="cap fade">
+      <p class="cap__num">04</p>
+      <div>
+        <h3 class="cap__name">Excelência Operacional &amp; OPEX</h3>
+        <div class="cap__tags">
+          <span class="tag">VSM</span>
+          <span class="tag">Kaizen</span>
+          <span class="tag">KPIs</span>
+          <span class="tag">OEE</span>
+          <span class="tag">5S</span>
+          <span class="tag">Gestão visual</span>
+        </div>
+      </div>
+      <div class="cap__body">
+        <p>Diagnóstico e estruturação de programas de excelência operacional: mapeamento de fluxo de valor, definição de KPIs acionáveis, rotinas de gestão visual e sistemas de melhoria contínua que sobrevivem à saída da consultoria. O foco não é no evento isolado, mas em construir a capacidade interna de manter e evoluir o sistema.</p>
+        <p><strong>Operação que depende do consultor para funcionar é operação que ainda não foi resolvida.</strong></p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ─── ARGUMENT ─── -->
+<section class="argument" id="argumento" aria-label="Por que este especialista">
+  <div class="argument__inner">
+
+    <h2 class="argument__display fade" aria-label="Por que a combinação importa e por que é rara">
+      <span class="step1">POR QUE</span>
+      <span class="step2">A COMBINAÇÃO</span>
+      <span class="step3">IMPORTA — E POR QUE É <span class="blue">RARA.</span></span>
+    </h2>
+
+    <div class="argument__grid">
+
+      <div class="arg-block fade">
+        <p class="arg-block__label">01 — Credenciais que coexistem</p>
+        <h3 class="arg-block__title">Três domínios em uma única perspectiva</h3>
+        <p class="arg-block__text">Lead Auditor IMS, Master Black Belt e International Welding Engineer são percursos distintos, exigentes e raramente encontrados na mesma pessoa. Juntos, permitem transitar entre <strong>a auditoria normativa, a análise estatística e a engenharia técnica</strong> sem perda de profundidade em nenhum dos três.</p>
+      </div>
+
+      <div class="arg-block fade" data-delay="1">
+        <p class="arg-block__label">02 — Histórico real</p>
+        <h3 class="arg-block__title">Operações reais, não casos de estudo</h3>
+        <p class="arg-block__text">A gestão simultânea de mais de 100 projetos em múltiplos países europeus como coordenador de qualidade EMEA não é um cenário hipotético. É o contexto em que os métodos foram testados e validados sob pressão real, com <strong>consequências concretas para qualquer falha de sistema.</strong></p>
+      </div>
+
+      <div class="arg-block fade" data-delay="1">
+        <p class="arg-block__label">03 — Execução acima de relatório</p>
+        <h3 class="arg-block__title">Sistema rodando, não apresentação entregue</h3>
+        <p class="arg-block__text">O critério de sucesso não é a entrega de um documento. É <strong>o indicador sendo medido, a rotina sendo executada, o desvio sendo tratado</strong> — com ou sem a presença do consultor. O projeto termina com o time habilitado a operar o sistema de forma autônoma.</p>
+      </div>
+
+      <div class="arg-block fade" data-delay="2">
+        <p class="arg-block__label">04 — Acesso direto</p>
+        <h3 class="arg-block__title">Sem intermediação, sem atrito</h3>
+        <p class="arg-block__text">Como especialista solo, Eduardo é o único interlocutor técnico do projeto — do diagnóstico à entrega. Não há gerente repassando demandas para consultores júnior. <strong>O especialista que você contrata é o especialista que trabalha no seu problema,</strong> com contexto preservado e nenhuma camada de tradução.</p>
+      </div>
+
     </div>
   </div>
 </section>
- 
-<script>
-function submitForm(e) {
-  e.preventDefault();
-  const form = document.getElementById('consultaForm');
-  const success = document.getElementById('formSuccess');
-  const data = new FormData(form);
-  const nome = data.get('nome');
-  const empresa = data.get('empresa');
-  const email = data.get('email');
-  // Abre email com os dados preenchidos
-  const subject = encodeURIComponent('Solicitação de Diagnóstico Gratuito — ' + empresa);
-  const body = encodeURIComponent('Olá Eduardo,
- 
-Gostaria de agendar um diagnóstico gratuito.
- 
-Nome: ' + nome + '
-Empresa: ' + empresa + '
-E-mail: ' + email + '
- 
-Aguardo seu retorno.');
-  window.location.href = 'mailto:edurossiter@hotmail.com?subject=' + subject + '&body=' + body;
-  form.style.display = 'none';
-  success.style.display = 'block';
-}
-</script>
- 
-<!-- FOOTER -->
-<footer>
-  <a href="#top" class="footer-logo">
-    <img src="rossiter-logo.png" width="50" height="50" alt="Rossiter Consulting">
-    <div>
-      <div class="footer-name">ROSSITER</div>
-      <div class="footer-sub">Consulting</div>
+
+
+<!-- ─── METHOD ─── -->
+<section class="method" id="metodo" aria-label="Método de trabalho">
+  <div class="method__inner">
+
+    <div class="method__header fade">
+      <h2 class="method__heading">COMO O<br>TRABALHO É<br><span>CONDUZIDO</span></h2>
+      <p class="method__desc">
+        Quatro momentos, descritos como aparecem na prática. Cada etapa tem entregável concreto e critério claro de avanço — <strong>nenhuma ambiguidade sobre o que foi feito e o que vem a seguir.</strong>
+      </p>
     </div>
-  </a>
-  <nav class="footer-links">
-    <a href="#sobre">A empresa</a>
-    <a href="#servicos">Serviços</a>
-    <a href="#fundador">Fundador</a>
-    <a href="#contato">Contato</a>
-  </nav>
-  <span class="footer-copy">© 2026 Rossiter Consulting · DE · BR</span>
+
+    <div class="method__steps">
+
+      <div class="step fade">
+        <p class="step__num">01</p>
+        <div>
+          <h3 class="step__title">Diagnóstico e alinhamento de escopo</h3>
+          <p class="step__text">Conversa direta com a liderança para entender o problema real — não o problema declarado no briefing. Análise de dados disponíveis, visita técnica quando aplicável, mapeamento de lacunas e definição do escopo exato. <strong>Sem escopo fechado, não há projeto iniciado.</strong></p>
+        </div>
+      </div>
+
+      <div class="step fade" data-delay="1">
+        <p class="step__num">02</p>
+        <div>
+          <h3 class="step__title">Análise técnica e planejamento</h3>
+          <p class="step__text">Análise aprofundada das causas e dos sistemas existentes. Definição das ferramentas, indicadores e estrutura de solução. Plano de trabalho com marcos claros, responsabilidades definidas e critérios de aceitação mensuráveis — <strong>tanto para o especialista quanto para o time do cliente.</strong></p>
+        </div>
+      </div>
+
+      <div class="step fade" data-delay="2">
+        <p class="step__num">03</p>
+        <div>
+          <h3 class="step__title">Implantação e acompanhamento</h3>
+          <p class="step__text">Execução direta das ações, com presença técnica nas etapas críticas e transferência contínua de conhecimento para o time interno. <strong>Nenhuma implementação relevante acontece apenas com documentação:</strong> o acompanhamento em campo é parte integral do trabalho.</p>
+        </div>
+      </div>
+
+      <div class="step fade" data-delay="3">
+        <p class="step__num">04</p>
+        <div>
+          <h3 class="step__title">Validação, entrega e autonomia do cliente</h3>
+          <p class="step__text">Verificação dos resultados contra os critérios definidos no início. Documentação técnica final. Treinamento do time para operação autônoma. <strong>O projeto termina quando o cliente opera sem depender do consultor</strong> — não quando o relatório final é entregue.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── CONTACT ─── -->
+<section class="contact" id="contato" aria-label="Contato">
+  <div class="contact__inner">
+
+    <h2 class="contact__heading fade" aria-label="Vamos olhar onde sua operação perde desempenho">
+      <span class="step">VAMOS OLHAR</span>
+      <span class="step s2">ONDE SUA</span>
+      <span class="step">OPERAÇÃO <span class="blue">PERDE.</span></span>
+    </h2>
+
+    <div class="contact__grid">
+
+      <div class="contact__left fade">
+        <p class="contact__body">
+          A primeira conversa não é uma apresentação de proposta. É uma análise direta do cenário — processos, indicadores, sistemas e lacunas. <strong>Se houver trabalho relevante a fazer, será descrito com clareza. Se não houver, também.</strong>
+        </p>
+        <div class="contact__direct">
+          <div class="contact__row">
+            <span class="contact__row-label">E-mail</span>
+            <a href="mailto:eduardo@rossiterconsulting.com" class="contact__row-val">eduardo@rossiterconsulting.com</a>
+          </div>
+          <div class="contact__row">
+            <span class="contact__row-label">LinkedIn</span>
+            <a href="https://linkedin.com/in/eduardorossiter" target="_blank" rel="noopener noreferrer" class="contact__row-val">linkedin.com/in/eduardorossiter</a>
+          </div>
+          <div class="contact__row">
+            <span class="contact__row-label">Base</span>
+            <span class="contact__row-val">Alemanha · Projetos EMEA e Brasil</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact__right fade" data-delay="1">
+        <p class="contact__form-label">Solicitar diagnóstico</p>
+        <form class="form" name="diagnostico" novalidate>
+          <div class="form__row">
+            <label for="nome" class="form__lbl">Nome e empresa</label>
+            <input class="form__input" type="text" id="nome" name="nome" autocomplete="name" required placeholder="Nome / Empresa"/>
+          </div>
+          <div class="form__row">
+            <label for="email" class="form__lbl">E-mail</label>
+            <input class="form__input" type="email" id="email" name="email" autocomplete="email" required placeholder="seu@email.com"/>
+          </div>
+          <div class="form__row">
+            <label for="contexto" class="form__lbl">Contexto do desafio</label>
+            <textarea class="form__textarea" id="contexto" name="contexto" rows="5" required placeholder="Descreva a operação, o problema e o que já foi tentado."></textarea>
+          </div>
+          <button type="submit" class="form__submit">
+            Enviar solicitação
+            <span class="cta-arrow" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </span>
+          </button>
+          <p class="form__note">Resposta direta. Sem intermediários.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+    <p class="footer__tagline">
+      <strong>Rossiter Consulting.</strong><br>
+      Sistema rodando, indicador medido,<br>rotina funcionando.
+    </p>
+    <ul class="footer__links" role="list">
+      <li><a href="#especialista">Especialista</a></li>
+      <li><a href="#capacidades">Capacidades</a></li>
+      <li><a href="#metodo">Método</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </div>
+  <p class="footer__copy">&copy; 2026 Rossiter Consulting. Todos os direitos reservados.</p>
+  <div class="footer__bleed" aria-hidden="true">ROSSITER</div>
 </footer>
- 
-</body>
+
+
+<script>
+(function(){
+
+  // NAV SCROLL
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, {passive:true});
+
+  // MOBILE MENU
+  const btn = document.getElementById('mobile-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.innerHTML = open
+      ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+      : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+      btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+    });
+  });
+
+  // FADE IN
+  if('IntersectionObserver' in window){
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, {threshold:0.07});
+    document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+  } else {
+    document.querySelectorAll('.fade').forEach(el => el.classList.add('in'));
+  }
+
+})();
+</script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="transform:translate(-${scrollX}px,-${scrollY}px);transform-origin:top left">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
 </html>
