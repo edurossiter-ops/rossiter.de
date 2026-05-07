@@ -196,8 +196,7 @@ p{text-wrap:pretty}
   text-transform:uppercase;
   flex:1 1 0;
   min-width:0;
-  margin-top:auto; /* empurra headline para o fundo enquanto o conteúdo direito fica no topo */
-  align-self:flex-end;
+  align-self:flex-start; /* headline no TOPO */
 }
 @media(min-width:600px){
   .hero__headline{font-size:calc(4vh + 4.5vw)}
@@ -223,7 +222,7 @@ p{text-wrap:pretty}
   flex:0 0 auto;
   width:min(380px,38%);
   display:flex;flex-direction:column;gap:1.25rem;
-  align-self:flex-start; /* topo */
+  align-self:flex-end; /* texto direito no RODAPÉ */
 }
 .hero__deco{width:2.5rem;height:3px;background:var(--blue)}
 .hero__sub{
