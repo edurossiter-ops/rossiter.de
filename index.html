@@ -58,18 +58,22 @@ p{text-wrap:pretty}
 
 .nav__logo{
   flex-shrink:0;
-  display:flex;align-items:center;gap:.625rem;
+  display:flex;align-items:center;gap:.75rem;
 }
-.nav__chevron{
-  width:28px;height:28px;
-  color:var(--blue);
-  flex-shrink:0;
+.nav__logo-img{
+  height:32px; /* igual ao logo da Accenture: 2rem / 32px */
+  width:auto;
+  display:block;
+  /* elimina o fundo branco do JPG no nav preto */
+  mix-blend-mode:screen;
+  filter:brightness(1.1);
 }
 .nav__wordmark{
-  font-family:var(--mono);
-  font-size:11px;font-weight:400;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:var(--g60);
+  font-family:var(--sans);
+  font-size:0.875rem; /* exato Accenture */
+  font-weight:400;
+  letter-spacing:-0.005em;
+  color:var(--g90);
   white-space:nowrap;
 }
 
@@ -79,21 +83,19 @@ p{text-wrap:pretty}
   flex:1;
   justify-content:center;
 }
-/* EXATO Accenture: 1rem desktop, 500 weight */
+/* EXATO Accenture: 0.875rem (14px), weight 400, letter-spacing -0.005em */
 .nav__links a{
   font-family:var(--sans);
-  font-size:1rem;
-  font-weight:500;
-  letter-spacing:-.005em;
-  line-height:1;
+  font-size:0.875rem;
+  font-weight:400;
+  letter-spacing:-0.005em;
+  line-height:1.5;
+  padding:0 8px;
   color:var(--g90);
   white-space:nowrap;
   transition:color .2s;
 }
 .nav__links a:hover{color:var(--blue)}
-@media(min-width:1441px){
-  .nav__links a{font-size:clamp(1rem,0.0694rem + 0.6944vw,1.333rem)}
-}
 
 .nav__right{
   display:flex;align-items:center;gap:1.25rem;
@@ -713,14 +715,12 @@ p{text-wrap:pretty}
 <!-- ════════════ NAV ════════════ -->
 <nav class="nav" id="nav" aria-label="Navegação principal">
   <a href="#" class="nav__logo" aria-label="Rossiter Consulting — início">
-    <svg class="nav__chevron" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <path d="M10 6l12 10-12 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/>
-    </svg>
-    <span class="nav__wordmark">Rossiter</span>
+    <img class="nav__logo-img" src="rossiter-logo.jpg" alt="Rossiter Consulting"/>
+    <span class="nav__wordmark">Rossiter Consulting</span>
   </a>
 
   <div class="nav__links">
-    <a href="#competencia">Competência</a>
+    <a href="#competencia">Competências</a>
     <a href="#metodo">Método</a>
     <a href="#especialista">Especialista</a>
     <a href="#contato">Contato</a>
@@ -737,7 +737,7 @@ p{text-wrap:pretty}
 </nav>
 
 <div class="nav__mobile-menu" id="mobileMenu">
-  <a href="#competencia" class="mobile-link">Competência</a>
+  <a href="#competencia" class="mobile-link">Competências</a>
   <a href="#metodo" class="mobile-link">Método</a>
   <a href="#especialista" class="mobile-link">Especialista</a>
   <a href="#contato" class="mobile-link">Contato</a>
