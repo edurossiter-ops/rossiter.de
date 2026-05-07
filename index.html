@@ -12,7 +12,7 @@
 
 /* ═══ RESET ═══ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;scroll-padding-top:72px}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;scroll-padding-top:80px}
 body{min-height:100dvh;font-family:'Barlow','Helvetica Neue',Arial,sans-serif;color:#e8e6e0;background:#000;overflow-x:hidden}
 img,svg,video{display:block;max-width:100%}
 ul,ol{list-style:none}
@@ -45,7 +45,7 @@ p{text-wrap:pretty}
 ══════════════════════════════════════════ */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
-  height:72px;
+  height:80px; /* aumentado para acomodar logo maior */
   background:rgba(0,0,0,0.85);
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
@@ -53,6 +53,7 @@ p{text-wrap:pretty}
   padding:0 var(--pad);
   border-bottom:1px solid transparent;
   transition:border-color .3s,background .3s;
+  overflow:visible;
 }
 .nav.scrolled{border-bottom-color:var(--g30);background:#000}
 
@@ -61,17 +62,16 @@ p{text-wrap:pretty}
   display:flex;align-items:center;gap:.75rem;
 }
 .nav__logo-img{
-  height:32px; /* igual ao logo da Accenture: 2rem / 32px */
+  height:64px; /* dobrado: 32px → 64px */
   width:auto;
   display:block;
-  /* elimina o fundo branco do JPG no nav preto */
   mix-blend-mode:screen;
   filter:brightness(1.1);
 }
 .nav__wordmark{
   font-family:var(--sans);
-  font-size:1rem; /* 16px */
-  font-weight:500;
+  font-size:1.5625rem; /* 25px — igual aos links do menu */
+  font-weight:400;
   letter-spacing:-0.005em;
   color:#fff;
   white-space:nowrap;
@@ -147,7 +147,7 @@ p{text-wrap:pretty}
   position:relative;
   background:#000;
   min-height:80svh;
-  padding-top:72px;
+  padding-top:80px;
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
@@ -686,7 +686,7 @@ p{text-wrap:pretty}
   display:flex;align-items:center;gap:1rem;
 }
 .footer__logo{
-  height:48px;width:auto;
+  height:96px;width:auto; /* dobrado: 48px → 96px */
   mix-blend-mode:screen;filter:brightness(1.1);
 }
 .footer__brand-text{}
