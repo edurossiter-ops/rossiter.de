@@ -150,7 +150,7 @@ p{text-wrap:pretty}
   padding-top:80px; /* nav offset */
   display:flex;
   flex-direction:column;
-  justify-content:flex-end; /* empurra inner para baixo */
+  justify-content:flex-start; /* conteúdo no topo, logo após o nav */
   overflow:hidden;
 }
 
@@ -176,14 +176,14 @@ p{text-wrap:pretty}
 
 .hero__inner{
   position:relative;z-index:2;
-  /* NÃO usa flex:1 — deixa justify-content:flex-end do pai empurrar para baixo */
   display:flex;
   flex-direction:row;
   justify-content:space-between;
   align-items:flex-end;
-  /* padding-top:20vh cria a distância do nav ao texto */
-  padding:20vh var(--pad) 4.5rem;
+  /* padding pequeno — conteúdo sobe logo abaixo do nav, como Accenture */
+  padding:clamp(2rem,4vh,3.5rem) var(--pad) 4.5rem;
   gap:3rem;
+  flex:1; /* preenche o hero, texto fica no fim (align-items:flex-end) */
 }
 
 /* Headline — filho esquerdo, flex:1, EXATO Accenture */
@@ -554,21 +554,23 @@ p{text-wrap:pretty}
   position:relative;
 }
 
-/* Scroll-spacer: cria altura para o sticky aparecer sozinho antes do grid */
+/* Scroll-spacer: espaço de scroll para a fase fullscreen da imagem */
 .contato__spacer{
   height:100svh;
   pointer-events:none;
 }
 
-/* FASE 1: imagem sticky fullscreen enquanto o usuário scrollar */
+/* FASE 1: imagem controlada por JS — position:fixed */
 .contato__visual-wrap{
-  position:sticky;
+  position:fixed;
   top:0;
+  left:0;
   width:100vw;
   height:100svh;
   overflow:hidden;
-  z-index:0;
-  transition:none;
+  z-index:5;
+  opacity:0; /* JS controla a visibilidade */
+  transition:opacity .15s;
 }
 .contato__visual-placeholder,
 .contato__visual-img{
@@ -581,14 +583,13 @@ p{text-wrap:pretty}
 }
 .contato__visual-placeholder svg{width:48px;height:48px;color:var(--g30);opacity:.4}
 
-/* FASE 2: grid — aparece por baixo da imagem sticky */
+/* FASE 2: grid — aparece depois do spacer */
 .contato__inner{
   position:relative;
-  z-index:2;
+  z-index:6; /* acima da imagem fixed */
   display:grid;
   grid-template-columns:1fr 1fr;
   align-items:start;
-  /* margin-top negativo removido — padding-top no pai já criou o espaço */
 }
 
 /* Célula esquerda: espaço reservado para a imagem (fica transparente) */
@@ -672,7 +673,7 @@ p{text-wrap:pretty}
   background:#000;
   padding:clamp(3rem,5vw,5rem) var(--pad) clamp(2rem,3vw,3rem);
   position:relative;
-  z-index:10; /* garante que fica acima do sticky da seção contato */
+  z-index:20; /* acima de tudo */
 }
 .footer__top{
   display:flex;justify-content:space-between;align-items:flex-start;
@@ -1126,30 +1127,55 @@ document.querySelectorAll('.mobile-link').forEach(l => {
   go(0);
 })();
 
-// ── Contato: imagem fullscreen → encolhe para metade com scroll ──
+// ── Contato: imagem fixed fullscreen → encolhe enquanto spacer scrolla ──
 (function(){
-  const visual  = document.getElementById('contatoVisual');
-  const section = document.querySelector('.contato');
-  if(!visual || !section) return;
+  const visual   = document.getElementById('contatoVisual');
+  const section  = document.querySelector('.contato');
+  const spacer   = section && section.querySelector('.contato__spacer');
+  const inner    = section && section.querySelector('.contato__inner');
+  if(!visual || !section || !spacer) return;
 
   function onScroll(){
-    const secRect = section.getBoundingClientRect();
+    const secRect    = section.getBoundingClientRect();
+    const spacerRect = spacer.getBoundingClientRect();
     const vh = window.innerHeight;
-    // A seção tem padding-top:100svh — a imagem sticky começa quando a seção
-    // entra na viewport (secRect.top = 0). Progresso vai de 0→1 enquanto
-    // scrollamos as 100svh do padding-top.
-    // secRect.top < 0 significa que scrollamos para dentro da seção.
-    const prog = Math.min(1, Math.max(0, -secRect.top / vh));
 
-    // Width: 100vw → 50vw
-    const w = 100 - prog * 50;
-    // Height: 100svh → 65svh
-    const h = 100 - prog * 35;
+    // FASE 0: Seção ainda não chegou na viewport — esconde
+    if(secRect.top >= vh){
+      visual.style.opacity = '0';
+      visual.style.pointerEvents = 'none';
+      return;
+    }
+
+    // FASE 3: Seção já passou completamente (footer aparece) — esconde
+    // Isso acontece quando a top do inner saíu pela parte de cima
+    const innerRect = inner ? inner.getBoundingClientRect() : null;
+    if(innerRect && innerRect.bottom < 0){
+      visual.style.opacity = '0';
+      visual.style.pointerEvents = 'none';
+      return;
+    }
+
+    // Visível — mostra
+    visual.style.opacity = '1';
+    visual.style.pointerEvents = '';
+
+    // Progresso 0→1: durante o scroll pelo spacer
+    // spacerRect.top vai de ~0 (spacer começa na tela) a -vh (spacer saiu)
+    // prog = 0: spacer topo na viewport → imagem fullscreen
+    // prog = 1: spacer saiu → imagem no tamanho final (50vw / 65svh)
+    const prog = Math.min(1, Math.max(0, -spacerRect.top / vh));
+
+    const w = 100 - prog * 50; // 100vw → 50vw
+    const h = 100 - prog * 35; // 100svh → 65svh
 
     visual.style.width  = w + 'vw';
     visual.style.height = h + 'svh';
+    visual.style.top    = '0';
+    visual.style.left   = '0';
   }
 
+  visual.style.transition = 'opacity .15s';
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 })();
