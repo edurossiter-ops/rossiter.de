@@ -179,57 +179,63 @@ p{text-wrap:pretty}
   display:flex;
   flex-direction:row;
   justify-content:space-between;
-  align-items:flex-end;
-  /* padding pequeno — conteúdo sobe logo abaixo do nav, como Accenture */
+  align-items:flex-start; /* texto direita alinha no TOPO, headline esquerda fica embaixo via margin-top:auto */
   padding:clamp(2rem,4vh,3.5rem) var(--pad) 4.5rem;
   gap:3rem;
-  flex:1; /* preenche o hero, texto fica no fim (align-items:flex-end) */
+  flex:1;
 }
 
-/* Headline — filho esquerdo, flex:1, EXATO Accenture */
+/* Headline — filho esquerdo, empurrada para baixo com margin-top:auto */
 .hero__headline{
   font-family:var(--cond);
-  font-size:3rem;
+  font-size:2.5rem;
   font-weight:500;
   letter-spacing:-.03em;
-  line-height:1.1;
+  line-height:1.08;
   color:#fff;
   text-transform:uppercase;
   flex:1 1 0;
   min-width:0;
+  margin-top:auto; /* empurra headline para o fundo enquanto o conteúdo direito fica no topo */
+  align-self:flex-end;
 }
 @media(min-width:600px){
-  .hero__headline{font-size:calc(5vh + 5.5vw)}
+  .hero__headline{font-size:calc(4vh + 4.5vw)}
 }
 @media(min-width:1024px){
-  .hero__headline{font-size:calc(4vh + 5.8vw)}
+  .hero__headline{font-size:calc(3.5vh + 4.8vw)}
 }
 @media(min-width:1441px){
-  .hero__headline{font-size:calc(6vh + 5.5vw)}
+  .hero__headline{font-size:calc(5vh + 4.5vw)}
 }
 
 .hero__headline .line1{display:block}
 .hero__headline .line2{display:block;padding-left:1.5em}
 .hero__headline .accent{color:var(--blue);font-style:italic}
 
-/* Content — filho direito, largura fixa */
+/* Tamanhos sútilmente diferentes dentro da headline */
+.hero__headline .word-fluxo,
+.hero__headline .word-valor  { font-size:1.12em }  /* levemente maior */
+.hero__headline .word-para   { font-size:0.82em; font-weight:400; letter-spacing:0 } /* levemente menor, mais leve */
+
+/* Content — filho direito, ancorado no TOPO */
 .hero__content{
   flex:0 0 auto;
   width:min(380px,38%);
   display:flex;flex-direction:column;gap:1.25rem;
-  align-self:flex-end;
+  align-self:flex-start; /* topo */
 }
 .hero__deco{width:2.5rem;height:3px;background:var(--blue)}
 .hero__sub{
   font-family:var(--sans);
-  font-size:1.375rem; /* maior — alinhado Accenture */
+  font-size:1.05rem;
   font-weight:400;
   letter-spacing:-.01em;
-  line-height:1.5;
+  line-height:1.4; /* mais compacto */
   color:rgba(232,230,224,.9);
 }
-@media(min-width:1024px){.hero__sub{font-size:1.75rem}}
-@media(min-width:1441px){.hero__sub{font-size:2rem}}
+@media(min-width:1024px){.hero__sub{font-size:1.15rem;line-height:1.45}}
+@media(min-width:1441px){.hero__sub{font-size:1.25rem}}
 
 .hero__cta{
   display:inline-flex;align-items:center;gap:.875rem;
@@ -916,8 +922,8 @@ p{text-wrap:pretty}
 
     <h1 class="hero__headline" id="h1"
         aria-label="Convergir Fluxo Para Construir Valor">
-      <span class="line1">CONVERGIR FLUXO <em class="accent">PARA</em></span>
-      <span class="line2">CONSTRUIR VALOR</span>
+      <span class="line1">CONVERGIR <span class="word-fluxo">FLUXO</span> <em class="accent word-para">PARA</em></span>
+      <span class="line2">CONSTRUIR <span class="word-valor">VALOR</span></span>
     </h1>
 
     <div class="hero__content">
