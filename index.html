@@ -146,7 +146,7 @@ p{text-wrap:pretty}
 .hero{
   position:relative;
   background:#000;
-  min-height:80svh;
+  min-height:70svh;
   padding-top:80px; /* nav offset */
   display:flex;
   flex-direction:column;
@@ -227,14 +227,14 @@ p{text-wrap:pretty}
 .hero__deco{width:2.5rem;height:3px;background:var(--blue)}
 .hero__sub{
   font-family:var(--sans);
-  font-size:1.05rem;
+  font-size:1.375rem; /* 22px */
   font-weight:400;
   letter-spacing:-.01em;
-  line-height:1.4; /* mais compacto */
+  line-height:1.4;
   color:rgba(232,230,224,.9);
 }
-@media(min-width:1024px){.hero__sub{font-size:1.15rem;line-height:1.45}}
-@media(min-width:1441px){.hero__sub{font-size:1.25rem}}
+@media(min-width:1024px){.hero__sub{font-size:1.5rem;line-height:1.4}}
+@media(min-width:1441px){.hero__sub{font-size:1.625rem}}
 
 .hero__cta{
   display:inline-flex;align-items:center;gap:.875rem;
