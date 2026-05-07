@@ -5,107 +5,107 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Rossiter Consulting — Excelência Operacional Industrial</title>
 <meta name="description" content="Eduardo Rossiter: Lead Auditor IMS, Master Black Belt, International Welding Engineer. Excelência operacional em indústrias que não podem falhar."/>
-<meta property="og:title" content="Rossiter Consulting — Excelência Operacional Industrial"/>
-<meta property="og:description" content="Especialista solo em sistemas de gestão ISO, Lean Six Sigma e engenharia de qualidade."/>
-<meta property="og:type" content="website"/>
-
-<!--
-  Barlow Condensed: fonte condensada que replica as proporções do Graphik da Accenture.
-  Mesmo stretch visual com font-size equivalente.
-  DM Mono para labels e detalhes.
--->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
-
+<!--
+  Barlow Condensed: replica as proporções do Graphik da Accenture.
+  Inter: corpo de texto.
+  DM Mono: labels e detalhes.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
-/* ─── RESET ─── */
+
+/* ═══ RESET ═══ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:72px}
-body{min-height:100dvh;font-family:'Barlow','Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:1.6;color:#e8e6e0;background:#000;overflow-x:hidden}
+body{min-height:100dvh;font-family:'Barlow','Helvetica Neue',Arial,sans-serif;color:#e8e6e0;background:#000;overflow-x:hidden}
 img,svg{display:block;max-width:100%;height:auto}
 ul,ol{list-style:none}
 input,button,textarea,select{font:inherit;color:inherit}
 button{cursor:pointer;background:none;border:none}
 a{color:inherit;text-decoration:none}
-h1,h2,h3,h4{text-wrap:balance;line-height:1}
 p{text-wrap:pretty}
 ::selection{background:rgba(58,114,200,.2);color:#fff}
 :focus-visible{outline:1px solid #3a72c8;outline-offset:3px}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-/* ─── VARIÁVEIS ─── */
+/* ═══ VARIÁVEIS ═══ */
 :root{
-  --black:#000;
-  --white:#fff;
-  --g90:#e8e6e0;   /* texto principal */
-  --g60:#888682;   /* texto secundário */
-  --g30:#3a3936;   /* bordas / dividers */
-  --g15:#1a1917;   /* superfície escura */
   --blue:#3a72c8;
   --blue-dim:#2a569a;
+  --g90:#e8e6e0;
+  --g60:#888682;
+  --g30:#3a3936;
+  --g15:#1a1917;
   --mono:'DM Mono','Courier New',monospace;
   --cond:'Barlow Condensed','Arial Narrow',sans-serif;
   --sans:'Barlow','Helvetica Neue',Arial,sans-serif;
-  --pad:clamp(1.5rem,5vw,5rem);   /* gutter lateral */
+  /* Espaçamento lateral — igual à Accenture: 0 em desktop */
+  --pad-sm:16px;
+  --pad-md:32px;
+  --pad-lg:clamp(2.5rem,5vw,5rem);
 }
 
-/* ════════════════════════════════════════
-   NAV — proporcional à Accenture
-   72px alto, logo só símbolo à esquerda,
-   links centralizados, search+CTA à direita
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   NAV
+   - 72px alto (exato Accenture)
+   - Fonte: 0.875rem base → escala fluid até ~1.33rem em 1920px
+   - Logo só símbolo (chevron azul)
+   - Links centralizados
+   - Wordmark + CTA à direita
+═══════════════════════════════════════════════ */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   height:72px;
   background:#000;
   display:flex;align-items:center;
+  padding:0 var(--pad-md);
   border-bottom:1px solid transparent;
   transition:border-color .25s;
 }
 .nav.scrolled{border-bottom-color:var(--g30)}
 
-.nav__inner{
-  width:100%;
-  display:flex;align-items:center;
-  padding:0 var(--pad);
-  gap:0;
-}
-
-/* Logo — apenas símbolo chevron, azul, igual à Accenture */
 .nav__logo{
-  display:flex;align-items:center;
   flex-shrink:0;
-  margin-right:auto;
+  display:flex;align-items:center;
+  margin-right:2rem;
 }
 .nav__chevron{
-  width:36px;height:36px;
+  width:32px;height:32px;
   color:var(--blue);
 }
 
-/* Links centrais */
 .nav__links{
   display:flex;align-items:center;
-  gap:2.5rem;
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
+  gap:2rem;
+  flex:1;
+  justify-content:center;
 }
 .nav__links a{
   font-family:var(--sans);
-  font-size:14px;font-weight:400;
-  letter-spacing:.01em;
+  /* Exato Accenture: 0.875rem base, font-weight 500 */
+  font-size:0.875rem;
+  font-weight:500;
+  letter-spacing:-.005em;
+  line-height:1.5;
   color:var(--g90);
   white-space:nowrap;
   transition:color .2s;
 }
 .nav__links a:hover{color:var(--blue)}
 
-/* Direita: wordmark + CTA */
+@media(min-width:600px){
+  .nav__links a{font-size:1rem}
+}
+@media(min-width:1920px){
+  .nav__links a{font-size:1.3333rem}
+}
+
 .nav__right{
   display:flex;align-items:center;
   gap:1.5rem;
-  margin-left:auto;
+  margin-left:2rem;
+  flex-shrink:0;
 }
 .nav__wordmark{
   font-family:var(--mono);
@@ -120,168 +120,169 @@ p{text-wrap:pretty}
   color:var(--blue);
   border:1px solid var(--blue-dim);
   padding:.35rem .875rem;
-  white-space:nowrap;
   transition:background .2s,color .2s;
 }
 .nav__cta:hover{background:var(--blue);color:#fff}
 .nav__mobile-btn{display:none;color:var(--g60);padding:.25rem}
-
-/* Mobile menu */
 .nav__mobile-menu{display:none}
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    HERO
-   Layout exato Accenture:
-   - Fundo preto com imagem escura de fundo
-   - Headline condensada ~80px (calc(3vh+4.2vw))
-     ocupa ~65% esquerda
-   - Subtexto ~20px à direita na mesma zona vertical
-   - CTA com quadrado azul
-════════════════════════════════════════ */
+   Estrutura exata da Accenture (--medium --cross):
+   
+   .hero__inner {
+     display: flex;
+     flex-direction: row;        ← headline ESQUERDA, content DIREITA
+     justify-content: space-between;
+   }
+   
+   Headline: flex-grow 1, ~65% da largura
+   Content:  largura fixa ~380px (35%)
+   
+   NÃO é grid — é flexbox row puro.
+═══════════════════════════════════════════════ */
 .hero{
   position:relative;
-  min-height:100svh;
   background:#000;
+  overflow:visible;
   padding-top:72px;
-  overflow:hidden;
-}
-
-/* Imagem de fundo escura — textura industrial */
-.hero__bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 70% 60% at 55% 40%,
-      rgba(30,35,50,.85) 0%,
-      rgba(0,0,0,0) 70%),
-    linear-gradient(to right, #000 0%, #000 30%, #0a0d14 60%, #050810 100%);
-  z-index:0;
-}
-/* Padrão de pontos sutis — simula a nuvem de partículas */
-.hero__bg::after{
-  content:'';
-  position:absolute;inset:0;
-  background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);
-  background-size:32px 32px;
-  mask-image:radial-gradient(ellipse 60% 70% at 60% 40%,#000 20%,transparent 70%);
-  -webkit-mask-image:radial-gradient(ellipse 60% 70% at 60% 40%,#000 20%,transparent 70%);
-}
-
-/*
-  Grid de 2 colunas exato da Accenture:
-  área da headline (~65%) | área do subtexto (~35%)
-  A headline "sangra" pela área direita visualmente
-  mas o texto fica contido na coluna esquerda.
-*/
-.hero__grid{
-  position:relative;z-index:1;
-  min-height:calc(100svh - 72px);
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:1fr auto;
-  padding:0 var(--pad);
-  padding-bottom:2rem;
-  align-items:end;
-  gap:0;
-}
-
-/* A headline span grid-column 1/3 (full width) mas está alinhada à esquerda */
-.hero__headline-wrap{
-  grid-column:1/3;
-  grid-row:1;
+  padding-bottom:0;
+  padding-left:0;
+  padding-right:0;
+  /* Accenture: hero ocupa ~75vh, não 100vh — conteúdo na metade inferior, sem dead zone excessivo */
+  min-height:75svh;
   display:flex;
-  align-items:flex-end;
-  padding-bottom:2.5rem;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+/* Fundo preto puro — igual Accenture */
+.hero__bg{
+  position:absolute;inset:0;z-index:0;
+  background:#000;
 }
 
 /*
-  HEADLINE — Barlow Condensed 900
-  font-size: calc(3vh + 4.2vw) = exato da Accenture
-  A 1356px: 3*8.47 + 4.2*13.56 = 82px
-  Barlow Condensed é ~30% mais estreito que Inter,
-  então "EXCELÊNCIA" a 82px ocupa ~60% da tela — igual à Accenture.
+  __inner: flex row — exato da Accenture
+  justify-content: space-between → headline empurra à esquerda, content à direita
+  row-gap: 5rem @ ≥1024px (Accenture usa isso para espaço vertical entre blocos)
+*/
+.hero__inner{
+  position:relative;z-index:1;
+  flex:1;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:flex-end;
+  padding:0 var(--pad-lg) 5rem;
+  gap:3rem;
+  /* garante que nada seja cortado */
+  overflow:visible;
+}
+
+/*
+  HEADLINE — filho esquerdo do flex row
+  Ocupa ~65% da largura — flex: 1 1 0
+  
+  font-size EXATO da Accenture:
+  - base: 2rem
+  - ≥600px: calc(4vh + 4vw)
+  - ≥1024px: calc(3vh + 4.2vw)   ← resolve ~82px a 1340px viewport
+  font-weight: 500 (igual Accenture — não 900)
+  letter-spacing: -0.03em
+  line-height: 1.1
+  
+  Headline ocupa 65% → flex-basis ~65%
+  content ocupa 35% → largura fixa
 */
 .hero__headline{
   font-family:var(--cond);
-  font-size:calc(3vh + 4.2vw);
-  font-weight:900;
-  letter-spacing:-.01em;
-  line-height:1.0;
-  color:var(--white);
+  font-size:2rem;
+  font-weight:500;
+  letter-spacing:-.03em;
+  line-height:1.1;
+  color:#fff;
   text-transform:uppercase;
-  max-width:none;
+  flex:1 1 0;
+  min-width:0;
 }
+@media(min-width:600px){
+  .hero__headline{font-size:calc(4vh + 4vw)}
+}
+@media(min-width:1024px){
+  .hero__headline{font-size:calc(3vh + 4.2vw)}
+}
+@media(min-width:1441px){
+  .hero__headline{font-size:calc(5.2vh + 4vw)}
+}
+@media(min-width:1920px){
+  .hero__headline{font-size:calc(5.2vh + 4vw)}
+}
+
+/* Stagger linha 2 — offset como Accenture "NEU ERFINDEN" */
 .hero__headline .line1{display:block}
 .hero__headline .line2{
   display:block;
-  /* indent linha 2 — offset ~16vw igual Accenture */
-  padding-left:16vw;
+  /* Accenture: line 2 começa em ~x=220px quando line 1 começa em ~x=0
+     Usamos text-indent para replicar o efeito */
+  padding-left:1.5em;
 }
 .hero__headline .accent{
   color:var(--blue);
   font-style:italic;
 }
 
-/* Coluna esquerda inferior: label + parágrafo */
-.hero__sub-col{
-  grid-column:1;
-  grid-row:2;
-  padding-right:2rem;
+/*
+  CONTENT — filho direito do flex row
+  Largura fixa ~380px (igual Accenture: x≈880 a x≈1260 = 380px)
+  Contém: linha azul + texto + CTA
+*/
+.hero__content{
+  flex:0 0 auto;
+  width:min(380px, 35%);
+  display:flex;
+  flex-direction:column;
+  gap:1.25rem;
+  align-self:center;
 }
-.hero__label{
-  font-family:var(--mono);
-  font-size:11px;font-weight:300;
-  letter-spacing:.18em;text-transform:uppercase;
-  color:var(--blue);
-  display:flex;align-items:center;gap:.75rem;
-  margin-bottom:.875rem;
+
+/* Linha azul — exato Accenture (purple deco-line) */
+.hero__deco{
+  width:2.5rem;height:3px;
+  background:var(--blue);
 }
-.hero__label::before{content:'';display:block;width:2.5rem;height:1px;background:var(--blue)}
 
 /*
-  Subtexto: 20px / weight 400 — proporcional à Accenture
-  (Accenture usa 32px mas tem viewport maior e texto mais curto)
+  Subtexto — exato Accenture .rad-homepage-hero__subheader:
+  font-size: 1.375rem base → 1.75rem → 2rem → ~2.67rem
+  font-weight: 500
+  letter-spacing: -0.02em
+  line-height: 1.25
 */
 .hero__sub{
   font-family:var(--sans);
-  font-size:clamp(1rem,1.5vw,1.375rem);
-  font-weight:400;
-  line-height:1.5;
-  letter-spacing:-.01em;
+  font-size:1.375rem;
+  font-weight:500;
+  letter-spacing:-.02em;
+  line-height:1.25;
   color:var(--g90);
-  max-width:38ch;
 }
-.hero__sub strong{color:var(--white);font-weight:500}
+@media(min-width:600px){.hero__sub{font-size:1.75rem}}
+@media(min-width:1024px){.hero__sub{font-size:1.5rem}}
+@media(min-width:1441px){.hero__sub{font-size:2rem}}
 
-/* Coluna direita inferior: CTA */
-.hero__cta-col{
-  grid-column:2;
-  grid-row:2;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  justify-content:flex-end;
-  gap:1rem;
-}
-
-/* Linha azul — acento antes do subtexto direito, igual Accenture */
-.hero__blue-rule{
-  width:2.5rem;height:3px;
-  background:var(--blue);
-  margin-bottom:.5rem;
-}
-
+/* CTA — quadrado azul com seta, exato Accenture */
 .hero__cta{
   display:inline-flex;align-items:center;gap:.875rem;
   font-family:var(--sans);
-  font-size:clamp(1rem,1.5vw,1.375rem);
+  font-size:1rem;
   font-weight:500;
-  color:var(--white);
+  color:#fff;
   transition:gap .18s;
+  width:fit-content;
 }
 .hero__cta:hover{gap:1.25rem}
 .hero__cta:hover .cta-sq{background:var(--blue-dim)}
-
-/* Quadrado azul com seta — assinatura Accenture */
 .cta-sq{
   width:36px;height:36px;
   background:var(--blue);
@@ -291,160 +292,141 @@ p{text-wrap:pretty}
 }
 .cta-sq svg{width:14px;height:14px;color:#fff}
 
-.hero__cta2{
-  font-family:var(--mono);
-  font-size:11px;font-weight:300;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:var(--g60);
-  border-bottom:1px solid var(--g30);
-  padding-bottom:2px;
-  transition:color .2s,border-color .2s;
-}
-.hero__cta2:hover{color:var(--g90);border-color:var(--g60)}
-
-/* ════════════════════════════════════════
-   CARDS — abaixo do hero, igual Accenture
-   4 cards clicáveis, full-width, zero gap quase
-   Cada card: label tipo (ARTIGO/PODCAST) + título + imagem
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   CARDS — abaixo do hero
+   4 cards em row, full-width, igual Accenture
+   Cada card: label (STUDIE/PODCAST) + título + imagem na parte inferior
+═══════════════════════════════════════════════ */
 .cards{
   background:#000;
-  padding:clamp(3rem,5vw,5rem) var(--pad);
+  /* border-top separa visualmente do hero sem padding abrupto */
+  border-top:1px solid var(--g30);
+  padding:clamp(3rem,5vw,4.5rem) var(--pad-lg);
 }
-.cards__grid{
+.cards__row{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:1rem;
+  gap:.875rem;
 }
-
 .card{
   display:flex;
   flex-direction:column;
-  background:var(--g15);
+  overflow:hidden;
   cursor:pointer;
+  transition:opacity .2s;
   text-decoration:none;
   color:inherit;
-  overflow:hidden;
-  transition:opacity .2s;
-  min-height:320px;
+  min-height:300px;
 }
-.card:hover{opacity:.85}
-
-.card__top{
-  padding:1.5rem 1.5rem 1rem;
+.card:hover{opacity:.82}
+.card__body{
   flex:1;
+  padding:1.375rem 1.375rem .875rem;
 }
 .card__type{
   font-family:var(--mono);
   font-size:10px;font-weight:400;
   letter-spacing:.16em;text-transform:uppercase;
   color:var(--g60);
-  margin-bottom:1rem;
+  margin-bottom:.875rem;
+  display:block;
 }
-.card__type--blue{color:var(--blue)}
 .card__title{
   font-family:var(--cond);
-  font-size:clamp(1.125rem,1.6vw,1.5rem);
+  font-size:clamp(1.125rem,1.5vw,1.375rem);
   font-weight:700;
   line-height:1.2;
-  color:var(--white);
+  color:#fff;
   letter-spacing:-.01em;
 }
-
-/* Imagem na parte inferior do card */
 .card__img{
   width:100%;
-  height:160px;
+  height:150px;
   object-fit:cover;
-  display:block;
   flex-shrink:0;
-  background:var(--g30); /* fallback cor */
 }
 
-/* Variantes de cor de fundo para os cards sem imagem */
-.card--lavender .card__top{background:#2a2640}
-.card--teal .card__top{background:#0d2230}
-.card--dark{background:#111}
-.card--light .card__top{background:#1e1e1e}
+/* Cores de fundo dos cards — replicando Accenture */
+.card--c1{background:#2d2a40}
+.card--c2{background:#0e2332}
+.card--c3{background:#111110}
+.card--c4{background:#1c1b19}
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    DIVIDER
-════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 .rule{height:1px;background:var(--g30)}
 
-/* ════════════════════════════════════════
-   STATEMENT
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   SEÇÃO: "WIR LEBEN WANDEL" — statement
+   Igual Accenture: texto grande centralizado,
+   muito padding vertical, fundo preto
+═══════════════════════════════════════════════ */
 .statement{
-  padding:clamp(4rem,8vw,7rem) var(--pad);
   background:#000;
+  padding:clamp(5rem,9vw,8rem) var(--pad-lg);
 }
 .statement__text{
   font-family:var(--sans);
-  font-size:clamp(1.375rem,3vw,2.5rem);
+  font-size:clamp(1.5rem,3.5vw,3rem);
   font-weight:300;
-  line-height:1.35;
+  line-height:1.3;
   color:var(--g90);
-  max-width:28ch;
+  max-width:26ch;
 }
-.statement__text strong{font-weight:700;color:var(--white)}
+.statement__text strong{font-weight:700;color:#fff}
 .statement__text em{font-style:italic;color:var(--blue)}
 
-/* ════════════════════════════════════════
-   FOUNDER
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   FOUNDER — "case study" estilo Accenture
+   Layout: imagem esquerda (full-bleed até a borda) + texto direita
+   Como o slider de casos da Accenture
+═══════════════════════════════════════════════ */
 .founder{
   background:var(--g15);
-  padding:clamp(5rem,10vw,9rem) var(--pad);
+  padding:0;
 }
 .founder__inner{
   display:grid;
-  grid-template-columns:1fr 1.6fr;
-  gap:clamp(3rem,6vw,7rem);
-  align-items:start;
+  grid-template-columns:1fr 1fr;
+  min-height:480px;
 }
 .founder__photo{
-  aspect-ratio:3/4;
-  background:var(--g30);
   position:relative;
   overflow:hidden;
-  max-height:480px;
+  background:var(--g30);
 }
 .founder__photo-bg{
   position:absolute;inset:0;
-  background:linear-gradient(145deg,#1a1917 0%,#2a2926 50%,#1a1917 100%);
+  background:linear-gradient(135deg,#1a1917 0%,#2a2926 60%,#111 100%);
 }
-.founder__photo-initials{
+.founder__photo-init{
   position:absolute;inset:0;
   display:flex;align-items:center;justify-content:center;
   font-family:var(--cond);
-  font-size:clamp(5rem,10vw,10rem);
+  font-size:clamp(6rem,12vw,14rem);
   font-weight:900;
-  color:rgba(255,255,255,.05);
-  letter-spacing:-.05em;
-  user-select:none;
+  color:rgba(255,255,255,.04);
+  letter-spacing:-.05em;user-select:none;
 }
 .founder__photo-caption{
-  position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;
+  position:absolute;bottom:2rem;left:2rem;right:2rem;
 }
 .founder__photo-name{
   font-family:var(--cond);
-  font-size:clamp(1.5rem,2.5vw,2rem);
-  font-weight:700;
-  color:var(--white);
-  letter-spacing:-.01em;
-  line-height:1.1;
+  font-size:clamp(1.5rem,2.5vw,2.25rem);
+  font-weight:700;color:#fff;
+  letter-spacing:-.01em;line-height:1.1;
 }
 .founder__photo-role{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.14em;text-transform:uppercase;
-  color:var(--g60);
-  margin-top:.5rem;
+  color:var(--g60);margin-top:.5rem;
 }
 .founder__creds{
-  display:flex;flex-wrap:wrap;gap:.4rem;
-  margin-top:1.5rem;
+  display:flex;flex-wrap:wrap;gap:.375rem;
+  margin-top:1.25rem;
 }
 .cred{
   font-family:var(--mono);
@@ -452,86 +434,92 @@ p{text-wrap:pretty}
   letter-spacing:.07em;
   color:var(--g60);
   border:1px solid var(--g30);
-  padding:.2rem .55rem;
+  padding:.2rem .5rem;
 }
 .cred--blue{color:var(--blue);border-color:var(--blue-dim);background:rgba(58,114,200,.07)}
 
-.founder__right{}
+.founder__text{
+  padding:clamp(3rem,5vw,5rem) clamp(2rem,4vw,4rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
 .founder__eyebrow{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.2em;text-transform:uppercase;
   color:var(--g60);
   display:flex;align-items:center;gap:.75rem;
-  margin-bottom:2.5rem;
+  margin-bottom:2rem;
 }
 .founder__eyebrow::after{content:'';flex:0 0 2rem;height:1px;background:var(--g30)}
 .founder__heading{
   font-family:var(--cond);
-  font-size:clamp(2rem,4vw,4rem);
-  font-weight:900;
-  letter-spacing:-.02em;
-  line-height:.95;
-  text-transform:uppercase;
-  color:var(--white);
-  margin-bottom:2.5rem;
+  font-size:clamp(2rem,3.5vw,3.5rem);
+  font-weight:700;
+  letter-spacing:-.02em;line-height:.95;
+  text-transform:uppercase;color:#fff;
+  margin-bottom:2rem;
 }
 .founder__para{
-  font-size:clamp(.9375rem,1.1vw,1.0625rem);
-  font-weight:300;
-  line-height:1.8;
+  font-size:clamp(.9375rem,1vw,1.0625rem);
+  font-weight:300;line-height:1.8;
   color:var(--g60);
-  max-width:60ch;
 }
-.founder__para+.founder__para{margin-top:1.5rem}
+.founder__para+.founder__para{margin-top:1.25rem}
 .founder__para strong{color:var(--g90);font-weight:400}
 .founder__quote{
   border-left:2px solid var(--blue);
-  padding-left:1.5rem;
-  margin-block:2.5rem;
-  font-family:var(--sans);
-  font-size:clamp(1rem,1.5vw,1.25rem);
-  font-weight:300;
-  font-style:italic;
-  line-height:1.5;
+  padding-left:1.25rem;
+  margin:1.75rem 0;
+  font-size:clamp(.9375rem,1.2vw,1.125rem);
+  font-weight:300;font-style:italic;line-height:1.55;
   color:var(--g90);
 }
+.founder__cta{
+  margin-top:2rem;
+  display:inline-flex;align-items:center;gap:.875rem;
+  font-family:var(--sans);
+  font-size:1rem;font-weight:500;
+  color:#fff;transition:gap .18s;
+  width:fit-content;
+}
+.founder__cta:hover{gap:1.25rem}
+.founder__cta:hover .cta-sq{background:var(--blue-dim)}
 
-/* ════════════════════════════════════════
-   CAPABILITIES
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   CAPABILITIES — "Auszeichnungen" style
+   Título gigante como Accenture usa para seções,
+   depois lista editorial sem cards
+═══════════════════════════════════════════════ */
 .capabilities{
   background:#000;
-  padding:clamp(5rem,10vw,9rem) 0;
+  padding:clamp(5rem,9vw,8rem) 0;
 }
-.capabilities__header{
-  padding:0 var(--pad);
+.cap__section-head{
+  padding:0 var(--pad-lg);
+  margin-bottom:clamp(3rem,5vw,4.5rem);
   display:flex;
   align-items:flex-end;
   justify-content:space-between;
   gap:2rem;
-  margin-bottom:clamp(3rem,5vw,5rem);
 }
-.capabilities__heading{
-  font-family:var(--cond);
-  font-size:clamp(3rem,7vw,8rem);
-  font-weight:900;
-  letter-spacing:-.03em;
-  line-height:.9;
-  text-transform:uppercase;
-  color:var(--white);
-}
-.capabilities__heading .accent{color:var(--blue);font-style:italic}
-.capabilities__eyebrow{
+.cap__section-title-wrap{}
+.cap__eyebrow{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.2em;text-transform:uppercase;
-  color:var(--g60);
-  margin-bottom:1rem;
+  color:var(--g60);margin-bottom:1rem;
 }
-.capabilities__desc{
-  max-width:34ch;
-  font-size:clamp(.875rem,1.1vw,1rem);
+.cap__section-title{
+  font-family:var(--cond);
+  font-size:clamp(3.5rem,8vw,9rem);
+  font-weight:700;
+  letter-spacing:-.04em;line-height:.9;
+  text-transform:uppercase;color:#fff;
+}
+.cap__section-title .accent{color:var(--blue)}
+.cap__section-desc{
+  max-width:32ch;
+  font-size:clamp(.875rem,1vw,1rem);
   font-weight:300;line-height:1.75;
   color:var(--g60);
   flex-shrink:0;align-self:flex-end;
@@ -539,11 +527,11 @@ p{text-wrap:pretty}
 
 .cap-list{border-top:1px solid var(--g30)}
 .cap{
-  padding:clamp(2rem,3.5vw,3rem) var(--pad);
-  border-bottom:1px solid var(--g30);
   display:grid;
   grid-template-columns:3.5rem 1fr 2.4fr;
   gap:clamp(1.5rem,3vw,3rem);
+  padding:clamp(2rem,3vw,2.75rem) var(--pad-lg);
+  border-bottom:1px solid var(--g30);
   align-items:start;
   transition:background .2s;
 }
@@ -551,65 +539,58 @@ p{text-wrap:pretty}
 .cap__num{
   font-family:var(--mono);
   font-size:11px;font-weight:300;
-  letter-spacing:.1em;
-  color:var(--g30);
+  letter-spacing:.1em;color:var(--g30);
   padding-top:.15em;
 }
 .cap__name{
   font-family:var(--cond);
   font-size:clamp(1.25rem,2vw,2rem);
-  font-weight:800;
-  color:var(--white);
-  letter-spacing:-.01em;
-  text-transform:uppercase;
-  line-height:1.1;
+  font-weight:700;
+  color:#fff;letter-spacing:-.01em;
+  text-transform:uppercase;line-height:1.1;
 }
-.cap__tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.875rem}
+.cap__tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.75rem}
 .tag{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.06em;
-  color:var(--g30);
-  border:1px solid var(--g30);
-  padding:.2rem .5rem;
+  color:var(--g30);border:1px solid var(--g30);
+  padding:.18rem .45rem;
 }
 .cap__body{
   font-size:clamp(.875rem,1vw,.9375rem);
-  font-weight:300;line-height:1.8;
-  color:var(--g60);
+  font-weight:300;line-height:1.8;color:var(--g60);
 }
 .cap__body strong{color:var(--g90);font-weight:400}
-.cap__body p+p{margin-top:1.25rem}
+.cap__body p+p{margin-top:1.125rem}
 
-/* ════════════════════════════════════════
-   ARGUMENT
-════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   ARGUMENT — "Por que é raro"
+   Título display escalonado + 4 blocos em grid 2×2
+═══════════════════════════════════════════════ */
 .argument{
   background:var(--g15);
-  padding:clamp(5rem,10vw,9rem) var(--pad);
+  padding:clamp(5rem,9vw,8rem) var(--pad-lg);
 }
-.argument__display{
+.argument__title{
   font-family:var(--cond);
-  font-size:clamp(3.5rem,9vw,11rem);
-  font-weight:900;
-  letter-spacing:-.03em;
-  line-height:.93;
-  text-transform:uppercase;
-  color:var(--white);
-  margin-bottom:clamp(3.5rem,6vw,6rem);
+  font-size:clamp(3rem,8vw,9rem);
+  font-weight:700;
+  letter-spacing:-.04em;line-height:.93;
+  text-transform:uppercase;color:#fff;
+  margin-bottom:clamp(3rem,5vw,5rem);
 }
-.argument__display .s1{display:block}
-.argument__display .s2{display:block;padding-left:clamp(3rem,8vw,10rem);color:var(--g30)}
-.argument__display .s3{display:block;padding-left:clamp(1rem,3vw,4rem)}
-.argument__display .blue{color:var(--blue);font-style:italic}
+.argument__title .s1{display:block}
+.argument__title .s2{display:block;padding-left:clamp(2rem,6vw,8rem);color:var(--g30)}
+.argument__title .s3{display:block;padding-left:clamp(1rem,2vw,3rem)}
+.argument__title .blue{color:var(--blue);font-style:italic}
 
 .argument__grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:grid;grid-template-columns:1fr 1fr;
   border-top:1px solid var(--g30);
 }
 .arg-block{
-  padding:clamp(2rem,3.5vw,3rem);
+  padding:clamp(2rem,3vw,2.75rem);
   border-bottom:1px solid var(--g30);
 }
 .arg-block:nth-child(odd){border-right:1px solid var(--g30)}
@@ -617,75 +598,63 @@ p{text-wrap:pretty}
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.18em;text-transform:uppercase;
-  color:var(--blue);margin-bottom:1rem;
+  color:var(--blue);margin-bottom:.875rem;
 }
 .arg-block__title{
   font-family:var(--cond);
   font-size:clamp(1.125rem,1.8vw,1.5rem);
-  font-weight:700;
-  color:var(--white);
+  font-weight:700;color:#fff;
   letter-spacing:-.01em;line-height:1.15;
-  margin-bottom:1rem;
+  margin-bottom:.875rem;
 }
 .arg-block__text{
   font-size:clamp(.875rem,.95vw,.9375rem);
-  font-weight:300;line-height:1.8;
-  color:var(--g60);
+  font-weight:300;line-height:1.8;color:var(--g60);
 }
 .arg-block__text strong{color:var(--g90);font-weight:400}
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    METHOD
-════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 .method{
   background:#000;
-  padding:clamp(5rem,10vw,9rem) var(--pad);
+  padding:clamp(5rem,9vw,8rem) var(--pad-lg);
 }
 .method__header{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:grid;grid-template-columns:1fr 1fr;
   gap:clamp(2rem,4vw,5rem);
-  margin-bottom:clamp(3rem,5vw,5rem);
-  align-items:end;
+  margin-bottom:clamp(3rem,5vw,4.5rem);align-items:end;
 }
 .method__heading{
   font-family:var(--cond);
   font-size:clamp(3rem,7vw,8rem);
-  font-weight:900;
-  letter-spacing:-.03em;
-  line-height:.95;
-  text-transform:uppercase;
-  color:var(--white);
+  font-weight:700;letter-spacing:-.04em;
+  line-height:.93;text-transform:uppercase;color:#fff;
 }
 .method__heading span{color:var(--blue);font-style:italic}
 .method__desc{
-  font-size:clamp(.875rem,1.1vw,1rem);
-  font-weight:300;line-height:1.75;
-  color:var(--g60);
+  font-size:clamp(.875rem,1vw,1rem);
+  font-weight:300;line-height:1.75;color:var(--g60);
 }
 .method__desc strong{color:var(--g90);font-weight:400}
 .method__steps{border-top:1px solid var(--g30)}
 .step{
-  display:grid;
-  grid-template-columns:5rem 1fr;
+  display:grid;grid-template-columns:4.5rem 1fr;
   gap:clamp(1.5rem,3vw,3rem);
-  padding:clamp(2rem,3.5vw,3rem) 0;
+  padding:clamp(1.75rem,3vw,2.5rem) 0;
   border-bottom:1px solid var(--g30);
 }
 .step__num{
   font-family:var(--mono);
   font-size:11px;font-weight:300;
-  letter-spacing:.1em;color:var(--g30);
-  padding-top:.2em;
+  letter-spacing:.1em;color:var(--g30);padding-top:.2em;
 }
 .step__title{
   font-family:var(--cond);
   font-size:clamp(1.125rem,1.6vw,1.375rem);
-  font-weight:700;
-  color:var(--white);
-  letter-spacing:-.01em;
-  text-transform:uppercase;
-  margin-bottom:.75rem;
+  font-weight:700;color:#fff;
+  letter-spacing:-.01em;text-transform:uppercase;
+  margin-bottom:.625rem;
 }
 .step__text{
   font-size:clamp(.875rem,.95vw,.9375rem);
@@ -693,238 +662,193 @@ p{text-wrap:pretty}
 }
 .step__text strong{color:var(--g90);font-weight:400}
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    CONTACT
-════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 .contact{
   background:var(--g15);
-  padding:clamp(5rem,10vw,9rem) var(--pad);
+  padding:clamp(5rem,9vw,8rem) var(--pad-lg);
 }
 .contact__heading{
   font-family:var(--cond);
-  font-size:clamp(3.5rem,9vw,11rem);
-  font-weight:900;
-  letter-spacing:-.03em;
-  line-height:.93;
-  text-transform:uppercase;
-  color:var(--white);
-  margin-bottom:clamp(3rem,5vw,5rem);
+  font-size:clamp(3rem,8vw,9rem);
+  font-weight:700;letter-spacing:-.04em;
+  line-height:.93;text-transform:uppercase;color:#fff;
+  margin-bottom:clamp(3rem,5vw,4.5rem);
 }
 .contact__heading .sc{display:block}
-.contact__heading .s2{padding-left:clamp(2rem,5vw,7rem)}
+.contact__heading .ind{padding-left:clamp(1.5rem,4vw,6rem)}
 .contact__heading .blue{color:var(--blue);font-style:italic}
 .contact__grid{
-  display:grid;
-  grid-template-columns:1.1fr 1fr;
-  gap:clamp(3rem,6vw,7rem);
-  align-items:start;
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:clamp(3rem,6vw,6rem);align-items:start;
 }
 .contact__body{
   font-size:clamp(.9375rem,1.1vw,1.0625rem);
   font-weight:300;line-height:1.8;
-  color:var(--g60);max-width:46ch;
-  margin-bottom:2.5rem;
+  color:var(--g60);max-width:44ch;margin-bottom:2.25rem;
 }
 .contact__body strong{color:var(--g90);font-weight:400}
 .contact__direct{display:flex;flex-direction:column;gap:.875rem}
-.contact__row{display:flex;align-items:baseline;gap:1.5rem}
+.contact__row{display:flex;align-items:baseline;gap:1.25rem}
 .contact__lbl{
-  font-family:var(--mono);
-  font-size:10px;font-weight:300;
+  font-family:var(--mono);font-size:10px;font-weight:300;
   letter-spacing:.16em;text-transform:uppercase;
   color:var(--g30);min-width:4.5rem;flex-shrink:0;
 }
 .contact__val{
   font-size:clamp(.875rem,.95vw,.9375rem);
-  font-weight:300;color:var(--g60);
-  transition:color .2s;
+  font-weight:300;color:var(--g60);transition:color .2s;
 }
 a.contact__val:hover{color:var(--blue)}
-.contact__form-lbl{
-  font-family:var(--mono);
-  font-size:10px;font-weight:300;
+.form-lbl{
+  font-family:var(--mono);font-size:10px;font-weight:300;
   letter-spacing:.18em;text-transform:uppercase;
-  color:var(--g60);margin-bottom:1.5rem;
+  color:var(--g60);margin-bottom:1.375rem;
 }
-.form__row{margin-bottom:1rem}
+.form__row{margin-bottom:.875rem}
 .form__lbl{
-  display:block;
-  font-family:var(--mono);
-  font-size:10px;font-weight:300;
+  display:block;font-family:var(--mono);font-size:10px;font-weight:300;
   letter-spacing:.12em;text-transform:uppercase;
-  color:var(--g30);margin-bottom:.4rem;
+  color:var(--g30);margin-bottom:.375rem;
 }
 .form__input,.form__textarea{
-  width:100%;
-  background:var(--g30);
-  border:1px solid transparent;
-  color:var(--g90);
-  font-size:14px;font-weight:300;
-  padding:.6rem .875rem;
-  outline:none;border-radius:0;
-  -webkit-appearance:none;
+  width:100%;background:#111110;border:1px solid var(--g30);
+  color:var(--g90);font-size:14px;font-weight:300;
+  padding:.575rem .8rem;outline:none;border-radius:0;-webkit-appearance:none;
   transition:border-color .2s,background .2s;
 }
 .form__input:focus,.form__textarea:focus{border-color:var(--blue);background:#1a1917}
-.form__textarea{resize:vertical;min-height:7rem;line-height:1.6}
+.form__textarea{resize:vertical;min-height:6.5rem;line-height:1.6}
 .form__submit{
-  margin-top:1.25rem;
+  margin-top:1.125rem;
   display:inline-flex;align-items:center;gap:.875rem;
-  font-family:var(--sans);
-  font-size:clamp(.9375rem,1.2vw,1.125rem);
-  font-weight:500;
-  color:var(--white);
-  cursor:pointer;background:none;border:none;padding:0;
+  font-family:var(--sans);font-size:1rem;font-weight:500;
+  color:#fff;cursor:pointer;background:none;border:none;padding:0;
   transition:gap .18s;
 }
 .form__submit:hover{gap:1.25rem}
 .form__submit:hover .cta-sq{background:var(--blue-dim)}
 .form__note{
-  margin-top:.875rem;
-  font-family:var(--mono);
-  font-size:10px;font-weight:300;
+  margin-top:.75rem;
+  font-family:var(--mono);font-size:10px;font-weight:300;
   letter-spacing:.1em;color:var(--g30);
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    FOOTER
-════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 .footer{
-  background:#000;
-  border-top:1px solid var(--g30);
-  padding-top:3rem;
-  overflow:hidden;
+  background:#000;border-top:1px solid var(--g30);
+  padding-top:2.75rem;overflow:hidden;
 }
 .footer__inner{
-  padding:0 var(--pad) 2.5rem;
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:2rem;
-  flex-wrap:wrap;
+  padding:0 var(--pad-lg) 2.25rem;
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:2rem;flex-wrap:wrap;
 }
 .footer__tagline{
-  font-size:clamp(.875rem,1.2vw,1rem);
+  font-size:clamp(.875rem,1.1vw,1rem);
   font-weight:300;color:var(--g60);
-  max-width:32ch;line-height:1.6;
+  max-width:30ch;line-height:1.6;
 }
-.footer__tagline strong{color:var(--white);font-weight:400}
-.footer__links{display:flex;gap:2.5rem}
+.footer__tagline strong{color:#fff;font-weight:400}
+.footer__links{display:flex;gap:2rem;flex-wrap:wrap}
 .footer__links a{
-  font-family:var(--mono);
-  font-size:10px;font-weight:300;
+  font-family:var(--mono);font-size:10px;font-weight:300;
   letter-spacing:.14em;text-transform:uppercase;
   color:var(--g30);transition:color .2s;
 }
 .footer__links a:hover{color:var(--g60)}
 .footer__copy{
-  padding:0 var(--pad) 1.5rem;
-  font-family:var(--mono);
-  font-size:10px;font-weight:300;
+  padding:0 var(--pad-lg) 1.25rem;
+  font-family:var(--mono);font-size:10px;font-weight:300;
   letter-spacing:.08em;color:var(--g30);
 }
-/* Tipografia sangrada — assinatura visual como Accenture "CHANGE" */
+/* Bleed tipográfico — como "CHANGE" da Accenture */
 .footer__bleed{
   font-family:var(--cond);
-  font-size:clamp(5rem,20vw,24rem);
-  font-weight:900;
-  letter-spacing:-.05em;
-  line-height:.85;
-  text-transform:uppercase;
-  color:var(--g15);
-  white-space:nowrap;
-  padding-left:var(--pad);
-  user-select:none;pointer-events:none;
-  margin-top:1rem;
+  font-size:clamp(5rem,20vw,22rem);
+  font-weight:900;letter-spacing:-.05em;line-height:.85;
+  text-transform:uppercase;color:var(--g15);
+  white-space:nowrap;padding-left:var(--pad-lg);
+  user-select:none;pointer-events:none;margin-top:1rem;
 }
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    FADE IN
-════════════════════════════════════════ */
-.fade{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+═══════════════════════════════════════════════ */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 .fade.in{opacity:1;transform:none}
 .fade[data-d="1"]{transition-delay:.1s}
 .fade[data-d="2"]{transition-delay:.2s}
 .fade[data-d="3"]{transition-delay:.3s}
 
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    RESPONSIVE
-════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 @media(max-width:900px){
-  .nav__links{position:static;transform:none;display:none}
-  .nav__wordmark{display:none}
+  .nav__links,.nav__wordmark{display:none}
   .nav__mobile-btn{display:flex}
-
   .nav__mobile-menu{
     display:none;
     position:fixed;left:0;right:0;top:72px;bottom:0;
-    background:#000;
-    padding:2.5rem var(--pad);
-    flex-direction:column;gap:2rem;
+    background:#000;padding:2.5rem var(--pad-md);
+    flex-direction:column;gap:1.75rem;
     z-index:99;overflow-y:auto;
   }
   .nav__mobile-menu.open{display:flex}
   .nav__mobile-menu a{
-    font-family:var(--cond);
-    font-size:clamp(1.5rem,5vw,2rem);
-    font-weight:700;text-transform:uppercase;
-    color:var(--g90);
+    font-family:var(--cond);font-size:clamp(1.5rem,5vw,2rem);
+    font-weight:700;text-transform:uppercase;color:var(--g90);
   }
   .nav__mobile-menu a:hover{color:var(--blue)}
 
-  /* Hero: headline toma tudo, sub e CTA empilham */
-  .hero__grid{
-    grid-template-columns:1fr;
-    grid-template-rows:1fr auto auto;
-  }
-  .hero__headline-wrap{grid-column:1}
-  .hero__sub-col{grid-column:1;padding-right:0;padding-top:1.5rem}
-  .hero__cta-col{grid-column:1;align-items:flex-start;padding-top:1.5rem}
+  /* Hero mobile: flex-column */
+  .hero__inner{flex-direction:column;align-items:flex-start;gap:1.75rem}
+  .hero__content{width:100%;align-self:flex-start}
 
-  .cards__grid{grid-template-columns:repeat(2,1fr)}
+  /* Cards: 2 colunas */
+  .cards__row{grid-template-columns:repeat(2,1fr)}
 
+  /* Founder */
   .founder__inner{grid-template-columns:1fr}
-  .founder__photo{max-height:340px}
 
-  .capabilities__header{flex-direction:column;align-items:flex-start}
+  /* Caps */
+  .cap__section-head{flex-direction:column;align-items:flex-start}
   .cap{grid-template-columns:2.5rem 1fr;grid-template-rows:auto auto}
   .cap__body{grid-column:2}
 
+  /* Argument, method, contact */
   .argument__grid{grid-template-columns:1fr}
   .arg-block:nth-child(odd){border-right:none}
-
   .method__header{grid-template-columns:1fr}
-
   .contact__grid{grid-template-columns:1fr}
-
-  .footer__links{flex-wrap:wrap;gap:1.5rem}
+  .footer__links{flex-wrap:wrap;gap:1.25rem}
 }
 
 @media(max-width:520px){
-  .hero__headline{font-size:clamp(2.25rem,10vw,4rem)}
-  .cards__grid{grid-template-columns:1fr}
-  .argument__display,.contact__heading,.method__heading,.capabilities__heading{
-    font-size:clamp(2.5rem,10vw,4rem)
+  .cards__row{grid-template-columns:1fr}
+  .argument__title,.contact__heading,.method__heading,.cap__section-title{
+    font-size:clamp(2.25rem,10vw,3.5rem)
   }
-  .footer__bleed{font-size:clamp(3.5rem,16vw,8rem)}
+  .footer__bleed{font-size:clamp(3.5rem,16vw,7rem)}
 }
 </style>
 </head>
 <body>
 
-<!-- ════ NAV ════ -->
+<!-- ════════════ NAV ════════════ -->
 <header class="nav" id="nav">
-  <div class="nav__inner">
+  <div style="display:flex;align-items:center;width:100%">
 
-    <!-- Logo: apenas chevron azul, sem wordmark no hero -->
-    <a href="#" class="nav__logo" aria-label="Rossiter Consulting — início">
-      <svg class="nav__chevron" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <polyline points="10,6 26,18 10,30" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+    <a href="#" class="nav__logo" aria-label="Rossiter Consulting">
+      <svg class="nav__chevron" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <polyline points="9,5 23,16 9,27" stroke="currentColor" stroke-width="2.75" stroke-linecap="square" stroke-linejoin="miter"/>
       </svg>
     </a>
 
-    <!-- Links centralizados -->
-    <nav aria-label="Principal">
+    <nav aria-label="Principal" style="flex:1;display:flex;justify-content:center">
       <ul class="nav__links" id="nav-links" role="list">
         <li><a href="#especialista">Especialista</a></li>
         <li><a href="#capacidades">Capacidades</a></li>
@@ -933,21 +857,18 @@ a.contact__val:hover{color:var(--blue)}
       </ul>
     </nav>
 
-    <!-- Direita -->
     <div class="nav__right">
       <span class="nav__wordmark">Rossiter Consulting</span>
       <a href="#contato" class="nav__cta">Diagnóstico</a>
-      <button class="nav__mobile-btn" id="mobile-btn" aria-label="Menu" aria-expanded="false">
+      <button class="nav__mobile-btn" id="mob-btn" aria-label="Menu" aria-expanded="false">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
           <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
       </button>
     </div>
-
   </div>
 
-  <!-- Menu mobile -->
-  <div class="nav__mobile-menu" id="mobile-menu">
+  <div class="nav__mobile-menu" id="mob-menu">
     <a href="#especialista">Especialista</a>
     <a href="#capacidades">Capacidades</a>
     <a href="#metodo">Método</a>
@@ -957,88 +878,82 @@ a.contact__val:hover{color:var(--blue)}
 </header>
 
 
-<!-- ════ HERO ════ -->
+<!-- ════════════ HERO ════════════ -->
 <section class="hero" aria-labelledby="h1">
   <div class="hero__bg" aria-hidden="true"></div>
 
-  <div class="hero__grid">
+  <!--
+    Estrutura EXATA da Accenture --medium --cross:
+    flex row → headline esquerda (flex:1) + content direita (largura fixa)
+  -->
+  <div class="hero__inner">
 
-    <!-- Headline — span full width, alinhada esquerda com escada -->
-    <div class="hero__headline-wrap">
-      <h1 class="hero__headline" id="h1"
-          aria-label="Excelência operacional em indústrias que não podem falhar">
-        <span class="line1">EXCELÊNCIA OPERACIONAL</span>
-        <span class="line2">EM INDÚSTRIAS QUE NÃO PODEM <em class="accent">FALHAR.</em></span>
-      </h1>
-    </div>
+    <!-- Filho esquerdo: headline -->
+    <h1 class="hero__headline" id="h1"
+        aria-label="Excelência operacional em indústrias que não podem falhar">
+      <span class="line1">EXCELÊNCIA OPERACIONAL</span>
+      <span class="line2">EM INDÚSTRIAS QUE NÃO PODEM <em class="accent">FALHAR.</em></span>
+    </h1>
 
-    <!-- Coluna esquerda: subtexto -->
-    <div class="hero__sub-col">
-      <p class="hero__label">Rossiter Consulting</p>
+    <!-- Filho direito: linha azul + subtexto + CTA -->
+    <div class="hero__content">
+      <div class="hero__deco" aria-hidden="true"></div>
       <p class="hero__sub">
-        Sistemas de gestão ISO, Lean Six Sigma e engenharia de qualidade aplicados diretamente por um especialista com histórico real em operações
-        <strong>EMEA e América do Sul.</strong>
-        Sem consultores júnior. Sem PowerPoint no lugar de solução.
+        Sistemas de gestão ISO, Lean Six Sigma e engenharia de qualidade aplicados diretamente por um especialista com histórico real em operações EMEA e América do Sul. Sem consultores júnior. Sem PowerPoint no lugar de solução.
       </p>
-    </div>
-
-    <!-- Coluna direita: CTA -->
-    <div class="hero__cta-col">
-      <div class="hero__blue-rule" aria-hidden="true"></div>
       <a href="#contato" class="hero__cta">
         Agendar diagnóstico
         <span class="cta-sq" aria-hidden="true">
           <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
         </span>
       </a>
-      <a href="#especialista" class="hero__cta2">Conhecer o especialista</a>
     </div>
 
   </div>
 </section>
 
 
-<!-- ════ CARDS — abaixo do hero, igual Accenture ════ -->
-<section class="cards" aria-label="Capacidades em destaque">
-  <div class="cards__grid">
+<!-- ════════════ CARDS ════════════ -->
+<section class="cards" aria-label="Em destaque">
+  <div class="cards__row">
 
-    <a href="#especialista" class="card card--lavender" aria-label="Sobre o especialista">
-      <div class="card__top">
-        <p class="card__type card__type--blue">PERFIL</p>
+    <a href="#especialista" class="card card--c1" aria-label="Perfil do especialista">
+      <div class="card__body">
+        <span class="card__type">PERFIL</span>
         <h3 class="card__title">Lead Auditor IMS + Master Black Belt + Intl. Welding Engineer</h3>
       </div>
-      <div class="card__img" style="background:linear-gradient(135deg,#2a2640 0%,#1a1530 100%);display:flex;align-items:flex-end;padding:1.5rem">
-        <span style="font-family:var(--cond);font-size:3rem;font-weight:900;color:rgba(255,255,255,.12);line-height:1">ER</span>
+      <div class="card__img" style="background:linear-gradient(145deg,#2d2a40,#1a1730);height:150px;display:flex;align-items:flex-end;padding:1rem">
+        <span style="font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;color:rgba(58,114,200,.4)">EDUARDO ROSSITER · PRINCIPAL</span>
       </div>
     </a>
 
-    <a href="#capacidades" class="card card--teal" aria-label="Sistemas de gestão ISO">
-      <div class="card__top">
-        <p class="card__type">CAPACIDADE</p>
-        <h3 class="card__title">Sistemas de Gestão ISO 9001, 45001 e SGI</h3>
+    <a href="#capacidades" class="card card--c2" aria-label="Sistemas de gestão ISO">
+      <div class="card__body">
+        <span class="card__type">CAPACIDADE</span>
+        <h3 class="card__title">Sistemas de Gestão ISO 9001 · 45001 · SGI</h3>
       </div>
-      <div class="card__img" style="background:linear-gradient(135deg,#0d2230 0%,#061520 100%);display:flex;align-items:flex-end;padding:1.5rem">
-        <span style="font-family:var(--mono);font-size:.75rem;color:rgba(58,114,200,.5);letter-spacing:.1em">ISO · IMS · SGI · AUDIT</span>
+      <div class="card__img" style="background:linear-gradient(145deg,#0e2332,#050f1a);height:150px;display:flex;align-items:flex-end;padding:1rem">
+        <span style="font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;color:rgba(58,114,200,.35)">ISO · IMS · SGI · AUDITORIA</span>
       </div>
     </a>
 
-    <a href="#capacidades" class="card" aria-label="Lean Six Sigma">
-      <div class="card__top" style="background:#0e0e0c">
-        <p class="card__type">CAPACIDADE</p>
+    <a href="#capacidades" class="card card--c3" aria-label="Lean Six Sigma">
+      <div class="card__body">
+        <span class="card__type">CAPACIDADE</span>
         <h3 class="card__title">Lean Six Sigma &amp; Análise Estatística Avançada</h3>
       </div>
-      <div class="card__img" style="background:linear-gradient(135deg,#12100e 0%,#1a1810 100%);display:flex;align-items:flex-end;padding:1.5rem">
-        <span style="font-family:var(--mono);font-size:.75rem;color:rgba(255,255,255,.15);letter-spacing:.1em">DMAIC · SPC · MSA · DOE</span>
+      <div class="card__img" style="background:linear-gradient(145deg,#111110,#0a0a09);height:150px;display:flex;align-items:flex-end;padding:1rem">
+        <span style="font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;color:rgba(255,255,255,.12)">DMAIC · SPC · MSA · DOE · MINITAB</span>
       </div>
     </a>
 
-    <a href="#metodo" class="card" aria-label="Método de trabalho">
-      <div class="card__top" style="background:#161412">
-        <p class="card__type">MÉTODO</p>
-        <h3 class="card__title">Sistema rodando quando o projeto termina</h3>
+    <a href="#metodo" class="card card--c4" aria-label="Método">
+      <div class="card__body">
+        <span class="card__type">MÉTODO</span>
+        <h3 class="card__title">Sistema que funciona quando o projeto termina</h3>
       </div>
-      <div class="card__img" style="background:linear-gradient(135deg,#111 0%,#0a0a0a 100%);display:flex;align-items:flex-end;padding:1.5rem">
-        <span style="font-family:var(--mono);font-size:.75rem;color:rgba(255,255,255,.12);letter-spacing:.1em">DIAGNÓSTICO → PLANO → EXECUÇÃO → AUTONOMIA</span>
+      <div class="card__img" style="background:linear-gradient(145deg,#1c1b19,#111);height:150px;display:flex;align-items:flex-end;padding:1rem">
+        <span style="font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;color:rgba(255,255,255,.1)">DIAGNÓSTICO → PLANO → EXECUÇÃO → AUTONOMIA</span>
       </div>
     </a>
 
@@ -1048,7 +963,7 @@ a.contact__val:hover{color:var(--blue)}
 
 <div class="rule"></div>
 
-<!-- ════ STATEMENT ════ -->
+<!-- ════════════ STATEMENT ════════════ -->
 <section class="statement fade" aria-label="Proposta">
   <p class="statement__text">
     A maioria dos problemas operacionais não é falta de ferramenta.<br>
@@ -1059,62 +974,63 @@ a.contact__val:hover{color:var(--blue)}
 
 <div class="rule"></div>
 
-<!-- ════ FOUNDER ════ -->
+<!-- ════════════ FOUNDER ════════════ -->
 <section class="founder" id="especialista" aria-label="O especialista">
   <div class="founder__inner">
 
-    <div class="fade">
-      <div class="founder__photo" role="img" aria-label="Eduardo Rossiter">
-        <div class="founder__photo-bg"></div>
-        <div class="founder__photo-initials" aria-hidden="true">ER</div>
-        <div class="founder__photo-caption">
-          <p class="founder__photo-name">Eduardo<br>Rossiter</p>
-          <p class="founder__photo-role">Principal · Rossiter Consulting</p>
+    <!-- Foto / visual à esquerda — full-bleed como Accenture -->
+    <div class="founder__photo" role="img" aria-label="Eduardo Rossiter">
+      <div class="founder__photo-bg"></div>
+      <div class="founder__photo-init" aria-hidden="true">ER</div>
+      <div class="founder__photo-caption">
+        <p class="founder__photo-name">Eduardo<br>Rossiter</p>
+        <p class="founder__photo-role">Principal · Rossiter Consulting</p>
+        <div class="founder__creds" role="list">
+          <span class="cred cred--blue" role="listitem">Lead Auditor IMS</span>
+          <span class="cred cred--blue" role="listitem">Master Black Belt</span>
+          <span class="cred cred--blue" role="listitem">Intl. Welding Engineer</span>
+          <span class="cred" role="listitem">ISO 9001</span>
+          <span class="cred" role="listitem">ISO 45001</span>
+          <span class="cred" role="listitem">EMEA</span>
         </div>
-      </div>
-      <div class="founder__creds" role="list">
-        <span class="cred cred--blue" role="listitem">Lead Auditor IMS</span>
-        <span class="cred cred--blue" role="listitem">Master Black Belt</span>
-        <span class="cred cred--blue" role="listitem">Intl. Welding Engineer</span>
-        <span class="cred" role="listitem">ISO 9001</span>
-        <span class="cred" role="listitem">ISO 45001</span>
-        <span class="cred" role="listitem">SGI</span>
-        <span class="cred" role="listitem">EMEA</span>
-        <span class="cred" role="listitem">100+ projetos</span>
       </div>
     </div>
 
-    <div>
+    <!-- Texto à direita -->
+    <div class="founder__text">
       <p class="founder__eyebrow">O especialista</p>
       <h2 class="founder__heading fade">O ARGUMENTO<br>DE CONFIANÇA</h2>
       <p class="founder__para fade" data-d="1">
-        Há mais de uma década Eduardo Rossiter opera nos estratos onde a convergência de rigor normativo, análise estatística avançada e execução em campo é inegociável. Sua trajetória atravessou a coordenação de qualidade <strong>EMEA na thyssenkrupp / FLSmidth</strong>, gestão de projetos em múltiplos países e a liderança de implantações de sistemas integrados de gestão em ambientes industriais de alta complexidade.
+        Há mais de uma década Eduardo Rossiter opera nos estratos onde a convergência de rigor normativo, análise estatística avançada e execução em campo é inegociável. Sua trajetória atravessou a coordenação de qualidade <strong>EMEA na thyssenkrupp / FLSmidth</strong>, gestão de projetos em múltiplos países e implantações de sistemas integrados de gestão em ambientes industriais de alta complexidade.
       </p>
       <blockquote class="founder__quote fade" data-d="2">
         "A combinação de Lead Auditor IMS, Master Black Belt e International Welding Engineer em uma única pessoa é estatisticamente rara. Cada credencial representa um domínio distinto; os três juntos formam uma perspectiva difícil de replicar."
       </blockquote>
-      <p class="founder__para fade" data-d="2">
-        O diferencial não está na quantidade de certificações, mas no que elas permitem na prática: <strong>diagnosticar uma não-conformidade normativa, quantificar seu impacto em DPMO e propor a solução técnica em soldagem</strong> — sem precisar de três consultores diferentes.
-      </p>
       <p class="founder__para fade" data-d="3">
-        Ao operar como especialista solo, Eduardo entrega acesso direto, sem atrito de hierarquia. <strong>O projeto pertence ao cliente desde o início:</strong> sistemas que funcionam quando a consultoria termina, métricas que o time interpreta, rotinas que não dependem de presença permanente.
+        Ao operar como especialista solo, Eduardo entrega acesso direto, sem atrito de hierarquia. <strong>O projeto pertence ao cliente desde o início:</strong> sistemas que funcionam quando a consultoria termina.
       </p>
+      <a href="#contato" class="founder__cta fade" data-d="3">
+        Agendar diagnóstico
+        <span class="cta-sq" aria-hidden="true">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+        </span>
+      </a>
     </div>
 
   </div>
 </section>
 
 
-<!-- ════ CAPABILITIES ════ -->
+<!-- ════════════ CAPABILITIES ════════════ -->
 <section class="capabilities" id="capacidades" aria-label="Capacidades">
 
-  <div class="capabilities__header">
-    <div>
-      <p class="capabilities__eyebrow">Áreas de atuação</p>
-      <h2 class="capabilities__heading">ÁREAS DE<br><span class="accent">ATUAÇÃO</span></h2>
+  <div class="cap__section-head">
+    <div class="cap__section-title-wrap">
+      <p class="cap__eyebrow">Áreas de atuação</p>
+      <h2 class="cap__section-title">ÁREAS DE<br><span class="accent">ATUAÇÃO</span></h2>
     </div>
-    <p class="capabilities__desc fade">
-      Cada prática representa anos de aplicação real em contexto industrial. O ponto de partida é sempre o sistema real da operação — com seus dados, suas restrições e suas pessoas.
+    <p class="cap__section-desc fade">
+      Cada prática representa anos de aplicação real em contexto industrial — com os dados, restrições e pessoas reais da operação.
     </p>
   </div>
 
@@ -1129,8 +1045,8 @@ a.contact__val:hover{color:var(--blue)}
         </div>
       </div>
       <div class="cap__body">
-        <p>Implantação, diagnóstico e maturação de sistemas integrados de gestão. O trabalho começa pela análise do contexto real — processos, cultura operacional, gaps normativos — e segue até a operacionalização completa, incluindo auditoria interna e preparação para certificação.</p>
-        <p><strong>O resultado é um sistema que o time interno entende, usa e sustenta</strong> — não uma pasta de documentos que existe para o auditor externo.</p>
+        <p>Implantação, diagnóstico e maturação de sistemas integrados de gestão. Análise do contexto real — processos, cultura, gaps normativos — até a operacionalização completa com auditoria interna e preparação para certificação.</p>
+        <p><strong>O resultado é um sistema que o time interno entende, usa e sustenta</strong> — não uma pasta para o auditor externo.</p>
       </div>
     </article>
     <article class="cap fade">
@@ -1143,8 +1059,8 @@ a.contact__val:hover{color:var(--blue)}
         </div>
       </div>
       <div class="cap__body">
-        <p>Condução de projetos DMAIC de complexidade elevada com análise estatística real — não uso superficial de ferramentas Lean como atividade de workshop. Inclui MSA, SPC e DOE em contextos industriais com variação significativa de processo.</p>
-        <p><strong>A profundidade técnica permite identificar causas que análises superficiais ignoram</strong> e propor soluções que atacam a causa raiz.</p>
+        <p>Projetos DMAIC de complexidade elevada com análise estatística real — não uso superficial de ferramentas Lean. Inclui análise de sistema de medição, controle estatístico de processo e delineamento de experimentos.</p>
+        <p><strong>A profundidade técnica identifica causas que análises superficiais ignoram.</strong></p>
       </div>
     </article>
     <article class="cap fade">
@@ -1157,8 +1073,8 @@ a.contact__val:hover{color:var(--blue)}
         </div>
       </div>
       <div class="cap__body">
-        <p>Gestão de qualidade em projetos com componentes de soldagem estrutural: elaboração e qualificação de procedimentos de soldagem, coordenação de ensaios não destrutivos e interface técnica com clientes, fornecedores e organismos de inspeção.</p>
-        <p><strong>Esta combinação elimina o atrito entre departamentos técnicos e de gestão</strong> que frequentemente paralisa projetos de engenharia.</p>
+        <p>Qualidade em projetos com soldagem estrutural: elaboração e qualificação de procedimentos, coordenação de ensaios não destrutivos, interface técnica com clientes e organismos de inspeção.</p>
+        <p><strong>Elimina o atrito entre departamentos técnicos e de gestão</strong> que paralisa projetos de engenharia.</p>
       </div>
     </article>
     <article class="cap fade">
@@ -1171,137 +1087,84 @@ a.contact__val:hover{color:var(--blue)}
         </div>
       </div>
       <div class="cap__body">
-        <p>Diagnóstico e estruturação de programas de excelência operacional: VSM, KPIs acionáveis, rotinas de gestão visual e sistemas de melhoria contínua que sobrevivem à saída da consultoria. O foco é construir a capacidade interna de manter e evoluir o sistema.</p>
-        <p><strong>Operação que depende do consultor para funcionar é operação que ainda não foi resolvida.</strong></p>
+        <p>Diagnóstico e estruturação de programas OPEX: VSM, KPIs acionáveis, gestão visual e melhoria contínua que sobrevivem à saída da consultoria. Foco em construir a capacidade interna de manter e evoluir o sistema.</p>
+        <p><strong>Operação que depende do consultor para funcionar ainda não foi resolvida.</strong></p>
       </div>
     </article>
   </div>
 </section>
 
 
-<!-- ════ ARGUMENT ════ -->
+<!-- ════════════ ARGUMENT ════════════ -->
 <section class="argument" id="argumento" aria-label="Por que este especialista">
-  <div>
-    <h2 class="argument__display fade"
-        aria-label="Por que a combinação importa e por que é rara">
-      <span class="s1">POR QUE</span>
-      <span class="s2">A COMBINAÇÃO</span>
-      <span class="s3">IMPORTA — E POR QUE É <span class="blue">RARA.</span></span>
-    </h2>
-    <div class="argument__grid">
-      <div class="arg-block fade">
-        <p class="arg-block__label">01 — Credenciais que coexistem</p>
-        <h3 class="arg-block__title">Três domínios em uma única perspectiva</h3>
-        <p class="arg-block__text">Lead Auditor IMS, Master Black Belt e International Welding Engineer são percursos exigentes e raramente encontrados na mesma pessoa. Juntos, permitem transitar entre <strong>a auditoria normativa, a análise estatística e a engenharia técnica</strong> sem perda de profundidade.</p>
-      </div>
-      <div class="arg-block fade" data-d="1">
-        <p class="arg-block__label">02 — Histórico real</p>
-        <h3 class="arg-block__title">Operações reais, não casos de estudo</h3>
-        <p class="arg-block__text">A gestão simultânea de mais de 100 projetos em múltiplos países europeus como coordenador de qualidade EMEA não é cenário hipotético. É o contexto em que os métodos foram testados sob pressão real, com <strong>consequências concretas para qualquer falha de sistema.</strong></p>
-      </div>
-      <div class="arg-block fade" data-d="1">
-        <p class="arg-block__label">03 — Execução acima de relatório</p>
-        <h3 class="arg-block__title">Sistema rodando, não apresentação entregue</h3>
-        <p class="arg-block__text">O critério de sucesso não é a entrega de um documento. É <strong>o indicador sendo medido, a rotina sendo executada, o desvio sendo tratado</strong> — com ou sem a presença do consultor.</p>
-      </div>
-      <div class="arg-block fade" data-d="2">
-        <p class="arg-block__label">04 — Acesso direto</p>
-        <h3 class="arg-block__title">Sem intermediação, sem atrito</h3>
-        <p class="arg-block__text">Como especialista solo, Eduardo é o único interlocutor técnico do projeto. <strong>O especialista que você contrata é o especialista que trabalha no seu problema,</strong> com contexto preservado e nenhuma camada de tradução.</p>
-      </div>
+  <h2 class="argument__title fade" aria-label="Por que a combinação importa e por que é rara">
+    <span class="s1">POR QUE A</span>
+    <span class="s2">COMBINAÇÃO</span>
+    <span class="s3">IMPORTA — E POR QUE É <span class="blue">RARA.</span></span>
+  </h2>
+  <div class="argument__grid">
+    <div class="arg-block fade">
+      <p class="arg-block__label">01 — Credenciais que coexistem</p>
+      <h3 class="arg-block__title">Três domínios em uma única perspectiva</h3>
+      <p class="arg-block__text">Lead Auditor IMS, Master Black Belt e International Welding Engineer são percursos exigentes raramente encontrados na mesma pessoa. Juntos permitem transitar entre <strong>auditoria normativa, análise estatística e engenharia técnica</strong> sem perda de profundidade.</p>
+    </div>
+    <div class="arg-block fade" data-d="1">
+      <p class="arg-block__label">02 — Histórico real</p>
+      <h3 class="arg-block__title">Operações reais, não casos de estudo</h3>
+      <p class="arg-block__text">Gestão simultânea de mais de 100 projetos em múltiplos países europeus como coordenador de qualidade EMEA. Métodos testados sob pressão real, com <strong>consequências concretas para qualquer falha de sistema.</strong></p>
+    </div>
+    <div class="arg-block fade" data-d="1">
+      <p class="arg-block__label">03 — Execução acima de relatório</p>
+      <h3 class="arg-block__title">Sistema rodando, não apresentação entregue</h3>
+      <p class="arg-block__text">O critério de sucesso não é a entrega de documento. É <strong>o indicador sendo medido, a rotina sendo executada, o desvio sendo tratado</strong> — com ou sem a presença do consultor.</p>
+    </div>
+    <div class="arg-block fade" data-d="2">
+      <p class="arg-block__label">04 — Acesso direto</p>
+      <h3 class="arg-block__title">Sem intermediação, sem atrito</h3>
+      <p class="arg-block__text">Como especialista solo, Eduardo é o único interlocutor técnico. <strong>O especialista que você contrata é quem trabalha no seu problema,</strong> com contexto preservado e zero camadas de tradução.</p>
     </div>
   </div>
 </section>
 
 
-<!-- ════ METHOD ════ -->
+<!-- ════════════ METHOD ════════════ -->
 <section class="method" id="metodo" aria-label="Método">
   <div class="method__header fade">
     <h2 class="method__heading">COMO O<br>TRABALHO É<br><span>CONDUZIDO</span></h2>
-    <p class="method__desc">Quatro momentos, descritos como aparecem na prática. Cada etapa tem entregável concreto e critério claro de avanço — <strong>nenhuma ambiguidade sobre o que foi feito e o que vem a seguir.</strong></p>
+    <p class="method__desc">Quatro momentos, descritos como aparecem na prática. Cada etapa tem entregável concreto e critério de avanço. <strong>Nenhuma ambiguidade sobre o que foi feito e o que vem a seguir.</strong></p>
   </div>
   <div class="method__steps">
-    <div class="step fade">
-      <p class="step__num">01</p>
-      <div>
-        <h3 class="step__title">Diagnóstico e alinhamento de escopo</h3>
-        <p class="step__text">Conversa direta com a liderança para entender o problema real — não o declarado no briefing. Análise de dados, visita técnica quando aplicável, mapeamento de lacunas. <strong>Sem escopo fechado, não há projeto iniciado.</strong></p>
-      </div>
-    </div>
-    <div class="step fade" data-d="1">
-      <p class="step__num">02</p>
-      <div>
-        <h3 class="step__title">Análise técnica e planejamento</h3>
-        <p class="step__text">Análise aprofundada das causas e dos sistemas existentes. Plano de trabalho com marcos claros, responsabilidades definidas e critérios de aceitação mensuráveis — <strong>tanto para o especialista quanto para o time do cliente.</strong></p>
-      </div>
-    </div>
-    <div class="step fade" data-d="2">
-      <p class="step__num">03</p>
-      <div>
-        <h3 class="step__title">Implantação e acompanhamento</h3>
-        <p class="step__text">Execução direta com presença técnica nas etapas críticas e transferência contínua de conhecimento. <strong>Nenhuma implementação relevante acontece apenas com documentação.</strong></p>
-      </div>
-    </div>
-    <div class="step fade" data-d="3">
-      <p class="step__num">04</p>
-      <div>
-        <h3 class="step__title">Validação e autonomia do cliente</h3>
-        <p class="step__text">Verificação dos resultados contra critérios definidos no início. Treinamento do time para operação autônoma. <strong>O projeto termina quando o cliente opera sem depender do consultor.</strong></p>
-      </div>
-    </div>
+    <div class="step fade"><p class="step__num">01</p><div><h3 class="step__title">Diagnóstico e alinhamento de escopo</h3><p class="step__text">Conversa direta com a liderança para entender o problema real — não o declarado no briefing. Análise de dados, visita técnica quando aplicável. <strong>Sem escopo fechado, não há projeto iniciado.</strong></p></div></div>
+    <div class="step fade" data-d="1"><p class="step__num">02</p><div><h3 class="step__title">Análise técnica e planejamento</h3><p class="step__text">Análise das causas e dos sistemas existentes. Plano com marcos claros, responsabilidades e critérios de aceitação mensuráveis — <strong>para o especialista e para o time do cliente.</strong></p></div></div>
+    <div class="step fade" data-d="2"><p class="step__num">03</p><div><h3 class="step__title">Implantação e acompanhamento</h3><p class="step__text">Execução com presença técnica nas etapas críticas e transferência contínua de conhecimento. <strong>Nenhuma implementação relevante acontece apenas com documentação.</strong></p></div></div>
+    <div class="step fade" data-d="3"><p class="step__num">04</p><div><h3 class="step__title">Validação e autonomia do cliente</h3><p class="step__text">Verificação dos resultados contra critérios definidos no início. Treinamento para operação autônoma. <strong>O projeto termina quando o cliente opera sem depender do consultor.</strong></p></div></div>
   </div>
 </section>
 
 
-<!-- ════ CONTACT ════ -->
+<!-- ════════════ CONTACT ════════════ -->
 <section class="contact" id="contato" aria-label="Contato">
-  <h2 class="contact__heading fade"
-      aria-label="Vamos olhar onde sua operação perde desempenho">
+  <h2 class="contact__heading fade" aria-label="Vamos olhar onde sua operação perde desempenho">
     <span class="sc">VAMOS OLHAR</span>
-    <span class="sc s2">ONDE SUA</span>
+    <span class="sc ind">ONDE SUA</span>
     <span class="sc">OPERAÇÃO <span class="blue">PERDE.</span></span>
   </h2>
   <div class="contact__grid">
     <div class="fade">
-      <p class="contact__body">
-        A primeira conversa não é uma apresentação de proposta. É uma análise direta do cenário — processos, indicadores, sistemas e lacunas. <strong>Se houver trabalho relevante a fazer, será descrito com clareza. Se não houver, também.</strong>
-      </p>
+      <p class="contact__body">A primeira conversa não é uma apresentação de proposta. É uma análise direta do cenário — processos, indicadores, sistemas e lacunas. <strong>Se houver trabalho relevante, será descrito com clareza. Se não houver, também.</strong></p>
       <div class="contact__direct">
-        <div class="contact__row">
-          <span class="contact__lbl">E-mail</span>
-          <a href="mailto:eduardo@rossiterconsulting.com" class="contact__val">eduardo@rossiterconsulting.com</a>
-        </div>
-        <div class="contact__row">
-          <span class="contact__lbl">LinkedIn</span>
-          <a href="https://linkedin.com/in/eduardorossiter" target="_blank" rel="noopener" class="contact__val">linkedin.com/in/eduardorossiter</a>
-        </div>
-        <div class="contact__row">
-          <span class="contact__lbl">Base</span>
-          <span class="contact__val">Alemanha · Projetos EMEA e Brasil</span>
-        </div>
+        <div class="contact__row"><span class="contact__lbl">E-mail</span><a href="mailto:eduardo@rossiterconsulting.com" class="contact__val">eduardo@rossiterconsulting.com</a></div>
+        <div class="contact__row"><span class="contact__lbl">LinkedIn</span><a href="https://linkedin.com/in/eduardorossiter" target="_blank" rel="noopener" class="contact__val">linkedin.com/in/eduardorossiter</a></div>
+        <div class="contact__row"><span class="contact__lbl">Base</span><span class="contact__val">Alemanha · Projetos EMEA e Brasil</span></div>
       </div>
     </div>
     <div class="fade" data-d="1">
-      <p class="contact__form-lbl">Solicitar diagnóstico</p>
+      <p class="form-lbl">Solicitar diagnóstico</p>
       <form novalidate>
-        <div class="form__row">
-          <label for="nome" class="form__lbl">Nome e empresa</label>
-          <input class="form__input" type="text" id="nome" name="nome" autocomplete="name" required placeholder="Nome / Empresa"/>
-        </div>
-        <div class="form__row">
-          <label for="email" class="form__lbl">E-mail</label>
-          <input class="form__input" type="email" id="email" name="email" autocomplete="email" required placeholder="seu@email.com"/>
-        </div>
-        <div class="form__row">
-          <label for="msg" class="form__lbl">Contexto do desafio</label>
-          <textarea class="form__textarea" id="msg" name="msg" rows="5" required placeholder="Descreva a operação, o problema e o que já foi tentado."></textarea>
-        </div>
-        <button type="submit" class="form__submit">
-          Enviar solicitação
-          <span class="cta-sq" aria-hidden="true">
-            <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-          </span>
-        </button>
+        <div class="form__row"><label for="nome" class="form__lbl">Nome e empresa</label><input class="form__input" type="text" id="nome" name="nome" autocomplete="name" required placeholder="Nome / Empresa"/></div>
+        <div class="form__row"><label for="email" class="form__lbl">E-mail</label><input class="form__input" type="email" id="email" name="email" autocomplete="email" required placeholder="seu@email.com"/></div>
+        <div class="form__row"><label for="msg" class="form__lbl">Contexto do desafio</label><textarea class="form__textarea" id="msg" name="msg" rows="5" required placeholder="Descreva a operação e o problema."></textarea></div>
+        <button type="submit" class="form__submit">Enviar solicitação<span class="cta-sq" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span></button>
         <p class="form__note">Resposta direta. Sem intermediários.</p>
       </form>
     </div>
@@ -1309,13 +1172,10 @@ a.contact__val:hover{color:var(--blue)}
 </section>
 
 
-<!-- ════ FOOTER ════ -->
+<!-- ════════════ FOOTER ════════════ -->
 <footer class="footer" role="contentinfo">
   <div class="footer__inner">
-    <p class="footer__tagline">
-      <strong>Rossiter Consulting.</strong><br>
-      Sistema rodando, indicador medido,<br>rotina funcionando.
-    </p>
+    <p class="footer__tagline"><strong>Rossiter Consulting.</strong><br>Sistema rodando, indicador medido, rotina funcionando.</p>
     <ul class="footer__links" role="list">
       <li><a href="#especialista">Especialista</a></li>
       <li><a href="#capacidades">Capacidades</a></li>
@@ -1330,44 +1190,26 @@ a.contact__val:hover{color:var(--blue)}
 
 <script>
 (function(){
-
-  /* NAV scroll */
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll',()=>{
-    nav.classList.toggle('scrolled',window.scrollY>40);
-  },{passive:true});
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40)},{passive:true});
 
-  /* Mobile menu */
-  const btn = document.getElementById('mobile-btn');
-  const menu = document.getElementById('mobile-menu');
-  const OPEN_ICON = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
-  const CLOSE_ICON = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
-
+  const btn = document.getElementById('mob-btn');
+  const menu = document.getElementById('mob-menu');
+  const BAR = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+  const X   = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
   btn.addEventListener('click',()=>{
-    const open = menu.classList.toggle('open');
-    btn.setAttribute('aria-expanded',open);
-    btn.innerHTML = open ? OPEN_ICON : CLOSE_ICON;
+    const o=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',o);
+    btn.innerHTML=o?X:BAR;
   });
-  menu.querySelectorAll('a').forEach(a=>{
-    a.addEventListener('click',()=>{
-      menu.classList.remove('open');
-      btn.setAttribute('aria-expanded',false);
-      btn.innerHTML = CLOSE_ICON;
-    });
-  });
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    menu.classList.remove('open');btn.setAttribute('aria-expanded',false);btn.innerHTML=BAR;
+  }));
 
-  /* Fade in on scroll */
   if('IntersectionObserver' in window){
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}
-      });
-    },{threshold:.07});
+    const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.07});
     document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
-  } else {
-    document.querySelectorAll('.fade').forEach(el=>el.classList.add('in'));
-  }
-
+  }else{document.querySelectorAll('.fade').forEach(el=>el.classList.add('in'));}
 })();
 </script>
 <script data-pplx-inline-edit>
