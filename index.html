@@ -189,7 +189,7 @@ p{text-wrap:pretty}
 /* Headline — filho esquerdo, flex:1, EXATO Accenture */
 .hero__headline{
   font-family:var(--cond);
-  font-size:2rem;
+  font-size:3rem;
   font-weight:500;
   letter-spacing:-.03em;
   line-height:1.1;
@@ -199,13 +199,13 @@ p{text-wrap:pretty}
   min-width:0;
 }
 @media(min-width:600px){
-  .hero__headline{font-size:calc(4vh + 4vw)}
+  .hero__headline{font-size:calc(5vh + 5.5vw)}
 }
 @media(min-width:1024px){
-  .hero__headline{font-size:calc(3vh + 4.2vw)}
+  .hero__headline{font-size:calc(4vh + 5.8vw)}
 }
 @media(min-width:1441px){
-  .hero__headline{font-size:calc(5.2vh + 4vw)}
+  .hero__headline{font-size:calc(6vh + 5.5vw)}
 }
 
 .hero__headline .line1{display:block}
@@ -247,59 +247,169 @@ p{text-wrap:pretty}
 .cta-sq svg{width:14px;height:14px;color:#fff}
 
 /* ══════════════════════════════════════════
-   CARDS — 4 cards 9:16, com imagem
-   Inspirado nos cards STUDIE/PODCAST da Accenture
+   CARDS — EXATO Accenture
+   • Default: imagem cobre 100% do card, label+título no TOPO sobre a imagem
+   • Hover: card escala 1.04, imagem desaparece (blur+fade), painel escuro
+     revela descrição completa + "Ver mais ›" — borda azul ao redor
+   • Transição: 550ms cubic-bezier(0.85,0,0,1) como Accenture
 ══════════════════════════════════════════ */
 .cards{
   background:#000;
-  padding:clamp(2.5rem,4vw,4rem) var(--pad);
+  padding:0;
 }
 .cards__row{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:0;
-  background:transparent;
+  gap:6px;
 }
+
+/* Card — aspect-ratio 0.71 como Accenture (300×424px) */
 .card{
-  background:#000;
-  display:flex;flex-direction:column;
-  position:relative;overflow:hidden;
-  /* Formato 9:16 */
-  aspect-ratio:9/16;
+  position:relative;
+  overflow:hidden;
   cursor:pointer;
-  transition:background .25s;
+  aspect-ratio:.71;
+  /* escala suave no hover */
+  transition:scale 550ms cubic-bezier(.85,0,0,1),
+             outline-color 550ms cubic-bezier(.85,0,0,1);
+  outline:1px solid transparent;
 }
-.card:hover{background:#0a0a09}
+.card:hover{
+  scale:1.04;
+  outline-color:var(--blue);
+  z-index:2;
+}
+
+/* ——— IMAGEM: cobre 100% do card ——— */
 .card__image{
-  position:absolute;inset:0;
+  position:absolute;
+  inset:0;
   width:100%;height:100%;
   object-fit:cover;
-  opacity:0.55;
-  transition:opacity .35s,transform .5s;
+  object-position:center top;
+  transition:filter 550ms cubic-bezier(.85,0,0,1),
+             opacity 550ms cubic-bezier(.85,0,0,1);
 }
-.card:hover .card__image{opacity:.7;transform:scale(1.03)}
-.card__body{
-  position:relative;z-index:1;
-  display:flex;flex-direction:column;
-  justify-content:flex-end;
-  height:100%;
-  padding:1.25rem;
-  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,0) 55%);
+.card:hover .card__image{
+  filter:blur(40px);
+  opacity:.15;
 }
+
+/* ——— FRENTE: label + título no TOPO sobre a imagem ——— */
+.card__front{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start; /* tudo à esquerda */
+  padding:1.75rem 1.5rem 1.5rem;
+  /* gradiente escuro no topo para legibilidade */
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.72) 0%,
+    rgba(0,0,0,.3) 50%,
+    rgba(0,0,0,0) 75%
+  );
+  transition:opacity 550ms cubic-bezier(.85,0,0,1);
+}
+.card:hover .card__front{
+  opacity:0;
+  pointer-events:none;
+}
+
 .card__label{
   font-family:var(--mono);
-  font-size:10px;font-weight:400;
-  letter-spacing:.18em;text-transform:uppercase;
-  color:var(--blue);
-  margin-bottom:.5rem;
+  font-size:.8125rem; /* 13px */
+  font-weight:500;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#fff;
+  margin-bottom:.75rem;
+  line-height:1;
+  display:block;
+  text-align:left;
 }
 .card__title{
   font-family:var(--cond);
-  font-size:clamp(1rem,1.4vw,1.375rem);
-  font-weight:600;
+  font-size:clamp(1.6rem,2.2vw,2.25rem); /* grande — peso visual forte */
+  font-weight:700;
   letter-spacing:-.02em;
-  line-height:1.2;
+  line-height:1.1;
   color:#fff;
+  text-align:left;
+  text-transform:uppercase;
+}
+
+/* ——— VERSO: fundo com cor dominante da imagem de cada card ——— */
+.card__back{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:1.75rem 1.5rem 1.75rem;
+  /* cor base definida por modifier — veja abaixo */
+  opacity:0;
+  transition:opacity 550ms cubic-bezier(.85,0,0,1);
+  pointer-events:none;
+}
+.card:hover .card__back{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* Cor dominante de cada imagem no verso */
+.card:nth-child(1) .card__back{ background:#1e1208 } /* espiral metálica: marrom/laranja escuro */
+.card:nth-child(2) .card__back{ background:#141920 } /* névoa/luz: cinza-azulado frio */
+.card:nth-child(3) .card__back{ background:#071a15 } /* barragem: verde-petróleo */
+.card:nth-child(4) .card__back{ background:#0a1606 } /* floresta: verde-musgo */
+
+.card__back-top{ display:flex; flex-direction:column; }
+.card__back-label{
+  font-family:var(--mono);
+  font-size:.8125rem;
+  font-weight:500;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--blue);
+  margin-bottom:.75rem;
+  line-height:1;
+  display:block;
+  text-align:left;
+}
+.card__back-title{
+  font-family:var(--cond);
+  font-size:clamp(1.6rem,2.2vw,2.25rem);
+  font-weight:700;
+  letter-spacing:-.02em;
+  line-height:1.1;
+  color:#fff;
+  text-transform:uppercase;
+  margin-bottom:1.25rem;
+  text-align:left;
+}
+.card__desc{
+  font-family:var(--sans);
+  font-size:clamp(.95rem,1.1vw,1.075rem); /* maior que antes */
+  font-weight:400;
+  line-height:1.6;
+  color:rgba(232,230,224,.88);
+  flex:1;
+  text-align:left;
+}
+
+/* CTA no rodapé */
+.card__cta{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-family:var(--sans);
+  font-size:1rem;
+  font-weight:500;
+  color:#fff;
+  margin-top:1.5rem;
+  flex-shrink:0;
+  text-align:left;
 }
 
 /* ══════════════════════════════════════════
@@ -741,12 +851,12 @@ p{text-wrap:pretty}
   }
   .hero__content{width:100%}
   .cards__row{grid-template-columns:repeat(2,1fr)}
-  .card{aspect-ratio:9/16}
+  .card{aspect-ratio:2/3}
   .footer__contacts{text-align:left}
 }
 @media(max-width:520px){
   .cards__row{grid-template-columns:1fr 1fr}
-  .card{aspect-ratio:3/4}
+  .card{aspect-ratio:2/3}
   .award-card:nth-child(1),.award-card:nth-child(2),.award-card:nth-child(3){
     align-self:center;margin-left:0;margin-right:0;
   }
@@ -805,15 +915,15 @@ p{text-wrap:pretty}
   <div class="hero__inner">
 
     <h1 class="hero__headline" id="h1"
-        aria-label="Excelência operacional em indústrias que não podem falhar">
-      <span class="line1">EXCELÊNCIA OPERACIONAL</span>
-      <span class="line2">EM INDÚSTRIAS QUE NÃO PODEM <em class="accent">FALHAR.</em></span>
+        aria-label="Convergir Fluxo Para Construir Valor">
+      <span class="line1">CONVERGIR FLUXO <em class="accent">PARA</em></span>
+      <span class="line2">CONSTRUIR VALOR</span>
     </h1>
 
     <div class="hero__content">
       <div class="hero__deco" aria-hidden="true"></div>
       <p class="hero__sub">
-        Sistemas de gestão ISO, Lean Six Sigma e engenharia de qualidade aplicados diretamente por um especialista com histórico real em operações EMEA e América do Sul.
+        Em cada um de nós existe um potencial que ainda não se revelou. Enxergar o potencial apenas de cada parte nunca é suficiente. Porque quando o fluxo de cada uma converge para uma mesma direção, o valor que estava disperso se encontra. E o todo se torna inevitavelmente mais que a soma de suas partes.
       </p>
       <a href="#contato" class="hero__cta">
         Agendar diagnóstico
@@ -830,35 +940,74 @@ p{text-wrap:pretty}
 <section class="cards" id="competencia" aria-label="Competências">
   <div class="cards__row">
 
+    <!-- Card 1: Sistemas de Gestão Integrado SGI -->
     <article class="card">
-      <!-- <img class="card__image" src="img/card-1.jpg" alt=""> -->
-      <div class="card__body">
-        <span class="card__label">Perfil</span>
-        <h3 class="card__title">Lead Auditor IMS + Master Black Belt + Intl. Welding Engineer</h3>
+      <!-- Imagem: cobre 100% do card -->
+      <img class="card__image" src="img-sgi.jpg" alt="Sistemas de Gestão Integrado SGI"/>
+      <!-- FRENTE: label + título no topo sobre a imagem -->
+      <div class="card__front">
+        <span class="card__label">Competência</span>
+        <h3 class="card__title">Sistemas de Gestão Integrado SGI</h3>
+      </div>
+      <!-- VERSO: painel escuro com descrição -->
+      <div class="card__back" aria-hidden="true">
+        <div class="card__back-top">
+          <span class="card__back-label">Competência</span>
+          <h3 class="card__back-title">Sistemas de Gestão Integrado SGI</h3>
+          <p class="card__desc">Implantação e evolução de SGQ, SGA e SSO com aderência real à operação.</p>
+        </div>
+        <span class="card__cta">Ver mais &rsaquo;</span>
       </div>
     </article>
 
+    <!-- Card 2: Auditoria e Suporte Técnico -->
     <article class="card">
-      <!-- <img class="card__image" src="img/card-2.jpg" alt=""> -->
-      <div class="card__body">
-        <span class="card__label">Capacidade</span>
-        <h3 class="card__title">Sistemas de Gestão ISO 9001 · 45001 · SGI</h3>
+      <img class="card__image" src="img-auditoria.jpg" alt="Auditoria e Suporte Técnico"/>
+      <div class="card__front">
+        <span class="card__label">Competência</span>
+        <h3 class="card__title">Auditoria e Suporte Técnico</h3>
+      </div>
+      <div class="card__back" aria-hidden="true">
+        <div class="card__back-top">
+          <span class="card__back-label">Competência</span>
+          <h3 class="card__back-title">Auditoria e Suporte Técnico</h3>
+          <p class="card__desc">ISO 9001 / ISO 14001 / ISO 45001 — Preparação, condução e fortalecimento de processos para auditorias de 1ª, 2ª e 3ª parte.</p>
+        </div>
+        <span class="card__cta">Ver mais &rsaquo;</span>
       </div>
     </article>
 
+    <!-- Card 3: Excelência Operacional -->
     <article class="card">
-      <!-- <img class="card__image" src="img/card-3.jpg" alt=""> -->
-      <div class="card__body">
-        <span class="card__label">Capacidade</span>
-        <h3 class="card__title">Lean Six Sigma &amp; Análise Estatística Avançada</h3>
+      <img class="card__image" src="img-excelencia.jpg" alt="Excelência Operacional"/>
+      <div class="card__front">
+        <span class="card__label">Competência</span>
+        <h3 class="card__title">Excelência Operacional</h3>
+      </div>
+      <div class="card__back" aria-hidden="true">
+        <div class="card__back-top">
+          <span class="card__back-label">Competência</span>
+          <h3 class="card__back-title">Excelência Operacional</h3>
+          <p class="card__desc">Diagnóstico e execução de iniciativas Lean Six Sigma para reduzir perdas, eliminar variação e elevar performance de forma sustentável.</p>
+        </div>
+        <span class="card__cta">Ver mais &rsaquo;</span>
       </div>
     </article>
 
+    <!-- Card 4: Formação e Treinamento -->
     <article class="card">
-      <!-- <img class="card__image" src="img/card-4.jpg" alt=""> -->
-      <div class="card__body">
-        <span class="card__label">Método</span>
-        <h3 class="card__title">Sistema que funciona quando o projeto termina</h3>
+      <img class="card__image" src="img-formacao.jpg" alt="Formação e Treinamento"/>
+      <div class="card__front">
+        <span class="card__label">Competência</span>
+        <h3 class="card__title">Formação e Treinamento</h3>
+      </div>
+      <div class="card__back" aria-hidden="true">
+        <div class="card__back-top">
+          <span class="card__back-label">Competência</span>
+          <h3 class="card__back-title">Formação e Treinamento</h3>
+          <p class="card__desc">Desenvolvimento de equipes em Lean, Six Sigma e ferramentas de qualidade — para que a melhoria continue depois que o projeto termina.</p>
+        </div>
+        <span class="card__cta">Ver mais &rsaquo;</span>
       </div>
     </article>
 
