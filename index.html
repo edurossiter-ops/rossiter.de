@@ -181,8 +181,8 @@ p{text-wrap:pretty}
   flex-direction:row;
   justify-content:space-between;
   align-items:flex-end;
-  /* 20vh de distância do nav até o texto */
-  padding:20vh var(--pad) 4.5rem;
+  /* Accenture: conteúdo logo abaixo do nav, na parte inferior do hero */
+  padding:3rem var(--pad) 4.5rem;
   gap:3rem;
 }
 
@@ -222,14 +222,14 @@ p{text-wrap:pretty}
 .hero__deco{width:2.5rem;height:3px;background:var(--blue)}
 .hero__sub{
   font-family:var(--sans);
-  font-size:1rem;
+  font-size:1.375rem; /* maior — alinhado Accenture */
   font-weight:400;
   letter-spacing:-.01em;
   line-height:1.5;
   color:rgba(232,230,224,.9);
 }
-@media(min-width:1024px){.hero__sub{font-size:1.125rem}}
-@media(min-width:1441px){.hero__sub{font-size:1.25rem}}
+@media(min-width:1024px){.hero__sub{font-size:1.75rem}}
+@media(min-width:1441px){.hero__sub{font-size:2rem}}
 
 .hero__cta{
   display:inline-flex;align-items:center;gap:.875rem;
@@ -324,7 +324,7 @@ p{text-wrap:pretty}
 }
 .metodo__display{
   font-family:var(--cond);
-  font-size:clamp(4rem,12vw,11rem);
+  font-size:clamp(3rem,8vw,7.5rem); /* um pouco menor */
   font-weight:900;
   letter-spacing:-.04em;
   line-height:.9;
@@ -466,8 +466,8 @@ p{text-wrap:pretty}
 .conquistas__cards{
   position:relative;
   z-index:2;
-  margin-top:-100svh; /* puxa os cards para cima, por cima do stage */
-  padding-bottom:100svh;
+  margin-top:-100svh;
+  padding-bottom:30svh; /* era 100svh — reduzido para o próximo section vir logo após o 3º card */
   display:flex;
   flex-direction:column;
   gap:5rem;
@@ -547,33 +547,23 @@ p{text-wrap:pretty}
 }
 
 /* ══════════════════════════════════════════
-   CONTATO — imagem começa fullscreen e encolhe com scroll
+   CONTATO — imagem fullscreen sticky → encolhe ao lado do form
 ══════════════════════════════════════════ */
 .contato{
   background:#000;
-}
-
-/* Wrapper que controla o efeito de scroll */
-.contato__scroll-stage{
+  /* Altura total: 100vh (fase fullscreen) + altura do grid (fase encaixada) */
   position:relative;
-  /* altura extra para dar espaço ao scroll do efeito */
-  padding-bottom:clamp(500px,60svh,800px);
 }
 
-/* Imagem: começa fixada fullscreen, depois passa a ser sticky no grid */
+/* FASE 1: imagem sticky fullscreen enquanto o usuário scrollar */
 .contato__visual-wrap{
   position:sticky;
   top:0;
-  width:100%;
+  width:100vw;
   height:100svh;
   overflow:hidden;
-  will-change:transform;
   z-index:0;
-}
-.contato__visual-wrap.settled{
-  position:relative;
-  height:100%;
-  top:auto;
+  transition:none;
 }
 .contato__visual-placeholder,
 .contato__visual-img{
@@ -586,26 +576,29 @@ p{text-wrap:pretty}
 }
 .contato__visual-placeholder svg{width:48px;height:48px;color:var(--g30);opacity:.4}
 
-/* O formulário aparece por baixo enquanto a imagem ainda é fullscreen */
+/* FASE 2: grid — aparece por baixo da imagem sticky */
 .contato__inner{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  min-height:clamp(500px,60svh,800px);
   position:relative;
   z-index:1;
-}
-.contato__visual-cell{
-  /* Célula que recebe a imagem quando já encaixou */
-  position:relative;
-  overflow:hidden;
-  min-height:clamp(400px,50svh,700px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  /* a imagem ocupa metade, o form a outra metade, ambos alinhados no topo */
+  align-items:start;
+  margin-top:-100svh; /* puxa para baixo da imagem sticky */
 }
 
-/* Texto + form */
+/* Célula esquerda: espaço reservado para a imagem (fica transparente) */
+.contato__visual-cell{
+  height:clamp(500px,65svh,800px);
+  background:transparent;
+}
+
+/* Texto + form — alinhado com o TOPO da célula da imagem */
 .contato__text{
-  padding:clamp(2.5rem,5vw,5rem);
-  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(2rem,4vw,4rem);
+  display:flex;flex-direction:column;justify-content:flex-start;
   background:#000;
+  min-height:clamp(500px,65svh,800px);
 }
 .contato__kicker{
   font-family:var(--mono);font-size:10px;font-weight:400;
@@ -874,7 +867,7 @@ p{text-wrap:pretty}
       <span class="fluxo">FLUXO</span>
       <span class="de">DE</span>
       <span class="valor">VALOR</span>
-      <span class="num">360<span class="degree">º</span></span>
+      <span class="num">360<span class="degree">&#176;</span></span>
     </div>
     <p class="metodo__slogan" id="metodo-title">
       Diagnóstico preciso. Execução real.<br>
@@ -1100,62 +1093,49 @@ document.querySelectorAll('.mobile-link').forEach(l => {
   });
 });
 
-// ── Carrossel Método — exato Accenture ──
+// ── Carrossel Método — só seta direita, loop infinito ──
 (function(){
   const track   = document.getElementById('metodoTrack');
-  const prevBtn = document.getElementById('metodoPrev');
   const nextBtn = document.getElementById('metodoNext');
+  const prevBtn = document.getElementById('metodoPrev');
   const counter = document.getElementById('metodoCounter');
   if(!track) return;
   const slides = track.querySelectorAll('.metodo__slide');
   const total  = slides.length;
   let cur = 0;
 
+  // Esconde botão anterior — só seta direita com loop
+  if(prevBtn) prevBtn.style.display = 'none';
+
   function go(n){
-    cur = Math.max(0, Math.min(n, total-1));
+    cur = ((n % total) + total) % total; // loop
     track.style.transform = `translateX(-${cur * 100}%)`;
     counter.textContent = String(cur+1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
-    prevBtn.disabled = cur === 0;
-    nextBtn.disabled = cur === total-1;
   }
 
-  prevBtn.addEventListener('click', () => go(cur-1));
   nextBtn.addEventListener('click', () => go(cur+1));
   go(0);
 })();
 
-// ── Contato: imagem fullscreen → encolhe com scroll ──
+// ── Contato: imagem fullscreen → encolhe para metade com scroll ──
 (function(){
   const visual  = document.getElementById('contatoVisual');
   const section = document.querySelector('.contato');
   if(!visual || !section) return;
 
-  // A imagem começa com position:sticky + height:100svh
-  // Quando o inner do formulário fica visível, ela "encaixa" na célula
-  // Fazemos isso via clip-path scale durante o scroll
-
   function onScroll(){
-    const secRect  = section.getBoundingClientRect();
-    const innerEl  = section.querySelector('.contato__inner');
-    const innerRect= innerEl ? innerEl.getBoundingClientRect() : null;
+    const secRect = section.getBoundingClientRect();
     const vh = window.innerHeight;
+    // progresso: 0 no início da seção, 1 quando scrollou 1 viewport inteira
+    const prog = Math.min(1, Math.max(0, -secRect.top / vh));
 
-    // progresso: 0 quando o topo da seção bate no topo da viewport,
-    // 1 quando o inner já está alinhado (imagem encaixou)
-    const start = secRect.top;    // negativo quando passou
-    const end   = -vh * 0.55;     // quanto precisa scrollar pra encolher
-    const prog  = Math.min(1, Math.max(0, -start / Math.abs(end)));
-
-    // Scale: de 1 (fullscreen) até 0.5 (metade da tela)
-    const scale = 1 - prog * 0.5;
-    // Width: de 100vw até 50vw
-    const w     = 100 - prog * 50;
-    // Height: de 100vh até auto (mantém aspect)
-    const h     = 100 - prog * 40;
+    // Width: 100vw → 50vw (ocupa metade = coluna esquerda do grid)
+    const w = 100 - prog * 50;
+    // Height: 100svh → 65svh (alinha com a célula do grid)
+    const h = 100 - prog * 35;
 
     visual.style.width  = w + 'vw';
-    visual.style.height = h + 'vh';
-    visual.style.maxWidth = w + 'vw';
+    visual.style.height = h + 'svh';
   }
 
   window.addEventListener('scroll', onScroll, {passive:true});
