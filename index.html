@@ -147,10 +147,10 @@ p{text-wrap:pretty}
   position:relative;
   background:#000;
   min-height:80svh;
-  padding-top:80px;
+  padding-top:80px; /* nav offset */
   display:flex;
   flex-direction:column;
-  justify-content:flex-start;
+  justify-content:flex-end; /* empurra inner para baixo */
   overflow:hidden;
 }
 
@@ -176,13 +176,13 @@ p{text-wrap:pretty}
 
 .hero__inner{
   position:relative;z-index:2;
-  flex:1;
+  /* NÃO usa flex:1 — deixa justify-content:flex-end do pai empurrar para baixo */
   display:flex;
   flex-direction:row;
   justify-content:space-between;
   align-items:flex-end;
-  /* Accenture: conteúdo logo abaixo do nav, na parte inferior do hero */
-  padding:3rem var(--pad) 4.5rem;
+  /* padding-top:20vh cria a distância do nav ao texto */
+  padding:20vh var(--pad) 4.5rem;
   gap:3rem;
 }
 
@@ -551,8 +551,13 @@ p{text-wrap:pretty}
 ══════════════════════════════════════════ */
 .contato{
   background:#000;
-  /* Altura total: 100vh (fase fullscreen) + altura do grid (fase encaixada) */
   position:relative;
+}
+
+/* Scroll-spacer: cria altura para o sticky aparecer sozinho antes do grid */
+.contato__spacer{
+  height:100svh;
+  pointer-events:none;
 }
 
 /* FASE 1: imagem sticky fullscreen enquanto o usuário scrollar */
@@ -579,12 +584,11 @@ p{text-wrap:pretty}
 /* FASE 2: grid — aparece por baixo da imagem sticky */
 .contato__inner{
   position:relative;
-  z-index:1;
+  z-index:2;
   display:grid;
   grid-template-columns:1fr 1fr;
-  /* a imagem ocupa metade, o form a outra metade, ambos alinhados no topo */
   align-items:start;
-  margin-top:-100svh; /* puxa para baixo da imagem sticky */
+  /* margin-top negativo removido — padding-top no pai já criou o espaço */
 }
 
 /* Célula esquerda: espaço reservado para a imagem (fica transparente) */
@@ -667,6 +671,8 @@ p{text-wrap:pretty}
 .footer{
   background:#000;
   padding:clamp(3rem,5vw,5rem) var(--pad) clamp(2rem,3vw,3rem);
+  position:relative;
+  z-index:10; /* garante que fica acima do sticky da seção contato */
 }
 .footer__top{
   display:flex;justify-content:space-between;align-items:flex-start;
@@ -986,6 +992,9 @@ p{text-wrap:pretty}
     </div>
   </div>
 
+  <!-- Scroll-spacer: ocupa 100svh para dar espaço à imagem sticky sozinha -->
+  <div class="contato__spacer" aria-hidden="true"></div>
+
   <!-- Grid com célula visual (vazia) + formulário -->
   <div class="contato__inner">
     <div class="contato__visual-cell" aria-hidden="true"></div>
@@ -1126,12 +1135,15 @@ document.querySelectorAll('.mobile-link').forEach(l => {
   function onScroll(){
     const secRect = section.getBoundingClientRect();
     const vh = window.innerHeight;
-    // progresso: 0 no início da seção, 1 quando scrollou 1 viewport inteira
+    // A seção tem padding-top:100svh — a imagem sticky começa quando a seção
+    // entra na viewport (secRect.top = 0). Progresso vai de 0→1 enquanto
+    // scrollamos as 100svh do padding-top.
+    // secRect.top < 0 significa que scrollamos para dentro da seção.
     const prog = Math.min(1, Math.max(0, -secRect.top / vh));
 
-    // Width: 100vw → 50vw (ocupa metade = coluna esquerda do grid)
+    // Width: 100vw → 50vw
     const w = 100 - prog * 50;
-    // Height: 100svh → 65svh (alinha com a célula do grid)
+    // Height: 100svh → 65svh
     const h = 100 - prog * 35;
 
     visual.style.width  = w + 'vw';
