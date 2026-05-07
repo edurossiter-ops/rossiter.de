@@ -6,305 +6,406 @@
 <title>Rossiter Consulting — Excelência Operacional Industrial</title>
 <meta name="description" content="Eduardo Rossiter: Lead Auditor IMS, Master Black Belt, International Welding Engineer. Excelência operacional em indústrias que não podem falhar."/>
 <meta property="og:title" content="Rossiter Consulting — Excelência Operacional Industrial"/>
-<meta property="og:description" content="Especialista solo em sistemas de gestão ISO, Lean Six Sigma e engenharia de qualidade. Operações que funcionam quando o projeto termina."/>
+<meta property="og:description" content="Especialista solo em sistemas de gestão ISO, Lean Six Sigma e engenharia de qualidade."/>
 <meta property="og:type" content="website"/>
+
+<!--
+  Barlow Condensed: fonte condensada que replica as proporções do Graphik da Accenture.
+  Mesmo stretch visual com font-size equivalente.
+  DM Mono para labels e detalhes.
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 
+<style>
 /* ─── RESET ─── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:4rem}
-body{min-height:100dvh;font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:15px;line-height:1.6;color:#e8e6e0;background:#000;overflow-x:hidden}
-img,svg{display:block;max-width:100%}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:72px}
+body{min-height:100dvh;font-family:'Barlow','Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:1.6;color:#e8e6e0;background:#000;overflow-x:hidden}
+img,svg{display:block;max-width:100%;height:auto}
 ul,ol{list-style:none}
 input,button,textarea,select{font:inherit;color:inherit}
 button{cursor:pointer;background:none;border:none}
 a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{text-wrap:balance;line-height:1}
 p{text-wrap:pretty}
-::selection{background:rgba(58,114,200,.18);color:#fff}
+::selection{background:rgba(58,114,200,.2);color:#fff}
 :focus-visible{outline:1px solid #3a72c8;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-/* ─── TOKENS ─── */
+/* ─── VARIÁVEIS ─── */
 :root{
   --black:#000;
   --white:#fff;
-  --grey-90:#e8e6e0;
-  --grey-60:#888682;
-  --grey-30:#3a3936;
-  --grey-15:#1a1917;
+  --g90:#e8e6e0;   /* texto principal */
+  --g60:#888682;   /* texto secundário */
+  --g30:#3a3936;   /* bordas / dividers */
+  --g15:#1a1917;   /* superfície escura */
   --blue:#3a72c8;
   --blue-dim:#2a569a;
   --mono:'DM Mono','Courier New',monospace;
-  --sans:'Inter','Helvetica Neue',Arial,sans-serif;
-  --gutter:clamp(1.5rem,5vw,5rem);
-  --section-v:clamp(5rem,10vw,9rem);
+  --cond:'Barlow Condensed','Arial Narrow',sans-serif;
+  --sans:'Barlow','Helvetica Neue',Arial,sans-serif;
+  --pad:clamp(1.5rem,5vw,5rem);   /* gutter lateral */
 }
 
-/* ─── NAV ─── */
+/* ════════════════════════════════════════
+   NAV — proporcional à Accenture
+   72px alto, logo só símbolo à esquerda,
+   links centralizados, search+CTA à direita
+════════════════════════════════════════ */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
+  height:72px;
   background:#000;
+  display:flex;align-items:center;
   border-bottom:1px solid transparent;
   transition:border-color .25s;
 }
-.nav.scrolled{border-bottom-color:var(--grey-30)}
+.nav.scrolled{border-bottom-color:var(--g30)}
+
 .nav__inner{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 var(--gutter);
-  height:60px;
+  width:100%;
+  display:flex;align-items:center;
+  padding:0 var(--pad);
+  gap:0;
 }
+
+/* Logo — apenas símbolo chevron, azul, igual à Accenture */
 .nav__logo{
-  display:flex;align-items:center;gap:.75rem;
+  display:flex;align-items:center;
   flex-shrink:0;
+  margin-right:auto;
 }
 .nav__chevron{
-  width:22px;height:22px;
+  width:36px;height:36px;
   color:var(--blue);
-  flex-shrink:0;
 }
-.nav__wordmark{
-  font-family:var(--mono);
-  font-size:11px;font-weight:400;
-  letter-spacing:.16em;text-transform:uppercase;
-  color:var(--grey-90);
-}
+
+/* Links centrais */
 .nav__links{
-  display:flex;align-items:center;gap:2.5rem;
+  display:flex;align-items:center;
+  gap:2.5rem;
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
 }
 .nav__links a{
-  font-size:13px;font-weight:400;
-  letter-spacing:.04em;
-  color:var(--grey-90);
+  font-family:var(--sans);
+  font-size:14px;font-weight:400;
+  letter-spacing:.01em;
+  color:var(--g90);
+  white-space:nowrap;
   transition:color .2s;
 }
 .nav__links a:hover{color:var(--blue)}
-.nav__contact{
-  font-family:var(--mono);font-size:11px;font-weight:400;
-  letter-spacing:.12em;text-transform:uppercase;
+
+/* Direita: wordmark + CTA */
+.nav__right{
+  display:flex;align-items:center;
+  gap:1.5rem;
+  margin-left:auto;
+}
+.nav__wordmark{
+  font-family:var(--mono);
+  font-size:10px;font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--g60);
+}
+.nav__cta{
+  font-family:var(--mono);
+  font-size:10px;font-weight:400;
+  letter-spacing:.14em;text-transform:uppercase;
   color:var(--blue);
   border:1px solid var(--blue-dim);
-  padding:.4rem 1rem;
+  padding:.35rem .875rem;
+  white-space:nowrap;
   transition:background .2s,color .2s;
 }
-.nav__contact:hover{background:var(--blue);color:#fff}
-.nav__mobile-btn{
-  display:none;color:var(--grey-60);
-  align-items:center;padding:.25rem;
-}
-.nav__mobile-menu{
-  display:none;
-}
+.nav__cta:hover{background:var(--blue);color:#fff}
+.nav__mobile-btn{display:none;color:var(--g60);padding:.25rem}
 
-/* ─── HERO ─── */
+/* Mobile menu */
+.nav__mobile-menu{display:none}
+
+/* ════════════════════════════════════════
+   HERO
+   Layout exato Accenture:
+   - Fundo preto com imagem escura de fundo
+   - Headline condensada ~80px (calc(3vh+4.2vw))
+     ocupa ~65% esquerda
+   - Subtexto ~20px à direita na mesma zona vertical
+   - CTA com quadrado azul
+════════════════════════════════════════ */
 .hero{
   position:relative;
   min-height:100svh;
   background:#000;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
   padding-top:72px;
   overflow:hidden;
 }
 
-/* grade técnica quase invisível */
-.hero::before{
+/* Imagem de fundo escura — textura industrial */
+.hero__bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 55% 40%,
+      rgba(30,35,50,.85) 0%,
+      rgba(0,0,0,0) 70%),
+    linear-gradient(to right, #000 0%, #000 30%, #0a0d14 60%, #050810 100%);
+  z-index:0;
+}
+/* Padrão de pontos sutis — simula a nuvem de partículas */
+.hero__bg::after{
   content:'';
   position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:80px 80px;
-  pointer-events:none;
-}
-
-.hero__accent-line{
-  position:absolute;
-  left:var(--gutter);
-  top:0;bottom:0;
-  width:1px;
-  background:linear-gradient(to bottom,transparent,var(--blue) 30%,var(--blue) 70%,transparent);
-  opacity:.3;
-}
-
-.hero__content{
-  position:relative;z-index:1;
-  padding-bottom:clamp(2rem,4vh,3.5rem);
+  background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse 60% 70% at 60% 40%,#000 20%,transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse 60% 70% at 60% 40%,#000 20%,transparent 70%);
 }
 
 /*
-  FONT-SIZE exato da Accenture: calc(3vh + 4.2vw)
-  A 1356px viewport isso resolve para ~82px.
-  Inter 900 uppercase tem presença equivalente ao Graphik 500 condensado.
+  Grid de 2 colunas exato da Accenture:
+  área da headline (~65%) | área do subtexto (~35%)
+  A headline "sangra" pela área direita visualmente
+  mas o texto fica contido na coluna esquerda.
 */
-.hero__headline{
-  font-size:calc(3vh + 4.2vw);
-  font-weight:900;
-  letter-spacing:-.03em;
-  line-height:1.05;
-  color:var(--white);
-  text-transform:uppercase;
-  margin-bottom:clamp(1.75rem,3.5vh,3.5rem);
+.hero__grid{
+  position:relative;z-index:1;
+  min-height:calc(100svh - 72px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr auto;
+  padding:0 var(--pad);
+  padding-bottom:2rem;
+  align-items:end;
+  gap:0;
 }
 
-/* linha 1 — margem esquerda base */
-.hero__headline .line1{
-  display:block;
-  padding-left:var(--gutter);
+/* A headline span grid-column 1/3 (full width) mas está alinhada à esquerda */
+.hero__headline-wrap{
+  grid-column:1/3;
+  grid-row:1;
+  display:flex;
+  align-items:flex-end;
+  padding-bottom:2.5rem;
 }
-/* linha 2 — recuada ~16vw (offset 221px @ 1356px) */
+
+/*
+  HEADLINE — Barlow Condensed 900
+  font-size: calc(3vh + 4.2vw) = exato da Accenture
+  A 1356px: 3*8.47 + 4.2*13.56 = 82px
+  Barlow Condensed é ~30% mais estreito que Inter,
+  então "EXCELÊNCIA" a 82px ocupa ~60% da tela — igual à Accenture.
+*/
+.hero__headline{
+  font-family:var(--cond);
+  font-size:calc(3vh + 4.2vw);
+  font-weight:900;
+  letter-spacing:-.01em;
+  line-height:1.0;
+  color:var(--white);
+  text-transform:uppercase;
+  max-width:none;
+}
+.hero__headline .line1{display:block}
 .hero__headline .line2{
   display:block;
-  padding-left:calc(var(--gutter) + 16vw);
+  /* indent linha 2 — offset ~16vw igual Accenture */
+  padding-left:16vw;
 }
-/* linha 3 — retorno parcial para criar diagonal */
-.hero__headline .line3{
-  display:block;
-  padding-left:calc(var(--gutter) + 4vw);
-}
-.hero__headline .accent-word{
+.hero__headline .accent{
   color:var(--blue);
   font-style:italic;
 }
 
-/*
-  FAIXA INFERIOR — grid 2 colunas igual à Accenture:
-  ~65% esquerda: label + parágrafo
-  ~35% direita:  CTA
-  Fica abaixo da headline — sem colisão de espaço.
-*/
-.hero__bottom{
-  padding-inline:var(--gutter);
-  display:grid;
-  grid-template-columns:1.8fr 1fr;
-  gap:clamp(2rem,4vw,5rem);
-  align-items:end;
+/* Coluna esquerda inferior: label + parágrafo */
+.hero__sub-col{
+  grid-column:1;
+  grid-row:2;
+  padding-right:2rem;
 }
-
-.hero__sub-label{
+.hero__label{
   font-family:var(--mono);
   font-size:11px;font-weight:300;
-  letter-spacing:.2em;text-transform:uppercase;
+  letter-spacing:.18em;text-transform:uppercase;
   color:var(--blue);
-  margin-bottom:.75rem;
   display:flex;align-items:center;gap:.75rem;
+  margin-bottom:.875rem;
 }
-.hero__sub-label::before{
-  content:'';display:block;
-  width:2rem;height:1px;
-  background:var(--blue);
-}
+.hero__label::before{content:'';display:block;width:2.5rem;height:1px;background:var(--blue)}
 
 /*
-  Subtexto: tamanho exato Accenture = 32px / weight 500 / line-height 1.2
-  Usa clamp para mobile mas mantém 2rem (32px) no desktop
+  Subtexto: 20px / weight 400 — proporcional à Accenture
+  (Accenture usa 32px mas tem viewport maior e texto mais curto)
 */
 .hero__sub{
-  font-size:clamp(1rem,2vw,2rem);
-  font-weight:500;
-  line-height:1.2;
-  letter-spacing:-.02em;
-  color:var(--grey-90);
-  max-width:22ch;
+  font-family:var(--sans);
+  font-size:clamp(1rem,1.5vw,1.375rem);
+  font-weight:400;
+  line-height:1.5;
+  letter-spacing:-.01em;
+  color:var(--g90);
+  max-width:38ch;
 }
-.hero__sub strong{
-  color:var(--white);font-weight:500;
-}
+.hero__sub strong{color:var(--white);font-weight:500}
 
-.hero__cta-wrap{
-  display:flex;flex-direction:column;
+/* Coluna direita inferior: CTA */
+.hero__cta-col{
+  grid-column:2;
+  grid-row:2;
+  display:flex;
+  flex-direction:column;
   align-items:flex-end;
-  gap:1.25rem;
-  padding-bottom:.125rem;
+  justify-content:flex-end;
+  gap:1rem;
 }
 
-/*
-  CTA: mesmo tamanho do subtexto, peso 500 — exato da Accenture
-*/
+/* Linha azul — acento antes do subtexto direito, igual Accenture */
+.hero__blue-rule{
+  width:2.5rem;height:3px;
+  background:var(--blue);
+  margin-bottom:.5rem;
+}
+
 .hero__cta{
   display:inline-flex;align-items:center;gap:.875rem;
-  font-size:clamp(1rem,2vw,2rem);
+  font-family:var(--sans);
+  font-size:clamp(1rem,1.5vw,1.375rem);
   font-weight:500;
-  letter-spacing:-.02em;
   color:var(--white);
-  transition:gap .2s;
+  transition:gap .18s;
 }
 .hero__cta:hover{gap:1.25rem}
-.hero__cta:hover .cta-arrow{background:var(--blue-dim)}
+.hero__cta:hover .cta-sq{background:var(--blue-dim)}
 
-/* quadrado azul: Accenture usa 24×24px; aqui 30×30px */
-.cta-arrow{
-  width:30px;height:30px;
+/* Quadrado azul com seta — assinatura Accenture */
+.cta-sq{
+  width:36px;height:36px;
   background:var(--blue);
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
-  transition:background .2s;
+  transition:background .18s;
 }
-.cta-arrow svg{width:12px;height:12px;color:#fff}
+.cta-sq svg{width:14px;height:14px;color:#fff}
 
-.hero__secondary-cta{
-  font-family:var(--mono);font-size:11px;font-weight:300;
+.hero__cta2{
+  font-family:var(--mono);
+  font-size:11px;font-weight:300;
   letter-spacing:.14em;text-transform:uppercase;
-  color:var(--grey-60);
-  border-bottom:1px solid var(--grey-30);
+  color:var(--g60);
+  border-bottom:1px solid var(--g30);
   padding-bottom:2px;
   transition:color .2s,border-color .2s;
 }
-.hero__secondary-cta:hover{color:var(--grey-90);border-color:var(--grey-60)}
+.hero__cta2:hover{color:var(--g90);border-color:var(--g60)}
 
-.hero__scroll{
-  font-family:var(--mono);
-  font-size:10px;letter-spacing:.18em;
-  color:var(--grey-30);
-  padding-inline:var(--gutter);
-  padding-top:1rem;
-  padding-bottom:1.25rem;
+/* ════════════════════════════════════════
+   CARDS — abaixo do hero, igual Accenture
+   4 cards clicáveis, full-width, zero gap quase
+   Cada card: label tipo (ARTIGO/PODCAST) + título + imagem
+════════════════════════════════════════ */
+.cards{
+  background:#000;
+  padding:clamp(3rem,5vw,5rem) var(--pad);
+}
+.cards__grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1rem;
 }
 
-/* ─── DIVIDER ─── */
-.rule{height:1px;background:var(--grey-30)}
+.card{
+  display:flex;
+  flex-direction:column;
+  background:var(--g15);
+  cursor:pointer;
+  text-decoration:none;
+  color:inherit;
+  overflow:hidden;
+  transition:opacity .2s;
+  min-height:320px;
+}
+.card:hover{opacity:.85}
 
-/* ─── STATEMENT (entre hero e fundador) ─── */
+.card__top{
+  padding:1.5rem 1.5rem 1rem;
+  flex:1;
+}
+.card__type{
+  font-family:var(--mono);
+  font-size:10px;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--g60);
+  margin-bottom:1rem;
+}
+.card__type--blue{color:var(--blue)}
+.card__title{
+  font-family:var(--cond);
+  font-size:clamp(1.125rem,1.6vw,1.5rem);
+  font-weight:700;
+  line-height:1.2;
+  color:var(--white);
+  letter-spacing:-.01em;
+}
+
+/* Imagem na parte inferior do card */
+.card__img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  display:block;
+  flex-shrink:0;
+  background:var(--g30); /* fallback cor */
+}
+
+/* Variantes de cor de fundo para os cards sem imagem */
+.card--lavender .card__top{background:#2a2640}
+.card--teal .card__top{background:#0d2230}
+.card--dark{background:#111}
+.card--light .card__top{background:#1e1e1e}
+
+/* ════════════════════════════════════════
+   DIVIDER
+════════════════════════════════════════ */
+.rule{height:1px;background:var(--g30)}
+
+/* ════════════════════════════════════════
+   STATEMENT
+════════════════════════════════════════ */
 .statement{
-  padding:clamp(4rem,8vw,7rem) var(--gutter);
+  padding:clamp(4rem,8vw,7rem) var(--pad);
   background:#000;
 }
 .statement__text{
-  font-size:clamp(1.5rem,3.5vw,3rem);
+  font-family:var(--sans);
+  font-size:clamp(1.375rem,3vw,2.5rem);
   font-weight:300;
-  line-height:1.3;
-  color:var(--grey-90);
+  line-height:1.35;
+  color:var(--g90);
   max-width:28ch;
 }
-.statement__text strong{
-  font-weight:800;
-  color:var(--white);
-}
-.statement__text em{
-  font-style:italic;
-  color:var(--blue);
-}
+.statement__text strong{font-weight:700;color:var(--white)}
+.statement__text em{font-style:italic;color:var(--blue)}
 
-/* ─── FOUNDER ─── */
+/* ════════════════════════════════════════
+   FOUNDER
+════════════════════════════════════════ */
 .founder{
-  background:var(--grey-15);
-  padding-block:var(--section-v);
+  background:var(--g15);
+  padding:clamp(5rem,10vw,9rem) var(--pad);
 }
 .founder__inner{
-  padding-inline:var(--gutter);
   display:grid;
   grid-template-columns:1fr 1.6fr;
   gap:clamp(3rem,6vw,7rem);
   align-items:start;
 }
-.founder__left{}
 .founder__photo{
   aspect-ratio:3/4;
-  background:var(--grey-30);
+  background:var(--g30);
   position:relative;
   overflow:hidden;
   max-height:480px;
@@ -316,239 +417,230 @@ p{text-wrap:pretty}
 .founder__photo-initials{
   position:absolute;inset:0;
   display:flex;align-items:center;justify-content:center;
+  font-family:var(--cond);
   font-size:clamp(5rem,10vw,10rem);
   font-weight:900;
-  color:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.05);
   letter-spacing:-.05em;
   user-select:none;
 }
-.founder__photo-name{
-  position:absolute;
-  bottom:1.5rem;left:1.5rem;right:1.5rem;
+.founder__photo-caption{
+  position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;
 }
-.founder__photo-name-text{
-  font-size:clamp(1.25rem,2.5vw,1.75rem);
+.founder__photo-name{
+  font-family:var(--cond);
+  font-size:clamp(1.5rem,2.5vw,2rem);
   font-weight:700;
   color:var(--white);
-  line-height:1.1;
   letter-spacing:-.01em;
+  line-height:1.1;
 }
-.founder__photo-name-role{
+.founder__photo-role{
   font-family:var(--mono);
-  font-size:11px;font-weight:300;
+  font-size:10px;font-weight:300;
   letter-spacing:.14em;text-transform:uppercase;
-  color:var(--grey-60);
+  color:var(--g60);
   margin-top:.5rem;
 }
-.founder__credentials{
+.founder__creds{
   display:flex;flex-wrap:wrap;gap:.4rem;
   margin-top:1.5rem;
 }
 .cred{
   font-family:var(--mono);
   font-size:10px;font-weight:400;
-  letter-spacing:.08em;
-  color:var(--grey-60);
-  border:1px solid var(--grey-30);
-  padding:.25rem .6rem;
+  letter-spacing:.07em;
+  color:var(--g60);
+  border:1px solid var(--g30);
+  padding:.2rem .55rem;
 }
-.cred--blue{
-  color:var(--blue);
-  border-color:var(--blue-dim);
-  background:rgba(58,114,200,.07);
-}
+.cred--blue{color:var(--blue);border-color:var(--blue-dim);background:rgba(58,114,200,.07)}
+
 .founder__right{}
-.founder__label{
+.founder__eyebrow{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.2em;text-transform:uppercase;
-  color:var(--grey-60);
+  color:var(--g60);
   display:flex;align-items:center;gap:.75rem;
   margin-bottom:2.5rem;
 }
-.founder__label::after{content:'';flex:0 0 2rem;height:1px;background:var(--grey-30)}
+.founder__eyebrow::after{content:'';flex:0 0 2rem;height:1px;background:var(--g30)}
 .founder__heading{
-  font-size:clamp(1.5rem,2.8vw,2.5rem);
-  font-weight:800;
-  color:var(--white);
-  letter-spacing:-.025em;
-  line-height:1.05;
-  margin-bottom:2.5rem;
+  font-family:var(--cond);
+  font-size:clamp(2rem,4vw,4rem);
+  font-weight:900;
+  letter-spacing:-.02em;
+  line-height:.95;
   text-transform:uppercase;
+  color:var(--white);
+  margin-bottom:2.5rem;
 }
 .founder__para{
-  font-size:clamp(.875rem,1.1vw,1rem);
-  font-weight:300;line-height:1.8;
-  color:var(--grey-60);
+  font-size:clamp(.9375rem,1.1vw,1.0625rem);
+  font-weight:300;
+  line-height:1.8;
+  color:var(--g60);
   max-width:60ch;
 }
 .founder__para+.founder__para{margin-top:1.5rem}
-.founder__para strong{color:var(--grey-90);font-weight:400}
+.founder__para strong{color:var(--g90);font-weight:400}
 .founder__quote{
-  border-left:1px solid var(--blue);
+  border-left:2px solid var(--blue);
   padding-left:1.5rem;
   margin-block:2.5rem;
+  font-family:var(--sans);
   font-size:clamp(1rem,1.5vw,1.25rem);
   font-weight:300;
   font-style:italic;
   line-height:1.5;
-  color:var(--grey-90);
+  color:var(--g90);
 }
 
-/* ─── CAPABILITIES ─── */
+/* ════════════════════════════════════════
+   CAPABILITIES
+════════════════════════════════════════ */
 .capabilities{
   background:#000;
-  padding-block:var(--section-v);
+  padding:clamp(5rem,10vw,9rem) 0;
 }
 .capabilities__header{
-  padding-inline:var(--gutter);
-  margin-bottom:clamp(3rem,5vw,5rem);
+  padding:0 var(--pad);
   display:flex;
   align-items:flex-end;
   justify-content:space-between;
   gap:2rem;
+  margin-bottom:clamp(3rem,5vw,5rem);
 }
-.capabilities__title-block{}
+.capabilities__heading{
+  font-family:var(--cond);
+  font-size:clamp(3rem,7vw,8rem);
+  font-weight:900;
+  letter-spacing:-.03em;
+  line-height:.9;
+  text-transform:uppercase;
+  color:var(--white);
+}
+.capabilities__heading .accent{color:var(--blue);font-style:italic}
 .capabilities__eyebrow{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.2em;text-transform:uppercase;
-  color:var(--grey-60);
-  display:flex;align-items:center;gap:.75rem;
-  margin-bottom:1.5rem;
+  color:var(--g60);
+  margin-bottom:1rem;
 }
-.capabilities__eyebrow::after{content:'';flex:0 0 2rem;height:1px;background:var(--grey-30)}
-.capabilities__heading{
-  font-size:clamp(2.5rem,6vw,7rem);
-  font-weight:900;
-  letter-spacing:-.04em;
-  line-height:.95;
-  color:var(--white);
-  text-transform:uppercase;
-}
-.capabilities__heading .accent{color:var(--blue);font-style:italic}
 .capabilities__desc{
   max-width:34ch;
-  font-size:clamp(.8125rem,1vw,.9375rem);
+  font-size:clamp(.875rem,1.1vw,1rem);
   font-weight:300;line-height:1.75;
-  color:var(--grey-60);
-  flex-shrink:0;
-  align-self:flex-end;
+  color:var(--g60);
+  flex-shrink:0;align-self:flex-end;
 }
 
-/* LISTA EDITORIAL — sem cards */
-.cap-list{border-top:1px solid var(--grey-30)}
+.cap-list{border-top:1px solid var(--g30)}
 .cap{
-  padding-inline:var(--gutter);
-  padding-block:clamp(2.5rem,4vw,3.5rem);
-  border-bottom:1px solid var(--grey-30);
+  padding:clamp(2rem,3.5vw,3rem) var(--pad);
+  border-bottom:1px solid var(--g30);
   display:grid;
-  grid-template-columns:3.5rem 1fr 2.2fr;
+  grid-template-columns:3.5rem 1fr 2.4fr;
   gap:clamp(1.5rem,3vw,3rem);
   align-items:start;
-  transition:background .25s;
+  transition:background .2s;
 }
-.cap:hover{background:var(--grey-15)}
+.cap:hover{background:var(--g15)}
 .cap__num{
   font-family:var(--mono);
   font-size:11px;font-weight:300;
-  letter-spacing:.12em;
-  color:var(--grey-30);
+  letter-spacing:.1em;
+  color:var(--g30);
   padding-top:.15em;
 }
 .cap__name{
-  font-size:clamp(1.125rem,2vw,1.75rem);
+  font-family:var(--cond);
+  font-size:clamp(1.25rem,2vw,2rem);
   font-weight:800;
   color:var(--white);
-  letter-spacing:-.02em;
-  line-height:1.1;
+  letter-spacing:-.01em;
   text-transform:uppercase;
+  line-height:1.1;
 }
-.cap__tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1rem}
+.cap__tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.875rem}
 .tag{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
-  letter-spacing:.07em;
-  color:var(--grey-30);
-  border:1px solid var(--grey-30);
+  letter-spacing:.06em;
+  color:var(--g30);
+  border:1px solid var(--g30);
   padding:.2rem .5rem;
 }
 .cap__body{
-  font-size:clamp(.8125rem,1vw,.9375rem);
+  font-size:clamp(.875rem,1vw,.9375rem);
   font-weight:300;line-height:1.8;
-  color:var(--grey-60);
+  color:var(--g60);
 }
-.cap__body strong{color:var(--grey-90);font-weight:400}
+.cap__body strong{color:var(--g90);font-weight:400}
 .cap__body p+p{margin-top:1.25rem}
 
-/* ─── ARGUMENT ─── */
+/* ════════════════════════════════════════
+   ARGUMENT
+════════════════════════════════════════ */
 .argument{
-  background:var(--grey-15);
-  padding-block:var(--section-v);
+  background:var(--g15);
+  padding:clamp(5rem,10vw,9rem) var(--pad);
 }
-.argument__inner{padding-inline:var(--gutter)}
-
-/* headline display gigante */
 .argument__display{
+  font-family:var(--cond);
   font-size:clamp(3.5rem,9vw,11rem);
   font-weight:900;
-  letter-spacing:-.04em;
+  letter-spacing:-.03em;
   line-height:.93;
   text-transform:uppercase;
   color:var(--white);
   margin-bottom:clamp(3.5rem,6vw,6rem);
 }
-.argument__display .step1{display:block;padding-left:0}
-.argument__display .step2{
-  display:block;
-  padding-left:clamp(3rem,7vw,9rem);
-  color:var(--grey-30);
-}
-.argument__display .step3{
-  display:block;
-  padding-left:clamp(1rem,3vw,4rem);
-}
+.argument__display .s1{display:block}
+.argument__display .s2{display:block;padding-left:clamp(3rem,8vw,10rem);color:var(--g30)}
+.argument__display .s3{display:block;padding-left:clamp(1rem,3vw,4rem)}
 .argument__display .blue{color:var(--blue);font-style:italic}
 
 .argument__grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:0;
-  border-top:1px solid var(--grey-30);
+  border-top:1px solid var(--g30);
 }
 .arg-block{
   padding:clamp(2rem,3.5vw,3rem);
-  border-bottom:1px solid var(--grey-30);
+  border-bottom:1px solid var(--g30);
 }
-.arg-block:nth-child(odd){border-right:1px solid var(--grey-30)}
+.arg-block:nth-child(odd){border-right:1px solid var(--g30)}
 .arg-block__label{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.18em;text-transform:uppercase;
-  color:var(--blue);
-  margin-bottom:1rem;
+  color:var(--blue);margin-bottom:1rem;
 }
 .arg-block__title{
-  font-size:clamp(1rem,1.6vw,1.375rem);
+  font-family:var(--cond);
+  font-size:clamp(1.125rem,1.8vw,1.5rem);
   font-weight:700;
   color:var(--white);
-  letter-spacing:-.015em;
-  line-height:1.2;
+  letter-spacing:-.01em;line-height:1.15;
   margin-bottom:1rem;
 }
 .arg-block__text{
-  font-size:clamp(.8125rem,.95vw,.9375rem);
+  font-size:clamp(.875rem,.95vw,.9375rem);
   font-weight:300;line-height:1.8;
-  color:var(--grey-60);
+  color:var(--g60);
 }
-.arg-block__text strong{color:var(--grey-90);font-weight:400}
+.arg-block__text strong{color:var(--g90);font-weight:400}
 
-/* ─── METHOD ─── */
+/* ════════════════════════════════════════
+   METHOD
+════════════════════════════════════════ */
 .method{
   background:#000;
-  padding-block:var(--section-v);
+  padding:clamp(5rem,10vw,9rem) var(--pad);
 }
-.method__inner{padding-inline:var(--gutter)}
 .method__header{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -557,68 +649,68 @@ p{text-wrap:pretty}
   align-items:end;
 }
 .method__heading{
+  font-family:var(--cond);
   font-size:clamp(3rem,7vw,8rem);
   font-weight:900;
-  letter-spacing:-.04em;
+  letter-spacing:-.03em;
   line-height:.95;
   text-transform:uppercase;
   color:var(--white);
 }
 .method__heading span{color:var(--blue);font-style:italic}
 .method__desc{
-  font-size:clamp(.8125rem,1vw,.9375rem);
+  font-size:clamp(.875rem,1.1vw,1rem);
   font-weight:300;line-height:1.75;
-  color:var(--grey-60);
+  color:var(--g60);
 }
-.method__desc strong{color:var(--grey-90);font-weight:400}
-.method__steps{border-top:1px solid var(--grey-30)}
+.method__desc strong{color:var(--g90);font-weight:400}
+.method__steps{border-top:1px solid var(--g30)}
 .step{
   display:grid;
   grid-template-columns:5rem 1fr;
   gap:clamp(1.5rem,3vw,3rem);
-  padding-block:clamp(2rem,3.5vw,3rem);
-  border-bottom:1px solid var(--grey-30);
-  align-items:start;
+  padding:clamp(2rem,3.5vw,3rem) 0;
+  border-bottom:1px solid var(--g30);
 }
 .step__num{
   font-family:var(--mono);
   font-size:11px;font-weight:300;
-  letter-spacing:.1em;
-  color:var(--grey-30);
+  letter-spacing:.1em;color:var(--g30);
   padding-top:.2em;
 }
 .step__title{
-  font-size:clamp(1rem,1.5vw,1.25rem);
-  font-weight:600;
+  font-family:var(--cond);
+  font-size:clamp(1.125rem,1.6vw,1.375rem);
+  font-weight:700;
   color:var(--white);
   letter-spacing:-.01em;
+  text-transform:uppercase;
   margin-bottom:.75rem;
 }
 .step__text{
-  font-size:clamp(.8125rem,.95vw,.9375rem);
-  font-weight:300;line-height:1.8;
-  color:var(--grey-60);
+  font-size:clamp(.875rem,.95vw,.9375rem);
+  font-weight:300;line-height:1.8;color:var(--g60);
 }
-.step__text strong{color:var(--grey-90);font-weight:400}
+.step__text strong{color:var(--g90);font-weight:400}
 
-/* ─── CONTACT ─── */
+/* ════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════ */
 .contact{
-  background:var(--grey-15);
-  padding-block:var(--section-v);
+  background:var(--g15);
+  padding:clamp(5rem,10vw,9rem) var(--pad);
 }
-.contact__inner{padding-inline:var(--gutter)}
 .contact__heading{
+  font-family:var(--cond);
   font-size:clamp(3.5rem,9vw,11rem);
   font-weight:900;
-  letter-spacing:-.04em;
+  letter-spacing:-.03em;
   line-height:.93;
   text-transform:uppercase;
   color:var(--white);
   margin-bottom:clamp(3rem,5vw,5rem);
 }
-.contact__heading .step{
-  display:block;
-}
+.contact__heading .sc{display:block}
 .contact__heading .s2{padding-left:clamp(2rem,5vw,7rem)}
 .contact__heading .blue{color:var(--blue);font-style:italic}
 .contact__grid{
@@ -627,39 +719,32 @@ p{text-wrap:pretty}
   gap:clamp(3rem,6vw,7rem);
   align-items:start;
 }
-.contact__left{}
 .contact__body{
-  font-size:clamp(.875rem,1.1vw,1rem);
+  font-size:clamp(.9375rem,1.1vw,1.0625rem);
   font-weight:300;line-height:1.8;
-  color:var(--grey-60);
-  max-width:46ch;
+  color:var(--g60);max-width:46ch;
   margin-bottom:2.5rem;
 }
-.contact__body strong{color:var(--grey-90);font-weight:400}
-.contact__direct{display:flex;flex-direction:column;gap:1rem}
+.contact__body strong{color:var(--g90);font-weight:400}
+.contact__direct{display:flex;flex-direction:column;gap:.875rem}
 .contact__row{display:flex;align-items:baseline;gap:1.5rem}
-.contact__row-label{
+.contact__lbl{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.16em;text-transform:uppercase;
-  color:var(--grey-30);
-  flex-shrink:0;
-  min-width:4.5rem;
+  color:var(--g30);min-width:4.5rem;flex-shrink:0;
 }
-.contact__row-val{
-  font-size:clamp(.8125rem,.95vw,.9375rem);
-  font-weight:300;
-  color:var(--grey-60);
+.contact__val{
+  font-size:clamp(.875rem,.95vw,.9375rem);
+  font-weight:300;color:var(--g60);
   transition:color .2s;
 }
-a.contact__row-val:hover{color:var(--blue)}
-.contact__right{}
-.contact__form-label{
+a.contact__val:hover{color:var(--blue)}
+.contact__form-lbl{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.18em;text-transform:uppercase;
-  color:var(--grey-60);
-  margin-bottom:1.5rem;
+  color:var(--g60);margin-bottom:1.5rem;
 }
 .form__row{margin-bottom:1rem}
 .form__lbl{
@@ -667,131 +752,136 @@ a.contact__row-val:hover{color:var(--blue)}
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.12em;text-transform:uppercase;
-  color:var(--grey-30);
-  margin-bottom:.4rem;
+  color:var(--g30);margin-bottom:.4rem;
 }
 .form__input,.form__textarea{
   width:100%;
-  background:var(--grey-30);
+  background:var(--g30);
   border:1px solid transparent;
-  color:var(--grey-90);
+  color:var(--g90);
   font-size:14px;font-weight:300;
   padding:.6rem .875rem;
-  outline:none;
-  border-radius:0;-webkit-appearance:none;
+  outline:none;border-radius:0;
+  -webkit-appearance:none;
   transition:border-color .2s,background .2s;
 }
-.form__input:focus,.form__textarea:focus{
-  border-color:var(--blue);
-  background:#1a1917;
-}
+.form__input:focus,.form__textarea:focus{border-color:var(--blue);background:#1a1917}
 .form__textarea{resize:vertical;min-height:7rem;line-height:1.6}
 .form__submit{
   margin-top:1.25rem;
   display:inline-flex;align-items:center;gap:.875rem;
-  font-size:13px;font-weight:400;
+  font-family:var(--sans);
+  font-size:clamp(.9375rem,1.2vw,1.125rem);
+  font-weight:500;
   color:var(--white);
-  cursor:pointer;
-  transition:gap .2s;
-  background:none;border:none;
-  padding:0;
+  cursor:pointer;background:none;border:none;padding:0;
+  transition:gap .18s;
 }
 .form__submit:hover{gap:1.25rem}
-.form__submit:hover .cta-arrow{background:var(--blue-dim)}
+.form__submit:hover .cta-sq{background:var(--blue-dim)}
 .form__note{
   margin-top:.875rem;
   font-family:var(--mono);
   font-size:10px;font-weight:300;
-  letter-spacing:.1em;
-  color:var(--grey-30);
+  letter-spacing:.1em;color:var(--g30);
 }
 
-/* ─── FOOTER ─── */
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
 .footer{
   background:#000;
-  border-top:1px solid var(--grey-30);
+  border-top:1px solid var(--g30);
   padding-top:3rem;
   overflow:hidden;
 }
 .footer__inner{
-  padding-inline:var(--gutter);
+  padding:0 var(--pad) 2.5rem;
   display:flex;
   align-items:flex-start;
   justify-content:space-between;
   gap:2rem;
   flex-wrap:wrap;
-  margin-bottom:3rem;
 }
 .footer__tagline{
   font-size:clamp(.875rem,1.2vw,1rem);
-  font-weight:300;
-  color:var(--grey-60);
-  max-width:34ch;
-  line-height:1.6;
+  font-weight:300;color:var(--g60);
+  max-width:32ch;line-height:1.6;
 }
 .footer__tagline strong{color:var(--white);font-weight:400}
-.footer__links{
-  display:flex;gap:2.5rem;
-}
+.footer__links{display:flex;gap:2.5rem}
 .footer__links a{
   font-family:var(--mono);
   font-size:10px;font-weight:300;
   letter-spacing:.14em;text-transform:uppercase;
-  color:var(--grey-30);
-  transition:color .2s;
+  color:var(--g30);transition:color .2s;
 }
-.footer__links a:hover{color:var(--grey-60)}
+.footer__links a:hover{color:var(--g60)}
 .footer__copy{
-  padding-inline:var(--gutter);
-  padding-bottom:1.5rem;
+  padding:0 var(--pad) 1.5rem;
   font-family:var(--mono);
   font-size:10px;font-weight:300;
-  letter-spacing:.08em;
-  color:var(--grey-30);
+  letter-spacing:.08em;color:var(--g30);
 }
-
-/* ─── FOOTER BLEED TYPE ─── */
+/* Tipografia sangrada — assinatura visual como Accenture "CHANGE" */
 .footer__bleed{
-  font-size:clamp(5rem,18vw,22rem);
+  font-family:var(--cond);
+  font-size:clamp(5rem,20vw,24rem);
   font-weight:900;
   letter-spacing:-.05em;
   line-height:.85;
   text-transform:uppercase;
-  color:var(--grey-15);
+  color:var(--g15);
   white-space:nowrap;
-  padding-left:var(--gutter);
-  user-select:none;
-  pointer-events:none;
-  margin-top:1.5rem;
+  padding-left:var(--pad);
+  user-select:none;pointer-events:none;
+  margin-top:1rem;
 }
 
-/* ─── MOBILE ─── */
-@media(max-width:860px){
-  .nav__links,.nav__contact{display:none}
+/* ════════════════════════════════════════
+   FADE IN
+════════════════════════════════════════ */
+.fade{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.fade.in{opacity:1;transform:none}
+.fade[data-d="1"]{transition-delay:.1s}
+.fade[data-d="2"]{transition-delay:.2s}
+.fade[data-d="3"]{transition-delay:.3s}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:900px){
+  .nav__links{position:static;transform:none;display:none}
+  .nav__wordmark{display:none}
   .nav__mobile-btn{display:flex}
 
   .nav__mobile-menu{
     display:none;
-    position:fixed;left:0;right:0;top:60px;bottom:0;
+    position:fixed;left:0;right:0;top:72px;bottom:0;
     background:#000;
-    padding:2.5rem var(--gutter);
+    padding:2.5rem var(--pad);
     flex-direction:column;gap:2rem;
-    z-index:99;
-    overflow-y:auto;
+    z-index:99;overflow-y:auto;
   }
   .nav__mobile-menu.open{display:flex}
   .nav__mobile-menu a{
-    font-size:clamp(1.25rem,4vw,1.75rem);
-    font-weight:600;letter-spacing:-.01em;
-    color:var(--grey-90);
-    text-transform:uppercase;
+    font-family:var(--cond);
+    font-size:clamp(1.5rem,5vw,2rem);
+    font-weight:700;text-transform:uppercase;
+    color:var(--g90);
   }
   .nav__mobile-menu a:hover{color:var(--blue)}
 
-  .hero__bottom{grid-template-columns:1fr;gap:1.5rem}
-  .hero__cta-wrap{align-items:flex-start}
-  .hero__sub{max-width:100%;font-size:clamp(.9375rem,3.5vw,1.5rem)}
-  .hero__cta{font-size:clamp(.9375rem,3.5vw,1.5rem)}
+  /* Hero: headline toma tudo, sub e CTA empilham */
+  .hero__grid{
+    grid-template-columns:1fr;
+    grid-template-rows:1fr auto auto;
+  }
+  .hero__headline-wrap{grid-column:1}
+  .hero__sub-col{grid-column:1;padding-right:0;padding-top:1.5rem}
+  .hero__cta-col{grid-column:1;align-items:flex-start;padding-top:1.5rem}
+
+  .cards__grid{grid-template-columns:repeat(2,1fr)}
 
   .founder__inner{grid-template-columns:1fr}
   .founder__photo{max-height:340px}
@@ -811,125 +901,178 @@ a.contact__row-val:hover{color:var(--blue)}
 }
 
 @media(max-width:520px){
-  .hero__headline{font-size:clamp(2rem,9vw,3.5rem)}
-  .argument__display{font-size:clamp(2.5rem,9vw,4rem)}
-  .contact__heading{font-size:clamp(2.5rem,9vw,4rem)}
-  .method__heading{font-size:clamp(2.5rem,9vw,4rem)}
-  .capabilities__heading{font-size:clamp(2rem,8vw,3.5rem)}
-  .footer__bleed{font-size:clamp(3.5rem,14vw,8rem)}
+  .hero__headline{font-size:clamp(2.25rem,10vw,4rem)}
+  .cards__grid{grid-template-columns:1fr}
+  .argument__display,.contact__heading,.method__heading,.capabilities__heading{
+    font-size:clamp(2.5rem,10vw,4rem)
+  }
+  .footer__bleed{font-size:clamp(3.5rem,16vw,8rem)}
 }
-
-/* ─── FADE IN ─── */
-.fade{opacity:0;transform:translateY(18px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
-.fade.in{opacity:1;transform:none}
-.fade[data-delay="1"]{transition-delay:.1s}
-.fade[data-delay="2"]{transition-delay:.2s}
-.fade[data-delay="3"]{transition-delay:.3s}
-
 </style>
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
+<!-- ════ NAV ════ -->
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a href="#" class="nav__logo" aria-label="Rossiter Consulting">
-      <svg class="nav__chevron" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-        <polyline points="6,4 16,11 6,18" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/>
+
+    <!-- Logo: apenas chevron azul, sem wordmark no hero -->
+    <a href="#" class="nav__logo" aria-label="Rossiter Consulting — início">
+      <svg class="nav__chevron" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <polyline points="10,6 26,18 10,30" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
       </svg>
-      <span class="nav__wordmark">Rossiter Consulting</span>
     </a>
 
+    <!-- Links centralizados -->
     <nav aria-label="Principal">
-      <ul class="nav__links" role="list">
+      <ul class="nav__links" id="nav-links" role="list">
         <li><a href="#especialista">Especialista</a></li>
         <li><a href="#capacidades">Capacidades</a></li>
         <li><a href="#metodo">Método</a></li>
+        <li><a href="#contato">Contato</a></li>
       </ul>
     </nav>
 
-    <div style="display:flex;align-items:center;gap:1.25rem">
-      <a href="#contato" class="nav__contact">Diagnóstico</a>
+    <!-- Direita -->
+    <div class="nav__right">
+      <span class="nav__wordmark">Rossiter Consulting</span>
+      <a href="#contato" class="nav__cta">Diagnóstico</a>
       <button class="nav__mobile-btn" id="mobile-btn" aria-label="Menu" aria-expanded="false">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
           <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
       </button>
     </div>
+
   </div>
 
-  <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+  <!-- Menu mobile -->
+  <div class="nav__mobile-menu" id="mobile-menu">
     <a href="#especialista">Especialista</a>
     <a href="#capacidades">Capacidades</a>
     <a href="#metodo">Método</a>
+    <a href="#contato">Contato</a>
     <a href="#contato" style="color:var(--blue)!important">Diagnóstico →</a>
   </div>
 </header>
 
 
-<!-- ─── HERO ─── -->
-<section class="hero" aria-labelledby="hero-h1">
-  <div class="hero__accent-line" aria-hidden="true"></div>
+<!-- ════ HERO ════ -->
+<section class="hero" aria-labelledby="h1">
+  <div class="hero__bg" aria-hidden="true"></div>
 
-  <div class="hero__content">
-    <h1 class="hero__headline" id="hero-h1" aria-label="Excelência operacional em indústrias que não podem falhar">
-      <span class="line1">EXCELÊNCIA</span>
-      <span class="line2">OPERACIONAL</span>
-      <span class="line3">EM INDÚSTRIAS QUE NÃO PODEM <em class="accent-word">FALHAR.</em></span>
-    </h1>
+  <div class="hero__grid">
 
-    <div class="hero__bottom">
-      <div>
-        <p class="hero__sub-label">Rossiter Consulting</p>
-        <p class="hero__sub">
-          Sistemas de gestão ISO, Lean Six Sigma e engenharia de qualidade aplicados diretamente por um especialista com histórico real em operações
-          <strong>EMEA e América do Sul.</strong> Sem consultores júnior. Sem PowerPoint no lugar de solução.
-        </p>
-      </div>
-      <div class="hero__cta-wrap">
-        <a href="#contato" class="hero__cta">
-          Agendar diagnóstico
-          <span class="cta-arrow" aria-hidden="true">
-            <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-          </span>
-        </a>
-        <a href="#especialista" class="hero__secondary-cta">Conhecer o especialista</a>
-      </div>
+    <!-- Headline — span full width, alinhada esquerda com escada -->
+    <div class="hero__headline-wrap">
+      <h1 class="hero__headline" id="h1"
+          aria-label="Excelência operacional em indústrias que não podem falhar">
+        <span class="line1">EXCELÊNCIA OPERACIONAL</span>
+        <span class="line2">EM INDÚSTRIAS QUE NÃO PODEM <em class="accent">FALHAR.</em></span>
+      </h1>
     </div>
-  </div>
 
-  <div class="hero__scroll" aria-hidden="true">
-    <span style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--grey-30)">SCROLL</span>
+    <!-- Coluna esquerda: subtexto -->
+    <div class="hero__sub-col">
+      <p class="hero__label">Rossiter Consulting</p>
+      <p class="hero__sub">
+        Sistemas de gestão ISO, Lean Six Sigma e engenharia de qualidade aplicados diretamente por um especialista com histórico real em operações
+        <strong>EMEA e América do Sul.</strong>
+        Sem consultores júnior. Sem PowerPoint no lugar de solução.
+      </p>
+    </div>
+
+    <!-- Coluna direita: CTA -->
+    <div class="hero__cta-col">
+      <div class="hero__blue-rule" aria-hidden="true"></div>
+      <a href="#contato" class="hero__cta">
+        Agendar diagnóstico
+        <span class="cta-sq" aria-hidden="true">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+        </span>
+      </a>
+      <a href="#especialista" class="hero__cta2">Conhecer o especialista</a>
+    </div>
+
   </div>
 </section>
 
 
-<!-- ─── STATEMENT ─── -->
+<!-- ════ CARDS — abaixo do hero, igual Accenture ════ -->
+<section class="cards" aria-label="Capacidades em destaque">
+  <div class="cards__grid">
+
+    <a href="#especialista" class="card card--lavender" aria-label="Sobre o especialista">
+      <div class="card__top">
+        <p class="card__type card__type--blue">PERFIL</p>
+        <h3 class="card__title">Lead Auditor IMS + Master Black Belt + Intl. Welding Engineer</h3>
+      </div>
+      <div class="card__img" style="background:linear-gradient(135deg,#2a2640 0%,#1a1530 100%);display:flex;align-items:flex-end;padding:1.5rem">
+        <span style="font-family:var(--cond);font-size:3rem;font-weight:900;color:rgba(255,255,255,.12);line-height:1">ER</span>
+      </div>
+    </a>
+
+    <a href="#capacidades" class="card card--teal" aria-label="Sistemas de gestão ISO">
+      <div class="card__top">
+        <p class="card__type">CAPACIDADE</p>
+        <h3 class="card__title">Sistemas de Gestão ISO 9001, 45001 e SGI</h3>
+      </div>
+      <div class="card__img" style="background:linear-gradient(135deg,#0d2230 0%,#061520 100%);display:flex;align-items:flex-end;padding:1.5rem">
+        <span style="font-family:var(--mono);font-size:.75rem;color:rgba(58,114,200,.5);letter-spacing:.1em">ISO · IMS · SGI · AUDIT</span>
+      </div>
+    </a>
+
+    <a href="#capacidades" class="card" aria-label="Lean Six Sigma">
+      <div class="card__top" style="background:#0e0e0c">
+        <p class="card__type">CAPACIDADE</p>
+        <h3 class="card__title">Lean Six Sigma &amp; Análise Estatística Avançada</h3>
+      </div>
+      <div class="card__img" style="background:linear-gradient(135deg,#12100e 0%,#1a1810 100%);display:flex;align-items:flex-end;padding:1.5rem">
+        <span style="font-family:var(--mono);font-size:.75rem;color:rgba(255,255,255,.15);letter-spacing:.1em">DMAIC · SPC · MSA · DOE</span>
+      </div>
+    </a>
+
+    <a href="#metodo" class="card" aria-label="Método de trabalho">
+      <div class="card__top" style="background:#161412">
+        <p class="card__type">MÉTODO</p>
+        <h3 class="card__title">Sistema rodando quando o projeto termina</h3>
+      </div>
+      <div class="card__img" style="background:linear-gradient(135deg,#111 0%,#0a0a0a 100%);display:flex;align-items:flex-end;padding:1.5rem">
+        <span style="font-family:var(--mono);font-size:.75rem;color:rgba(255,255,255,.12);letter-spacing:.1em">DIAGNÓSTICO → PLANO → EXECUÇÃO → AUTONOMIA</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+
 <div class="rule"></div>
-<section class="statement fade" aria-label="Proposta de valor">
+
+<!-- ════ STATEMENT ════ -->
+<section class="statement fade" aria-label="Proposta">
   <p class="statement__text">
     A maioria dos problemas operacionais não é falta de ferramenta.<br>
     É falta de <strong>diagnóstico preciso</strong>, execução real<br>
     e um sistema que <em>sobreviva ao fim do projeto.</em>
   </p>
 </section>
+
 <div class="rule"></div>
 
-
-<!-- ─── FOUNDER ─── -->
+<!-- ════ FOUNDER ════ -->
 <section class="founder" id="especialista" aria-label="O especialista">
   <div class="founder__inner">
 
-    <div class="founder__left fade">
+    <div class="fade">
       <div class="founder__photo" role="img" aria-label="Eduardo Rossiter">
         <div class="founder__photo-bg"></div>
         <div class="founder__photo-initials" aria-hidden="true">ER</div>
-        <div class="founder__photo-name">
-          <p class="founder__photo-name-text">Eduardo<br>Rossiter</p>
-          <p class="founder__photo-name-role">Principal · Rossiter Consulting</p>
+        <div class="founder__photo-caption">
+          <p class="founder__photo-name">Eduardo<br>Rossiter</p>
+          <p class="founder__photo-role">Principal · Rossiter Consulting</p>
         </div>
       </div>
-      <div class="founder__credentials" role="list" aria-label="Credenciais">
+      <div class="founder__creds" role="list">
         <span class="cred cred--blue" role="listitem">Lead Auditor IMS</span>
         <span class="cred cred--blue" role="listitem">Master Black Belt</span>
         <span class="cred cred--blue" role="listitem">Intl. Welding Engineer</span>
@@ -941,24 +1084,20 @@ a.contact__row-val:hover{color:var(--blue)}
       </div>
     </div>
 
-    <div class="founder__right">
-      <p class="founder__label">O especialista</p>
+    <div>
+      <p class="founder__eyebrow">O especialista</p>
       <h2 class="founder__heading fade">O ARGUMENTO<br>DE CONFIANÇA</h2>
-
-      <p class="founder__para fade" data-delay="1">
-        Há mais de uma década Eduardo Rossiter opera nos estratos onde a convergência de rigor normativo, análise estatística avançada e execução em campo é inegociável. Sua trajetória atravessou a coordenação de qualidade <strong>EMEA na thyssenkrupp / FLSmidth</strong>, gestão de projetos de engenharia em múltiplos países simultaneamente e a liderança de implantações de sistemas integrados de gestão em ambientes industriais de alta complexidade.
+      <p class="founder__para fade" data-d="1">
+        Há mais de uma década Eduardo Rossiter opera nos estratos onde a convergência de rigor normativo, análise estatística avançada e execução em campo é inegociável. Sua trajetória atravessou a coordenação de qualidade <strong>EMEA na thyssenkrupp / FLSmidth</strong>, gestão de projetos em múltiplos países e a liderança de implantações de sistemas integrados de gestão em ambientes industriais de alta complexidade.
       </p>
-
-      <blockquote class="founder__quote fade" data-delay="2">
+      <blockquote class="founder__quote fade" data-d="2">
         "A combinação de Lead Auditor IMS, Master Black Belt e International Welding Engineer em uma única pessoa é estatisticamente rara. Cada credencial representa um domínio distinto; os três juntos formam uma perspectiva difícil de replicar."
       </blockquote>
-
-      <p class="founder__para fade" data-delay="2">
-        O diferencial não está na quantidade de certificações, mas no que elas permitem na prática: <strong>diagnosticar uma não-conformidade normativa, quantificar seu impacto em DPMO e propor a solução técnica em soldagem</strong> — sem precisar de três consultores diferentes, sem perda de contexto entre fases.
+      <p class="founder__para fade" data-d="2">
+        O diferencial não está na quantidade de certificações, mas no que elas permitem na prática: <strong>diagnosticar uma não-conformidade normativa, quantificar seu impacto em DPMO e propor a solução técnica em soldagem</strong> — sem precisar de três consultores diferentes.
       </p>
-
-      <p class="founder__para fade" data-delay="3">
-        Ao operar como especialista solo, Eduardo entrega acesso direto, sem atrito de hierarquia. <strong>O projeto pertence ao cliente desde o início:</strong> sistemas que funcionam quando a consultoria termina, métricas que o time interno interpreta, rotinas que não dependem de presença permanente.
+      <p class="founder__para fade" data-d="3">
+        Ao operar como especialista solo, Eduardo entrega acesso direto, sem atrito de hierarquia. <strong>O projeto pertence ao cliente desde o início:</strong> sistemas que funcionam quando a consultoria termina, métricas que o time interpreta, rotinas que não dependem de presença permanente.
       </p>
     </div>
 
@@ -966,11 +1105,11 @@ a.contact__row-val:hover{color:var(--blue)}
 </section>
 
 
-<!-- ─── CAPABILITIES ─── -->
+<!-- ════ CAPABILITIES ════ -->
 <section class="capabilities" id="capacidades" aria-label="Capacidades">
 
   <div class="capabilities__header">
-    <div class="capabilities__title-block">
+    <div>
       <p class="capabilities__eyebrow">Áreas de atuação</p>
       <h2 class="capabilities__heading">ÁREAS DE<br><span class="accent">ATUAÇÃO</span></h2>
     </div>
@@ -980,239 +1119,197 @@ a.contact__row-val:hover{color:var(--blue)}
   </div>
 
   <div class="cap-list">
-
     <article class="cap fade">
       <p class="cap__num">01</p>
       <div>
         <h3 class="cap__name">Sistemas de Gestão Integrados</h3>
         <div class="cap__tags">
-          <span class="tag">ISO 9001</span>
-          <span class="tag">ISO 45001</span>
-          <span class="tag">SGI</span>
-          <span class="tag">IMS</span>
-          <span class="tag">Auditoria</span>
+          <span class="tag">ISO 9001</span><span class="tag">ISO 45001</span>
+          <span class="tag">SGI</span><span class="tag">IMS</span><span class="tag">Auditoria</span>
         </div>
       </div>
       <div class="cap__body">
-        <p>Implantação, diagnóstico e maturação de sistemas integrados de gestão. O trabalho começa pela análise do contexto real — processos existentes, cultura operacional, gaps normativos — e segue até a operacionalização completa, incluindo auditoria interna e preparação para certificação externa.</p>
-        <p><strong>O resultado esperado é um sistema que o time interno entende, usa e sustenta</strong> — não uma pasta de documentos que existe para o auditor externo e é ignorada no chão de fábrica.</p>
+        <p>Implantação, diagnóstico e maturação de sistemas integrados de gestão. O trabalho começa pela análise do contexto real — processos, cultura operacional, gaps normativos — e segue até a operacionalização completa, incluindo auditoria interna e preparação para certificação.</p>
+        <p><strong>O resultado é um sistema que o time interno entende, usa e sustenta</strong> — não uma pasta de documentos que existe para o auditor externo.</p>
       </div>
     </article>
-
     <article class="cap fade">
       <p class="cap__num">02</p>
       <div>
         <h3 class="cap__name">Lean Six Sigma &amp; Análise Estatística</h3>
         <div class="cap__tags">
-          <span class="tag">DMAIC</span>
-          <span class="tag">SPC</span>
-          <span class="tag">MSA</span>
-          <span class="tag">DOE</span>
-          <span class="tag">Minitab</span>
-          <span class="tag">DPMO</span>
+          <span class="tag">DMAIC</span><span class="tag">SPC</span>
+          <span class="tag">MSA</span><span class="tag">DOE</span><span class="tag">Minitab</span>
         </div>
       </div>
       <div class="cap__body">
-        <p>Condução de projetos DMAIC de complexidade elevada, com análise estatística real — não uso superficial de ferramentas Lean como atividade de workshop. Inclui análise de sistema de medição, controle estatístico de processo e delineamento de experimentos em contextos industriais com variação significativa.</p>
-        <p><strong>A profundidade técnica permite identificar causas que análises superficiais ignoram</strong> e propor soluções que atacam a causa raiz, não o sintoma visível.</p>
+        <p>Condução de projetos DMAIC de complexidade elevada com análise estatística real — não uso superficial de ferramentas Lean como atividade de workshop. Inclui MSA, SPC e DOE em contextos industriais com variação significativa de processo.</p>
+        <p><strong>A profundidade técnica permite identificar causas que análises superficiais ignoram</strong> e propor soluções que atacam a causa raiz.</p>
       </div>
     </article>
-
     <article class="cap fade">
       <p class="cap__num">03</p>
       <div>
         <h3 class="cap__name">Engenharia de Qualidade em Projetos</h3>
         <div class="cap__tags">
-          <span class="tag">IWE · IWT</span>
-          <span class="tag">WPS · PQR</span>
-          <span class="tag">FMEA</span>
-          <span class="tag">END</span>
-          <span class="tag">Inspeção</span>
+          <span class="tag">IWE · IWT</span><span class="tag">WPS · PQR</span>
+          <span class="tag">FMEA</span><span class="tag">END</span>
         </div>
       </div>
       <div class="cap__body">
-        <p>Gestão de qualidade em projetos de engenharia com componentes de soldagem estrutural: elaboração e qualificação de procedimentos de soldagem, coordenação de ensaios não destrutivos e interface técnica com clientes, fornecedores e organismos de inspeção. Experiência em projetos de grande porte com requisitos normativos críticos.</p>
+        <p>Gestão de qualidade em projetos com componentes de soldagem estrutural: elaboração e qualificação de procedimentos de soldagem, coordenação de ensaios não destrutivos e interface técnica com clientes, fornecedores e organismos de inspeção.</p>
         <p><strong>Esta combinação elimina o atrito entre departamentos técnicos e de gestão</strong> que frequentemente paralisa projetos de engenharia.</p>
       </div>
     </article>
-
     <article class="cap fade">
       <p class="cap__num">04</p>
       <div>
         <h3 class="cap__name">Excelência Operacional &amp; OPEX</h3>
         <div class="cap__tags">
-          <span class="tag">VSM</span>
-          <span class="tag">Kaizen</span>
-          <span class="tag">KPIs</span>
-          <span class="tag">OEE</span>
-          <span class="tag">5S</span>
-          <span class="tag">Gestão visual</span>
+          <span class="tag">VSM</span><span class="tag">Kaizen</span>
+          <span class="tag">KPIs</span><span class="tag">OEE</span><span class="tag">5S</span>
         </div>
       </div>
       <div class="cap__body">
-        <p>Diagnóstico e estruturação de programas de excelência operacional: mapeamento de fluxo de valor, definição de KPIs acionáveis, rotinas de gestão visual e sistemas de melhoria contínua que sobrevivem à saída da consultoria. O foco não é no evento isolado, mas em construir a capacidade interna de manter e evoluir o sistema.</p>
+        <p>Diagnóstico e estruturação de programas de excelência operacional: VSM, KPIs acionáveis, rotinas de gestão visual e sistemas de melhoria contínua que sobrevivem à saída da consultoria. O foco é construir a capacidade interna de manter e evoluir o sistema.</p>
         <p><strong>Operação que depende do consultor para funcionar é operação que ainda não foi resolvida.</strong></p>
       </div>
     </article>
-
   </div>
 </section>
 
 
-<!-- ─── ARGUMENT ─── -->
+<!-- ════ ARGUMENT ════ -->
 <section class="argument" id="argumento" aria-label="Por que este especialista">
-  <div class="argument__inner">
-
-    <h2 class="argument__display fade" aria-label="Por que a combinação importa e por que é rara">
-      <span class="step1">POR QUE</span>
-      <span class="step2">A COMBINAÇÃO</span>
-      <span class="step3">IMPORTA — E POR QUE É <span class="blue">RARA.</span></span>
+  <div>
+    <h2 class="argument__display fade"
+        aria-label="Por que a combinação importa e por que é rara">
+      <span class="s1">POR QUE</span>
+      <span class="s2">A COMBINAÇÃO</span>
+      <span class="s3">IMPORTA — E POR QUE É <span class="blue">RARA.</span></span>
     </h2>
-
     <div class="argument__grid">
-
       <div class="arg-block fade">
         <p class="arg-block__label">01 — Credenciais que coexistem</p>
         <h3 class="arg-block__title">Três domínios em uma única perspectiva</h3>
-        <p class="arg-block__text">Lead Auditor IMS, Master Black Belt e International Welding Engineer são percursos distintos, exigentes e raramente encontrados na mesma pessoa. Juntos, permitem transitar entre <strong>a auditoria normativa, a análise estatística e a engenharia técnica</strong> sem perda de profundidade em nenhum dos três.</p>
+        <p class="arg-block__text">Lead Auditor IMS, Master Black Belt e International Welding Engineer são percursos exigentes e raramente encontrados na mesma pessoa. Juntos, permitem transitar entre <strong>a auditoria normativa, a análise estatística e a engenharia técnica</strong> sem perda de profundidade.</p>
       </div>
-
-      <div class="arg-block fade" data-delay="1">
+      <div class="arg-block fade" data-d="1">
         <p class="arg-block__label">02 — Histórico real</p>
         <h3 class="arg-block__title">Operações reais, não casos de estudo</h3>
-        <p class="arg-block__text">A gestão simultânea de mais de 100 projetos em múltiplos países europeus como coordenador de qualidade EMEA não é um cenário hipotético. É o contexto em que os métodos foram testados e validados sob pressão real, com <strong>consequências concretas para qualquer falha de sistema.</strong></p>
+        <p class="arg-block__text">A gestão simultânea de mais de 100 projetos em múltiplos países europeus como coordenador de qualidade EMEA não é cenário hipotético. É o contexto em que os métodos foram testados sob pressão real, com <strong>consequências concretas para qualquer falha de sistema.</strong></p>
       </div>
-
-      <div class="arg-block fade" data-delay="1">
+      <div class="arg-block fade" data-d="1">
         <p class="arg-block__label">03 — Execução acima de relatório</p>
         <h3 class="arg-block__title">Sistema rodando, não apresentação entregue</h3>
-        <p class="arg-block__text">O critério de sucesso não é a entrega de um documento. É <strong>o indicador sendo medido, a rotina sendo executada, o desvio sendo tratado</strong> — com ou sem a presença do consultor. O projeto termina com o time habilitado a operar o sistema de forma autônoma.</p>
+        <p class="arg-block__text">O critério de sucesso não é a entrega de um documento. É <strong>o indicador sendo medido, a rotina sendo executada, o desvio sendo tratado</strong> — com ou sem a presença do consultor.</p>
       </div>
-
-      <div class="arg-block fade" data-delay="2">
+      <div class="arg-block fade" data-d="2">
         <p class="arg-block__label">04 — Acesso direto</p>
         <h3 class="arg-block__title">Sem intermediação, sem atrito</h3>
-        <p class="arg-block__text">Como especialista solo, Eduardo é o único interlocutor técnico do projeto — do diagnóstico à entrega. Não há gerente repassando demandas para consultores júnior. <strong>O especialista que você contrata é o especialista que trabalha no seu problema,</strong> com contexto preservado e nenhuma camada de tradução.</p>
+        <p class="arg-block__text">Como especialista solo, Eduardo é o único interlocutor técnico do projeto. <strong>O especialista que você contrata é o especialista que trabalha no seu problema,</strong> com contexto preservado e nenhuma camada de tradução.</p>
       </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ─── METHOD ─── -->
-<section class="method" id="metodo" aria-label="Método de trabalho">
-  <div class="method__inner">
-
-    <div class="method__header fade">
-      <h2 class="method__heading">COMO O<br>TRABALHO É<br><span>CONDUZIDO</span></h2>
-      <p class="method__desc">
-        Quatro momentos, descritos como aparecem na prática. Cada etapa tem entregável concreto e critério claro de avanço — <strong>nenhuma ambiguidade sobre o que foi feito e o que vem a seguir.</strong>
-      </p>
+<!-- ════ METHOD ════ -->
+<section class="method" id="metodo" aria-label="Método">
+  <div class="method__header fade">
+    <h2 class="method__heading">COMO O<br>TRABALHO É<br><span>CONDUZIDO</span></h2>
+    <p class="method__desc">Quatro momentos, descritos como aparecem na prática. Cada etapa tem entregável concreto e critério claro de avanço — <strong>nenhuma ambiguidade sobre o que foi feito e o que vem a seguir.</strong></p>
+  </div>
+  <div class="method__steps">
+    <div class="step fade">
+      <p class="step__num">01</p>
+      <div>
+        <h3 class="step__title">Diagnóstico e alinhamento de escopo</h3>
+        <p class="step__text">Conversa direta com a liderança para entender o problema real — não o declarado no briefing. Análise de dados, visita técnica quando aplicável, mapeamento de lacunas. <strong>Sem escopo fechado, não há projeto iniciado.</strong></p>
+      </div>
     </div>
-
-    <div class="method__steps">
-
-      <div class="step fade">
-        <p class="step__num">01</p>
-        <div>
-          <h3 class="step__title">Diagnóstico e alinhamento de escopo</h3>
-          <p class="step__text">Conversa direta com a liderança para entender o problema real — não o problema declarado no briefing. Análise de dados disponíveis, visita técnica quando aplicável, mapeamento de lacunas e definição do escopo exato. <strong>Sem escopo fechado, não há projeto iniciado.</strong></p>
-        </div>
+    <div class="step fade" data-d="1">
+      <p class="step__num">02</p>
+      <div>
+        <h3 class="step__title">Análise técnica e planejamento</h3>
+        <p class="step__text">Análise aprofundada das causas e dos sistemas existentes. Plano de trabalho com marcos claros, responsabilidades definidas e critérios de aceitação mensuráveis — <strong>tanto para o especialista quanto para o time do cliente.</strong></p>
       </div>
-
-      <div class="step fade" data-delay="1">
-        <p class="step__num">02</p>
-        <div>
-          <h3 class="step__title">Análise técnica e planejamento</h3>
-          <p class="step__text">Análise aprofundada das causas e dos sistemas existentes. Definição das ferramentas, indicadores e estrutura de solução. Plano de trabalho com marcos claros, responsabilidades definidas e critérios de aceitação mensuráveis — <strong>tanto para o especialista quanto para o time do cliente.</strong></p>
-        </div>
+    </div>
+    <div class="step fade" data-d="2">
+      <p class="step__num">03</p>
+      <div>
+        <h3 class="step__title">Implantação e acompanhamento</h3>
+        <p class="step__text">Execução direta com presença técnica nas etapas críticas e transferência contínua de conhecimento. <strong>Nenhuma implementação relevante acontece apenas com documentação.</strong></p>
       </div>
-
-      <div class="step fade" data-delay="2">
-        <p class="step__num">03</p>
-        <div>
-          <h3 class="step__title">Implantação e acompanhamento</h3>
-          <p class="step__text">Execução direta das ações, com presença técnica nas etapas críticas e transferência contínua de conhecimento para o time interno. <strong>Nenhuma implementação relevante acontece apenas com documentação:</strong> o acompanhamento em campo é parte integral do trabalho.</p>
-        </div>
+    </div>
+    <div class="step fade" data-d="3">
+      <p class="step__num">04</p>
+      <div>
+        <h3 class="step__title">Validação e autonomia do cliente</h3>
+        <p class="step__text">Verificação dos resultados contra critérios definidos no início. Treinamento do time para operação autônoma. <strong>O projeto termina quando o cliente opera sem depender do consultor.</strong></p>
       </div>
-
-      <div class="step fade" data-delay="3">
-        <p class="step__num">04</p>
-        <div>
-          <h3 class="step__title">Validação, entrega e autonomia do cliente</h3>
-          <p class="step__text">Verificação dos resultados contra os critérios definidos no início. Documentação técnica final. Treinamento do time para operação autônoma. <strong>O projeto termina quando o cliente opera sem depender do consultor</strong> — não quando o relatório final é entregue.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ─── CONTACT ─── -->
+<!-- ════ CONTACT ════ -->
 <section class="contact" id="contato" aria-label="Contato">
-  <div class="contact__inner">
-
-    <h2 class="contact__heading fade" aria-label="Vamos olhar onde sua operação perde desempenho">
-      <span class="step">VAMOS OLHAR</span>
-      <span class="step s2">ONDE SUA</span>
-      <span class="step">OPERAÇÃO <span class="blue">PERDE.</span></span>
-    </h2>
-
-    <div class="contact__grid">
-
-      <div class="contact__left fade">
-        <p class="contact__body">
-          A primeira conversa não é uma apresentação de proposta. É uma análise direta do cenário — processos, indicadores, sistemas e lacunas. <strong>Se houver trabalho relevante a fazer, será descrito com clareza. Se não houver, também.</strong>
-        </p>
-        <div class="contact__direct">
-          <div class="contact__row">
-            <span class="contact__row-label">E-mail</span>
-            <a href="mailto:eduardo@rossiterconsulting.com" class="contact__row-val">eduardo@rossiterconsulting.com</a>
-          </div>
-          <div class="contact__row">
-            <span class="contact__row-label">LinkedIn</span>
-            <a href="https://linkedin.com/in/eduardorossiter" target="_blank" rel="noopener noreferrer" class="contact__row-val">linkedin.com/in/eduardorossiter</a>
-          </div>
-          <div class="contact__row">
-            <span class="contact__row-label">Base</span>
-            <span class="contact__row-val">Alemanha · Projetos EMEA e Brasil</span>
-          </div>
+  <h2 class="contact__heading fade"
+      aria-label="Vamos olhar onde sua operação perde desempenho">
+    <span class="sc">VAMOS OLHAR</span>
+    <span class="sc s2">ONDE SUA</span>
+    <span class="sc">OPERAÇÃO <span class="blue">PERDE.</span></span>
+  </h2>
+  <div class="contact__grid">
+    <div class="fade">
+      <p class="contact__body">
+        A primeira conversa não é uma apresentação de proposta. É uma análise direta do cenário — processos, indicadores, sistemas e lacunas. <strong>Se houver trabalho relevante a fazer, será descrito com clareza. Se não houver, também.</strong>
+      </p>
+      <div class="contact__direct">
+        <div class="contact__row">
+          <span class="contact__lbl">E-mail</span>
+          <a href="mailto:eduardo@rossiterconsulting.com" class="contact__val">eduardo@rossiterconsulting.com</a>
+        </div>
+        <div class="contact__row">
+          <span class="contact__lbl">LinkedIn</span>
+          <a href="https://linkedin.com/in/eduardorossiter" target="_blank" rel="noopener" class="contact__val">linkedin.com/in/eduardorossiter</a>
+        </div>
+        <div class="contact__row">
+          <span class="contact__lbl">Base</span>
+          <span class="contact__val">Alemanha · Projetos EMEA e Brasil</span>
         </div>
       </div>
-
-      <div class="contact__right fade" data-delay="1">
-        <p class="contact__form-label">Solicitar diagnóstico</p>
-        <form class="form" name="diagnostico" novalidate>
-          <div class="form__row">
-            <label for="nome" class="form__lbl">Nome e empresa</label>
-            <input class="form__input" type="text" id="nome" name="nome" autocomplete="name" required placeholder="Nome / Empresa"/>
-          </div>
-          <div class="form__row">
-            <label for="email" class="form__lbl">E-mail</label>
-            <input class="form__input" type="email" id="email" name="email" autocomplete="email" required placeholder="seu@email.com"/>
-          </div>
-          <div class="form__row">
-            <label for="contexto" class="form__lbl">Contexto do desafio</label>
-            <textarea class="form__textarea" id="contexto" name="contexto" rows="5" required placeholder="Descreva a operação, o problema e o que já foi tentado."></textarea>
-          </div>
-          <button type="submit" class="form__submit">
-            Enviar solicitação
-            <span class="cta-arrow" aria-hidden="true">
-              <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-            </span>
-          </button>
-          <p class="form__note">Resposta direta. Sem intermediários.</p>
-        </form>
-      </div>
-
+    </div>
+    <div class="fade" data-d="1">
+      <p class="contact__form-lbl">Solicitar diagnóstico</p>
+      <form novalidate>
+        <div class="form__row">
+          <label for="nome" class="form__lbl">Nome e empresa</label>
+          <input class="form__input" type="text" id="nome" name="nome" autocomplete="name" required placeholder="Nome / Empresa"/>
+        </div>
+        <div class="form__row">
+          <label for="email" class="form__lbl">E-mail</label>
+          <input class="form__input" type="email" id="email" name="email" autocomplete="email" required placeholder="seu@email.com"/>
+        </div>
+        <div class="form__row">
+          <label for="msg" class="form__lbl">Contexto do desafio</label>
+          <textarea class="form__textarea" id="msg" name="msg" rows="5" required placeholder="Descreva a operação, o problema e o que já foi tentado."></textarea>
+        </div>
+        <button type="submit" class="form__submit">
+          Enviar solicitação
+          <span class="cta-sq" aria-hidden="true">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+          </span>
+        </button>
+        <p class="form__note">Resposta direta. Sem intermediários.</p>
+      </form>
     </div>
   </div>
 </section>
 
 
-<!-- ─── FOOTER ─── -->
+<!-- ════ FOOTER ════ -->
 <footer class="footer" role="contentinfo">
   <div class="footer__inner">
     <p class="footer__tagline">
@@ -1234,40 +1331,41 @@ a.contact__row-val:hover{color:var(--blue)}
 <script>
 (function(){
 
-  // NAV SCROLL
+  /* NAV scroll */
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  }, {passive:true});
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled',window.scrollY>40);
+  },{passive:true});
 
-  // MOBILE MENU
+  /* Mobile menu */
   const btn = document.getElementById('mobile-btn');
   const menu = document.getElementById('mobile-menu');
-  btn.addEventListener('click', () => {
+  const OPEN_ICON = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+  const CLOSE_ICON = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+
+  btn.addEventListener('click',()=>{
     const open = menu.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open);
-    btn.innerHTML = open
-      ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
-      : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+    btn.setAttribute('aria-expanded',open);
+    btn.innerHTML = open ? OPEN_ICON : CLOSE_ICON;
   });
-  menu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
+  menu.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click',()=>{
       menu.classList.remove('open');
-      btn.setAttribute('aria-expanded', false);
-      btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+      btn.setAttribute('aria-expanded',false);
+      btn.innerHTML = CLOSE_ICON;
     });
   });
 
-  // FADE IN
+  /* Fade in on scroll */
   if('IntersectionObserver' in window){
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}
       });
-    }, {threshold:0.07});
-    document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+    },{threshold:.07});
+    document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
   } else {
-    document.querySelectorAll('.fade').forEach(el => el.classList.add('in'));
+    document.querySelectorAll('.fade').forEach(el=>el.classList.add('in'));
   }
 
 })();
