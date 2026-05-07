@@ -104,79 +104,93 @@ p{text-wrap:pretty}
   position:relative;
   min-height:100svh;
   background:#000;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding-top:60px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding-top:72px;
   overflow:hidden;
 }
 
-/* subtle industrial grid — quase invisível */
+/* grade técnica quase invisível */
 .hero::before{
   content:'';
   position:absolute;inset:0;
   background-image:
-    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
   background-size:80px 80px;
   pointer-events:none;
 }
 
-/* linha de acento lateral — elemento gráfico único */
 .hero__accent-line{
   position:absolute;
   left:var(--gutter);
   top:0;bottom:0;
   width:1px;
-  background:linear-gradient(to bottom,transparent,var(--blue) 35%,var(--blue) 65%,transparent);
-  opacity:.35;
+  background:linear-gradient(to bottom,transparent,var(--blue) 30%,var(--blue) 70%,transparent);
+  opacity:.3;
 }
 
 .hero__content{
   position:relative;z-index:1;
-  padding-bottom:clamp(3.5rem,7vh,6rem);
+  padding-bottom:clamp(2rem,4vh,3.5rem);
 }
 
-/* HEADLINE ESCALONADA — assinatura tipográfica */
+/*
+  FONT-SIZE exato da Accenture: calc(3vh + 4.2vw)
+  A 1356px viewport isso resolve para ~82px.
+  Inter 900 uppercase tem presença equivalente ao Graphik 500 condensado.
+*/
 .hero__headline{
-  font-size:clamp(4rem,10.5vw,13rem);
+  font-size:calc(3vh + 4.2vw);
   font-weight:900;
   letter-spacing:-.03em;
-  line-height:.95;
+  line-height:1.05;
   color:var(--white);
   text-transform:uppercase;
-  margin-bottom:clamp(2.5rem,5vh,5rem);
+  margin-bottom:clamp(1.75rem,3.5vh,3.5rem);
 }
+
+/* linha 1 — margem esquerda base */
 .hero__headline .line1{
   display:block;
   padding-left:var(--gutter);
 }
+/* linha 2 — recuada ~16vw (offset 221px @ 1356px) */
 .hero__headline .line2{
   display:block;
-  padding-left:calc(var(--gutter) + clamp(3rem,8vw,10rem));
-  color:var(--white);
+  padding-left:calc(var(--gutter) + 16vw);
 }
+/* linha 3 — retorno parcial para criar diagonal */
 .hero__headline .line3{
   display:block;
-  padding-left:calc(var(--gutter) + clamp(1rem,3vw,4rem));
+  padding-left:calc(var(--gutter) + 4vw);
 }
 .hero__headline .accent-word{
   color:var(--blue);
   font-style:italic;
 }
 
-/* split inferior: sub-texto esquerda + CTA direita */
+/*
+  FAIXA INFERIOR — grid 2 colunas igual à Accenture:
+  ~65% esquerda: label + parágrafo
+  ~35% direita:  CTA
+  Fica abaixo da headline — sem colisão de espaço.
+*/
 .hero__bottom{
   padding-inline:var(--gutter);
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:2rem;
+  grid-template-columns:1.8fr 1fr;
+  gap:clamp(2rem,4vw,5rem);
   align-items:end;
 }
+
 .hero__sub-label{
   font-family:var(--mono);
   font-size:11px;font-weight:300;
   letter-spacing:.2em;text-transform:uppercase;
   color:var(--blue);
-  margin-bottom:1rem;
+  margin-bottom:.75rem;
   display:flex;align-items:center;gap:.75rem;
 }
 .hero__sub-label::before{
@@ -184,37 +198,56 @@ p{text-wrap:pretty}
   width:2rem;height:1px;
   background:var(--blue);
 }
+
+/*
+  Subtexto: tamanho exato Accenture = 32px / weight 500 / line-height 1.2
+  Usa clamp para mobile mas mantém 2rem (32px) no desktop
+*/
 .hero__sub{
-  font-size:clamp(.875rem,1.1vw,1rem);
-  font-weight:300;line-height:1.7;
-  color:var(--grey-60);
-  max-width:42ch;
+  font-size:clamp(1rem,2vw,2rem);
+  font-weight:500;
+  line-height:1.2;
+  letter-spacing:-.02em;
+  color:var(--grey-90);
+  max-width:22ch;
 }
-.hero__sub strong{color:var(--grey-90);font-weight:400}
+.hero__sub strong{
+  color:var(--white);font-weight:500;
+}
+
 .hero__cta-wrap{
   display:flex;flex-direction:column;
   align-items:flex-end;
   gap:1.25rem;
+  padding-bottom:.125rem;
 }
+
+/*
+  CTA: mesmo tamanho do subtexto, peso 500 — exato da Accenture
+*/
 .hero__cta{
   display:inline-flex;align-items:center;gap:.875rem;
-  font-size:14px;font-weight:400;
+  font-size:clamp(1rem,2vw,2rem);
+  font-weight:500;
+  letter-spacing:-.02em;
   color:var(--white);
   transition:gap .2s;
 }
 .hero__cta:hover{gap:1.25rem}
 .hero__cta:hover .cta-arrow{background:var(--blue-dim)}
+
+/* quadrado azul: Accenture usa 24×24px; aqui 30×30px */
 .cta-arrow{
-  width:36px;height:36px;
+  width:30px;height:30px;
   background:var(--blue);
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
   transition:background .2s;
 }
-.cta-arrow svg{width:14px;height:14px;color:#fff}
+.cta-arrow svg{width:12px;height:12px;color:#fff}
+
 .hero__secondary-cta{
-  font-family:var(--mono);
-  font-size:11px;font-weight:300;
+  font-family:var(--mono);font-size:11px;font-weight:300;
   letter-spacing:.14em;text-transform:uppercase;
   color:var(--grey-60);
   border-bottom:1px solid var(--grey-30);
@@ -222,13 +255,14 @@ p{text-wrap:pretty}
   transition:color .2s,border-color .2s;
 }
 .hero__secondary-cta:hover{color:var(--grey-90);border-color:var(--grey-60)}
+
 .hero__scroll{
   font-family:var(--mono);
   font-size:10px;letter-spacing:.18em;
   color:var(--grey-30);
   padding-inline:var(--gutter);
-  padding-top:1.5rem;
-  padding-bottom:1.75rem;
+  padding-top:1rem;
+  padding-bottom:1.25rem;
 }
 
 /* ─── DIVIDER ─── */
@@ -754,8 +788,10 @@ a.contact__row-val:hover{color:var(--blue)}
   }
   .nav__mobile-menu a:hover{color:var(--blue)}
 
-  .hero__bottom{grid-template-columns:1fr}
+  .hero__bottom{grid-template-columns:1fr;gap:1.5rem}
   .hero__cta-wrap{align-items:flex-start}
+  .hero__sub{max-width:100%;font-size:clamp(.9375rem,3.5vw,1.5rem)}
+  .hero__cta{font-size:clamp(.9375rem,3.5vw,1.5rem)}
 
   .founder__inner{grid-template-columns:1fr}
   .founder__photo{max-height:340px}
@@ -775,7 +811,7 @@ a.contact__row-val:hover{color:var(--blue)}
 }
 
 @media(max-width:520px){
-  .hero__headline{font-size:clamp(2.75rem,11vw,4.5rem)}
+  .hero__headline{font-size:clamp(2rem,9vw,3.5rem)}
   .argument__display{font-size:clamp(2.5rem,9vw,4rem)}
   .contact__heading{font-size:clamp(2.5rem,9vw,4rem)}
   .method__heading{font-size:clamp(2.5rem,9vw,4rem)}
