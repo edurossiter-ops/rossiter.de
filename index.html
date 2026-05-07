@@ -70,10 +70,10 @@ p{text-wrap:pretty}
 }
 .nav__wordmark{
   font-family:var(--sans);
-  font-size:0.875rem; /* exato Accenture */
-  font-weight:400;
+  font-size:1rem; /* 16px */
+  font-weight:500;
   letter-spacing:-0.005em;
-  color:var(--g90);
+  color:#fff;
   white-space:nowrap;
 }
 
@@ -83,15 +83,15 @@ p{text-wrap:pretty}
   flex:1;
   justify-content:center;
 }
-/* EXATO Accenture: 0.875rem (14px), weight 400, letter-spacing -0.005em */
+/* Calibrado visualmente para ter mesma presença que Accenture Graphik 14px */
 .nav__links a{
   font-family:var(--sans);
-  font-size:0.875rem;
+  font-size:1.0625rem; /* 17px */
   font-weight:400;
   letter-spacing:-0.005em;
   line-height:1.5;
   padding:0 8px;
-  color:var(--g90);
+  color:#fff; /* branco puro igual Accenture */
   white-space:nowrap;
   transition:color .2s;
 }
@@ -715,7 +715,7 @@ p{text-wrap:pretty}
 <!-- ════════════ NAV ════════════ -->
 <nav class="nav" id="nav" aria-label="Navegação principal">
   <a href="#" class="nav__logo" aria-label="Rossiter Consulting — início">
-    <img class="nav__logo-img" src="rossiter-logo.jpg" alt="Rossiter Consulting"/>
+    <img class="nav__logo-img" src="rossiter-logo.png" alt="Rossiter Consulting"/>
     <span class="nav__wordmark">Rossiter Consulting</span>
   </a>
 
