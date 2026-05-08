@@ -590,7 +590,7 @@ p{text-wrap:pretty}
   position:relative;
   z-index:2;
   margin-top:-100svh;
-  padding-bottom:30svh; /* era 100svh — reduzido para o próximo section vir logo após o 3º card */
+  padding-bottom:15svh; /* reduzido para a seção Contato surgir mais cedo */
   display:flex;
   flex-direction:column;
   gap:5rem;
@@ -690,16 +690,16 @@ p{text-wrap:pretty}
   pointer-events:none;
 }
 
-/* FASE 1: imagem controlada por JS — position:fixed */
+/* FASE 1: imagem controlada por JS — position:fixed com respiro nos 4 lados */
 .contato__visual-wrap{
   position:fixed;
-  top:0;
-  left:0;
-  width:100vw;
-  height:100svh;
+  top:0;left:0;right:0;bottom:0; /* JS sobrescreve todos os 4 lados */
+  width:auto;
+  height:auto;
   overflow:hidden;
+  border-radius:2px;
   z-index:5;
-  opacity:0; /* JS controla a visibilidade */
+  opacity:0;
   transition:opacity .15s;
 }
 .contato__visual-placeholder,
@@ -801,7 +801,7 @@ p{text-wrap:pretty}
 ══════════════════════════════════════════ */
 .footer{
   background:#000;
-  padding:clamp(3rem,5vw,5rem) var(--pad) clamp(2rem,3vw,3rem);
+  padding:clamp(1.5rem,2.5vw,2.5rem) var(--pad) clamp(2rem,3vw,3rem);
   position:relative;
   z-index:20; /* acima de tudo */
 }
@@ -1357,13 +1357,21 @@ document.querySelectorAll('.mobile-link').forEach(l => {
     // spacer agora tem 50svh, progresso vai de 0→1 nesse espaço
     const prog = Math.min(1, Math.max(0, -spacerRect.top / (vh * 0.5)));
 
-    const w = 100 - prog * 50; // 100vw → 50vw
-    const h = 100 - prog * 50; // 100svh → 50svh (bate com a célula)
+    // Respiro inicial ~3vw max 48px — fullscreen com margem (prog=0) → célula (prog=1)
+    const gap   = Math.min(window.innerWidth * 0.03, 48);
+    const cellH = Math.min(600, Math.max(380, vh * 0.5));
 
-    visual.style.width  = w + 'vw';
-    visual.style.height = h + 'svh';
-    visual.style.top    = '0';
-    visual.style.left   = '0';
+    const top    = gap * (1 - prog);
+    const left   = gap * (1 - prog);
+    const right  = gap * (1 - prog) + prog * (window.innerWidth * 0.5);
+    const bottom = gap * (1 - prog) + prog * (vh - cellH);
+
+    visual.style.top    = top    + 'px';
+    visual.style.left   = left   + 'px';
+    visual.style.right  = right  + 'px';
+    visual.style.bottom = bottom + 'px';
+    visual.style.width  = '';
+    visual.style.height = '';
   }
 
   visual.style.transition = 'opacity .15s';
