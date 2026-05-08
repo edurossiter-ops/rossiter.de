@@ -1360,19 +1360,28 @@ document.querySelectorAll('.mobile-link').forEach(l => {
     // Respiro inicial ~3vw max 48px — fullscreen com margem (prog=0) → célula (prog=1)
     const gap   = Math.min(window.innerWidth * 0.06, 80);
 
-    // prog=1: imagem alinha EXATAMENTE com o contato__inner (mesma posição e altura)
+    // prog=1: imagem alinha com contato__inner — altura = inner, largura proporcional
     const innerEl    = section.querySelector('.contato__inner');
     const innerRectF = innerEl ? innerEl.getBoundingClientRect() : null;
 
-    // Posição final (prog=1): topo e fundo do inner, metade esquerda
     const finalTop    = innerRectF ? innerRectF.top    : gap;
     const finalBottom = innerRectF ? vh - innerRectF.bottom : gap;
-    const finalRight  = window.innerWidth * 0.5 + gap * 0.5; // metade + meio-gap de separação
 
-    const top    = gap    + prog * (finalTop    - gap);
-    const left   = gap    * (1 - prog);                  // gap → 0
-    const right  = gap    + prog * (finalRight  - gap);
-    const bottom = gap    + prog * (finalBottom - gap);
+    // Altura final da imagem
+    const finalH = vh - finalTop - finalBottom;
+
+    // Largura proporcional: ratio 3:4 (portrait, igual às imagens do site)
+    const imgRatio  = 3 / 4;
+    const finalW    = finalH * imgRatio;
+
+    // right = vw - left - width
+    const finalLeft  = 0;
+    const finalRight = window.innerWidth - finalLeft - finalW;
+
+    const top    = gap + prog * (finalTop    - gap);
+    const left   = gap * (1 - prog);
+    const right  = gap + prog * (finalRight  - gap);
+    const bottom = gap + prog * (finalBottom - gap);
 
     visual.style.top    = top    + 'px';
     visual.style.left   = left   + 'px';
