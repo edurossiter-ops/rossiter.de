@@ -346,6 +346,7 @@ p{text-wrap:pretty}
 }
 
 /* ——— VERSO: fundo com cor dominante da imagem de cada card ——— */
+/* VERSO: entra da DIREITA com slide + fade */
 .card__back{
   position:absolute;
   inset:0;
@@ -353,21 +354,28 @@ p{text-wrap:pretty}
   flex-direction:column;
   justify-content:space-between;
   padding:1.75rem 1.5rem 1.75rem;
-  /* cor base definida por modifier — veja abaixo */
   opacity:0;
-  transition:opacity 550ms cubic-bezier(.85,0,0,1);
+  transform:translateX(100%);
+  transition:opacity 450ms cubic-bezier(.85,0,0,1),
+             transform 450ms cubic-bezier(.85,0,0,1);
   pointer-events:none;
 }
 .card:hover .card__back{
   opacity:1;
+  transform:translateX(0);
   pointer-events:auto;
 }
 
-/* Cor dominante de cada imagem no verso */
-.card:nth-child(1) .card__back{ background:#1e1208 } /* espiral metálica: marrom/laranja escuro */
-.card:nth-child(2) .card__back{ background:#141920 } /* névoa/luz: cinza-azulado frio */
-.card:nth-child(3) .card__back{ background:#071a15 } /* barragem: verde-petróleo */
-.card:nth-child(4) .card__back{ background:#0a1606 } /* floresta: verde-musgo */
+/* Cores pedidas */
+.card:nth-child(1) .card__back{ background:#c2460b } /* SGI */
+.card:nth-child(2) .card__back{ background:#aea69a } /* Auditoria */
+.card:nth-child(3) .card__back{ background:#f6f9f6 } /* OpEx: fundo claro */
+.card:nth-child(4) .card__back{ background:#49541c } /* Treinamento */
+/* OpEx: texto escuro no fundo claro */
+.card:nth-child(3) .card__back-label{ color:#3a72c8 }
+.card:nth-child(3) .card__back-title{ color:#111110 }
+.card:nth-child(3) .card__desc{ color:rgba(20,20,15,.82) }
+.card:nth-child(3) .card__cta{ color:#111110 }
 
 .card__back-top{ display:flex; flex-direction:column; }
 .card__back-label{
@@ -959,7 +967,7 @@ p{text-wrap:pretty}
         <div class="card__back-top">
           <span class="card__back-label">Competência</span>
           <h3 class="card__back-title">Sistemas de Gestão Integrado SGI</h3>
-          <p class="card__desc">Implantação e evolução de SGQ, SGA e SSO com aderência real à operação.</p>
+          <p class="card__desc">Requisitos normativos crescem. Com eles, crescem as estruturas criadas para atendê-los — cada uma com sua linguagem, sua lógica, seu ritmo próprio. Em algum momento, a organização passa a gerir seus sistemas mais do que a gerir sua operação. Existe uma forma de construir essa estrutura onde os requisitos se sustentam mutuamente — e o que antes consumia energia começa a gerá-la.</p>
         </div>
         <span class="card__cta">Ver mais &rsaquo;</span>
       </div>
@@ -976,7 +984,7 @@ p{text-wrap:pretty}
         <div class="card__back-top">
           <span class="card__back-label">Competência</span>
           <h3 class="card__back-title">Auditoria e Suporte Técnico</h3>
-          <p class="card__desc">ISO 9001 / ISO 14001 / ISO 45001 — Preparação, condução e fortalecimento de processos para auditorias de 1ª, 2ª e 3ª parte.</p>
+          <p class="card__desc">Uma auditoria percorre o que foi documentado. O que não foi documentado também está lá — nos processos, nas interfaces, nas decisões que o dia a dia naturalizou. Há uma leitura possível que vai além do registro e alcança o que a operação realmente é. É nesse alcance que a maturidade se constrói.</p>
         </div>
         <span class="card__cta">Ver mais &rsaquo;</span>
       </div>
@@ -993,7 +1001,7 @@ p{text-wrap:pretty}
         <div class="card__back-top">
           <span class="card__back-label">Competência</span>
           <h3 class="card__back-title">Excelência Operacional</h3>
-          <p class="card__desc">Diagnóstico e execução de iniciativas Lean Six Sigma para reduzir perdas, eliminar variação e elevar performance de forma sustentável.</p>
+          <p class="card__desc">Toda operação desenvolve equilíbrio. O problema é que parte desse equilíbrio foi construído ao redor de perdas que pararam de ser percebidas. Lean Six Sigma, aplicado com profundidade, não desequilibra — ele revela onde o equilíbrio atual está custando mais do que deveria, e reconstrói com mais precisão.</p>
         </div>
         <span class="card__cta">Ver mais &rsaquo;</span>
       </div>
@@ -1010,7 +1018,7 @@ p{text-wrap:pretty}
         <div class="card__back-top">
           <span class="card__back-label">Competência</span>
           <h3 class="card__back-title">Formação e Treinamento</h3>
-          <p class="card__desc">Desenvolvimento de equipes em Lean, Six Sigma e ferramentas de qualidade — para que a melhoria continue depois que o projeto termina.</p>
+          <p class="card__desc">Conhecimento aplicado de fora transforma enquanto está presente. Conhecimento desenvolvido de dentro transforma a forma como a organização enxerga, decide e age — independente de qualquer presença externa. A diferença entre os dois não está no conteúdo. Está em onde ele passa a residir.</p>
         </div>
         <span class="card__cta">Ver mais &rsaquo;</span>
       </div>
@@ -1031,8 +1039,8 @@ p{text-wrap:pretty}
       <span class="num">360<span class="degree">&#176;</span></span>
     </div>
     <p class="metodo__slogan" id="metodo-title">
-      Diagnóstico preciso. Execução real.<br>
-      <em>Sistema rodando quando o projeto termina.</em>
+      Transformamos a sinergia de cada processo singular num
+      <em>fluxo de valor único e contínuo</em> para nossos parceiros.
     </p>
   </div>
 
@@ -1138,12 +1146,7 @@ p{text-wrap:pretty}
   <!-- Imagem sticky fullscreen que encolhe com scroll -->
   <div class="contato__visual-wrap" id="contatoVisual">
     <div class="contato__visual-placeholder">
-      <!-- Substituir por: <img class="contato__visual-img" src="img/contato.jpg" alt=""> -->
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
-        <rect x="4" y="4" width="40" height="40"/>
-        <line x1="4" y1="4" x2="44" y2="44"/>
-        <line x1="44" y1="4" x2="4" y2="44"/>
-      </svg>
+      <img class="contato__visual-img" src="img-contato.jpg" alt="Rossiter Consulting">
     </div>
   </div>
 
