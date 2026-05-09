@@ -411,6 +411,22 @@ p{text-wrap:pretty}
   text-align:left;
 }
 
+/* Card inteiro clicável */
+.card[data-href]{cursor:pointer}
+.card__cta{
+  text-decoration:none;
+  pointer-events:none; /* o clique é capturado no card todo */
+}
+
+/* Transição de saída de página */
+@keyframes page-out{
+  to{opacity:0;transform:scale(.97)}
+}
+.page-leaving{
+  animation:page-out .35s cubic-bezier(.4,0,.2,1) forwards;
+  pointer-events:none;
+}
+
 /* CTA no rodapé */
 .card__cta{
   display:inline-flex;
@@ -432,7 +448,7 @@ p{text-wrap:pretty}
 ══════════════════════════════════════════ */
 .metodo{
   background:#000;
-  padding:clamp(4rem,8vw,8rem) 0;
+  padding:clamp(2.5rem,5vw,5rem) 0;
 }
 
 /* Título FLUXO DE VALOR 360° */
@@ -483,7 +499,7 @@ p{text-wrap:pretty}
 .metodo__carousel{
   position:relative;
   overflow:hidden;
-  margin-top:clamp(2.5rem,4vw,4rem);
+  margin-top:clamp(1.5rem,2.5vw,2.5rem);
 }
 .metodo__track{
   display:flex;
@@ -494,7 +510,7 @@ p{text-wrap:pretty}
   flex:0 0 100%;
   display:grid;
   grid-template-columns:56fr 44fr;
-  min-height:clamp(320px,42vw,540px);
+  min-height:clamp(240px,32vw,400px);
 }
 .metodo__slide-img-wrap{
   overflow:hidden;position:relative;
@@ -961,7 +977,7 @@ p{text-wrap:pretty}
   <div class="cards__row">
 
     <!-- Card 1: Sistemas de Gestão Integrado SGI -->
-    <article class="card">
+    <article class="card" data-href="sgi.html">
       <!-- Imagem: cobre 100% do card -->
       <img class="card__image" src="img-sgi.jpg" alt="Sistemas de Gestão Integrado SGI"/>
       <!-- FRENTE: label + título no topo sobre a imagem -->
@@ -976,12 +992,12 @@ p{text-wrap:pretty}
           <h3 class="card__back-title">Sistemas de Gestão Integrado SGI</h3>
           <p class="card__desc">Requisitos normativos crescem. Com eles, crescem as estruturas criadas para atendê-los — cada uma com sua linguagem, sua lógica, seu ritmo próprio. Em algum momento, a organização passa a gerir seus sistemas mais do que a gerir sua operação. Existe uma forma de construir essa estrutura onde os requisitos se sustentam mutuamente — e o que antes consumia energia começa a gerá-la.</p>
         </div>
-        <span class="card__cta">Ver mais &rsaquo;</span>
+        <a class="card__cta" href="sgi.html">Ver mais &rsaquo;</a>
       </div>
     </article>
 
     <!-- Card 2: Auditoria e Suporte Técnico -->
-    <article class="card">
+    <article class="card" data-href="auditoria.html">
       <img class="card__image" src="img-auditoria.jpg" alt="Auditoria e Suporte Técnico"/>
       <div class="card__front">
         <span class="card__label">Competência</span>
@@ -993,12 +1009,12 @@ p{text-wrap:pretty}
           <h3 class="card__back-title">Auditoria e Suporte Técnico</h3>
           <p class="card__desc">Uma auditoria percorre o que foi documentado. O que não foi documentado também está lá — nos processos, nas interfaces, nas decisões que o dia a dia naturalizou. Há uma leitura possível que vai além do registro e alcança o que a operação realmente é. É nesse alcance que a maturidade se constrói.</p>
         </div>
-        <span class="card__cta">Ver mais &rsaquo;</span>
+        <a class="card__cta" href="auditoria.html">Ver mais &rsaquo;</a>
       </div>
     </article>
 
     <!-- Card 3: Excelência Operacional -->
-    <article class="card">
+    <article class="card" data-href="opex.html">
       <img class="card__image" src="img-excelencia.jpg" alt="Excelência Operacional"/>
       <div class="card__front">
         <span class="card__label">Competência</span>
@@ -1010,12 +1026,12 @@ p{text-wrap:pretty}
           <h3 class="card__back-title">Excelência Operacional</h3>
           <p class="card__desc">Toda operação desenvolve equilíbrio. O problema é que parte desse equilíbrio foi construído ao redor de perdas que pararam de ser percebidas. Lean Six Sigma, aplicado com profundidade, não desequilibra — ele revela onde o equilíbrio atual está custando mais do que deveria, e reconstrói com mais precisão.</p>
         </div>
-        <span class="card__cta">Ver mais &rsaquo;</span>
+        <a class="card__cta" href="opex.html">Ver mais &rsaquo;</a>
       </div>
     </article>
 
     <!-- Card 4: Formação e Treinamento -->
-    <article class="card">
+    <article class="card" data-href="formacao.html">
       <img class="card__image" src="img-formacao.jpg" alt="Formação e Treinamento"/>
       <div class="card__front">
         <span class="card__label">Competência</span>
@@ -1027,7 +1043,7 @@ p{text-wrap:pretty}
           <h3 class="card__back-title">Formação e Treinamento</h3>
           <p class="card__desc">Conhecimento aplicado de fora transforma enquanto está presente. Conhecimento desenvolvido de dentro transforma a forma como a organização enxerga, decide e age — independente de qualquer presença externa. A diferença entre os dois não está no conteúdo. Está em onde ele passa a residir.</p>
         </div>
-        <span class="card__cta">Ver mais &rsaquo;</span>
+        <a class="card__cta" href="formacao.html">Ver mais &rsaquo;</a>
       </div>
     </article>
 
@@ -1164,7 +1180,7 @@ p{text-wrap:pretty}
     <div class="contato__text">
       <p class="contato__kicker">Primeiro passo</p>
       <h2 class="contato__heading" id="contato-title">
-        AGENDE UMA<br>CONSULTA <em>INICIAL</em>
+        AGENDE UMA<br>CONSULTA <em>GRATUITA</em>
       </h2>
       <p class="contato__desc">
         Uma conversa direta de 30 minutos para entender onde sua operação perde e se faz sentido trabalharmos juntos.
@@ -1394,6 +1410,31 @@ document.querySelectorAll('.mobile-link').forEach(l => {
   visual.style.transition = 'opacity .15s';
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
+})();
+// ── Navegação com transição de saída ──
+(function(){
+  const cards = document.querySelectorAll('.card[data-href]');
+  if(!cards.length) return;
+
+  function navigateTo(href){
+    // View Transitions API (Chrome 111+)
+    if(document.startViewTransition){
+      document.startViewTransition(() => { window.location.href = href; });
+      return;
+    }
+    // Fallback: fade + scale out
+    document.body.classList.add('page-leaving');
+    setTimeout(() => { window.location.href = href; }, 340);
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', e => {
+      // Ignora se clicou em link interno
+      if(e.target.closest('a[href]')) return;
+      e.preventDefault();
+      navigateTo(card.dataset.href);
+    });
+  });
 })();
 </script>
 
