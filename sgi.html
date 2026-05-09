@@ -935,16 +935,21 @@ document.querySelectorAll('.mobile-link').forEach(l => {
 (function(){
   const visual  = document.getElementById('pqVisual');
   const section = document.querySelector('.pq-contato');
-  const spacer  = section && section.querySelector('.pq-contato__spacer');
+  const hold    = section && section.querySelector('.pq-contato__hold');
   const inner   = section && section.querySelector('.pq-contato__inner');
-  if(!visual || !section || !spacer) return;
+  if(!visual || !section || !hold) return;
 
   function isMobile(){ return window.matchMedia('(max-width:860px)').matches; }
 
   let ticking = false;
   function requestUpdate(){
-    if(!ticking){ ticking = true; requestAnimationFrame(update); }
+    if(!ticking){
+      ticking = true;
+      requestAnimationFrame(update);
+    }
   }
+
+  const SUBNAV_H = 48;
 
   function update(){
     ticking = false;
@@ -955,40 +960,36 @@ document.querySelectorAll('.mobile-link').forEach(l => {
       return;
     }
 
-    const spacerRect = spacer.getBoundingClientRect();
-    const innerRect  = inner ? inner.getBoundingClientRect() : null;
-    const formWrap   = section.querySelector('.pq-contato__form-wrap');
-    const formRect   = formWrap ? formWrap.getBoundingClientRect() : null;
-    const vh         = window.innerHeight;
+    const holdRect  = hold.getBoundingClientRect();
+    const innerRect = inner ? inner.getBoundingClientRect() : null;
+    const formWrap  = section.querySelector('.pq-contato__form-wrap');
+    const formRect  = formWrap ? formWrap.getBoundingClientRect() : null;
 
-    // Esconde: spacer ainda não chegou ao topo (seção não começou)
-    if(spacerRect.top > vh * 0.85){
+    if(holdRect.bottom > SUBNAV_H){
       visual.classList.remove('is-active','is-entered');
       visual.style.top = '';
       return;
     }
 
-    // Esconde: form já saiu completamente pelo topo
     if(innerRect && innerRect.bottom < 0){
       visual.classList.remove('is-active','is-entered');
       visual.style.top = '';
       return;
     }
 
-    // Ativa quando spacer entrou na viewport
     if(!visual.classList.contains('is-active')){
       visual.classList.add('is-active');
-      requestAnimationFrame(() => visual.classList.add('is-entered'));
+      requestAnimationFrame(() => {
+        visual.classList.add('is-entered');
+      });
     }
 
-    // Alinha com o form quando ele entra; senão fica em top:48px (subnav)
-    const DOCK = 48;
-    if(formRect && formRect.top < vh && formRect.top > DOCK){
+    if(formRect && formRect.top < window.innerHeight && formRect.top > SUBNAV_H){
       visual.style.top = formRect.top + 'px';
-    } else if(formRect && formRect.top <= DOCK){
-      visual.style.top = DOCK + 'px';
+    } else if(formRect && formRect.top <= SUBNAV_H){
+      visual.style.top = SUBNAV_H + 'px';
     } else {
-      visual.style.top = DOCK + 'px';
+      visual.style.top = '';
     }
   }
 
