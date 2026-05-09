@@ -935,21 +935,18 @@ document.querySelectorAll('.mobile-link').forEach(l => {
 (function(){
   const visual  = document.getElementById('pqVisual');
   const section = document.querySelector('.pq-contato');
-  const hold    = section && section.querySelector('.pq-contato__hold');
   const inner   = section && section.querySelector('.pq-contato__inner');
-  if(!visual || !section || !hold) return;
+  if(!visual || !section) return;
 
   function isMobile(){ return window.matchMedia('(max-width:860px)').matches; }
 
   let ticking = false;
   function requestUpdate(){
-    if(!ticking){
-      ticking = true;
-      requestAnimationFrame(update);
-    }
+    if(!ticking){ ticking = true; requestAnimationFrame(update); }
   }
 
-  const SUBNAV_H = 48;
+  // Subnav fica em top:0 quando dockado (nav some); usa 0 como threshold
+  const SUBNAV_H = 0;
 
   function update(){
     ticking = false;
@@ -960,43 +957,41 @@ document.querySelectorAll('.mobile-link').forEach(l => {
       return;
     }
 
-    const holdRect  = hold.getBoundingClientRect();
+    const secRect   = section.getBoundingClientRect();
     const innerRect = inner ? inner.getBoundingClientRect() : null;
     const formWrap  = section.querySelector('.pq-contato__form-wrap');
     const formRect  = formWrap ? formWrap.getBoundingClientRect() : null;
+    const vh        = window.innerHeight;
 
-    // Antes do trigger
-    if(holdRect.bottom > SUBNAV_H){
+    // Antes da seção entrar na viewport
+    if(secRect.bottom <= vh * 0.15){
       visual.classList.remove('is-active','is-entered');
       visual.style.top = '';
       return;
     }
 
-    // Depois da seção
+    // Depois da seção (form saiu pelo topo)
     if(innerRect && innerRect.bottom < 0){
       visual.classList.remove('is-active','is-entered');
       visual.style.top = '';
       return;
     }
 
-    // Trigger ativo: ativa visibilidade e dispara entrada CSS
-    if(!visual.classList.contains('is-active')){
-      visual.classList.add('is-active');
-      requestAnimationFrame(() => {
-        visual.classList.add('is-entered');
-      });
+    // Dispara quando a seção está a menos de 80% do topo da viewport
+    if(secRect.top < vh * 0.8){
+      if(!visual.classList.contains('is-active')){
+        visual.classList.add('is-active');
+        requestAnimationFrame(() => visual.classList.add('is-entered'));
+      }
     }
 
-    // Quando o formulário entra na viewport, alinha o topo do visual-wrap com ele
-    // Antes disso, fica encostado no subnav (top:48px do CSS)
-    if(formRect && formRect.top < window.innerHeight && formRect.top > SUBNAV_H){
+    // Alinha topo do visual com o form quando ele entra
+    if(formRect && formRect.top < vh && formRect.top > SUBNAV_H){
       visual.style.top = formRect.top + 'px';
     } else if(formRect && formRect.top <= SUBNAV_H){
-      // form já passou do topo, mantém alinhado com subnav
       visual.style.top = SUBNAV_H + 'px';
     } else {
-      // form ainda não entrou — usa o padrão CSS (top:48px)
-      visual.style.top = '';
+      visual.style.top = '48px'; // subnav height antes de dockar
     }
   }
 
