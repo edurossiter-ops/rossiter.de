@@ -418,12 +418,11 @@ p{text-wrap:pretty}
   position:relative;
 }
 .pq-contato__spacer{
-  height:80svh; /* tempo pra ver o bloco antes do form entrar */
+  height:80svh;
   pointer-events:none;
 }
 .pq-contato__visual-wrap{
   position:fixed;
-  /* Posição final = metade esquerda, alinhado com o form */
   top:48px;
   left:0;
   right:50%;
@@ -435,7 +434,7 @@ p{text-wrap:pretty}
   opacity:0;
   pointer-events:none;
   display:flex;
-  align-items:flex-start; /* alinha pelo topo, igual ao form */
+  align-items:flex-start;
   justify-content:flex-start;
   padding:clamp(2rem,4vw,4rem) clamp(1.5rem,4vw,4rem);
   background:#000;
@@ -446,22 +445,17 @@ p{text-wrap:pretty}
   opacity:1;
   pointer-events:auto;
 }
-
-/* Bloco do texto — começa fora da tela à direita.
-   Entrada controlada por CSS transition (não scroll). */
 .pq-contato__block{
   width:100%;
-  max-width:none; /* ocupa toda a metade esquerda */
+  max-width:none;
   margin:0;
-  transform:translateX(110vw); /* fora da tela, atravessa a viewport inteira */
+  transform:translateX(110vw);
   transition:transform 1.1s cubic-bezier(.22,1,.36,1);
   will-change:transform;
 }
 .pq-contato__visual-wrap.is-entered .pq-contato__block{
   transform:translateX(0);
 }
-
-/* Reserva pequena de fundo preto antes do trigger — animação dispara cedo */
 .pq-contato__hold{
   height:10svh;
   background:#000;
@@ -509,8 +503,6 @@ p{text-wrap:pretty}
   display:block;
   margin-bottom:.35em;
 }
-
-/* Grid: célula esquerda (vazia, espaço pro bloco encolhido) + formulário direita */
 .pq-contato__inner{
   position:relative;
   z-index:6;
@@ -552,8 +544,6 @@ p{text-wrap:pretty}
   margin-bottom:2.5rem;
   max-width:40ch;
 }
-
-/* Formulário (mesmo da home) */
 .form__row{margin-bottom:.875rem}
 .form__lbl{
   display:block;font-family:var(--mono);font-size:10px;font-weight:300;
@@ -800,11 +790,8 @@ p{text-wrap:pretty}
 <!-- ════════════ PARA QUEM + CONTATO ════════════ -->
 <section class="pq-contato" id="paraquem" aria-labelledby="pq-title">
 
-  <!-- Reserva de 1 tela cheia preta — sobe naturalmente com o scroll
-       até alinhar com o subnav. Só depois disso a animação dispara. -->
   <div class="pq-contato__hold" aria-hidden="true"></div>
 
-  <!-- Bloco fixed que entra da direita e depois encolhe pra esquerda -->
   <div class="pq-contato__visual-wrap" id="pqVisual">
     <div class="pq-contato__block">
       <p class="pq-contato__kicker">Perfil de aplicação</p>
@@ -817,10 +804,8 @@ p{text-wrap:pretty}
     </div>
   </div>
 
-  <!-- Spacer pra dar espaço pro bloco fullscreen sozinho antes de encolher -->
   <div class="pq-contato__spacer" aria-hidden="true"></div>
 
-  <!-- Grid: célula esquerda (vazia, ocupada visualmente pelo bloco encolhido) + formulário -->
   <div class="pq-contato__inner" id="contato">
     <div class="pq-contato__visual-cell" aria-hidden="true"></div>
 
