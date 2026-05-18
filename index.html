@@ -930,6 +930,260 @@ p{text-wrap:pretty}
   }
 }
 
+/* ══════════════════════════════════════════
+   ARTIGO MODAL — abre ao clicar no slide do carrossel Fluxo de Valor
+   Overlay preto + janela central, fecha no X / fora / ESC
+══════════════════════════════════════════ */
+
+/* Slide do método vira clicável */
+.metodo__slide{
+  cursor:pointer;
+  position:relative;
+}
+/* Indicador "Ler artigo" no canto superior direito do slide */
+.metodo__slide-readmore{
+  position:absolute;
+  top:clamp(1rem,2vw,1.5rem);
+  right:clamp(1rem,2vw,1.5rem);
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--blue);
+  pointer-events:none;
+  z-index:3;
+  opacity:.85;
+  transition:opacity .25s;
+}
+.metodo__slide:hover .metodo__slide-readmore{opacity:1}
+.metodo__slide-readmore::after{
+  content:'';
+  width:14px;height:1.5px;
+  background:var(--blue);
+}
+
+/* Overlay (fundo escuro semi-transparente) */
+.article-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  z-index:500;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s cubic-bezier(.4,0,.2,1);
+}
+.article-overlay.is-open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* Janela do artigo (centralizada, scroll interno) */
+.article-modal{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-48%) scale(.96);
+  width:min(820px,92vw);
+  max-height:88svh;
+  background:#0a0a09;
+  border-top:3px solid var(--blue);
+  z-index:501;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s cubic-bezier(.22,1,.36,1),
+             transform .45s cubic-bezier(.22,1,.36,1);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.article-modal.is-open{
+  opacity:1;
+  pointer-events:auto;
+  transform:translate(-50%,-50%) scale(1);
+}
+
+/* Botão fechar */
+.article-modal__close{
+  position:absolute;
+  top:1rem;
+  right:1rem;
+  width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  background:transparent;
+  border:1px solid var(--g30);
+  color:var(--g60);
+  cursor:pointer;
+  z-index:2;
+  transition:border-color .2s, color .2s, background .2s;
+}
+.article-modal__close:hover{
+  border-color:var(--blue);
+  color:#fff;
+  background:rgba(58,114,200,.1);
+}
+.article-modal__close svg{width:16px;height:16px}
+
+/* Container do conteúdo (scroll fica aqui) */
+.article-modal__scroll{
+  overflow-y:auto;
+  padding:clamp(2.5rem,5vw,4rem) clamp(2rem,5vw,4.5rem) clamp(2rem,4vw,3.5rem);
+  scrollbar-width:thin;
+  scrollbar-color:var(--g30) transparent;
+}
+.article-modal__scroll::-webkit-scrollbar{width:8px}
+.article-modal__scroll::-webkit-scrollbar-track{background:transparent}
+.article-modal__scroll::-webkit-scrollbar-thumb{background:var(--g30);border-radius:0}
+.article-modal__scroll::-webkit-scrollbar-thumb:hover{background:var(--g60)}
+
+/* Kicker do artigo (Categoria / leitura estimada) */
+.article-modal__kicker{
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--blue);
+  margin-bottom:1.25rem;
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+.article-modal__kicker span{color:var(--g30)}
+
+/* Título grande */
+.article-modal__title{
+  font-family:var(--cond);
+  font-size:clamp(2rem,4.2vw,3.25rem);
+  font-weight:700;
+  letter-spacing:-.025em;
+  line-height:1.05;
+  color:#fff;
+  text-transform:uppercase;
+  margin-bottom:.75rem;
+}
+.article-modal__title em{color:var(--blue);font-style:normal}
+
+/* Lead (linha de chamada abaixo do título) */
+.article-modal__lead{
+  font-family:var(--sans);
+  font-size:clamp(1.1rem,1.4vw,1.3rem);
+  font-weight:400;
+  line-height:1.5;
+  color:var(--g90);
+  margin-bottom:clamp(1.75rem,3vw,2.5rem);
+  padding-bottom:clamp(1.5rem,2.5vw,2rem);
+  border-bottom:1px solid var(--g30);
+}
+
+/* Corpo do artigo */
+.article-modal__body{
+  font-family:var(--sans);
+  font-size:clamp(1rem,1.2vw,1.1rem);
+  font-weight:400;
+  line-height:1.7;
+  color:rgba(232,230,224,.92);
+}
+.article-modal__body h3{
+  font-family:var(--cond);
+  font-size:clamp(1.4rem,2.2vw,1.85rem);
+  font-weight:700;
+  letter-spacing:-.02em;
+  line-height:1.15;
+  color:#fff;
+  text-transform:uppercase;
+  margin:clamp(1.75rem,3vw,2.5rem) 0 .85rem;
+}
+.article-modal__body h3:first-child{margin-top:0}
+.article-modal__body p{margin-bottom:1.1rem}
+.article-modal__body p strong{color:#fff;font-weight:500}
+.article-modal__body em{color:var(--blue);font-style:italic;font-weight:500}
+.article-modal__body blockquote{
+  margin:clamp(1.5rem,2.5vw,2rem) 0;
+  padding:1.25rem 1.5rem;
+  border-left:3px solid var(--blue);
+  background:rgba(58,114,200,.06);
+  font-family:var(--sans);
+  font-size:clamp(1.05rem,1.3vw,1.2rem);
+  font-weight:400;
+  line-height:1.55;
+  color:#fff;
+  font-style:italic;
+}
+.article-modal__body ul{
+  list-style:none;
+  padding:0;
+  margin:1rem 0 1.25rem;
+  display:flex;
+  flex-direction:column;
+  gap:.6rem;
+}
+.article-modal__body ul li{
+  position:relative;
+  padding-left:1.5rem;
+  color:rgba(232,230,224,.92);
+}
+.article-modal__body ul li::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:.65em;
+  width:.85rem;
+  height:1.5px;
+  background:var(--blue);
+}
+
+/* Footer do artigo (assinatura) */
+.article-modal__footer{
+  margin-top:clamp(2.5rem,4vw,3.5rem);
+  padding-top:clamp(1.5rem,2.5vw,2rem);
+  border-top:1px solid var(--g30);
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:300;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--g30);
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem 1.5rem;
+}
+
+/* Mobile */
+@media(max-width:860px){
+  .article-modal{
+    width:100vw;
+    max-height:100svh;
+    top:0;
+    left:0;
+    transform:translate(0,2%) scale(1);
+    border-top:none;
+    border-left:none;
+    border-right:none;
+  }
+  .article-modal.is-open{
+    transform:translate(0,0) scale(1);
+  }
+  .article-modal__close{
+    top:.75rem;right:.75rem;
+  }
+  .metodo__slide-readmore{
+    font-size:9px;
+    top:.75rem;right:.75rem;
+  }
+}
+
+/* Trava o scroll do body quando o modal está aberto */
+body.has-modal-open{
+  overflow:hidden;
+}
+
 </style>
 </head>
 <body>
@@ -1103,31 +1357,34 @@ p{text-wrap:pretty}
   <div class="metodo__carousel" id="metodoCar">
     <div class="metodo__track" id="metodoTrack">
 
-      <div class="metodo__slide">
+      <div class="metodo__slide" data-article="1" role="button" tabindex="0" aria-label="Ler artigo: Diagnóstico além do sintoma">
         <div class="metodo__slide-img-wrap"><img class="metodo__slide-img" src="metodo-01.jpg" alt="Diagnóstico"></div>
         <div class="metodo__slide-text">
           <span class="metodo__slide-num">01</span>
           <h3 class="metodo__slide-title">Diagnóstico além do sintoma</h3>
           <p class="metodo__slide-body">Falhas em produção, gargalos em logística, perdas em qualidade. Mapeamos toda a cadeia que conecta esses pontos — fornecedores, fluxos de informação, decisões de gestão — antes de propor qualquer mudança.</p>
         </div>
+        <span class="metodo__slide-readmore">Ler artigo</span>
       </div>
 
-      <div class="metodo__slide">
+      <div class="metodo__slide" data-article="2" role="button" tabindex="0" aria-label="Ler artigo: Uma causa, múltiplos ganhos">
         <div class="metodo__slide-img-wrap"><img class="metodo__slide-img" src="metodo-02.jpg" alt="Uma causa"></div>
         <div class="metodo__slide-text">
           <span class="metodo__slide-num">02</span>
           <h3 class="metodo__slide-title">Uma causa, múltiplos ganhos</h3>
           <p class="metodo__slide-body">Quando inspeções falham em diferentes países, retrabalhos acumulam em diferentes linhas, ou retornos crescem em diferentes mercados, raramente são problemas distintos. Identificamos a causa estrutural comum e dissolvemos todas as manifestações com uma única intervenção.</p>
         </div>
+        <span class="metodo__slide-readmore">Ler artigo</span>
       </div>
 
-      <div class="metodo__slide">
+      <div class="metodo__slide" data-article="3" role="button" tabindex="0" aria-label="Ler artigo: Solução que se sustenta">
         <div class="metodo__slide-img-wrap"><img class="metodo__slide-img" src="metodo-03.jpg" alt="Solução"></div>
         <div class="metodo__slide-text">
           <span class="metodo__slide-num">03</span>
           <h3 class="metodo__slide-title">Solução que se sustenta</h3>
           <p class="metodo__slide-body">Operadores de chão de fábrica, líderes de qualidade, gerentes de planta, fornecedores estratégicos. Cada nível envolvido na operação encontra ganho concreto na mudança implementada — e a sustenta sem precisar ser monitorado.</p>
         </div>
+        <span class="metodo__slide-readmore">Ler artigo</span>
       </div>
 
     </div><!-- /track -->
@@ -1243,7 +1500,7 @@ p{text-wrap:pretty}
           Mensagem enviada. Eduardo responde diretamente em até 24 horas.
         </p>
         <p class="form__error" id="formError" hidden>
-          Não foi possível enviar agora. Tente novamente em alguns minutos, ou escreva diretamente para eduardo@rossiterconsulting.com.
+          Não foi possível enviar agora. Tente novamente em alguns minutos, ou escreva diretamente para eduardo@rossiter.de.
         </p>
       </form>
     </div>
@@ -1265,7 +1522,7 @@ p{text-wrap:pretty}
 
     <!-- Botões estilizados de contato -->
     <div class="footer__social">
-      <a href="mailto:eduardo@rossiter" class="footer__btn">
+      <a href="mailto:eduardo@rossiter.de" class="footer__btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="2" y="4" width="20" height="16" rx="1"/>
           <path d="M2 6l10 7 10-7"/>
@@ -1279,7 +1536,7 @@ p{text-wrap:pretty}
         </svg>
         LinkedIn
       </a>
-      <a href="https://wa.me/49000000000" target="_blank" rel="noopener" class="footer__btn">
+      <a href="https://wa.me/4917621110258" target="_blank" rel="noopener" class="footer__btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
         </svg>
@@ -1298,6 +1555,259 @@ p{text-wrap:pretty}
 
   <p class="footer__copy">© 2026 Rossiter Consulting. Todos os direitos reservados.</p>
 </footer>
+
+<!-- ════════════ ARTIGOS — conteúdo escondido, carregado no modal ao clicar nos slides ════════════ -->
+
+<!-- ARTIGO 1 — Diagnóstico além do sintoma -->
+<template id="article-1">
+  <div class="article-modal__kicker">
+    <span style="color:var(--blue)">Artigo · Fluxo de Valor 360°</span>
+    <span>·</span>
+    <span>Leitura · 4 min</span>
+    <span>·</span>
+    <span>Diagnóstico</span>
+  </div>
+  <h2 class="article-modal__title">O que a falha <em>parece</em> e o que ela <em>é</em></h2>
+  <p class="article-modal__lead">
+    Quando uma operação adoece, o primeiro impulso é tratar o sintoma onde ele aparece. A literatura técnica das últimas três décadas mostra que esse é, sistematicamente, o ponto onde a solução começa errada.
+  </p>
+
+  <div class="article-modal__body">
+
+    <p>
+      Em fevereiro de 1986, um relatório do <strong>Rogers Commission</strong> sobre o desastre do ônibus espacial Challenger trouxe uma frase que entrou no léxico da engenharia de qualidade. Richard Feynman, físico contratado para investigar o acidente, escreveu: <em>"para uma tecnologia bem-sucedida, a realidade precisa ter prioridade sobre as relações públicas, porque a natureza não pode ser enganada"</em>. A falha do o-ring era o sintoma. A causa era um sistema de decisão organizacional que, durante anos, havia normalizado o desvio. Feynman descreveu o fenômeno como uma cadeia onde cada decisão local parecia razoável — e o conjunto produzia desastre.
+    </p>
+
+    <p>
+      A mesma estrutura aparece, em escala menor e mais discreta, em quase toda operação industrial madura. Um conveyor que rompe às duas da manhã raramente é problema de correia. A bibliografia de Root Cause Analysis aponta sistematicamente para misalinhamento de polia não detectado, regime de turno acima do projeto, ou uma tarefa de manutenção preventiva que saiu do plano há dois anos. <strong>O componente que falha é o último elo de uma cadeia de decisões que poucos enxergavam como cadeia.</strong>
+    </p>
+
+    <h3>A ilusão do reparo localizado</h3>
+
+    <p>
+      A pesquisa publicada no <em>International Journal of Productivity and Performance Management</em> (McLean, Antony &amp; Dahlgaard, 2014) revisou sistematicamente 72 estudos sobre falhas em programas de melhoria contínua. Um dos achados consolidados: ações corretivas concentradas no sintoma — substituição de componente, retrabalho de lote, ajuste pontual de parâmetro — apresentam taxa de reincidência média superior a 70% dentro de 12 meses. A causa raramente foi tratada porque a causa raramente foi enxergada.
+    </p>
+
+    <p>
+      Isso não é falha de método. É falha de escopo. <strong>O 5-Whys aplicado dentro do limite do departamento que registrou o defeito invariavelmente conclui que a causa está dentro daquele departamento.</strong> Cada área tem sua linguagem, sua memória, seus indicadores — e a fronteira entre departamentos é o lugar onde a investigação naturalmente para. O problema é que a maioria das causas estruturais vive exatamente nessa fronteira.
+    </p>
+
+    <blockquote>
+      O que aparece como problema de qualidade frequentemente é problema de informação. O que aparece como problema de manutenção frequentemente é problema de planejamento. O que aparece como problema operacional frequentemente é problema de decisão tomada três níveis acima da operação.
+    </blockquote>
+
+    <h3>Mapear antes de propor</h3>
+
+    <p>
+      Diagnóstico industrial sério começa pelo mapeamento do <strong>value stream</strong> — o fluxo de valor que conecta fornecedor, processo interno, decisão de gestão e cliente. A ASQ documenta que cerca de 80% das oportunidades de melhoria identificadas em VSM facility-level estão em <em>interfaces</em>, não em estações de trabalho isoladas: transferência entre turnos, handoff entre departamentos, ponto de comunicação entre planejamento e execução, momento em que a especificação do cliente é traduzida em parâmetro de produção.
+    </p>
+
+    <p>
+      Em outras palavras: a maior parte do dinheiro perdido em uma operação industrial não está onde a operação acontece — está onde ela <em>transita</em>. E transição não tem dono claro; portanto não tem indicador claro; portanto fica invisível.
+    </p>
+
+    <h3>Por que isso importa pro próximo passo</h3>
+
+    <p>
+      Quando uma intervenção é desenhada sobre um diagnóstico raso, três coisas acontecem com frequência:
+    </p>
+    <ul>
+      <li><strong>Solução que resolve um sintoma e cria outro.</strong> Aumenta inspeção em um ponto, custo cresce em outro. Reduz refugo em uma linha, retrabalho aumenta em outra.</li>
+      <li><strong>Resultado que melhora por seis meses e regride.</strong> O efeito da intervenção dura enquanto há atenção; some quando a atenção migra pro próximo problema.</li>
+      <li><strong>Equipe operacional desconfiando de melhorias futuras.</strong> Cada projeto que não sustenta o resultado consome o crédito político da próxima iniciativa de melhoria.</li>
+    </ul>
+
+    <p>
+      A alternativa é desconfortável porque é mais lenta no início: mapear antes de agir. Olhar para o sistema antes de olhar para o defeito. Procurar a cadeia de decisões que produziu o resultado atual, e não apenas o ponto onde o resultado se manifestou. <strong>O diagnóstico bem feito é o que torna a próxima fase — a intervenção — economicamente viável.</strong> Sem ele, cada melhoria é uma aposta sobre causas presumidas.
+    </p>
+
+    <p>
+      A operação que aprende a se diagnosticar com profundidade desenvolve uma vantagem que dura mais que qualquer projeto isolado: ela passa a ver o sistema, não apenas o sintoma. E essa visão, uma vez instalada, transforma a relação da equipe com o próprio trabalho.
+    </p>
+
+    <div class="article-modal__footer">
+      <span>Rossiter Consulting</span>
+      <span>Eduardo Rossiter · MBB · Lead Auditor IMS</span>
+      <span>Fluxo de Valor 360° · 01</span>
+    </div>
+  </div>
+</template>
+
+<!-- ARTIGO 2 — Uma causa, múltiplos ganhos -->
+<template id="article-2">
+  <div class="article-modal__kicker">
+    <span style="color:var(--blue)">Artigo · Fluxo de Valor 360°</span>
+    <span>·</span>
+    <span>Leitura · 5 min</span>
+    <span>·</span>
+    <span>Causa estrutural</span>
+  </div>
+  <h2 class="article-modal__title">Quando problemas <em>distintos</em> são o mesmo problema</h2>
+  <p class="article-modal__lead">
+    Uma operação industrial pode acumular, em cinco anos, três dezenas de não conformidades aparentemente independentes. A análise sistêmica frequentemente revela que metade delas compartilha origem — e a outra metade é consequência dela.
+  </p>
+
+  <div class="article-modal__body">
+
+    <p>
+      Há uma assimetria conhecida em análise de defeitos industriais: o trabalho de detectar problemas é distribuído (cada área detecta os seus); o trabalho de conectá-los raramente é feito por alguém. Cada não conformidade entra na fila de tratativa do departamento que a registrou. Cada plano de ação ataca o defeito específico. Cada relatório de auditoria fecha o ciclo. E o sistema, do ponto de vista da gestão, parece estar funcionando.
+    </p>
+
+    <p>
+      O problema é que <strong>uma causa estrutural não conhece fronteira departamental</strong>. Ela se manifesta onde encontra condição, e a operação registra cada manifestação como evento separado. Em estudos publicados em <em>Quality Filter Mapping</em> e em pesquisas de RCA aplicadas a indústrias com alta complexidade de processo, a observação se repete: 60% a 80% das não conformidades recorrentes investigadas em profundidade revelam pertencer a uma família comum de causa.
+    </p>
+
+    <h3>O caso clássico: o defeito que aparece em três lugares</h3>
+
+    <p>
+      Considere o exemplo agregado de uma planta automotiva: a inspeção de saída detecta acabamento fora de especificação no produto A. Três meses depois, retrabalho aumenta na linha B. Seis meses depois, devoluções crescem no mercado europeu para o produto C. Cada departamento trata o seu problema. O custo aparece em três centros diferentes. Os três planos de ação se executam em paralelo, sem se cruzar.
+    </p>
+
+    <p>
+      A investigação cruzada, quando feita, encontra um único ponto de origem: <strong>uma alteração no fornecedor de tinta, dezesseis meses antes, mudou a curva de cura do produto</strong>. A operação se adaptou — turnos calibraram fornos, operadores ajustaram tempo de processo, qualidade aceitou tolerância expandida. Mas a margem de variabilidade que cada adaptação produziu, somada, comprometeu o desempenho em três frentes simultâneas. O fornecedor era a causa; a inspeção, a linha de produção e o mercado eram os pontos onde ela aparecia.
+    </p>
+
+    <blockquote>
+      Em operações maduras, é raro um problema único produzir um sintoma único. O mais comum é uma causa única produzir sintomas múltiplos — e a forma como a operação está organizada esconde a conexão entre eles.
+    </blockquote>
+
+    <h3>Por que a investigação isolada não encontra</h3>
+
+    <p>
+      O fenômeno tem nome técnico: <em>siloed root cause analysis</em>. Cada departamento conduz a análise dentro do seu próprio escopo, com seus próprios dados, no seu próprio horizonte temporal. A pergunta "por que isso falhou?" é respondida com a melhor resposta disponível dentro daquele escopo — e a melhor resposta disponível é quase sempre uma causa local. A pergunta "isso falhou ao mesmo tempo que algo mais falhou em outro lugar?" raramente é feita.
+    </p>
+
+    <p>
+      A literatura de Pareto aplicada à indústria reforça o ponto. Os 20% de causas que produzem 80% dos problemas — princípio descrito por Joseph Juran há mais de meio século — só ficam visíveis quando o universo de análise é amplo o suficiente para capturá-los. Se cada departamento aplica Pareto sobre os <em>seus</em> dados, ele encontrará 20% locais. Se a empresa aplica Pareto sobre o sistema inteiro, encontrará 20% sistêmicos. Os dois conjuntos quase nunca coincidem.
+    </p>
+
+    <h3>A intervenção que dissolve várias manifestações</h3>
+
+    <p>
+      Quando a causa estrutural é identificada, a intervenção tem propriedade incomum: ela <strong>resolve simultaneamente</strong> problemas que aparentavam ser independentes. O retorno por dólar investido cresce de forma desproporcional, porque o mesmo custo de intervenção produz ganho em múltiplas frentes.
+    </p>
+
+    <p>
+      Isso aparece em duas categorias frequentes:
+    </p>
+    <ul>
+      <li><strong>Causas de fornecedor.</strong> Alterações em matéria-prima, especificação, processo produtivo ou logística do fornecedor que se manifestam em produtos distintos no cliente. Resolvendo na fonte, todas as manifestações cessam.</li>
+      <li><strong>Causas de sistema de informação.</strong> Erros de tradução entre engenharia, planejamento e operação que se propagam por múltiplas linhas. Resolvendo a especificação, todas as variações dependentes dela se estabilizam.</li>
+      <li><strong>Causas de decisão de gestão.</strong> Políticas de prioridade, horários de turno, regras de troca de ferramenta que produzem efeito agregado mensurável em qualidade, prazo e custo. Resolvendo a política, três indicadores melhoram juntos.</li>
+    </ul>
+
+    <h3>O que isso exige da operação</h3>
+
+    <p>
+      Para encontrar uma causa estrutural, a empresa precisa de algo que poucas têm: <strong>memória cruzada</strong>. Capacidade de comparar não conformidades de áreas diferentes, em janelas temporais diferentes, com vocabulários diferentes. A maioria dos sistemas de qualidade armazena dados; poucos os organizam de forma a expor padrões entre eles.
+    </p>
+
+    <p>
+      Aqui está o argumento econômico para o diagnóstico transversal: o custo de manter uma operação onde causas estruturais permanecem invisíveis é pago todos os meses, em forma de custo redundante de tratativa, retrabalho recorrente e perda de confiança da equipe operacional em cada novo plano de ação. <strong>Identificar uma causa estrutural por trimestre — e tratá-la — produz retorno cumulativo que nenhuma melhoria localizada consegue equiparar.</strong>
+    </p>
+
+    <div class="article-modal__footer">
+      <span>Rossiter Consulting</span>
+      <span>Eduardo Rossiter · MBB · Lead Auditor IMS</span>
+      <span>Fluxo de Valor 360° · 02</span>
+    </div>
+  </div>
+</template>
+
+<!-- ARTIGO 3 — Solução que se sustenta -->
+<template id="article-3">
+  <div class="article-modal__kicker">
+    <span style="color:var(--blue)">Artigo · Fluxo de Valor 360°</span>
+    <span>·</span>
+    <span>Leitura · 5 min</span>
+    <span>·</span>
+    <span>Sustentação</span>
+  </div>
+  <h2 class="article-modal__title">A taxa de falha que ninguém <em>menciona</em></h2>
+  <p class="article-modal__lead">
+    Pesquisas independentes apontam que, entre 60% e 70% das iniciativas de melhoria em operações industriais não sustentam o resultado obtido. A causa raramente é o método. É a forma como o resultado foi entregue.
+  </p>
+
+  <div class="article-modal__body">
+
+    <p>
+      O número é desconfortável o suficiente pra que poucos consultores o citem em propostas. <strong>A pesquisa publicada por McLean, Antony e Dahlgaard em <em>Total Quality Management &amp; Business Excellence</em> (2014)</strong>, baseada em revisão sistemática de 72 estudos sobre iniciativas de Lean, Six Sigma e TQM em indústria, concluiu: a maioria dos programas de melhoria contínua atinge o ganho previsto no escopo do projeto, mas perde a maior parte desse ganho em três a dezoito meses após o encerramento da consultoria. O dado é replicado em estudos da Gartner sobre change management, com taxa de falha consolidada em torno de 70%.
+    </p>
+
+    <p>
+      Mais interessante que o número é a estrutura das causas. A pesquisa agrupou os fatores de falha em oito categorias — e a primeira que aparece em todos os recortes é a mesma: <strong>envolvimento da equipe operacional</strong>. Não treinamento. Não comunicação. Envolvimento real na construção da solução.
+    </p>
+
+    <h3>A solução imposta tem prazo de validade</h3>
+
+    <p>
+      Quando uma intervenção de melhoria é desenhada por consultores ou por gestão e implementada para a operação executar, três dinâmicas previsíveis se instalam.
+    </p>
+
+    <p>
+      <strong>Primeiro</strong>, durante a fase ativa do projeto, há atenção: reuniões, indicadores, presença do consultor, patrocínio executivo. A operação cumpre o novo procedimento porque alguém está olhando. O resultado aparece nos relatórios.
+    </p>
+
+    <p>
+      <strong>Segundo</strong>, a fase ativa termina. Atenção migra para o próximo projeto. Patrocínio executivo se dilui em outras prioridades. O novo procedimento perde o reforço externo que o sustentava.
+    </p>
+
+    <p>
+      <strong>Terceiro</strong>, a operação volta gradualmente para a forma de trabalho anterior — porque a forma anterior foi construída pelas próprias pessoas que operam, durante anos, e tem coerência interna que o novo procedimento, desenhado em sala de reunião, raramente alcança. Em doze meses, o indicador retornou ao patamar pré-intervenção, frequentemente com pequenas distorções: novos procedimentos parcialmente seguidos, novos rituais sobrepostos aos antigos, complexidade adicionada sem benefício correspondente.
+    </p>
+
+    <blockquote>
+      A solução que dura é aquela em que cada nível operacional encontra um ganho concreto, próprio, na mudança. Sem esse ganho, a mudança vive de cobrança externa. E cobrança externa tem prazo de validade.
+    </blockquote>
+
+    <h3>O que o operador, o líder e o gerente precisam para sustentar</h3>
+
+    <p>
+      A literatura de change management — de Kotter a Prosci, com pesquisas mais recentes consolidadas pela McKinsey — converge num ponto. Cada nível envolvido na mudança precisa enxergar nela um benefício que o nível responde:
+    </p>
+    <ul>
+      <li><strong>O operador precisa enxergar trabalho mais simples, mais seguro ou menos frustrante.</strong> Não é suficiente que o procedimento seja "melhor" no relatório. Precisa ser melhor na mão de quem executa.</li>
+      <li><strong>O supervisor precisa enxergar menos exceção, menos retrabalho, menos decisão difícil.</strong> A intervenção tem que reduzir a carga gerencial diária, não adicionar nova camada de controle.</li>
+      <li><strong>O gerente precisa enxergar indicador estável, previsibilidade de entrega e tempo liberado.</strong> A operação tem que se conduzir mais sozinha, não exigir mais reunião.</li>
+      <li><strong>A diretoria precisa enxergar o resultado em margem, prazo ou capacidade.</strong> O retorno financeiro tem que ser visível no fechamento do trimestre, não apenas no relatório do projeto.</li>
+    </ul>
+
+    <p>
+      Quando os quatro níveis encontram esse benefício, a solução se sustenta sem cobrança. Quando algum dos níveis não encontra, é exatamente daquele nível que vem a regressão.
+    </p>
+
+    <h3>O papel da consultoria que pretende deixar resultado</h3>
+
+    <p>
+      Em consultoria séria, o sucesso do projeto não é medido no encerramento. É medido <strong>doze a vinte e quatro meses depois</strong>, na operação que não tem mais o consultor presente. Esse horizonte muda o desenho da intervenção:
+    </p>
+
+    <p>
+      A intervenção é construída <em>com</em> a operação, não <em>para</em> ela. Operadores participam da definição do novo procedimento e ajustam pontos de fricção que só são visíveis no chão. Líderes operacionais conduzem a implementação com suporte técnico — não recebem a implementação pronta. Indicadores são desenhados para fazer sentido pra quem os usa, não apenas pra quem os consolida. A transferência de capacidade técnica acontece em paralelo a cada fase — quando saímos, o sistema continua porque a competência ficou.
+    </p>
+
+    <p>
+      O custo dessa abordagem é mais tempo no início — porque construir com a operação leva mais tempo que entregar pronto. O retorno é o resultado que dura. <strong>E o resultado que dura é o único tipo de resultado que importa para o negócio.</strong>
+    </p>
+
+    <div class="article-modal__footer">
+      <span>Rossiter Consulting</span>
+      <span>Eduardo Rossiter · MBB · Lead Auditor IMS</span>
+      <span>Fluxo de Valor 360° · 03</span>
+    </div>
+  </div>
+</template>
+
+<!-- Overlay e modal estruturais (vazios, preenchidos via JS) -->
+<div class="article-overlay" id="articleOverlay" aria-hidden="true"></div>
+<div class="article-modal" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="articleTitle" aria-hidden="true">
+  <button class="article-modal__close" id="articleClose" aria-label="Fechar artigo">
+    <svg viewBox="0 0 16 16" fill="none">
+      <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+    </svg>
+  </button>
+  <div class="article-modal__scroll" id="articleContent"></div>
+</div>
 
 <script>
 // ── Nav: scroll border ──
@@ -1535,6 +2045,90 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 });
+// ── Modal de artigos (clique nos slides do Fluxo de Valor 360°) ──
+(function(){
+  const overlay = document.getElementById('articleOverlay');
+  const modal = document.getElementById('articleModal');
+  const content = document.getElementById('articleContent');
+  const closeBtn = document.getElementById('articleClose');
+  if(!overlay || !modal || !content || !closeBtn) return;
+
+  let lastFocused = null;
+
+  function openArticle(id){
+    const tpl = document.getElementById('article-' + id);
+    if(!tpl) return;
+
+    // Limpa e injeta o conteúdo do template
+    content.innerHTML = '';
+    content.appendChild(tpl.content.cloneNode(true));
+
+    // Reset scroll do conteúdo
+    content.scrollTop = 0;
+
+    // Abre overlay e modal
+    overlay.classList.add('is-open');
+    modal.classList.add('is-open');
+    overlay.setAttribute('aria-hidden','false');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('has-modal-open');
+
+    // Foco no botão de fechar (acessibilidade)
+    lastFocused = document.activeElement;
+    setTimeout(() => closeBtn.focus(), 100);
+  }
+
+  function closeArticle(){
+    overlay.classList.remove('is-open');
+    modal.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden','true');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('has-modal-open');
+
+    // Limpa conteúdo após animação
+    setTimeout(() => { content.innerHTML = ''; }, 400);
+
+    // Devolve foco
+    if(lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  // Click nos slides do carrossel
+  // Usa delegation: aplica em todos os slides, incluindo os clones do carrossel
+  document.addEventListener('click', function(e){
+    const slide = e.target.closest('.metodo__slide[data-article]');
+    if(slide){
+      e.preventDefault();
+      e.stopPropagation();
+      const articleId = slide.getAttribute('data-article');
+      openArticle(articleId);
+    }
+  });
+
+  // Suporte a teclado (Enter ou Space ativa o slide com foco)
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){
+      const slide = document.activeElement;
+      if(slide && slide.matches && slide.matches('.metodo__slide[data-article]')){
+        e.preventDefault();
+        const articleId = slide.getAttribute('data-article');
+        openArticle(articleId);
+      }
+    }
+  });
+
+  // Fechar: botão X
+  closeBtn.addEventListener('click', closeArticle);
+
+  // Fechar: clique no overlay
+  overlay.addEventListener('click', closeArticle);
+
+  // Fechar: tecla ESC
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('is-open')){
+      closeArticle();
+    }
+  });
+})();
 </script>
 
 </body>
