@@ -811,6 +811,28 @@ p{text-wrap:pretty}
 }
 .form__submit:hover{gap:1.25rem}
 .form__submit:hover .cta-sq{background:var(--blue-dim)}
+  .form__success{
+  margin-top:1.25rem;
+  padding:1rem 1.25rem;
+  border-left:3px solid var(--blue);
+  background:rgba(58,114,200,.08);
+  font-family:var(--sans);
+  font-size:.95rem;
+  font-weight:400;
+  line-height:1.5;
+  color:#fff;
+}
+.form__error{
+  margin-top:1.25rem;
+  padding:1rem 1.25rem;
+  border-left:3px solid #c2460b;
+  background:rgba(194,70,11,.08);
+  font-family:var(--sans);
+  font-size:.95rem;
+  font-weight:400;
+  line-height:1.5;
+  color:rgba(232,230,224,.95);
+}
 .form__note{
   margin-top:.625rem;
   font-family:var(--mono);font-size:10px;font-weight:300;
@@ -1217,6 +1239,12 @@ p{text-wrap:pretty}
           </span>
         </button>
         <p class="form__note">Resposta direta. Sem intermediários.</p>
+          <p class="form__success" id="formSuccess" hidden>
+              Mensagem enviada. Eduardo responde diretamente em até 24 horas.
+                </p>
+                    <p class="form__error" id="formError" hidden>
+                      Não foi possível enviar agora. Tente novamente em alguns minutos, ou escreva diretamente para eduardo@rossiterconsulting.com.
+          </p>
       </form>
     </div>
   </div>
@@ -1446,6 +1474,53 @@ document.querySelectorAll('.mobile-link').forEach(l => {
       e.preventDefault();
       navigateTo(card.dataset.href);
     });
+  });
+})();
+  // ── Envio do formulário via API do Formspree (sem redirect) ──
+(function(){
+  const form = document.querySelector('.pq-contato__form-wrap form');
+  if(!form) return;
+
+  const successMsg = document.getElementById('formSuccess');
+  const errorMsg = document.getElementById('formError');
+  const submitBtn = form.querySelector('.form__submit');
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    // Esconde mensagens anteriores
+    if(successMsg) successMsg.hidden = true;
+    if(errorMsg) errorMsg.hidden = true;
+
+    // Estado de envio
+    if(submitBtn){
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.6';
+    }
+
+    const data = new FormData(form);
+
+    try{
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if(response.ok){
+        form.reset();
+        if(successMsg) successMsg.hidden = false;
+      } else {
+        if(errorMsg) errorMsg.hidden = false;
+      }
+    } catch(err){
+      if(errorMsg) errorMsg.hidden = false;
+    } finally {
+      if(submitBtn){
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '';
+      }
+    }
   });
 })();
 </script>
