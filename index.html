@@ -1104,7 +1104,7 @@ p{text-wrap:pretty}
     <div class="metodo__track" id="metodoTrack">
 
       <div class="metodo__slide">
-        <div class="metodo__slide-img-wrap"><img src="metodo-01.jpg" alt="Diagnóstico" ;"></div>
+        <div class="metodo__slide-img-wrap"><img class="metodo__slide-img" src="metodo-01.jpg" alt="Diagnóstico"></div>
         <div class="metodo__slide-text">
           <span class="metodo__slide-num">01</span>
           <h3 class="metodo__slide-title">Diagnóstico além do sintoma</h3>
@@ -1113,7 +1113,7 @@ p{text-wrap:pretty}
       </div>
 
       <div class="metodo__slide">
-        <div class="metodo__slide-img-wrap"><img src="metodo-02.jpg" alt="Uma causa" ;"></div>
+        <div class="metodo__slide-img-wrap"><img class="metodo__slide-img" src="metodo-02.jpg" alt="Uma causa"></div>
         <div class="metodo__slide-text">
           <span class="metodo__slide-num">02</span>
           <h3 class="metodo__slide-title">Uma causa, múltiplos ganhos</h3>
@@ -1122,7 +1122,7 @@ p{text-wrap:pretty}
       </div>
 
       <div class="metodo__slide">
-        <div class="metodo__slide-img-wrap"><img src="metodo-03.jpg" alt="Solução" ;"></div>
+        <div class="metodo__slide-img-wrap"><img class="metodo__slide-img" src="metodo-03.jpg" alt="Solução"></div>
         <div class="metodo__slide-text">
           <span class="metodo__slide-num">03</span>
           <h3 class="metodo__slide-title">Solução que se sustenta</h3>
@@ -1239,12 +1239,12 @@ p{text-wrap:pretty}
           </span>
         </button>
         <p class="form__note">Resposta direta. Sem intermediários.</p>
-          <p class="form__success" id="formSuccess" hidden>
-              Mensagem enviada. Eduardo responde diretamente em até 24 horas.
-                </p>
-                    <p class="form__error" id="formError" hidden>
-                      Não foi possível enviar agora. Tente novamente em alguns minutos, ou escreva diretamente para eduardo@rossiterconsulting.com.
-          </p>
+        <p class="form__success" id="formSuccess" hidden>
+          Mensagem enviada. Eduardo responde diretamente em até 24 horas.
+        </p>
+        <p class="form__error" id="formError" hidden>
+          Não foi possível enviar agora. Tente novamente em alguns minutos, ou escreva diretamente para eduardo@rossiterconsulting.com.
+        </p>
       </form>
     </div>
   </div>
@@ -1451,6 +1451,7 @@ document.querySelectorAll('.mobile-link').forEach(l => {
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 })();
+
 // ── Navegação com transição de saída ──
 (function(){
   const cards = document.querySelectorAll('.card[data-href]');
@@ -1476,17 +1477,25 @@ document.querySelectorAll('.mobile-link').forEach(l => {
     });
   });
 })();
-  // ── Envio do formulário via API do Formspree (sem redirect) ──
-(function(){
-  const form = document.querySelector('.pq-contato__form-wrap form');
-  if(!form) return;
+
+// ── Envio do formulário via API do Formspree (sem redirect) ──
+document.addEventListener('DOMContentLoaded', function(){
+  // Seletor universal: pega qualquer formulário que envie pro Formspree
+  // Funciona na home e em todas as subpáginas sem ajuste
+  const form = document.querySelector('form[action*="formspree.io"]');
+  if(!form){
+    console.log('Formspree: formulario nao encontrado');
+    return;
+  }
+  console.log('Formspree: interceptador registrado');
 
   const successMsg = document.getElementById('formSuccess');
   const errorMsg = document.getElementById('formError');
-  const submitBtn = form.querySelector('.form__submit');
+  const submitBtn = form.querySelector('button[type="submit"], .form__submit');
 
   form.addEventListener('submit', async function(e){
     e.preventDefault();
+    console.log('Formspree: submit interceptado');
 
     // Esconde mensagens anteriores
     if(successMsg) successMsg.hidden = true;
@@ -1510,11 +1519,14 @@ document.querySelectorAll('.mobile-link').forEach(l => {
       if(response.ok){
         form.reset();
         if(successMsg) successMsg.hidden = false;
+        console.log('Formspree: enviado com sucesso');
       } else {
         if(errorMsg) errorMsg.hidden = false;
+        console.log('Formspree: erro do servidor', response.status);
       }
     } catch(err){
       if(errorMsg) errorMsg.hidden = false;
+      console.log('Formspree: erro de rede', err);
     } finally {
       if(submitBtn){
         submitBtn.disabled = false;
@@ -1522,7 +1534,7 @@ document.querySelectorAll('.mobile-link').forEach(l => {
       }
     }
   });
-})();
+});
 </script>
 
 </body>
