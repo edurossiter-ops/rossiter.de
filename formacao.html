@@ -121,7 +121,6 @@ p{text-wrap:pretty}
 
 /* ══════════════════════════════════════════
    SUB-NAV — sticky abaixo do header
-   título à esquerda (alinhado com logo) + links do meio pra direita
 ══════════════════════════════════════════ */
 .subnav{
   position:fixed;
@@ -137,7 +136,7 @@ p{text-wrap:pretty}
 .subnav.docked{top:0}
 .subnav__title{
   font-family:var(--sans);
-  font-size:1.5625rem; /* 25px — igual aos links do menu principal */
+  font-size:1.5625rem;
   font-weight:400;
   letter-spacing:-0.005em;
   color:#fff;
@@ -153,7 +152,7 @@ p{text-wrap:pretty}
 }
 .subnav__links a{
   font-family:var(--sans);
-  font-size:1.5625rem; /* 25px — igual ao menu */
+  font-size:1.5625rem;
   font-weight:400;
   letter-spacing:-0.005em;
   color:#fff;
@@ -190,14 +189,13 @@ p{text-wrap:pretty}
   position:relative;
   background:#000;
   min-height:62svh;
-  padding-top:128px; /* nav 80 + subnav 48 */
+  padding-top:128px;
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
   overflow:hidden;
 }
 
-/* Glow sutil de fundo pra dar profundidade sem vídeo */
 .hero__bg{
   position:absolute;inset:0;z-index:0;
   background:
@@ -278,7 +276,7 @@ p{text-wrap:pretty}
 }
 
 /* ══════════════════════════════════════════
-   SEÇÃO 1 — imagem esquerda + texto direita (encostada no hero)
+   SEÇÃO 1 — imagem esquerda + texto direita
 ══════════════════════════════════════════ */
 .intro{
   background:#000;
@@ -313,7 +311,7 @@ p{text-wrap:pretty}
   font-size:clamp(1rem,1.2vw,1.15rem);
   font-weight:400;
   line-height:1.65;
-  color:var(--g60); /* cinza médio igual à home */
+  color:var(--g60);
 }
 .intro__text p + p{margin-top:1.5rem}
 
@@ -323,9 +321,7 @@ p{text-wrap:pretty}
 }
 
 /* ══════════════════════════════════════════
-   STATS BLOCK — estilo "Cybersecurity heute"
-   título acima + colunas com tracinho azul + destaque grande + descrição
-   layout reutilizado pelas seções 2 e 3 (Benefícios e Serviço)
+   STATS BLOCK
 ══════════════════════════════════════════ */
 .stats{
   background:#000;
@@ -337,11 +333,11 @@ p{text-wrap:pretty}
 .stats__title{
   font-family:var(--cond);
   font-size:clamp(2rem,4vw,3.25rem);
-  font-weight:700; /* bold como os títulos de slide da home */
+  font-weight:700;
   letter-spacing:-.025em;
   line-height:1.1;
   color:#fff;
-  text-transform:uppercase; /* uppercase como toda a home */
+  text-transform:uppercase;
   margin-bottom:clamp(2.5rem,5vw,4.5rem);
 }
 .stats__title em{color:var(--blue);font-style:normal}
@@ -371,20 +367,20 @@ p{text-wrap:pretty}
 }
 .stats__big{
   font-family:var(--cond);
-  font-size:clamp(1.5rem,2.5vw,2.4rem); /* mesmo size dos títulos de slide do método */
-  font-weight:700; /* bold como na home */
+  font-size:clamp(1.5rem,2.5vw,2.4rem);
+  font-weight:700;
   letter-spacing:-.025em;
   line-height:1.1;
   color:#fff;
-  text-transform:uppercase; /* uppercase como na home */
+  text-transform:uppercase;
   margin-bottom:1rem;
 }
 .stats__desc{
   font-family:var(--sans);
   font-size:clamp(1rem,1.2vw,1.15rem);
   font-weight:400;
-  line-height:1.65; /* mesmo line-height dos parágrafos da home */
-  color:var(--g60); /* cinza médio igual à home */
+  line-height:1.65;
+  color:var(--g60);
 }
 
 @media(max-width:1024px){
@@ -402,21 +398,17 @@ p{text-wrap:pretty}
 
 /* ══════════════════════════════════════════
    PARA QUEM + CONTATO
-   bloco de texto fullscreen → encolhe e vai pra esquerda
-   formulário aparece à direita
-   reaproveita a mecânica do contato__visual da home
 ══════════════════════════════════════════ */
 .pq-contato{
   background:#000;
   position:relative;
 }
 .pq-contato__spacer{
-  height:80svh; /* tempo pra ver o bloco antes do form entrar */
+  height:80svh;
   pointer-events:none;
 }
 .pq-contato__visual-wrap{
   position:fixed;
-  /* Posição final = metade esquerda, alinhado com o form */
   top:48px;
   left:0;
   right:50%;
@@ -428,7 +420,7 @@ p{text-wrap:pretty}
   opacity:0;
   pointer-events:none;
   display:flex;
-  align-items:flex-start; /* alinha pelo topo, igual ao form */
+  align-items:flex-start;
   justify-content:flex-start;
   padding:clamp(2rem,4vw,4rem) clamp(1.5rem,4vw,4rem);
   background:#000;
@@ -440,13 +432,11 @@ p{text-wrap:pretty}
   pointer-events:auto;
 }
 
-/* Bloco do texto — começa fora da tela à direita.
-   Entrada controlada por CSS transition (não scroll). */
 .pq-contato__block{
   width:100%;
-  max-width:none; /* ocupa toda a metade esquerda */
+  max-width:none;
   margin:0;
-  transform:translateX(110vw); /* fora da tela, atravessa a viewport inteira */
+  transform:translateX(110vw);
   transition:transform 1.1s cubic-bezier(.22,1,.36,1);
   will-change:transform;
 }
@@ -454,7 +444,6 @@ p{text-wrap:pretty}
   transform:translateX(0);
 }
 
-/* Reserva pequena de fundo preto antes do trigger — animação dispara cedo */
 .pq-contato__hold{
   height:10svh;
   background:#000;
@@ -503,7 +492,6 @@ p{text-wrap:pretty}
   margin-bottom:.35em;
 }
 
-/* Grid: célula esquerda (vazia, espaço pro bloco encolhido) + formulário direita */
 .pq-contato__inner{
   position:relative;
   z-index:6;
@@ -546,7 +534,7 @@ p{text-wrap:pretty}
   max-width:40ch;
 }
 
-/* Formulário (mesmo da home) */
+/* Formulário */
 .form__row{margin-bottom:.875rem}
 .form__lbl{
   display:block;font-family:var(--mono);font-size:10px;font-weight:300;
@@ -571,6 +559,28 @@ p{text-wrap:pretty}
 }
 .form__submit:hover{gap:1.25rem}
 .form__submit:hover .cta-sq{background:var(--blue-dim)}
+.form__success{
+  margin-top:1.25rem;
+  padding:1rem 1.25rem;
+  border-left:3px solid var(--blue);
+  background:rgba(58,114,200,.08);
+  font-family:var(--sans);
+  font-size:.95rem;
+  font-weight:400;
+  line-height:1.5;
+  color:#fff;
+}
+.form__error{
+  margin-top:1.25rem;
+  padding:1rem 1.25rem;
+  border-left:3px solid #c2460b;
+  background:rgba(194,70,11,.08);
+  font-family:var(--sans);
+  font-size:.95rem;
+  font-weight:400;
+  line-height:1.5;
+  color:rgba(232,230,224,.95);
+}
 .form__note{
   margin-top:.625rem;
   font-family:var(--mono);font-size:10px;font-weight:300;
@@ -585,7 +595,7 @@ p{text-wrap:pretty}
 }
 
 /* ══════════════════════════════════════════
-   FOOTER — idêntico à home
+   FOOTER
 ══════════════════════════════════════════ */
 .footer{
   background:#000;
@@ -712,7 +722,6 @@ p{text-wrap:pretty}
 <section class="intro" aria-label="O que é formação corporativa">
   <div class="intro__inner">
     <div class="intro__img-wrap">
-      <!-- Quando você tiver a imagem, descomente a linha abaixo e remova o placeholder -->
       <!-- <img class="intro__img" src="img-formacao-detail.jpg" alt="Formação e Treinamento Corporativo"/> -->
       <div class="intro__placeholder">[ imagem · img-formacao-detail.jpg ]</div>
     </div>
@@ -730,7 +739,7 @@ p{text-wrap:pretty}
   </div>
 </section>
 
-<!-- ════════════ BENEFÍCIOS — stats grid ════════════ -->
+<!-- ════════════ PROGRAMAS — stats grid ════════════ -->
 <section class="stats" id="programas" aria-labelledby="programas-title">
   <div class="stats__inner">
     <h2 class="stats__title" id="programas-title">Programas de formação</h2>
@@ -793,11 +802,8 @@ p{text-wrap:pretty}
 <!-- ════════════ PARA QUEM + CONTATO ════════════ -->
 <section class="pq-contato" id="paraquem" aria-labelledby="pq-title">
 
-  <!-- Reserva de 1 tela cheia preta — sobe naturalmente com o scroll
-       até alinhar com o subnav. Só depois disso a animação dispara. -->
   <div class="pq-contato__hold" aria-hidden="true"></div>
 
-  <!-- Bloco fixed que entra da direita e depois encolhe pra esquerda -->
   <div class="pq-contato__visual-wrap" id="pqVisual">
     <div class="pq-contato__block">
       <p class="pq-contato__kicker">Perfil de aplicação</p>
@@ -810,22 +816,22 @@ p{text-wrap:pretty}
     </div>
   </div>
 
-  <!-- Spacer pra dar espaço pro bloco fullscreen sozinho antes de encolher -->
   <div class="pq-contato__spacer" aria-hidden="true"></div>
 
-  <!-- Grid: célula esquerda (vazia, ocupada visualmente pelo bloco encolhido) + formulário -->
   <div class="pq-contato__inner" id="contato">
     <div class="pq-contato__visual-cell" aria-hidden="true"></div>
 
     <div class="pq-contato__form-wrap">
       <p class="pq-contato__form-kicker">Primeiro passo</p>
       <h2 class="pq-contato__form-heading">
-        AGENDE UMA<br>CONSULTA <em>GRATUITA</em>
+        AGENDE UMA<br>CONSULTA <em>INICIAL</em>
       </h2>
       <p class="pq-contato__form-desc">
         Uma conversa direta de 30 minutos para entender qual programa de formação faz sentido para a sua equipe.
       </p>
-      <form action="https://formspree.io/f/placeholder" method="POST" novalidate>
+      <form action="https://formspree.io/f/mpqnzbal" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="Novo contato — Treinamento">
+        <input type="hidden" name="_language" value="pt">
         <div class="form__row">
           <label for="nome" class="form__lbl">Nome e empresa</label>
           <input class="form__input" type="text" id="nome" name="nome" autocomplete="name" required placeholder="Nome / Empresa"/>
@@ -845,6 +851,12 @@ p{text-wrap:pretty}
           </span>
         </button>
         <p class="form__note">Resposta direta. Sem intermediários.</p>
+        <p class="form__success" id="formSuccess" hidden>
+          Mensagem enviada. Eduardo responde diretamente em até 24 horas.
+        </p>
+        <p class="form__error" id="formError" hidden>
+          Não foi possível enviar agora. Tente novamente em alguns minutos, ou escreva diretamente para eduardo@rossiter.de.
+        </p>
       </form>
     </div>
   </div>
@@ -863,7 +875,7 @@ p{text-wrap:pretty}
     </div>
 
     <div class="footer__social">
-      <a href="mailto:eduardo@rossiterconsulting.com" class="footer__btn">
+      <a href="mailto:eduardo@rossiter.de" class="footer__btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="2" y="4" width="20" height="16" rx="1"/>
           <path d="M2 6l10 7 10-7"/>
@@ -877,7 +889,7 @@ p{text-wrap:pretty}
         </svg>
         LinkedIn
       </a>
-      <a href="https://wa.me/49000000000" target="_blank" rel="noopener" class="footer__btn">
+      <a href="https://wa.me/4917621110258" target="_blank" rel="noopener" class="footer__btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
         </svg>
@@ -901,7 +913,7 @@ p{text-wrap:pretty}
 // ── Nav: scroll border + hide on scroll, subnav docks ──
 const nav = document.getElementById('nav');
 const subnav = document.getElementById('subnav');
-const HIDE_THRESHOLD = 120; // a partir de quanto px o nav some
+const HIDE_THRESHOLD = 120;
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
   nav.classList.toggle('scrolled', y > 20);
@@ -990,6 +1002,60 @@ document.querySelectorAll('.mobile-link').forEach(l => {
   window.addEventListener('resize', requestUpdate, {passive:true});
   update();
 })();
+
+// ── Envio do formulário via API do Formspree (sem redirect) ──
+document.addEventListener('DOMContentLoaded', function(){
+  const form = document.querySelector('form[action*="formspree.io"]');
+  if(!form){
+    console.log('Formspree: formulario nao encontrado');
+    return;
+  }
+  console.log('Formspree: interceptador registrado');
+
+  const successMsg = document.getElementById('formSuccess');
+  const errorMsg = document.getElementById('formError');
+  const submitBtn = form.querySelector('button[type="submit"], .form__submit');
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    console.log('Formspree: submit interceptado');
+
+    if(successMsg) successMsg.hidden = true;
+    if(errorMsg) errorMsg.hidden = true;
+
+    if(submitBtn){
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.6';
+    }
+
+    const data = new FormData(form);
+
+    try{
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if(response.ok){
+        form.reset();
+        if(successMsg) successMsg.hidden = false;
+        console.log('Formspree: enviado com sucesso');
+      } else {
+        if(errorMsg) errorMsg.hidden = false;
+        console.log('Formspree: erro do servidor', response.status);
+      }
+    } catch(err){
+      if(errorMsg) errorMsg.hidden = false;
+      console.log('Formspree: erro de rede', err);
+    } finally {
+      if(submitBtn){
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '';
+      }
+    }
+  });
+});
 </script>
 
 </body>
