@@ -15,6 +15,16 @@
   <a class="home" href="index.html">← Blog</a>
 </nav>
 <article class="article" id="art"><p style="color:var(--steel)">Carregando…</p></article>
+<section class="postnews">
+  <div class="news">
+    <h3>Notas de operação, no seu e-mail</h3>
+    <p>Recebeu valor neste texto? Receba os próximos direto no e-mail, sem ruído.</p>
+    <form class="news__form" id="newsForm" aria-label="Newsletter">
+      <input type="email" name="email" aria-label="E-mail para a newsletter" placeholder="seu@email.com" autocomplete="email" inputmode="email" required>
+      <button type="submit" class="news__btn">Inscrever</button>
+    </form>
+  </div>
+</section>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
   function fmt(d){var m=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];var p=d.split('-');return p[2]+' '+m[+p[1]-1]+' '+p[0];}
@@ -35,5 +45,6 @@
     });
   }).catch(function(){art.innerHTML='<p>Não foi possível carregar o post.</p>';});
 </script>
+<script src="../assets/news.js"></script>
 </body>
 </html>

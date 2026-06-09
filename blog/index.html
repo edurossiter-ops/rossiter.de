@@ -27,6 +27,14 @@
   <h1>Notas de operação</h1>
   <p class="sub">Margem escondida · método · excelência operacional</p>
   <div class="blog__grid" id="grid"></div>
+  <div class="news">
+    <h3>Notas de operação, no seu e-mail</h3>
+    <p>Textos sobre margem escondida e método, sem ruído.</p>
+    <form class="news__form" id="newsForm" aria-label="Newsletter">
+      <input type="email" name="email" aria-label="E-mail para a newsletter" placeholder="seu@email.com" autocomplete="email" inputmode="email" required>
+      <button type="submit" class="news__btn">Inscrever</button>
+    </form>
+  </div>
 </main>
 <script>
   function fmt(d){var m=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];var p=d.split('-');return p[2]+' '+m[+p[1]-1]+' '+p[0];}
@@ -36,5 +44,6 @@
     }).join('');
   }).catch(function(){document.getElementById('grid').innerHTML='<p style="color:var(--steel)">Em breve.</p>';});
 </script>
+<script src="../assets/news.js"></script>
 </body>
 </html>
