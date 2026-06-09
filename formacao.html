@@ -1,1062 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Formação e Treinamento Corporativo — Rossiter Consulting</title>
-<meta name="description" content="Formação corporativa em normas ISO, auditoria interna e Lean Six Sigma. Programas que constroem capacidade técnica permanente na sua organização."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
-<style>
-
-/* ═══ RESET ═══ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;scroll-padding-top:128px} /* nav 80 + subnav 48 */
-body{min-height:100dvh;font-family:'Barlow','Helvetica Neue',Arial,sans-serif;color:#e8e6e0;background:#000;overflow-x:hidden}
-img,svg,video{display:block;max-width:100%}
-ul,ol{list-style:none}
-input,button,textarea,select{font:inherit;color:inherit}
-button{cursor:pointer;background:none;border:none}
-a{color:inherit;text-decoration:none}
-p{text-wrap:pretty}
-::selection{background:rgba(58,114,200,.25);color:#fff}
-:focus-visible{outline:1px solid #3a72c8;outline-offset:3px}
-
-/* ═══ VARIÁVEIS ═══ */
-:root{
-  --blue:#3a72c8;
-  --blue-dim:#2a569a;
-  --g90:#e8e6e0;
-  --g60:#888682;
-  --g30:#3a3936;
-  --g15:#111110;
-  --mono:'DM Mono','Courier New',monospace;
-  --cond:'Barlow Condensed','Arial Narrow',sans-serif;
-  --sans:'Barlow','Helvetica Neue',Arial,sans-serif;
-  --pad:clamp(1.5rem,4vw,4rem);
-}
-
-/* ══════════════════════════════════════════
-   NAV — idêntica à home
-══════════════════════════════════════════ */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:80px;
-  background:rgba(0,0,0,0.85);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  display:flex;align-items:center;
-  padding:0 var(--pad);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s, background .3s, transform .35s cubic-bezier(.4,0,.2,1);
-  overflow:visible;
-  will-change:transform;
-}
-.nav.scrolled{border-bottom-color:var(--g30);background:#000}
-.nav.hidden{transform:translateY(-100%)}
-
-.nav__logo{flex-shrink:0;display:flex;align-items:center;gap:.75rem}
-.nav__logo-img{
-  height:64px;width:auto;display:block;
-  mix-blend-mode:screen;filter:brightness(1.1);
-}
-.nav__wordmark{
-  font-family:var(--sans);
-  font-size:1.5625rem;
-  font-weight:400;
-  letter-spacing:-0.005em;
-  color:#fff;
-  white-space:nowrap;
-}
-
-.nav__links{display:flex;align-items:center;gap:clamp(1.25rem,2.5vw,2.5rem);flex:1;justify-content:center}
-.nav__links a{
-  font-family:var(--sans);
-  font-size:1.5625rem;
-  font-weight:400;
-  letter-spacing:-0.005em;
-  line-height:1.5;
-  padding:0 8px;
-  color:#fff;
-  white-space:nowrap;
-  transition:color .2s;
-}
-.nav__links a:hover{color:var(--blue)}
-
-.nav__right{display:flex;align-items:center;gap:1.25rem;flex-shrink:0}
-.nav__cta{
-  font-family:var(--sans);
-  font-size:.8125rem;font-weight:500;
-  letter-spacing:.04em;text-transform:uppercase;
-  color:#fff;
-  border:1px solid var(--blue);
-  padding:.4rem 1rem;
-  transition:background .2s,color .2s;
-  white-space:nowrap;
-}
-.nav__cta:hover{background:var(--blue)}
-
-.nav__mobile-btn{display:none;flex-direction:column;gap:5px;padding:4px;cursor:pointer}
-.nav__mobile-btn span{display:block;width:22px;height:1.5px;background:var(--g90);transition:transform .25s,opacity .25s}
-.nav__mobile-menu{display:none}
-
-@media(max-width:860px){
-  .nav__links{display:none}
-  .nav__right .nav__cta{display:none}
-  .nav__mobile-btn{display:flex}
-  .nav__mobile-menu{
-    display:none;position:fixed;top:72px;left:0;right:0;bottom:0;
-    background:#000;z-index:199;
-    flex-direction:column;justify-content:center;align-items:center;gap:2rem;
-    padding:2rem;
-  }
-  .nav__mobile-menu.open{display:flex}
-  .nav__mobile-menu a{
-    font-family:var(--sans);font-size:2rem;font-weight:500;
-    color:var(--g90);letter-spacing:-.02em;
-  }
-  .nav__mobile-menu a:hover{color:var(--blue)}
-}
-
-/* ══════════════════════════════════════════
-   SUB-NAV — sticky abaixo do header
-══════════════════════════════════════════ */
-.subnav{
-  position:fixed;
-  top:80px;left:0;right:0;
-  z-index:150;
-  height:48px;
-  background:var(--blue);
-  display:flex;align-items:center;
-  padding:0 var(--pad);
-  gap:clamp(1rem,3vw,3rem);
-  transition:top .35s cubic-bezier(.4,0,.2,1);
-}
-.subnav.docked{top:0}
-.subnav__title{
-  font-family:var(--sans);
-  font-size:1.5625rem;
-  font-weight:400;
-  letter-spacing:-0.005em;
-  color:#fff;
-  white-space:nowrap;
-  flex-shrink:0;
-  line-height:1;
-}
-.subnav__links{
-  display:flex;align-items:center;
-  gap:clamp(1.25rem,2.5vw,2.5rem);
-  margin-left:auto;
-  padding-right:clamp(2rem,10vw,12rem);
-}
-.subnav__links a{
-  font-family:var(--sans);
-  font-size:1.5625rem;
-  font-weight:400;
-  letter-spacing:-0.005em;
-  color:#fff;
-  white-space:nowrap;
-  position:relative;
-  padding:.15rem 0;
-  line-height:1;
-  transition:color .2s;
-}
-.subnav__links a::after{
-  content:'';
-  position:absolute;
-  left:0;right:0;bottom:-2px;
-  height:1.5px;
-  background:#fff;
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform .25s ease;
-}
-.subnav__links a:hover{color:#fff}
-.subnav__links a:hover::after{transform:scaleX(1)}
-
-@media(max-width:860px){
-  .subnav{height:auto;padding:.75rem var(--pad);flex-wrap:wrap;gap:.5rem 1.25rem}
-  .subnav__title{font-size:.9375rem;width:100%}
-  .subnav__links{margin-left:0;padding-right:0;gap:1.25rem;flex-wrap:wrap}
-  .subnav__links a{font-size:.875rem}
-}
-
-/* ══════════════════════════════════════════
-   HERO — sem vídeo, mesmo layout da home
-══════════════════════════════════════════ */
-.hero{
-  position:relative;
-  background:#000;
-  min-height:62svh;
-  padding-top:128px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  overflow:hidden;
-}
-
-.hero__bg{
-  position:absolute;inset:0;z-index:0;
-  background:
-    radial-gradient(ellipse 70% 60% at 15% 40%, rgba(58,114,200,.10) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 85% 70%, rgba(58,114,200,.06) 0%, transparent 70%),
-    #000;
-}
-
-.hero__inner{
-  position:relative;z-index:2;
-  display:flex;
-  flex-direction:row;
-  justify-content:space-between;
-  align-items:flex-start;
-  padding:clamp(2rem,4vh,3.5rem) var(--pad) 4.5rem;
-  gap:3rem;
-  flex:1;
-}
-
-.hero__headline{
-  font-family:var(--cond);
-  font-size:2.5rem;
-  font-weight:500;
-  letter-spacing:-.03em;
-  line-height:1.08;
-  color:#fff;
-  text-transform:uppercase;
-  flex:1 1 0;
-  min-width:0;
-  align-self:flex-start;
-}
-@media(min-width:600px){.hero__headline{font-size:calc(4vh + 4.5vw)}}
-@media(min-width:1024px){.hero__headline{font-size:calc(3.5vh + 4.8vw)}}
-@media(min-width:1441px){.hero__headline{font-size:calc(5vh + 4.5vw)}}
-
-.hero__headline .line1{display:block}
-.hero__headline .line2{display:block;padding-left:1em;margin-top:.15em}
-.hero__headline .accent{color:var(--blue);font-style:italic}
-.hero__headline .iso{font-family:var(--sans);font-weight:400;letter-spacing:0;text-transform:none;font-size:.62em;color:#fff;display:block;margin-top:.4em;line-height:1.3}
-.hero__headline .iso em{color:var(--blue);font-style:normal;font-weight:500}
-
-.hero__content{
-  flex:0 0 auto;
-  width:min(380px,38%);
-  display:flex;flex-direction:column;gap:1.25rem;
-  align-self:flex-end;
-}
-.hero__deco{width:2.5rem;height:3px;background:var(--blue)}
-.hero__sub{
-  font-family:var(--sans);
-  font-size:1.375rem;
-  font-weight:400;
-  letter-spacing:-.01em;
-  line-height:1.4;
-  color:rgba(232,230,224,.9);
-}
-@media(min-width:1024px){.hero__sub{font-size:1.5rem;line-height:1.4}}
-@media(min-width:1441px){.hero__sub{font-size:1.625rem}}
-
-.hero__cta{
-  display:inline-flex;align-items:center;gap:.875rem;
-  font-family:var(--sans);font-size:1rem;font-weight:500;
-  color:#fff;transition:gap .18s;width:fit-content;
-}
-.hero__cta:hover{gap:1.25rem}
-.hero__cta:hover .cta-sq{background:var(--blue-dim)}
-.cta-sq{
-  width:36px;height:36px;
-  background:var(--blue);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.cta-sq svg{width:14px;height:14px;color:#fff}
-
-@media(max-width:860px){
-  .hero__inner{flex-direction:column;align-items:flex-start;gap:2rem;padding-bottom:3rem}
-  .hero__content{width:100%}
-}
-
-/* ══════════════════════════════════════════
-   SEÇÃO 1 — imagem esquerda + texto direita
-══════════════════════════════════════════ */
-.intro{
-  background:#000;
-  padding:clamp(2rem,4vw,3.5rem) 0 clamp(4rem,7vw,7rem);
-}
-.intro__inner{
-  display:grid;
-  grid-template-columns:48fr 52fr;
-  gap:clamp(2rem,4vw,4rem);
-  padding:0 var(--pad);
-  align-items:center;
-}
-.intro__img-wrap{
-  aspect-ratio:4/3;
-  overflow:hidden;
-  background:var(--g15);
-  position:relative;
-}
-.intro__img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center;display:block;
-}
-.intro__placeholder{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#0a0f1a 0%,#1a2238 100%);
-  color:var(--g30);
-  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-}
-.intro__text p{
-  font-family:var(--sans);
-  font-size:clamp(1rem,1.2vw,1.15rem);
-  font-weight:400;
-  line-height:1.65;
-  color:var(--g60);
-}
-.intro__text p + p{margin-top:1.5rem}
-
-@media(max-width:860px){
-  .intro__inner{grid-template-columns:1fr;gap:2rem}
-  .intro__img-wrap{aspect-ratio:16/10}
-}
-
-/* ══════════════════════════════════════════
-   STATS BLOCK
-══════════════════════════════════════════ */
-.stats{
-  background:#000;
-  padding:clamp(4rem,7vw,7rem) 0;
-}
-.stats__inner{
-  padding:0 var(--pad);
-}
-.stats__title{
-  font-family:var(--cond);
-  font-size:clamp(2rem,4vw,3.25rem);
-  font-weight:700;
-  letter-spacing:-.025em;
-  line-height:1.1;
-  color:#fff;
-  text-transform:uppercase;
-  margin-bottom:clamp(2.5rem,5vw,4.5rem);
-}
-.stats__title em{color:var(--blue);font-style:normal}
-
-.stats__grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:clamp(2rem,4vw,4rem) clamp(2rem,5vw,5rem);
-}
-.stats__grid--five{grid-template-columns:repeat(6,1fr)}
-.stats__grid--five > .stats__item{grid-column:span 2}
-.stats__grid--five > .stats__item:nth-child(4){grid-column:2 / span 2}
-.stats__grid--five > .stats__item:nth-child(5){grid-column:4 / span 2}
-
-.stats__item{
-  display:flex;flex-direction:column;
-  padding-top:1.25rem;
-  position:relative;
-}
-.stats__item::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;
-  width:1.75rem;
-  height:3px;
-  background:var(--blue);
-}
-.stats__big{
-  font-family:var(--cond);
-  font-size:clamp(1.5rem,2.5vw,2.4rem);
-  font-weight:700;
-  letter-spacing:-.025em;
-  line-height:1.1;
-  color:#fff;
-  text-transform:uppercase;
-  margin-bottom:1rem;
-}
-.stats__desc{
-  font-family:var(--sans);
-  font-size:clamp(1rem,1.2vw,1.15rem);
-  font-weight:400;
-  line-height:1.65;
-  color:var(--g60);
-}
-
-@media(max-width:1024px){
-  .stats__grid,.stats__grid--five{grid-template-columns:repeat(2,1fr)}
-  .stats__grid--five > .stats__item,
-  .stats__grid--five > .stats__item:nth-child(4),
-  .stats__grid--five > .stats__item:nth-child(5){grid-column:auto}
-}
-@media(max-width:600px){
-  .stats__grid,.stats__grid--five{grid-template-columns:1fr}
-  .stats__grid--five > .stats__item,
-  .stats__grid--five > .stats__item:nth-child(4),
-  .stats__grid--five > .stats__item:nth-child(5){grid-column:auto}
-}
-
-/* ══════════════════════════════════════════
-   PARA QUEM + CONTATO
-══════════════════════════════════════════ */
-.pq-contato{
-  background:#000;
-  position:relative;
-}
-.pq-contato__spacer{
-  height:80svh;
-  pointer-events:none;
-}
-.pq-contato__visual-wrap{
-  position:fixed;
-  top:48px;
-  left:0;
-  right:50%;
-  bottom:0;
-  width:auto;
-  height:auto;
-  overflow:hidden;
-  z-index:5;
-  opacity:0;
-  pointer-events:none;
-  display:flex;
-  align-items:flex-start;
-  justify-content:flex-start;
-  padding:clamp(2rem,4vw,4rem) clamp(1.5rem,4vw,4rem);
-  background:#000;
-  transition:top .4s cubic-bezier(.4,0,.2,1);
-  will-change:transform,opacity,top;
-}
-.pq-contato__visual-wrap.is-active{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.pq-contato__block{
-  width:100%;
-  max-width:none;
-  margin:0;
-  transform:translateX(110vw);
-  transition:transform 1.1s cubic-bezier(.22,1,.36,1);
-  will-change:transform;
-}
-.pq-contato__visual-wrap.is-entered .pq-contato__block{
-  transform:translateX(0);
-}
-
-.pq-contato__hold{
-  height:10svh;
-  background:#000;
-  pointer-events:none;
-}
-.pq-contato__kicker{
-  font-family:var(--mono);font-size:11px;font-weight:400;
-  letter-spacing:.2em;text-transform:uppercase;
-  color:var(--blue);margin-bottom:1.75rem;
-}
-.pq-contato__title{
-  font-family:var(--cond);
-  font-size:clamp(2rem,4.5vw,3.75rem);
-  font-weight:500;
-  letter-spacing:-.025em;
-  line-height:1.05;
-  color:#fff;
-  margin-bottom:clamp(1.5rem,3vw,2.5rem);
-}
-.pq-contato__title em{color:var(--blue);font-style:normal}
-.pq-contato__list{
-  display:flex;flex-direction:column;
-  gap:1.5rem;
-}
-.pq-contato__list li{
-  position:relative;
-  padding-left:2.25rem;
-  font-family:var(--sans);
-  font-size:clamp(1rem,1.2vw,1.2rem);
-  font-weight:400;
-  line-height:1.55;
-  color:rgba(232,230,224,.88);
-}
-.pq-contato__list li::before{
-  content:'';
-  position:absolute;
-  left:0;top:.7em;
-  width:1.25rem;
-  height:2px;
-  background:var(--blue);
-}
-.pq-contato__list li strong{
-  color:#fff;
-  font-weight:500;
-  display:block;
-  margin-bottom:.35em;
-}
-
-.pq-contato__inner{
-  position:relative;
-  z-index:6;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:start;
-}
-.pq-contato__visual-cell{
-  height:clamp(420px,55svh,640px);
-  background:transparent;
-}
-.pq-contato__form-wrap{
-  padding:clamp(1.5rem,3vw,3rem);
-  display:flex;flex-direction:column;justify-content:flex-start;
-  background:#000;
-  min-height:clamp(420px,55svh,640px);
-}
-.pq-contato__form-kicker{
-  font-family:var(--mono);font-size:10px;font-weight:400;
-  letter-spacing:.2em;text-transform:uppercase;
-  color:var(--blue);margin-bottom:1.5rem;
-}
-.pq-contato__form-heading{
-  font-family:var(--cond);
-  font-size:clamp(2rem,4vw,3.5rem);
-  font-weight:700;
-  letter-spacing:-.03em;
-  line-height:1.05;
-  color:#fff;
-  text-transform:uppercase;
-  margin-bottom:1rem;
-}
-.pq-contato__form-heading em{color:var(--blue);font-style:italic}
-.pq-contato__form-desc{
-  font-family:var(--sans);
-  font-size:1rem;font-weight:400;
-  line-height:1.6;
-  color:var(--g60);
-  margin-bottom:2.5rem;
-  max-width:40ch;
-}
-
-/* Formulário */
-.form__row{margin-bottom:.875rem}
-.form__lbl{
-  display:block;font-family:var(--mono);font-size:10px;font-weight:300;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--g30);margin-bottom:.375rem;
-}
-.form__input,.form__textarea{
-  width:100%;background:#111110;border:1px solid var(--g30);
-  color:var(--g90);font-size:14px;font-weight:300;
-  padding:.575rem .8rem;outline:none;border-radius:0;-webkit-appearance:none;
-  transition:border-color .2s,background .2s;
-}
-.form__input::placeholder,.form__textarea::placeholder{color:var(--g30)}
-.form__input:focus,.form__textarea:focus{border-color:var(--blue);background:#0a0a09}
-.form__textarea{resize:vertical;min-height:6rem;line-height:1.6}
-.form__submit{
-  margin-top:1.25rem;
-  display:inline-flex;align-items:center;gap:.875rem;
-  font-family:var(--sans);font-size:1rem;font-weight:500;
-  color:#fff;cursor:pointer;background:none;border:none;
-  transition:gap .18s;
-}
-.form__submit:hover{gap:1.25rem}
-.form__submit:hover .cta-sq{background:var(--blue-dim)}
-.form__success{
-  margin-top:1.25rem;
-  padding:1rem 1.25rem;
-  border-left:3px solid var(--blue);
-  background:rgba(58,114,200,.08);
-  font-family:var(--sans);
-  font-size:.95rem;
-  font-weight:400;
-  line-height:1.5;
-  color:#fff;
-}
-.form__error{
-  margin-top:1.25rem;
-  padding:1rem 1.25rem;
-  border-left:3px solid #c2460b;
-  background:rgba(194,70,11,.08);
-  font-family:var(--sans);
-  font-size:.95rem;
-  font-weight:400;
-  line-height:1.5;
-  color:rgba(232,230,224,.95);
-}
-.form__note{
-  margin-top:.625rem;
-  font-family:var(--mono);font-size:10px;font-weight:300;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--g30);
-}
-
-@media(max-width:860px){
-  .pq-contato__inner{grid-template-columns:1fr}
-  .pq-contato__visual-cell{display:none}
-  .pq-contato__visual-wrap{position:relative;top:auto;height:auto;padding:3rem var(--pad);opacity:1}
-  .pq-contato__spacer{display:none}
-}
-
-/* ══════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════ */
-.footer{
-  background:#000;
-  padding:clamp(.75rem,1.5vw,1.25rem) var(--pad) clamp(1rem,1.5vw,1.5rem);
-  position:relative;
-  z-index:20;
-}
-.footer__top{
-  display:flex;justify-content:space-between;align-items:flex-start;
-  gap:3rem;flex-wrap:wrap;
-  margin-bottom:clamp(.875rem,1.5vw,1.25rem);
-}
-.footer__brand-block{display:flex;align-items:center;gap:1rem}
-.footer__logo{
-  height:96px;width:auto;
-  mix-blend-mode:screen;filter:brightness(1.1);
-}
-.footer__brand{
-  font-family:var(--cond);
-  font-size:clamp(1.75rem,3vw,2.75rem);
-  font-weight:700;
-  letter-spacing:-.02em;
-  text-transform:uppercase;
-  color:#fff;
-  line-height:1;
-}
-.footer__tagline{
-  font-family:var(--mono);font-size:10px;font-weight:300;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--g30);margin-top:.5rem;
-}
-.footer__social{display:flex;flex-wrap:wrap;gap:.75rem;align-items:flex-start}
-.footer__btn{
-  display:inline-flex;align-items:center;gap:.625rem;
-  padding:.625rem 1.125rem;
-  border:1px solid var(--g30);
-  font-family:var(--sans);font-size:.875rem;font-weight:500;
-  letter-spacing:.01em;
-  color:var(--g90);
-  transition:border-color .2s,color .2s,background .2s;
-  white-space:nowrap;
-}
-.footer__btn:hover{border-color:var(--blue);color:#fff;background:rgba(58,114,200,.08)}
-.footer__btn svg{width:16px;height:16px;flex-shrink:0;color:var(--blue)}
-.footer__copy{
-  padding-top:.75rem;
-  border-top:1px solid var(--g30);
-  font-family:var(--mono);font-size:10px;font-weight:300;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--g30);
-}
-
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formação e Treinamento Corporativo · Rossiter Consulting</title>
+<meta name="description" content="O método que fica na sua casa depois que eu saio. Formação em norma, auditoria e Lean Six Sigma para a sua equipe. Por Eduardo Rossiter.">
+<link rel="canonical" href="https://rossiter.de/formacao.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rossiter Consulting">
+<meta property="og:title" content="Formação e Treinamento · Rossiter Consulting">
+<meta property="og:description" content="O método que fica na sua casa depois que eu saio. Formação em norma, auditoria e Lean Six Sigma.">
+<meta property="og:url" content="https://rossiter.de/formacao.html">
+<meta property="og:image" content="https://rossiter.de/assets/og-cover.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rossiter.de/assets/og-cover.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Formação e Treinamento","serviceType":"Formação em norma, auditoria e Lean Six Sigma","areaServed":"BR","url":"https://rossiter.de/formacao.html","provider":{"@type":"ProfessionalService","name":"Rossiter Consulting","url":"https://rossiter.de/"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://rossiter.de/"},{"@type":"ListItem","position":2,"name":"Formação e Treinamento","item":"https://rossiter.de/formacao.html"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+<a class="skip" href="#top">Pular para o conteúdo</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<filter id="spark" x="-90%" y="-90%" width="280%" height="280%"><feGaussianBlur stdDeviation="4.5"/></filter>
+<symbol id="mark" viewBox="0 0 120 120">
+  <line x1="60" y1="10" x2="60" y2="40" stroke="#3a72c8" stroke-width="5" stroke-linecap="square"/><line x1="16.7" y1="85" x2="42.7" y2="70" stroke="#3a72c8" stroke-width="5" stroke-linecap="square"/><line x1="103.3" y1="85" x2="77.3" y2="70" stroke="#3a72c8" stroke-width="5" stroke-linecap="square"/>
+  <polygon points="60,45 73,52.5 73,67.5 60,75 47,67.5 47,52.5" fill="none" stroke="#4a78a8" stroke-width="2.6"/><circle cx="60" cy="60" r="11" fill="#b8e8ff" filter="url(#spark)" opacity=".55"/><circle cx="60" cy="60" r="5" fill="#b8e8ff"/>
+</symbol></defs></svg>
 
-<!-- ════════════ NAV ════════════ -->
 <nav class="nav" id="nav" aria-label="Navegação principal">
-  <a href="index.html" class="nav__logo" aria-label="Rossiter Consulting — início">
-    <img class="nav__logo-img" src="rossiter-logo.png" alt="Rossiter Consulting"/>
-    <span class="nav__wordmark">Rossiter Consulting</span>
-  </a>
-
-  <div class="nav__links">
-    <a href="index.html#competencia">Competências</a>
-    <a href="index.html#metodo">Método</a>
-    <a href="index.html#especialista">Especialista</a>
-    <a href="index.html#contato">Contato</a>
-  </div>
-
-  <div class="nav__right">
-    <a href="#contato" class="nav__cta">Diagnóstico</a>
-  </div>
-
-  <button class="nav__mobile-btn" aria-label="Menu" id="menuBtn">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="index.html" class="nav__brand" aria-label="Rossiter Consulting"><svg width="42" height="42"><use href="#mark"/></svg><span><span class="nm">Rossiter</span><br><span class="ds">Consulting</span></span></a>
+  <div class="nav__links"><a href="index.html#competencias">Competências</a><a href="index.html#metodo">Método</a><a href="index.html#conquistas">Especialista</a><a href="#contato">Contato</a></div>
+  <div class="nav__right"><a href="#contato" class="nav__cta">Diagnóstico</a></div>
+  <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+<div class="mobile" id="mobile"><a href="index.html#competencias">Competências</a><a href="index.html#metodo">Método</a><a href="index.html#conquistas">Especialista</a><a href="#contato">Contato</a></div>
 
-<div class="nav__mobile-menu" id="mobileMenu">
-  <a href="index.html#competencia" class="mobile-link">Competências</a>
-  <a href="index.html#metodo" class="mobile-link">Método</a>
-  <a href="index.html#especialista" class="mobile-link">Especialista</a>
-  <a href="index.html#contato" class="mobile-link">Contato</a>
-</div>
-
-<!-- ════════════ SUB-NAV ════════════ -->
-<div class="subnav" id="subnav" aria-label="Navegação da página Formação">
+<div class="subnav" role="navigation" aria-label="Seções desta página">
   <span class="subnav__title">Formação e Treinamento</span>
-  <nav class="subnav__links">
-    <a href="#programas">Programas</a>
-    <a href="#servico">Abordagem</a>
-    <a href="#paraquem">Pra Quem?</a>
-  </nav>
+  <div class="subnav__links"><a href="#programas">Programas</a><a href="#abordagem">Abordagem</a><a href="#contato">Pra quem</a><a href="#contato">Diagnóstico</a></div>
 </div>
 
-<!-- ════════════ HERO ════════════ -->
-<section class="hero" aria-labelledby="h1">
-  <div class="hero__bg" aria-hidden="true"></div>
+<header class="hero hero--sub" id="top">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__inner wrap">
+    <p class="eyebrow hero__eyebrow">Competência · Formação</p>
+    <h1>O método que fica na <em>sua casa</em> depois que eu saio.</h1>
+    <p class="hero__norma">Norma · Auditoria · Lean Six Sigma</p>
+    <p class="hero__sub">Conhecimento aplicado de fora transforma enquanto está presente. Conhecimento desenvolvido de dentro transforma como sua equipe enxerga, decide e age, independente de qualquer presença externa. A diferença não está no conteúdo, está em onde ele passa a morar.</p>
+    <a href="#contato" class="cta">Agendar diagnóstico <span class="sq" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="square"/></svg></span></a>
+  </div>
+</header>
 
-  <div class="hero__inner">
-    <h1 class="hero__headline" id="h1">
-      <span class="line1">FORMAÇÃO E</span>
-      <span class="line2"><em class="accent">TREINAMENTO</em></span>
-      <span class="iso">Norma <em>·</em> Auditoria <em>·</em> Lean Six Sigma</span>
-    </h1>
+<section class="section"><div class="wrap intro">
+  <img class="intro__img" src="assets/img-formacao.jpg" alt="Formação técnica de equipe industrial" loading="lazy" decoding="async" width="800" height="1000">
+  <div class="intro__text">
+    <p>Cada projeto que não sustenta o resultado consome o crédito da próxima iniciativa de melhoria. A solução imposta tem prazo de validade; a construída com a equipe, não.</p>
+    <p>Quando a competência fica instalada, a operação passa a se diagnosticar sozinha. Essa autonomia dura mais que qualquer projeto isolado, e é o que eu venho deixar.</p>
+  </div>
+</div></section>
 
-    <div class="hero__content">
-      <div class="hero__deco" aria-hidden="true"></div>
-      <p class="hero__sub">
-        Conhecimento que vem de fora resolve enquanto está presente. Conhecimento que se desenvolve de dentro muda a forma como a organização decide — e a mudança continua depois que o consultor sai.
-      </p>
-      <a href="#contato" class="hero__cta">
-        Agendar diagnóstico
-        <span class="cta-sq" aria-hidden="true">
-          <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-        </span>
-      </a>
-    </div>
+<section class="section" id="programas"><div class="section__head wrap"><h2>Competência que <em>fica</em></h2></div>
+  <div class="wrap mgrid">
+    <div class="mitem"><h3>Normas ISO</h3><p>Interpretação e implementação, sem teoria solta do contexto.</p></div>
+    <div class="mitem"><h3>Auditores internos</h3><p>Formação de quem audita por dentro com olho treinado.</p></div>
+    <div class="mitem"><h3>Formação executiva</h3><p>Liderança que decide por sistema, não por achismo.</p></div>
+    <div class="mitem"><h3>Train-the-trainer</h3><p>Quem multiplica o método dentro da sua casa.</p></div>
+    <div class="mitem"><h3>Lean Six Sigma</h3><p>Yellow · Green · Black Belt, aplicado à sua operação real.</p></div>
   </div>
 </section>
 
-<!-- ════════════ INTRO — imagem + texto ════════════ -->
-<section class="intro" aria-label="O que é formação corporativa">
-  <div class="intro__inner">
-    <div class="intro__img-wrap">
-      <!-- <img class="intro__img" src="img-formacao-detail.jpg" alt="Formação e Treinamento Corporativo"/> -->
-      <div class="intro__placeholder">[ imagem · img-formacao-detail.jpg ]</div>
-    </div>
-    <div class="intro__text">
-      <p>
-        Treinamento corporativo costuma ser tratado como evento: uma turma, uma carga horária, um certificado. O que sobra dessa estrutura, na operação, é proporcional ao quanto o conteúdo conseguiu se conectar ao trabalho real de quem participou — e raramente o evento é desenhado para isso.
-      </p>
-      <p>
-        A formação que sustenta resultado é outra coisa. É construída sobre a operação concreta da empresa, com casos próprios, dados próprios, problemas próprios. O participante não aprende sobre a metodologia em abstrato; aprende aplicando-a ao que ele encontra todo dia.
-      </p>
-      <p>
-        O propósito não é entregar conteúdo. É deixar, dentro da empresa, capacidade técnica que continua produzindo sem depender de presença externa.
-      </p>
-    </div>
+<section class="section metodo" id="abordagem"><div class="section__head wrap"><h2>Do contexto real <em>à multiplicação</em></h2></div>
+  <div class="wrap mgrid">
+    <div class="mitem"><span class="step">01</span><h3>Necessidade real</h3><p>Diagnóstico do que a equipe precisa, não de um catálogo.</p></div>
+    <div class="mitem"><span class="step">02</span><h3>Conteúdo no contexto</h3><p>Construído sobre a operação de vocês, com seus casos.</p></div>
+    <div class="mitem"><span class="step">03</span><h3>Prática no chão</h3><p>Aplicação real, não slide. Aprende fazendo.</p></div>
+    <div class="mitem"><span class="step">04</span><h3>Transferência e multiplicação</h3><p>A equipe sai capaz de ensinar e sustentar sozinha.</p></div>
   </div>
 </section>
 
-<!-- ════════════ PROGRAMAS — stats grid ════════════ -->
-<section class="stats" id="programas" aria-labelledby="programas-title">
-  <div class="stats__inner">
-    <h2 class="stats__title" id="programas-title">Programas de formação</h2>
-
-    <div class="stats__grid stats__grid--five">
-      <article class="stats__item">
-        <h3 class="stats__big">Interpretação e implementação de normas ISO</h3>
-        <p class="stats__desc">ISO 9001, ISO 14001 e ISO 45001 — separadas ou integradas. Cobertura dos requisitos com aplicação ao contexto real da empresa, não exposição genérica. Indicado para times que vão operar o sistema, não apenas conhecê-lo.</p>
-      </article>
-      <article class="stats__item">
-        <h3 class="stats__big">Formação de auditores internos</h3>
-        <p class="stats__desc">Preparação para conduzir auditorias internas com competência técnica e independência. Inclui critérios da ISO 19011, técnicas de evidência, condução de entrevista, redação de relatório e tratativa de não conformidade.</p>
-      </article>
-      <article class="stats__item">
-        <h3 class="stats__big">Lean Six Sigma — Yellow, Green e Black Belt</h3>
-        <p class="stats__desc">Capacitação em DMAIC com profundidade compatível com o nível de atuação. Yellow para times operacionais; Green para líderes de projeto; Black para condutores de programa. Toda formação inclui projeto real da empresa como entregável final.</p>
-      </article>
-      <article class="stats__item">
-        <h3 class="stats__big">Formação executiva em sistemas de gestão</h3>
-        <p class="stats__desc">Para diretoria e alta liderança. Foco no que o sistema entrega como ferramenta de decisão estratégica — não no detalhe normativo. Curto, direto, orientado à tomada de decisão.</p>
-      </article>
-      <article class="stats__item">
-        <h3 class="stats__big">Train-the-trainer</h3>
-        <p class="stats__desc">Formação de instrutores internos capazes de propagar o conhecimento depois que a consultoria sai. Quando a escala da organização exige multiplicação contínua, esta é a única estrutura que se sustenta.</p>
-      </article>
-    </div>
+<section class="section pq" id="contato"><div class="wrap pq__grid">
+  <div>
+    <h2 class="heading-cond">Agende um <em>diagnóstico</em></h2>
+    <ul class="pq__list">
+      <li>Quem não quer depender de consultor para sempre.</li>
+      <li>Quem quer a competência instalada na própria equipe.</li>
+      <li>Quem precisa de formação aplicada ao chão, não teórica.</li>
+    </ul>
   </div>
-</section>
+  <form class="form" action="https://formspree.io/f/mpqnzbal" method="POST">
+    <div><label for="nome">Nome e empresa</label><input id="nome" name="nome" type="text" placeholder="Nome / Empresa" required></div>
+    <div><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="seu@email.com" required></div>
+    <div><label for="msg">Contexto do desafio</label><textarea id="msg" name="msg" placeholder="Descreva a operação e o principal problema." required></textarea></div>
+    <button type="submit" class="cta" style="margin-top:.4rem">Enviar solicitação <span class="sq" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="square"/></svg></span></button>
+    <p class="form__note">Resposta direta. Sem intermediários.</p><p class="form__ok">Mensagem enviada. Eu respondo diretamente em até 24 horas.</p>
+  </form>
+</div></section>
 
-<!-- ════════════ SERVIÇO — stats grid ════════════ -->
-<section class="stats" id="servico" aria-labelledby="servico-title">
-  <div class="stats__inner">
-    <h2 class="stats__title" id="servico-title">Nossa abordagem em formação</h2>
-
-    <div class="stats__grid stats__grid--five">
-      <article class="stats__item">
-        <h3 class="stats__big">Diagnóstico da necessidade real</h3>
-        <p class="stats__desc">Cada programa começa com uma leitura do que a organização precisa desenvolver — não do que o catálogo oferece. O conteúdo é definido a partir do gap entre a capacidade atual e o resultado esperado.</p>
-      </article>
-      <article class="stats__item">
-        <h3 class="stats__big">Conteúdo construído sobre o contexto real</h3>
-        <p class="stats__desc">Casos, dados e problemas usados na formação vêm da própria operação. O participante não aprende teoria para depois aplicar — aprende aplicando ao que já conhece.</p>
-      </article>
-      <article class="stats__item">
-        <h3 class="stats__big">Aprendizado conectado ao trabalho</h3>
-        <p class="stats__desc">Cada módulo é calibrado para o que o participante vai encontrar na volta à função. Sem abstração desnecessária — o que é ensinado é o que será usado.</p>
-      </article>
-      <article class="stats__item">
-        <h3 class="stats__big">Entregável prático ao final</h3>
-        <p class="stats__desc">Projetos reais, auditorias conduzidas, análises de processo. O que encerra a formação não é uma prova — é uma entrega que a operação pode usar.</p>
-      </article>
-      <article class="stats__item">
-        <h3 class="stats__big">Transferência e multiplicação</h3>
-        <p class="stats__desc">Nos programas train-the-trainer, a formação não encerra na turma — encerra quando os participantes demonstram capacidade de conduzir o próximo ciclo sem suporte externo.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ PARA QUEM + CONTATO ════════════ -->
-<section class="pq-contato" id="paraquem" aria-labelledby="pq-title">
-
-  <div class="pq-contato__hold" aria-hidden="true"></div>
-
-  <div class="pq-contato__visual-wrap" id="pqVisual">
-    <div class="pq-contato__block">
-      <p class="pq-contato__kicker">Perfil de aplicação</p>
-      <h2 class="pq-contato__title" id="pq-title">Para quem este serviço é <em>ideal</em></h2>
-      <ul class="pq-contato__list">
-        <li><strong>Empresas que implantaram um sistema e precisam que ele seja vivido pela operação, não apenas mantido pela qualidade.</strong> A diferença entre um sistema sustentado e um sistema mantido está em quantas pessoas, fora do departamento da qualidade, entendem o que ele é. Treinamento bem desenhado fecha essa distância.</li>
-        <li><strong>Indústrias com risco de perda de conhecimento crítico por aposentadoria ou turnover.</strong> Quando uma competência técnica vive em poucas pessoas, ela é vulnerável. Programas de transferência estruturada de conhecimento preservam o que a empresa demorou anos para construir.</li>
-        <li><strong>Organizações que querem reduzir dependência de consultoria externa para iniciativas de melhoria.</strong> Train-the-trainer e formação de Belts internos transformam capacidade técnica em ativo da empresa. Cada projeto seguinte custa menos, demora menos, e fica.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="pq-contato__spacer" aria-hidden="true"></div>
-
-  <div class="pq-contato__inner" id="contato">
-    <div class="pq-contato__visual-cell" aria-hidden="true"></div>
-
-    <div class="pq-contato__form-wrap">
-      <p class="pq-contato__form-kicker">Primeiro passo</p>
-      <h2 class="pq-contato__form-heading">
-        AGENDE UMA<br>CONSULTA <em>INICIAL</em>
-      </h2>
-      <p class="pq-contato__form-desc">
-        Uma conversa direta de 30 minutos para entender qual programa de formação faz sentido para a sua equipe.
-      </p>
-      <form action="https://formspree.io/f/mpqnzbal" method="POST" novalidate>
-        <input type="hidden" name="_subject" value="Novo contato — Treinamento">
-        <input type="hidden" name="_language" value="pt">
-        <div class="form__row">
-          <label for="nome" class="form__lbl">Nome e empresa</label>
-          <input class="form__input" type="text" id="nome" name="nome" autocomplete="name" required placeholder="Nome / Empresa"/>
-        </div>
-        <div class="form__row">
-          <label for="email" class="form__lbl">E-mail</label>
-          <input class="form__input" type="email" id="email" name="email" autocomplete="email" required placeholder="seu@email.com"/>
-        </div>
-        <div class="form__row">
-          <label for="msg" class="form__lbl">Contexto do desafio</label>
-          <textarea class="form__textarea" id="msg" name="msg" rows="4" required placeholder="Descreva a operação e o principal problema."></textarea>
-        </div>
-        <button type="submit" class="form__submit">
-          Enviar solicitação
-          <span class="cta-sq" aria-hidden="true">
-            <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-          </span>
-        </button>
-        <p class="form__note">Resposta direta. Sem intermediários.</p>
-        <p class="form__success" id="formSuccess" hidden>
-          Mensagem enviada. Eduardo responde diretamente em até 24 horas.
-        </p>
-        <p class="form__error" id="formError" hidden>
-          Não foi possível enviar agora. Tente novamente em alguns minutos, ou escreva diretamente para eduardo@rossiter.de.
-        </p>
-      </form>
-    </div>
-  </div>
-
-</section>
-
-<!-- ════════════ FOOTER ════════════ -->
-<footer class="footer" aria-label="Rodapé">
+<footer class="footer">
   <div class="footer__top">
-    <div class="footer__brand-block">
-      <img class="footer__logo" src="rossiter-logo.png" alt="" aria-hidden="true"/>
-      <div class="footer__brand-text">
-        <p class="footer__brand">Rossiter Consulting</p>
-        <p class="footer__tagline">Sistema rodando · Indicador medido · Rotina funcionando</p>
-      </div>
-    </div>
-
+    <div class="footer__brand"><svg width="56" height="56"><use href="#mark"/></svg><div><span class="nm">Rossiter</span><br><span class="ds">Consulting</span></div></div>
     <div class="footer__social">
-      <a href="mailto:eduardo@rossiter.de" class="footer__btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="4" width="20" height="16" rx="1"/>
-          <path d="M2 6l10 7 10-7"/>
-        </svg>
-        E-mail
-      </a>
-      <a href="https://linkedin.com/in/eduardorossiter" target="_blank" rel="noopener" class="footer__btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="2" width="20" height="20" rx="2"/>
-          <path d="M7 10v7M7 7v.01M12 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4M12 10v7"/>
-        </svg>
-        LinkedIn
-      </a>
-      <a href="https://wa.me/4917621110258" target="_blank" rel="noopener" class="footer__btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        </svg>
-        WhatsApp
-      </a>
-      <a href="https://instagram.com/rossiterconsulting" target="_blank" rel="noopener" class="footer__btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="2" width="20" height="20" rx="5"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/>
-        </svg>
-        Instagram
-      </a>
+      <a class="footer__btn" href="mailto:eduardo@rossiter.de"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16"/><path d="M2 6l10 7 10-7"/></svg>E-mail</a>
+      <a class="footer__btn" href="https://linkedin.com/in/eduardorossiter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20"/><path d="M7 10v7M7 7v.01M12 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4"/></svg>LinkedIn</a>
+      <a class="footer__btn" href="https://wa.me/4917621110258" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg>WhatsApp</a>
     </div>
   </div>
-
-  <p class="footer__copy">© 2026 Rossiter Consulting. Todos os direitos reservados.</p>
+  <p class="footer__copy">Sistema rodando · Indicador medido · Rotina funcionando &nbsp;·&nbsp; © 2026 Rossiter Consulting</p>
 </footer>
-
-<script>
-// ── Nav: scroll border + hide on scroll, subnav docks ──
-const nav = document.getElementById('nav');
-const subnav = document.getElementById('subnav');
-const HIDE_THRESHOLD = 120;
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  nav.classList.toggle('scrolled', y > 20);
-  const hide = y > HIDE_THRESHOLD;
-  nav.classList.toggle('hidden', hide);
-  if(subnav) subnav.classList.toggle('docked', hide);
-}, {passive:true});
-
-// ── Mobile menu ──
-const btn = document.getElementById('menuBtn');
-const menu = document.getElementById('mobileMenu');
-btn.addEventListener('click', () => {
-  menu.classList.toggle('open');
-  btn.setAttribute('aria-expanded', menu.classList.contains('open'));
-});
-document.querySelectorAll('.mobile-link').forEach(l => {
-  l.addEventListener('click', () => {
-    menu.classList.remove('open');
-    btn.setAttribute('aria-expanded','false');
-  });
-});
-
-// ── Para Quem + Contato: entra da direita, fica alinhado com o form ──
-(function(){
-  const visual  = document.getElementById('pqVisual');
-  const section = document.querySelector('.pq-contato');
-  const hold    = section && section.querySelector('.pq-contato__hold');
-  const inner   = section && section.querySelector('.pq-contato__inner');
-  if(!visual || !section || !hold) return;
-
-  function isMobile(){ return window.matchMedia('(max-width:860px)').matches; }
-
-  let ticking = false;
-  function requestUpdate(){
-    if(!ticking){
-      ticking = true;
-      requestAnimationFrame(update);
-    }
-  }
-
-  const SUBNAV_H = 48;
-
-  function update(){
-    ticking = false;
-
-    if(isMobile()){
-      visual.classList.remove('is-active','is-entered');
-      visual.style.top = '';
-      return;
-    }
-
-    const holdRect  = hold.getBoundingClientRect();
-    const innerRect = inner ? inner.getBoundingClientRect() : null;
-    const formWrap  = section.querySelector('.pq-contato__form-wrap');
-    const formRect  = formWrap ? formWrap.getBoundingClientRect() : null;
-
-    if(holdRect.bottom > SUBNAV_H){
-      visual.classList.remove('is-active','is-entered');
-      visual.style.top = '';
-      return;
-    }
-
-    if(innerRect && innerRect.bottom < 0){
-      visual.classList.remove('is-active','is-entered');
-      visual.style.top = '';
-      return;
-    }
-
-    if(!visual.classList.contains('is-active')){
-      visual.classList.add('is-active');
-      requestAnimationFrame(() => {
-        visual.classList.add('is-entered');
-      });
-    }
-
-    if(formRect && formRect.top < window.innerHeight && formRect.top > SUBNAV_H){
-      visual.style.top = formRect.top + 'px';
-    } else if(formRect && formRect.top <= SUBNAV_H){
-      visual.style.top = SUBNAV_H + 'px';
-    } else {
-      visual.style.top = '';
-    }
-  }
-
-  window.addEventListener('scroll', requestUpdate, {passive:true});
-  window.addEventListener('resize', requestUpdate, {passive:true});
-  update();
-})();
-
-// ── Envio do formulário via API do Formspree (sem redirect) ──
-document.addEventListener('DOMContentLoaded', function(){
-  const form = document.querySelector('form[action*="formspree.io"]');
-  if(!form){
-    console.log('Formspree: formulario nao encontrado');
-    return;
-  }
-  console.log('Formspree: interceptador registrado');
-
-  const successMsg = document.getElementById('formSuccess');
-  const errorMsg = document.getElementById('formError');
-  const submitBtn = form.querySelector('button[type="submit"], .form__submit');
-
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    console.log('Formspree: submit interceptado');
-
-    if(successMsg) successMsg.hidden = true;
-    if(errorMsg) errorMsg.hidden = true;
-
-    if(submitBtn){
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.6';
-    }
-
-    const data = new FormData(form);
-
-    try{
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if(response.ok){
-        form.reset();
-        if(successMsg) successMsg.hidden = false;
-        console.log('Formspree: enviado com sucesso');
-      } else {
-        if(errorMsg) errorMsg.hidden = false;
-        console.log('Formspree: erro do servidor', response.status);
-      }
-    } catch(err){
-      if(errorMsg) errorMsg.hidden = false;
-      console.log('Formspree: erro de rede', err);
-    } finally {
-      if(submitBtn){
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '';
-      }
-    }
-  });
-});
-</script>
-
-</body>
-</html>
+<script src="assets/app.js" defer></script>
+</body></html>

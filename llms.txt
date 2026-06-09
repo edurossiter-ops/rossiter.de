@@ -1,0 +1,13 @@
+# Rossiter Consulting
+
+> Consultoria de excelência operacional e Lean para a pequena e média indústria brasileira. Eduardo Rossiter (International Welding Engineer, Lean Six Sigma Master Black Belt, Lead Auditor IMS) encontra a margem escondida nas perdas da operação e instala o método ROC (Reduzir, Organizar, Crescer) que a recupera, sem o cliente precisar crescer.
+
+## Páginas
+- [Início](https://rossiter.de/): posicionamento, método ROC, prova e contato.
+- [Sistemas de Gestão Integrado](https://rossiter.de/sgi.html): integração de ISO 9001, 14001 e 45001 numa estrutura única.
+- [Auditoria e Suporte Técnico](https://rossiter.de/auditoria.html): auditoria que enxerga além do registro (ISO 19011:2018).
+- [Excelência Operacional](https://rossiter.de/opex.html): Lean Six Sigma e DMAIC para recuperar a perda que o equilíbrio atual esconde.
+- [Formação e Treinamento](https://rossiter.de/formacao.html): formação em norma, auditoria e Lean Six Sigma; o método fica na casa do cliente.
+
+## Contato
+- E-mail: eduardo@rossiter.de
