@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav class="blognav">
-  <span class="nm">Rossiter</span>
+  <a href="../index.html#hero" class="nav__brand" aria-label="Rossiter Consulting"><img src="../assets/rossiter-mark.svg" class="brandmark" alt=""><span class="brandtext"><span class="nm">Rossiter</span><span class="ds">Consulting</span></span></a>
   <a class="home" href="index.html">← Blog</a>
 </nav>
 <article class="article" id="art"><p style="color:var(--steel)">Carregando…</p></article>
@@ -25,6 +25,17 @@
     </form>
   </div>
 </section>
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__brand"><img src="../assets/rossiter-mark.svg" class="footmark" alt=""><div class="brandtext"><span class="nm">Rossiter</span><span class="ds">Consulting</span></div></div>
+    <div class="footer__social">
+      <a class="footer__btn" href="mailto:eduardo@rossiter.de"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16"/><path d="M2 6l10 7 10-7"/></svg>E-mail</a>
+      <a class="footer__btn" href="https://linkedin.com/in/eduardorossiter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20"/><path d="M7 10v7M7 7v.01M12 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4"/></svg>LinkedIn</a>
+      <a class="footer__btn" href="https://wa.me/4917621110258" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg>WhatsApp</a>
+    </div>
+  </div>
+  <p class="footer__copy">Sistema rodando · Indicador medido · Rotina funcionando &nbsp;·&nbsp; © 2026 Rossiter Consulting</p>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
   function fmt(d){var m=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];var p=d.split('-');return p[2]+' '+m[+p[1]-1]+' '+p[0];}
