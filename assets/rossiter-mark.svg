@@ -1,0 +1,30 @@
+<svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="cs0" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#3a5c88"/><stop offset="45%" stop-color="#162840"/><stop offset="100%" stop-color="#060e1c"/></radialGradient>
+    <radialGradient id="cs1" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#4070a8"/><stop offset="45%" stop-color="#1c3255"/><stop offset="100%" stop-color="#080f25"/></radialGradient>
+    <radialGradient id="cs2" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#4a82c0"/><stop offset="45%" stop-color="#203c68"/><stop offset="100%" stop-color="#0a1230"/></radialGradient>
+    <radialGradient id="cs3" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#5294d8"/><stop offset="45%" stop-color="#26487c"/><stop offset="100%" stop-color="#0c1838"/></radialGradient>
+    <radialGradient id="cs4" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#5ea8ec"/><stop offset="45%" stop-color="#2c5490"/><stop offset="100%" stop-color="#0e1e44"/></radialGradient>
+    <radialGradient id="cs5" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#6ebcf8"/><stop offset="45%" stop-color="#3262a4"/><stop offset="100%" stop-color="#102450"/></radialGradient>
+    <radialGradient id="cs6" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#84ceff"/><stop offset="45%" stop-color="#3a72b8"/><stop offset="100%" stop-color="#122c5e"/></radialGradient>
+    <radialGradient id="cs7" cx="33%" cy="28%" r="68%"><stop offset="0%" stop-color="#a8dcff"/><stop offset="45%" stop-color="#4484cc"/><stop offset="100%" stop-color="#163470"/></radialGradient>
+    <radialGradient id="csc" cx="32%" cy="28%" r="68%"><stop offset="0%" stop-color="#b8e8ff"/><stop offset="35%" stop-color="#4a90d8"/><stop offset="75%" stop-color="#1a3e78"/><stop offset="100%" stop-color="#0a1a3a"/></radialGradient>
+    <radialGradient id="csh" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#000" stop-opacity="0.5"/><stop offset="100%" stop-color="#000" stop-opacity="0"/></radialGradient>
+  </defs>
+  <polygon points="340,165 491.6,252.5 491.6,427.5 340,515 188.4,427.5 188.4,252.5" fill="none" stroke="#4a78a8" stroke-width="6" opacity="0.6"/>
+  <polygon points="340,170 487.2,255 487.2,425 340,510 192.8,425 192.8,255" fill="none" stroke="#4a78a8" stroke-width="6" opacity="0.6"/>
+  <polygon points="340,207 455.2,273.5 455.2,406.5 340,473 224.8,406.5 224.8,273.5" fill="none" stroke="#3a6090" stroke-width="4" opacity="0.4"/>
+  <circle cx="340" cy="188" r="13" fill="url(#cs3)"/><circle cx="471.6" cy="264" r="13" fill="url(#cs7)"/><circle cx="471.6" cy="416" r="13" fill="url(#cs7)"/><circle cx="340" cy="492" r="13" fill="url(#cs3)"/><circle cx="208.4" cy="416" r="13" fill="url(#cs0)"/><circle cx="208.4" cy="264" r="13" fill="url(#cs0)"/>
+  <circle cx="383.9" cy="213.3" r="13" fill="url(#cs5)"/><circle cx="427.7" cy="238.7" r="13" fill="url(#cs6)"/><circle cx="471.6" cy="314.7" r="13" fill="url(#cs7)"/><circle cx="471.6" cy="365.3" r="13" fill="url(#cs7)"/><circle cx="427.7" cy="441.3" r="13" fill="url(#cs6)"/><circle cx="383.9" cy="466.7" r="13" fill="url(#cs5)"/>
+  <circle cx="296.1" cy="466.7" r="13" fill="url(#cs2)"/><circle cx="252.3" cy="441.3" r="13" fill="url(#cs1)"/><circle cx="208.4" cy="365.3" r="13" fill="url(#cs0)"/><circle cx="208.4" cy="314.7" r="13" fill="url(#cs0)"/><circle cx="252.3" cy="238.7" r="13" fill="url(#cs1)"/><circle cx="296.1" cy="213.3" r="13" fill="url(#cs2)"/>
+  <circle cx="340" cy="230" r="9" fill="url(#cs3)"/><circle cx="435.3" cy="285" r="9" fill="url(#cs6)"/><circle cx="435.3" cy="395" r="9" fill="url(#cs6)"/><circle cx="340" cy="450" r="9" fill="url(#cs3)"/><circle cx="244.7" cy="395" r="9" fill="url(#cs1)"/><circle cx="244.7" cy="285" r="9" fill="url(#cs1)"/>
+  <circle cx="387.7" cy="257.5" r="9" fill="url(#cs5)"/><circle cx="435.3" cy="340" r="9" fill="url(#cs6)"/><circle cx="387.7" cy="422.5" r="9" fill="url(#cs5)"/><circle cx="292.4" cy="422.5" r="9" fill="url(#cs2)"/><circle cx="244.7" cy="340" r="9" fill="url(#cs1)"/><circle cx="292.4" cy="257.5" r="9" fill="url(#cs2)"/>
+  <circle cx="340" cy="268" r="6" fill="url(#cs3)"/><circle cx="402.4" cy="304" r="6" fill="url(#cs5)"/><circle cx="402.4" cy="376" r="6" fill="url(#cs5)"/><circle cx="340" cy="412" r="6" fill="url(#cs3)"/><circle cx="277.6" cy="376" r="6" fill="url(#cs2)"/><circle cx="277.6" cy="304" r="6" fill="url(#cs2)"/>
+  <circle cx="371.2" cy="286" r="6" fill="url(#cs4)"/><circle cx="402.4" cy="340" r="6" fill="url(#cs5)"/><circle cx="371.2" cy="394" r="6" fill="url(#cs4)"/><circle cx="308.8" cy="394" r="6" fill="url(#cs3)"/><circle cx="277.6" cy="340" r="6" fill="url(#cs2)"/><circle cx="308.8" cy="286" r="6" fill="url(#cs3)"/>
+  <circle cx="340" cy="304" r="3.5" fill="url(#cs3)"/><circle cx="371.2" cy="322" r="3.5" fill="url(#cs4)"/><circle cx="371.2" cy="358" r="3.5" fill="url(#cs4)"/><circle cx="340" cy="376" r="3.5" fill="url(#cs3)"/><circle cx="308.8" cy="358" r="3.5" fill="url(#cs3)"/><circle cx="308.8" cy="322" r="3.5" fill="url(#cs3)"/>
+  <ellipse cx="344" cy="349" rx="16" ry="5.5" fill="url(#csh)"/>
+  <circle cx="340" cy="340" r="18" fill="url(#csc)"/>
+  <ellipse cx="333" cy="333" rx="5" ry="3.5" fill="white" opacity="0.2" transform="rotate(-20,333,333)"/>
+  <line x1="165" y1="340" x2="515" y2="340" stroke="#5088b8" stroke-width="3" opacity="0.4"/>
+  <line x1="252.5" y1="491.6" x2="427.5" y2="188.4" stroke="#5088b8" stroke-width="3" opacity="0.4"/>
+</svg>
