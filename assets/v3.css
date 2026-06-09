@@ -77,19 +77,24 @@ a{color:inherit;text-decoration:none}
 
 /* ===== ROC pinado ===== */
 .roc{background:var(--navy-1);height:300vh;position:relative}
-.roc__pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;padding:0 var(--gutter);overflow:hidden}
-.roc__kicker{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:1rem}
-.roc__title{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:-.03em;font-size:clamp(2.6rem,8vw,6.5rem);line-height:.9;color:#fff;display:flex;flex-wrap:wrap;gap:0 .35em}
+.roc__pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;padding:clamp(4.5rem,9vh,7rem) var(--gutter) 2.6rem;overflow:hidden}
+.roc__kicker{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:.9rem}
+.roc__title{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:-.03em;font-size:clamp(2.4rem,7vw,5.5rem);line-height:.9;color:#fff;display:flex;flex-wrap:wrap;gap:0 .35em}
 .roc__title .let{color:var(--steel);transition:color .4s}
 .roc__title .let.on{color:var(--signal)}
-.roc__steps{margin-top:clamp(1.5rem,3vw,2.5rem);position:relative;min-height:7em}
+.roc__sub{font-family:var(--sans);color:var(--sky);font-size:clamp(.95rem,1.4vw,1.15rem);max-width:64ch;margin-top:1rem}
+.roc__sub em{color:#fff;font-style:normal}
+.roc__stage{flex:1;display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(2rem,4vw,4rem);align-items:center;min-height:0;margin-top:clamp(1.4rem,3vh,2.4rem)}
+.roc__steps{position:relative;min-height:9em}
 .roc__step{position:absolute;inset:0;opacity:0;transform:translateY(20px)}
-.roc__step h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:clamp(1.4rem,2.4vw,2rem);color:#fff}
-.roc__step p{color:var(--ice);font-size:clamp(1.1rem,1.5vw,1.35rem);max-width:46ch;margin-top:.5rem}
-.roc__tese{margin-top:auto;padding-top:1.5rem;border-top:1px solid var(--navy-2);color:var(--steel);font-size:.95rem;max-width:70ch}
-.roc__tese em{color:var(--sky);font-style:normal}
-.roc__prog{position:absolute;left:var(--gutter);right:var(--gutter);bottom:2.2rem;height:2px;background:var(--navy-2)}
+.roc__step:first-child{opacity:1;transform:none}
+.roc__step .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);display:block;margin-bottom:.6rem}
+.roc__step h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:clamp(1.7rem,2.8vw,2.6rem);color:#fff;line-height:1}
+.roc__step p{color:var(--ice);font-size:clamp(1.1rem,1.5vw,1.35rem);max-width:42ch;margin-top:.7rem}
+.roc__viz{width:100%;height:100%;min-height:0;display:block}
+.roc__prog{margin-top:1.4rem;height:2px;background:var(--navy-2)}
 .roc__prog i{display:block;height:100%;width:0;background:var(--signal)}
+@media(max-width:780px){.roc__viz{display:none}.roc__stage{grid-template-columns:1fr;gap:1.4rem}}
 
 /* ===== competências ===== */
 .comp{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}

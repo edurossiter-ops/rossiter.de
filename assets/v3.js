@@ -48,6 +48,64 @@
     if (reduce) step(); else (function loop() { step(); requestAnimationFrame(loop); })();
   }
 
+  /* ===== ROC viz: R (reduzir a MUDA) -> O (organizar) -> C (crescer + ponto acende) ===== */
+  var rocViz = (function () {
+    var c = document.getElementById('rocCanvas');
+    if (!c || !c.getContext) return { render: function () {}, resize: function () {} };
+    var x = c.getContext('2d'), W = 0, H = 0, DPR = 1, COLS = 7, ROWS = 4, KEPT = COLS * ROWS, REMOVED = 22, cells = [], lastP = 0;
+    function rnd(i) { var s = Math.sin(i * 99.73) * 43758.55; return s - Math.floor(s); }
+    function rs() { DPR = Math.min(2, devicePixelRatio || 1); W = c.clientWidth; H = c.clientHeight; c.width = W * DPR; c.height = H * DPR; x.setTransform(DPR, 0, 0, DPR, 0, 0); }
+    function build() { cells = []; var rem = 0; for (var i = 0; i < KEPT + REMOVED; i++) { var col = i % COLS, row = Math.floor(i / COLS), kept = i < KEPT, tag = false; if (!kept) { tag = rem < 5; rem++; } cells.push({ sx: rnd(i * 2) * 0.92 + 0.04, sy: rnd(i * 2 + 1) * 0.92 + 0.04, gx: (col + 0.5) / COLS, gy: (row + 0.5) / ROWS, kept: kept, tag: tag }); } }
+    function ez(t) { t = t < 0 ? 0 : t > 1 ? 1 : t; return 1 - Math.pow(1 - t, 3); }
+    function cl(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+    function L(a, b, t) { return a + (b - a) * t; }
+    function render(p) {
+      if (!W) rs(); if (!W) return; lastP = p;
+      x.clearRect(0, 0, W, H);
+      var rP = cl(p / 0.38), oP = ez(cl((p - 0.38) / 0.30)), gP = ez(cl((p - 0.68) / 0.32));
+      var bw = W * 0.82, bh = H * 0.60, cx = W * 0.5, cy = H * 0.50 - gP * H * 0.04, sc = 1 + gP * 0.16;
+      function gp(o) { return [cx + (o.gx - 0.5) * bw * sc, cy + (o.gy - 0.5) * bh * sc]; }
+      var link = Math.max(oP, gP * 0.7);
+      if (link > 0.01) {
+        x.strokeStyle = 'rgba(74,120,168,' + (0.24 * link) + ')'; x.lineWidth = 1;
+        for (var i = 0; i < KEPT; i++) {
+          var a = cells[i], g = gp(a), pa = [L(a.sx * W, g[0], oP), L(a.sy * H, g[1], oP)];
+          if ((i % COLS) < COLS - 1) { var b = cells[i + 1], gb = gp(b); x.beginPath(); x.moveTo(pa[0], pa[1]); x.lineTo(L(b.sx * W, gb[0], oP), L(b.sy * H, gb[1], oP)); x.stroke(); }
+          if (i + COLS < KEPT) { var d = cells[i + COLS], gd = gp(d); x.beginPath(); x.moveTo(pa[0], pa[1]); x.lineTo(L(d.sx * W, gd[0], oP), L(d.sy * H, gd[1], oP)); x.stroke(); }
+        }
+      }
+      /* waste cells (MUDA) — hollow, fade out as R reduces */
+      var wal = 1 - rP;
+      if (wal > 0.02) {
+        x.lineWidth = 1; x.font = '10px "IBM Plex Mono", ui-monospace, monospace'; x.textBaseline = 'middle';
+        for (var i = 0; i < cells.length; i++) {
+          var o = cells[i]; if (o.kept) continue;
+          var wx = o.sx * W, wy = o.sy * H;
+          x.strokeStyle = 'rgba(74,120,168,' + (0.6 * wal) + ')'; x.strokeRect(wx - 4, wy - 4, 8, 8);
+          if (o.tag) { x.fillStyle = 'rgba(122,160,200,' + (0.7 * wal) + ')'; x.fillText('MUDA', wx + 9, wy + 1); }
+        }
+      }
+      /* value cells — solid Signal, settle from scatter into the grid */
+      for (var i = 0; i < KEPT; i++) {
+        var o = cells[i], g2 = gp(o), s = 4 + gP * 4;
+        x.fillStyle = 'rgba(58,114,200,' + (0.72 + gP * 0.28) + ')';
+        x.fillRect(L(o.sx * W, g2[0], oP) - s / 2, L(o.sy * H, g2[1], oP) - s / 2, s, s);
+      }
+      /* Core ignition above the solid base, tethered to the grid */
+      if (gP > 0.01) {
+        var gridTop = cy - bh * sc * 0.5, coreY = gridTop - 10 - gP * 24;
+        x.strokeStyle = 'rgba(184,232,255,' + (0.22 * gP) + ')'; x.lineWidth = 1;
+        x.beginPath(); x.moveTo(cx, gridTop); x.lineTo(cx, coreY); x.stroke();
+        var rad = 10 + gP * 52, rg = x.createRadialGradient(cx, coreY, 0, cx, coreY, rad);
+        rg.addColorStop(0, 'rgba(184,232,255,' + (0.55 * gP) + ')'); rg.addColorStop(0.5, 'rgba(184,232,255,' + (0.12 * gP) + ')'); rg.addColorStop(1, 'rgba(184,232,255,0)');
+        x.fillStyle = rg; x.beginPath(); x.arc(cx, coreY, rad, 0, 7); x.fill();
+        x.fillStyle = 'rgba(220,244,255,' + Math.min(1, 0.6 + gP * 0.4) + ')'; x.beginPath(); x.arc(cx, coreY, 3.5, 0, 7); x.fill();
+      }
+    }
+    build(); addEventListener('resize', function () { rs(); render(lastP); }, { passive: true });
+    return { render: render, resize: rs };
+  })();
+
   var hasGsap = !!window.gsap, hasST = hasGsap && !!window.ScrollTrigger;
 
   /* contact form (Formspree) + newsletter (HubSpot pendente) */
@@ -79,7 +137,7 @@
   }
   wireForms();
 
-  if (reduce || !hasGsap) { showAll(); addEventListener('scroll', function () { onScroll(scrollY); }, { passive: true }); return; }
+  if (reduce || !hasGsap) { rocViz.render(0); showAll(); addEventListener('scroll', function () { onScroll(scrollY); }, { passive: true }); return; }
   if (hasST) gsap.registerPlugin(ScrollTrigger);
 
   /* Lenis smooth scroll + GSAP ticker */
@@ -108,6 +166,7 @@
     ScrollTrigger.create({
       trigger: roc, start: 'top top', end: 'bottom bottom', scrub: true,
       onUpdate: function (self) {
+        rocViz.render(self.progress);
         if (bar) bar.style.width = (self.progress * 100) + '%';
         var idx = Math.min(2, Math.floor(self.progress * 2.999));
         if (idx !== last) {
@@ -117,6 +176,7 @@
         }
       }
     });
+    rocViz.resize(); rocViz.render(0);
   }
 
   /* Count-up */

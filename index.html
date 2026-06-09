@@ -61,14 +61,19 @@
 <!-- ROC (pinado) -->
 <section class="roc" id="metodo">
   <div class="roc__pin">
-    <p class="roc__kicker">O método</p>
-    <div class="roc__title"><span class="let on" data-i="0">Reduzir</span><span class="let" data-i="1">Organizar</span><span class="let" data-i="2">Crescer</span></div>
-    <div class="roc__steps">
-      <div class="roc__step" data-i="0"><h3>R — Reduzir</h3><p>Tiro a perda (a MUDA) e recupero a margem que ela esconde.</p></div>
-      <div class="roc__step" data-i="1"><h3>O — Organizar</h3><p>A operação passa a rodar redondo e a se sustentar sozinha: padrão e rotina.</p></div>
-      <div class="roc__step" data-i="2"><h3>C — Crescer</h3><p>Você amplia a produção sobre base sólida, não sobre areia.</p></div>
+    <div class="roc__head">
+      <p class="roc__kicker">O método</p>
+      <div class="roc__title"><span class="let on" data-i="0">Reduzir</span><span class="let" data-i="1">Organizar</span><span class="let" data-i="2">Crescer</span></div>
+      <p class="roc__sub">A margem mora nas <em>interfaces</em> entre Fluxo, Estrutura e Inteligência. Uma causa, múltiplos ganhos.</p>
     </div>
-    <p class="roc__tese">A margem escondida mora nas <em>interfaces</em> entre Fluxo, Estrutura e Inteligência, onde nenhum especialista olha junto. Por isso uma causa gera múltiplos ganhos.</p>
+    <div class="roc__stage">
+      <div class="roc__steps">
+        <div class="roc__step" data-i="0"><span class="lbl">Passo R</span><h3>Reduzir</h3><p>Tiro a perda (a MUDA) e recupero a margem que ela esconde.</p></div>
+        <div class="roc__step" data-i="1"><span class="lbl">Passo O</span><h3>Organizar</h3><p>A operação passa a rodar redondo e a se sustentar sozinha: padrão e rotina.</p></div>
+        <div class="roc__step" data-i="2"><span class="lbl">Passo C</span><h3>Crescer</h3><p>Você amplia a produção sobre base sólida, não sobre areia.</p></div>
+      </div>
+      <canvas class="roc__viz" id="rocCanvas" aria-hidden="true"></canvas>
+    </div>
     <div class="roc__prog" aria-hidden="true"><i></i></div>
   </div>
 </section>
