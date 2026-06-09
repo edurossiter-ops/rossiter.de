@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog · Rossiter Consulting</title>
+<meta name="description" content="Notas de operação — Rossiter Consulting.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/v3.css">
+</head>
+<body>
+<nav class="blognav">
+  <span class="nm">Rossiter</span>
+  <a class="home" href="index.html">← Blog</a>
+</nav>
+<article class="article" id="art"><p style="color:var(--steel)">Carregando…</p></article>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  function fmt(d){var m=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];var p=d.split('-');return p[2]+' '+m[+p[1]-1]+' '+p[0];}
+  var slug=new URLSearchParams(location.search).get('slug');
+  var art=document.getElementById('art');
+  if(!slug){art.innerHTML='<p>Post não encontrado.</p>';}
+  else fetch('posts.json').then(function(r){return r.json();}).then(function(posts){
+    var p=posts.find(function(x){return x.slug===slug;});
+    if(!p){art.innerHTML='<a class="article__back" href="index.html">← Blog</a><p>Post não encontrado.</p>';return;}
+    document.title=p.title+' · Rossiter Consulting';
+    var md=document.querySelector('meta[name=description]'); if(md)md.setAttribute('content',p.excerpt);
+    fetch('posts/'+slug+'.md').then(function(r){return r.text();}).then(function(body){
+      art.innerHTML='<a class="article__back" href="index.html">← Blog</a>'
+        +'<div class="article__meta">'+fmt(p.date)+' · '+p.readingTime+'</div>'
+        +'<h1>'+p.title+'</h1>'
+        +'<img class="article__cover" src="'+p.image+'" alt="">'
+        +'<div class="article__body">'+(window.marked?marked.parse(body):body)+'</div>';
+    });
+  }).catch(function(){art.innerHTML='<p>Não foi possível carregar o post.</p>';});
+</script>
+</body>
+</html>

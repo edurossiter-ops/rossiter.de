@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog · Notas de operação · Rossiter Consulting</title>
+<meta name="description" content="Notas de operação: textos sobre margem escondida, método e excelência operacional para a indústria PME. Por Eduardo Rossiter.">
+<link rel="canonical" href="https://rossiter.de/blog/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Rossiter Consulting">
+<meta property="og:title" content="Blog · Notas de operação · Rossiter Consulting">
+<meta property="og:description" content="Notas de operação: margem escondida, método e excelência operacional para a indústria PME.">
+<meta property="og:url" content="https://rossiter.de/blog/"><meta property="og:image" content="https://rossiter.de/assets/og-cover.png"><meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://rossiter.de/assets/og-cover.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Blog","name":"Notas de operação — Rossiter Consulting","url":"https://rossiter.de/blog/","inLanguage":"pt-BR","publisher":{"@type":"ProfessionalService","name":"Rossiter Consulting","url":"https://rossiter.de/"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/v3.css">
+</head>
+<body>
+<nav class="blognav">
+  <span class="nm">Rossiter</span>
+  <a class="home" href="../index.html">← Início</a>
+</nav>
+<main class="bloglist">
+  <h1>Notas de operação</h1>
+  <p class="sub">Margem escondida · método · excelência operacional</p>
+  <div class="blog__grid" id="grid"></div>
+</main>
+<script>
+  function fmt(d){var m=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];var p=d.split('-');return p[2]+' '+m[+p[1]-1]+' '+p[0];}
+  fetch('posts.json').then(function(r){return r.json();}).then(function(posts){
+    document.getElementById('grid').innerHTML = posts.map(function(p){
+      return '<a class="post" href="post.html?slug='+encodeURIComponent(p.slug)+'"><img src="'+p.image+'" alt=""><div class="post__b"><span class="dt">'+fmt(p.date)+' · '+p.readingTime+'</span><h3>'+p.title+'</h3></div></a>';
+    }).join('');
+  }).catch(function(){document.getElementById('grid').innerHTML='<p style="color:var(--steel)">Em breve.</p>';});
+</script>
+</body>
+</html>
