@@ -139,7 +139,10 @@ html{scroll-padding-top:144px}
 
 /* ===== contato + newsletter ===== */
 .contato{background:var(--navy-1);border-top:1px solid var(--navy-2)}
-.contato__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:start}
+.contato__grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;column-gap:clamp(2rem,5vw,5rem);row-gap:0;align-items:start}
+.contato__text{grid-column:1;grid-row:1}
+.contato__grid>.form{grid-column:2;grid-row:1 / span 2}
+.contato__grid>.news{grid-column:1;grid-row:2}
 .contato__text p{color:var(--ice);max-width:42ch;margin-top:1rem}
 .news{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--navy-2)}
 .news h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:1.4rem;color:#fff}
@@ -160,7 +163,9 @@ html{scroll-padding-top:144px}
 .form__submit .sq{width:38px;height:38px;background:var(--signal);display:grid;place-items:center;transition:background .2s}
 .form__submit:hover .sq{background:var(--accent-deep)}
 .form__ok{display:none;border-left:3px solid var(--signal);background:rgba(58,114,200,.1);padding:1rem 1.2rem;color:#fff;font-size:.95rem}
-@media(max-width:780px){.contato__grid{grid-template-columns:1fr}.roc{height:auto}.roc__pin{position:relative;height:auto;padding-block:clamp(4rem,10vw,7rem)}.roc__steps{position:static;min-height:0;display:flex;flex-direction:column;gap:1.5rem}.roc__step{position:static;opacity:1;transform:none}}
+.form__tag,.news__tag{display:none;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--sky)}
+.news__tag{margin-bottom:.6rem}
+@media(max-width:780px){.contato__grid{display:flex;flex-direction:column;align-items:stretch;gap:2.25rem}.contato__grid>*{min-width:0}.contato .form,.contato .news__form{max-width:none}.contato .news__form input{min-width:0}.form__tag,.news__tag{display:block}.contato .news{margin-top:0;padding:1.5rem 1.25rem;border-top:none;background:var(--navy-2)}.contato .news p{color:var(--ice)}.roc{height:auto}.roc__pin{position:relative;height:auto;padding-block:clamp(4rem,10vw,7rem)}.roc__steps{position:static;min-height:0;display:flex;flex-direction:column;gap:1.5rem}.roc__step{position:static;opacity:1;transform:none}}
 
 /* ===== footer ===== */
 .footer{padding:clamp(2rem,4vw,3rem) var(--gutter);border-top:1px solid var(--navy-2)}

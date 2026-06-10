@@ -125,22 +125,24 @@
       <p class="eyebrow">Primeiro passo</p>
       <h2 style="font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:-.025em;font-size:clamp(2rem,4vw,3.2rem);color:#fff;margin-top:1rem;line-height:1.04">Agende um <em style="color:var(--signal);font-style:normal">diagnóstico</em></h2>
       <p>Uma conversa direta de 30 minutos. Eu olho sua operação e te digo onde ela está perdendo o que produz, e se faz sentido trabalharmos juntos.</p>
-      <div class="news">
-        <h3>Notas de operação, no seu e-mail</h3>
-        <p>Textos sobre margem escondida e método, sem ruído.</p>
-        <form class="news__form" id="newsForm" aria-label="Newsletter">
-          <input type="email" name="email" aria-label="E-mail para a newsletter" placeholder="seu@email.com" autocomplete="email" inputmode="email" required>
-          <button type="submit" class="news__btn">Inscrever</button>
-        </form>
-      </div>
     </div>
-    <form class="form reveal" action="https://formspree.io/f/mpqnzbal" method="POST">
+    <form class="form reveal" action="https://formspree.io/f/mpqnzbal" method="POST" aria-label="Solicitação de diagnóstico">
+      <p class="form__tag">Solicitação de diagnóstico</p>
       <div><label for="nome">Nome e empresa</label><input id="nome" name="nome" type="text" autocomplete="organization" placeholder="Nome / Empresa" required></div>
       <div><label for="email2">E-mail</label><input id="email2" name="email" type="email" autocomplete="email" inputmode="email" placeholder="seu@email.com" required></div>
       <div><label for="msg">Contexto do desafio</label><textarea id="msg" name="msg" placeholder="Descreva a operação e o principal problema." required></textarea></div>
       <button type="submit" class="form__submit">Enviar solicitação <span class="sq" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="square"/></svg></span></button>
       <p class="form__ok">Mensagem enviada. Eu respondo diretamente em até 24 horas.</p>
     </form>
+    <div class="news reveal">
+      <p class="news__tag">Newsletter · opcional</p>
+      <h3>Notas de operação, no seu e-mail</h3>
+      <p>Textos sobre margem escondida e método, sem ruído.</p>
+      <form class="news__form" id="newsForm" aria-label="Newsletter">
+        <input type="email" name="email" aria-label="E-mail para a newsletter" placeholder="seu@email.com" autocomplete="email" inputmode="email" required>
+        <button type="submit" class="news__btn">Inscrever</button>
+      </form>
+    </div>
   </div>
 </section>
 
