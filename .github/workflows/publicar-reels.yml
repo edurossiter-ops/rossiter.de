@@ -1,0 +1,49 @@
+name: publicar-reels
+
+on:
+  schedule:
+    - cron: "0 9 * * *"    # 06:00 America/Sao_Paulo  (slots 01-05)
+    - cron: "0 11 * * *"   # 08:00 America/Sao_Paulo  (slots 06, 08)
+    - cron: "0 22 * * *"   # 19:00 America/Sao_Paulo  (slots 07, 09)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry-run (nao publica, so mostra)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar-reels
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Publicar reels devidos
+        env:
+          COMPOSIO_API_KEY: ${{ secrets.COMPOSIO_API_KEY }}
+          COMPOSIO_USER_ID: RossiterConsulting
+          IG_CONNECTED_ACCOUNT_ID: ca_C8RaGOzsCic0
+          DRY_RUN: ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '1' || '0' }}
+        run: python3 scripts/publicar_reels.py
+      - name: Persistir estado (published.json)
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run == false }}
+        run: |
+          if [ -n "$(git status --porcelain reels/published.json)" ]; then
+            git config user.name "edurossiter-ops"
+            git config user.email "edurossiter@gmail.com"
+            git add reels/published.json
+            git commit -m "reels: estado de publicacao [skip ci]"
+            git push
+          else
+            echo "published.json sem mudancas"
+          fi
