@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Lista os slugs reais das acoes (tools) do toolkit instagram no Composio."""
+"""Descobre os slugs reais das acoes instagram: testa GET /tools/{slug} para
+candidatos e lista os tools do toolkit instagram com filtro correto."""
 import os, json, urllib.request, urllib.error
 
 BASE = "https://backend.composio.dev/api/v3"
@@ -15,22 +16,25 @@ def get(url):
     except urllib.error.HTTPError as e:
         return e.code, e.read().decode()
 
-for url in (f"{BASE}/tools?toolkit_slugs=instagram&limit=200",
-            f"{BASE}/tools?toolkit_slug=instagram&limit=200"):
-    st, raw = get(url)
-    print("== GET", url, "==", st)
+# 1) filtro correto do toolkit (varias variantes)
+for q in ("toolkit_slugs=INSTAGRAM", "toolkitSlugs=instagram", "toolkit=instagram", "toolkits=instagram"):
+    st, raw = get(f"{BASE}/tools?{q}&limit=100")
     try:
-        d = json.loads(raw)
-        items = d.get("items") or d.get("data") or []
-        slugs = []
-        for it in items:
-            s = it.get("slug") or it.get("name") or it.get("enum")
-            if s: slugs.append(s)
-        print("TOTAL:", len(slugs))
-        for s in sorted(slugs):
-            print("  ", s)
+        d = json.loads(raw); items = d.get("items") or d.get("data") or []
+        slugs = [ (it.get("slug") or it.get("name")) for it in items ]
+        ig = [s for s in slugs if s and s.upper().startswith("INSTAGRAM")]
+        print(f"[{q}] status={st} total={len(slugs)} instagram={len(ig)}")
+        if ig:
+            for s in sorted(ig): print("   ", s)
+            break
     except Exception as e:
-        print("parse err", e, raw[:500])
-    print("----")
-    if st == 200:
-        break
+        print(f"[{q}] status={st} parse_err {e}")
+
+# 2) checa candidatos por GET /tools/{slug}
+print("== checagem por slug ==")
+for slug in ["INSTAGRAM_POST_IG_USER_MEDIA","INSTAGRAM_CREATE_MEDIA_CONTAINER",
+             "INSTAGRAM_CREATE_MEDIA","INSTAGRAM_MEDIA","INSTAGRAM_POST_IG_USER_MEDIA_PUBLISH",
+             "INSTAGRAM_CREATE_POST","INSTAGRAM_MEDIA_PUBLISH","INSTAGRAM_PUBLISH_MEDIA",
+             "INSTAGRAM_GET_USER_INFO"]:
+    st, raw = get(f"{BASE}/tools/{slug}")
+    print(f"   {slug}: {st}")
