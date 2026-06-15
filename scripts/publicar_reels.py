@@ -38,36 +38,51 @@ def execute(action, arguments):
     body = json.dumps({"user_id": USER, "connected_account_id": CONN, "arguments": arguments}).encode()
     req = urllib.request.Request(f"{BASE}/tools/execute/{action}", data=body, method="POST",
                                  headers={"x-api-key": KEY, "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=320) as r:
-        return json.loads(r.read().decode())
+    try:
+        with urllib.request.urlopen(req, timeout=320) as r:
+            return json.loads(r.read().decode())
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f"HTTP {e.code} em {action}: {e.read().decode()[:400]}")
+
+
+def _extract_id(res):
+    d = res.get("data", {}) or {}
+    return d.get("id") or (d.get("response_data", {}) or {}).get("id") or d.get("creation_id")
 
 
 def publish_one(post):
-    """Cria container + publica. Lanca excecao em erro (para o retry tratar)."""
-    args_create = {
+    """Cria container (CREATE_MEDIA_CONTAINER) + publica (CREATE_POST).
+    Espera o video processar antes de publicar. Lanca excecao em erro."""
+    res = execute("INSTAGRAM_CREATE_MEDIA_CONTAINER", {
         "ig_user_id": "me",
+        "content_type": "reel",
         "media_type": "REELS",
         "video_url": post["video_url"],
         "cover_url": post["cover_url"],
-        "share_to_feed": True,
         "caption": post["caption"],
-    }
-    res = execute("INSTAGRAM_POST_IG_USER_MEDIA", args_create)
+    })
     if not (res.get("successful") or res.get("successfull")):
         raise RuntimeError(f"create falhou: {json.dumps(res)[:400]}")
-    creation_id = res.get("data", {}).get("id")
+    creation_id = _extract_id(res)
     if not creation_id:
         raise RuntimeError(f"sem creation_id: {json.dumps(res)[:400]}")
     log(f"    container criado: {creation_id}")
-    res2 = execute("INSTAGRAM_POST_IG_USER_MEDIA_PUBLISH", {
-        "ig_user_id": "me", "creation_id": creation_id,
-        "max_wait_seconds": 180, "poll_interval_seconds": 5,
-    })
-    if not (res2.get("successful") or res2.get("successfull")):
-        raise RuntimeError(f"publish falhou: {json.dumps(res2)[:400]}")
-    media_id = res2.get("data", {}).get("id")
-    log(f"    PUBLICADO: media_id={media_id}")
-    return media_id
+
+    # publica; reels demora a processar -> tenta ate ~5 min em passos de 20s
+    last = None
+    for i in range(15):
+        try:
+            res2 = execute("INSTAGRAM_CREATE_POST", {"ig_user_id": "me", "creation_id": creation_id})
+            if res2.get("successful") or res2.get("successfull"):
+                media_id = _extract_id(res2)
+                log(f"    PUBLICADO: media_id={media_id}")
+                return media_id
+            last = json.dumps(res2)[:300]
+        except Exception as e:
+            last = str(e)[:300]
+        log(f"    aguardando processamento ({i+1}/15)... [{last}]")
+        time.sleep(20)
+    raise RuntimeError(f"publish nao concluiu: {last}")
 
 
 def main():
