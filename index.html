@@ -110,9 +110,10 @@
 <section class="section blog" id="blog">
   <div class="wrap">
     <div class="s-head reveal"><p class="eyebrow">Notas de operação</p><h2>O que eu venho <em>escrevendo</em></h2></div>
-    <div class="blog__grid">
-      <a class="post reveal" href="blog/"><img loading="lazy" decoding="async" src="assets/img/09_blog_engrenagem.webp" alt=""><div class="post__b"><span class="dt">Em breve</span><h3>Onde a margem se esconde na sua operação</h3></div></a>
-      <a class="post reveal" href="blog/"><img loading="lazy" decoding="async" src="assets/img/08_blog_aco.webp" alt=""><div class="post__b"><span class="dt">Em breve</span><h3>Uma causa, múltiplos ganhos</h3></div></a>
+    <div class="blog__grid" id="blogTeaser" data-slugs="2026-06-12-seus-quadros-kaizen-estao-virando-pecas-de-museu,2026-06-11-o-segredo-de-us-1-3-milhao-da-saude-que-a-manufatura-esta-de,2026-06-10-por-que-seus-workshops-de-vsm-nao-geram-resultados-financeir">
+      <a class="post reveal" href="blog/post.html?slug=2026-06-12-seus-quadros-kaizen-estao-virando-pecas-de-museu"><img loading="lazy" decoding="async" src="assets/img/02_metrologia.webp" alt=""><div class="post__b"><span class="dt">12 jun 2026 · 2 min</span><h3>Seus Quadros Kaizen Estão Virando Peças de Museu</h3></div></a>
+      <a class="post reveal" href="blog/post.html?slug=2026-06-11-o-segredo-de-us-1-3-milhao-da-saude-que-a-manufatura-esta-de"><img loading="lazy" decoding="async" src="assets/img/08_blog_aco.webp" alt=""><div class="post__b"><span class="dt">11 jun 2026 · 2 min</span><h3>O segredo de US$ 1,3 milhão da saúde que a manufatura está descobrindo</h3></div></a>
+      <a class="post reveal" href="blog/post.html?slug=2026-06-10-por-que-seus-workshops-de-vsm-nao-geram-resultados-financeir"><img loading="lazy" decoding="async" src="assets/img/09_blog_engrenagem.webp" alt=""><div class="post__b"><span class="dt">10 jun 2026 · 2 min</span><h3>Por que seus workshops de VSM não geram resultados financeiros</h3></div></a>
     </div>
     <a class="blog__more reveal" href="blog/">Ver o blog →</a>
   </div>
@@ -161,6 +162,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script>
+/* Blog teaser: mantem os 3 cards estaticos sincronizados com blog/posts.json.
+   So reescreve se os 3 posts mais recentes mudarem (ex.: post novo publicado),
+   evitando regravar no caso comum e preservando a animacao de entrada. */
+(function () {
+  var grid = document.getElementById('blogTeaser'); if (!grid) return;
+  var M = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  function fmt(d) { var p = d.split('-'); return p[2] + ' ' + M[+p[1] - 1] + ' ' + p[0]; }
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]; }); }
+  fetch('blog/posts.json').then(function (r) { return r.json(); }).then(function (posts) {
+    var top = posts.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).slice(0, 3);
+    if (top.map(function (p) { return p.slug; }).join(',') === (grid.getAttribute('data-slugs') || '')) return;
+    grid.innerHTML = top.map(function (p) {
+      return '<a class="post" style="opacity:1;transform:none" href="blog/post.html?slug=' + encodeURIComponent(p.slug) + '">'
+        + '<img loading="lazy" decoding="async" src="' + p.image.replace(/^\.\.\//, '') + '" alt="">'
+        + '<div class="post__b"><span class="dt">' + fmt(p.date) + ' · ' + p.readingTime + '</span><h3>' + esc(p.title) + '</h3></div></a>';
+    }).join('');
+  }).catch(function () {});
+})();
+</script>
 <script src="assets/v3.js" defer></script>
 </body>
 </html>
