@@ -53,14 +53,18 @@ def _extract_id(res):
 def publish_one(post):
     """Cria container (CREATE_MEDIA_CONTAINER) + publica (CREATE_POST).
     Espera o video processar antes de publicar. Lanca excecao em erro."""
-    res = execute("INSTAGRAM_CREATE_MEDIA_CONTAINER", {
+    args = {
         "ig_user_id": "me",
         "content_type": "reel",
         "media_type": "REELS",
         "video_url": post["video_url"],
         "cover_url": post["cover_url"],
         "caption": post["caption"],
-    })
+    }
+    colaboradores = post.get("colaboradores")
+    if colaboradores:
+        args["collaborators"] = colaboradores[:3]   # API: maximo 3 colaboradores
+    res = execute("INSTAGRAM_CREATE_MEDIA_CONTAINER", args)
     if not (res.get("successful") or res.get("successfull")):
         raise RuntimeError(f"create falhou: {json.dumps(res)[:400]}")
     creation_id = _extract_id(res)
