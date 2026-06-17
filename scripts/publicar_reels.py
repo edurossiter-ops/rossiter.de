@@ -64,7 +64,9 @@ def publish_one(post):
     colaboradores = post.get("colaboradores")
     if colaboradores:
         args["collaborators"] = colaboradores[:3]   # API: maximo 3 colaboradores
-    res = execute("INSTAGRAM_CREATE_MEDIA_CONTAINER", args)
+    # slug canonica do toolkit atual: aceita 'collaborators'. A antiga
+    # INSTAGRAM_CREATE_MEDIA_CONTAINER ignorava o parametro em silencio.
+    res = execute("INSTAGRAM_POST_IG_USER_MEDIA", args)
     if not (res.get("successful") or res.get("successfull")):
         raise RuntimeError(f"create falhou: {json.dumps(res)[:400]}")
     creation_id = _extract_id(res)

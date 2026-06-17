@@ -3,8 +3,9 @@ name: publicar-reels
 on:
   schedule:
     # minutos fora do :00 (topo da hora e o horario mais atrasado/descartado pelo GitHub)
-    - cron: "0 9 * * *"    # ~06:07 America/Sao_Paulo  (slots 01-05)
-    - cron: "0 22 * * *"   # ~19:07 America/Sao_Paulo  (slots 07, 09)
+    - cron: "7 9 * * *"    # ~06:07 America/Sao_Paulo  (slots manha)
+    - cron: "7 11 * * *"   # ~08:07 America/Sao_Paulo  (recuperacao manha + slots 06,08)
+    - cron: "7 22 * * *"   # ~19:07 America/Sao_Paulo  (slots noite 07,09)
     # cada cron publica TODOS os slots devidos: se o 09:07 falhar, o 11:07 pega o slot da manha (auto-cura)
   workflow_dispatch:
     inputs:
