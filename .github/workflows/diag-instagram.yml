@@ -1,0 +1,30 @@
+name: diag-instagram
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Testa transporte MCP no runner (cria container, NAO publica)
+        env:
+          COMPOSIO_API_KEY: ${{ secrets.COMPOSIO_API_KEY }}
+          COMPOSIO_USER_ID: RossiterConsulting
+          IG_CONNECTED_ACCOUNT_ID: ca_C8RaGOzsCic0
+        run: |
+          python3 - <<'PY'
+          import sys, json
+          sys.path.insert(0, "scripts")
+          import publicar_reels as P
+          m = json.load(open("reels/manifest.json", encoding="utf-8"))
+          p = [x for x in m["posts"] if x["slot"] == "slot-05"][0]
+          cid, transport, colab = P._create_container(p)
+          print(f"RESULTADO_CI transport={transport} colaboradores={colab} creation_id={cid}")
+          assert transport == "mcp", "MCP nao funcionou no runner -> caiu pro REST"
+          print("OK: MCP funciona no GitHub runner com colaboradores")
+          PY
