@@ -29,9 +29,25 @@ DRY = os.environ.get("DRY_RUN") == "1"
 RETRY_WAIT_S = 300        # 5 min entre tentativas
 MAX_ATTEMPTS = 12         # teto: ~1h por slot
 
+# A Composio renomeia/remove slugs sem aviso (ja quebrou 2x). Em vez de fixar uma,
+# tentamos uma lista de candidatas por etapa e usamos a primeira que existir.
+# Create: a 1a aceita 'collaborators'; a 2a (legada) ignora colaboradores em silencio.
+CREATE_SLUGS = ["INSTAGRAM_POST_IG_USER_MEDIA", "INSTAGRAM_CREATE_MEDIA_CONTAINER"]
+PUBLISH_SLUGS = ["INSTAGRAM_POST_IG_USER_MEDIA_PUBLISH", "INSTAGRAM_CREATE_POST"]
+
 
 def log(*a):
     print(*a, flush=True)
+
+
+class ApiError(RuntimeError):
+    def __init__(self, action, code, body):
+        self.action, self.code, self.body = action, code, body
+        super().__init__(f"HTTP {code} em {action}: {body[:400]}")
+
+    @property
+    def tool_not_found(self):
+        return self.code == 404 and "Tool_ToolNotFound" in self.body
 
 
 def execute(action, arguments):
@@ -42,7 +58,23 @@ def execute(action, arguments):
         with urllib.request.urlopen(req, timeout=320) as r:
             return json.loads(r.read().decode())
     except urllib.error.HTTPError as e:
-        raise RuntimeError(f"HTTP {e.code} em {action}: {e.read().decode()[:400]}")
+        raise ApiError(action, e.code, e.read().decode())
+
+
+def execute_any(candidates, arguments):
+    """Tenta cada slug; pula as inexistentes (ToolNotFound) e usa a 1a valida.
+    Retorna (slug_usada, resposta). Erros reais (nao-404) sobem na hora."""
+    last = None
+    for slug in candidates:
+        try:
+            return slug, execute(slug, arguments)
+        except ApiError as e:
+            if e.tool_not_found:
+                log(f"    slug {slug} indisponivel (404 ToolNotFound), tentando proxima...")
+                last = e
+                continue
+            raise
+    raise last or RuntimeError(f"nenhuma slug valida em {candidates}")
 
 
 def _extract_id(res):
@@ -64,21 +96,21 @@ def publish_one(post):
     colaboradores = post.get("colaboradores")
     if colaboradores:
         args["collaborators"] = colaboradores[:3]   # API: maximo 3 colaboradores
-    # slug canonica do toolkit atual: aceita 'collaborators'. A antiga
-    # INSTAGRAM_CREATE_MEDIA_CONTAINER ignorava o parametro em silencio.
-    res = execute("INSTAGRAM_POST_IG_USER_MEDIA", args)
+    create_slug, res = execute_any(CREATE_SLUGS, args)
     if not (res.get("successful") or res.get("successfull")):
-        raise RuntimeError(f"create falhou: {json.dumps(res)[:400]}")
+        raise RuntimeError(f"create falhou ({create_slug}): {json.dumps(res)[:400]}")
     creation_id = _extract_id(res)
     if not creation_id:
-        raise RuntimeError(f"sem creation_id: {json.dumps(res)[:400]}")
-    log(f"    container criado: {creation_id}")
+        raise RuntimeError(f"sem creation_id ({create_slug}): {json.dumps(res)[:400]}")
+    if colaboradores and create_slug != "INSTAGRAM_POST_IG_USER_MEDIA":
+        log(f"    AVISO: container via {create_slug} -> colaboradores podem ter sido ignorados")
+    log(f"    container criado ({create_slug}): {creation_id}")
 
     # publica; reels demora a processar -> tenta ate ~5 min em passos de 20s
     last = None
     for i in range(15):
         try:
-            res2 = execute("INSTAGRAM_CREATE_POST", {"ig_user_id": "me", "creation_id": creation_id})
+            _, res2 = execute_any(PUBLISH_SLUGS, {"ig_user_id": "me", "creation_id": creation_id})
             if res2.get("successful") or res2.get("successfull"):
                 media_id = _extract_id(res2)
                 log(f"    PUBLICADO: media_id={media_id}")
