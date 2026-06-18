@@ -1,0 +1,65 @@
+name: diag-instagram
+# Diagnostico temporario: descobre quais slugs a API-key do Action expoe e testa
+# o caminho real de criacao de container (NAO publica). Apagar apos validar.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Diagnostico slugs + create container (sem publicar)
+        env:
+          COMPOSIO_API_KEY: ${{ secrets.COMPOSIO_API_KEY }}
+          COMPOSIO_USER_ID: RossiterConsulting
+          IG_CONNECTED_ACCOUNT_ID: ca_C8RaGOzsCic0
+        run: |
+          python3 - <<'PY'
+          import os, sys, json, urllib.request, urllib.error
+          sys.path.insert(0, "scripts")
+          import publicar_reels as P
+
+          def get(url):
+              req = urllib.request.Request(url, headers={"x-api-key": os.environ["COMPOSIO_API_KEY"]})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  return json.loads(r.read().decode())
+
+          print("=== LISTA DE SLUGS INSTAGRAM DA CHAVE ===")
+          try:
+              data = get("https://backend.composio.dev/api/v3/tools?toolkit_slugs=instagram&limit=300")
+              items = data.get("items") or data.get("data") or []
+              slugs = sorted(i.get("slug", "") for i in items)
+              print("TOTAL:", len(slugs))
+              for s in slugs:
+                  print(" ", s)
+          except urllib.error.HTTPError as e:
+              print("LIST FALHOU HTTP", e.code, e.read().decode()[:500])
+          except Exception as e:
+              print("LIST FALHOU:", repr(e))
+
+          print("\n=== TESTE DE CRIACAO DE CONTAINER (slot-05, NAO publica) ===")
+          m = json.load(open("reels/manifest.json", encoding="utf-8"))
+          p = [x for x in m["posts"] if x["slot"] == "slot-05"][0]
+          args = {
+              "ig_user_id": "me", "content_type": "reel", "media_type": "REELS",
+              "video_url": p["video_url"], "cover_url": p["cover_url"], "caption": p["caption"],
+              "collaborators": p["colaboradores"][:3],
+          }
+          try:
+              slug, res = P.execute_any(P.CREATE_SLUGS, args)
+              ok = res.get("successful") or res.get("successfull")
+              print("CREATE_SLUG_USADA:", slug)
+              print("CREATE_OK:", ok, "creation_id:", P._extract_id(res))
+              print("COLABORADORES_PRESERVADOS:", slug == "INSTAGRAM_POST_IG_USER_MEDIA")
+          except Exception as e:
+              print("CREATE FALHOU:", repr(e))
+
+          print("\nPUBLISH_SLUGS candidatas (1a valida sera usada):", P.PUBLISH_SLUGS)
+          PY
