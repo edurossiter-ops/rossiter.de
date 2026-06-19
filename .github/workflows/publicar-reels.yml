@@ -2,11 +2,14 @@ name: publicar-reels
 
 on:
   schedule:
-    # minutos fora do :00 (topo da hora e o horario mais atrasado/descartado pelo GitHub)
-    - cron: "7 9 * * *"    # ~06:07 America/Sao_Paulo  (slots manha)
-    - cron: "7 11 * * *"   # ~08:07 America/Sao_Paulo  (recuperacao manha + slots 06,08)
-    - cron: "7 22 * * *"   # ~19:07 America/Sao_Paulo  (slots noite 07,09)
-    # cada cron publica TODOS os slots devidos: se o 09:07 falhar, o 11:07 pega o slot da manha (auto-cura)
+    # ESTRATEGIA: a janela 09:00-10:00 UTC e o pico do scheduler do GitHub -> jobs sao DESCARTADOS
+    # ali (o cron 09:07 nunca disparava). Entao o runner sobe CEDO, em janela ociosa, e o script
+    # DORME ate o publish_at exato (05:30 BRT = 08:30 UTC). Minutos sao gratis (repo publico).
+    - cron: "7 6 * * *"    # 06:07 UTC (~03:07 BRT) - manha primario; dorme ~2h23 ate 08:30 UTC
+    - cron: "7 7 * * *"    # 07:07 UTC (~04:07 BRT) - manha backup (se o 06:07 cair)
+    - cron: "7 11 * * *"   # 11:07 UTC (~08:07 BRT) - recuperacao (pega manha perdida; auto-cura)
+    - cron: "7 22 * * *"   # 22:07 UTC (~19:07 BRT) - slots da noite (07,09)
+    # cada cron publica/espera TODOS os slots devidos -> idempotente, sem duplicar.
   workflow_dispatch:
     inputs:
       dry_run:
@@ -24,7 +27,7 @@ concurrency:
 jobs:
   publicar:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 200   # o runner sobe cedo e dorme ate o publish_at exato (ate ~2h23)
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

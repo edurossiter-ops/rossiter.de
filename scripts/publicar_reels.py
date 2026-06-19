@@ -23,7 +23,7 @@ Env:
   DRY_RUN=1  -> nao chama a API, so mostra o que faria
 """
 import os, json, sys, time, urllib.request, urllib.error
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANIFEST = os.path.join(ROOT, "reels", "manifest.json")
@@ -41,6 +41,7 @@ MCP_URL = os.environ.get(
 
 RETRY_WAIT_S = 300        # 5 min entre tentativas
 MAX_ATTEMPTS = 12         # teto: ~1h por slot
+WAIT_HORIZON_S = 4 * 3600 # se um slot publica dentro disso, o runner espera ate a hora exata
 
 
 def log(*a):
@@ -197,6 +198,22 @@ def publish_one(post):
     return media_id
 
 
+def _compute(manifest, published, now, verbose=False):
+    """Retorna (devidos_agora, proximo_futuro) -- proximo = (when, post) mais cedo ainda nao publicado."""
+    due, upcoming = [], []
+    for p in manifest["posts"]:
+        when = datetime.fromisoformat(p["publish_at"]).astimezone(timezone.utc)
+        already = p["slot"] in published
+        if verbose:
+            status = "JA_PUBLICADO" if already else ("DEVIDO" if when <= now else "futuro")
+            log(f"  {p['slot']}  {p['publish_at']}  -> {status}")
+        if already:
+            continue
+        (due if when <= now else upcoming).append((when, p))
+    nxt = min(upcoming, key=lambda x: x[0]) if upcoming else None
+    return [p for _, p in due], nxt
+
+
 def main():
     if not KEY and not DRY:
         log("ERRO: COMPOSIO_API_KEY ausente."); sys.exit(2)
@@ -207,14 +224,21 @@ def main():
     now = datetime.now(timezone.utc)
     log(f"agora UTC: {now.isoformat()}  | DRY_RUN={DRY}")
 
-    due = []
-    for p in manifest["posts"]:
-        when = datetime.fromisoformat(p["publish_at"]).astimezone(timezone.utc)
-        already = p["slot"] in published
-        status = "JA_PUBLICADO" if already else ("DEVIDO" if when <= now else "futuro")
-        log(f"  {p['slot']}  {p['publish_at']}  -> {status}")
-        if when <= now and not already:
-            due.append(p)
+    due, nxt = _compute(manifest, published, now, verbose=True)
+
+    # Nada devido agora, mas um slot publica em breve: o runner subiu antes da hora
+    # (cron disparado cedo, em janela ociosa do GitHub) -> dorme ate o publish_at exato.
+    if not due and nxt is not None:
+        when, p = nxt
+        wait_s = (when - datetime.now(timezone.utc)).total_seconds()
+        if 0 < wait_s <= WAIT_HORIZON_S:
+            log(f"Proximo: {p['slot']} em {when.isoformat()} -> aguardando {wait_s/60:.0f} min ate a hora exata...")
+            if not DRY:
+                time.sleep(wait_s)
+            now = datetime.now(timezone.utc)
+            due, _ = _compute(manifest, published, now)
+        else:
+            log(f"Proximo slot ({p['slot']}) so em {when.isoformat()} (fora da janela de {WAIT_HORIZON_S//3600}h).")
 
     if not due:
         log("Nada a publicar agora."); return
