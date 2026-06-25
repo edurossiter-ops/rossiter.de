@@ -6,7 +6,7 @@ on:
     # REGRAS: (1) NUNCA minuto :00 (topo da hora = mais atrasado/descartado pelo GitHub).
     # (2) NUNCA dentro da janela de pico 09:00-10:00 UTC (jobs sao descartados ali).
     # (3) disparar < 3h antes do publish_at (cabe no timeout-minutes:200) e < WAIT_HORIZON_S=4h.
-    - cron: "30 4 * * *"   # 06:41 UTC (03:41 BRT) - manha; dorme ~2h19 ate 09:00 UTC = 06:00 BRT (slots 06,08)
+    - cron: "30 9 * * *"   # 06:41 UTC (03:41 BRT) - manha; dorme ~2h19 ate 09:00 UTC = 06:00 BRT (slots 06,08)
     - cron: "00 22 * * *"  # 20:41 UTC (17:41 BRT) - noite; dorme ~1h19 ate 22:00 UTC = 19:00 BRT (slots 07,09)
     # cada cron publica/espera TODOS os slots devidos -> idempotente, sem duplicar.
   workflow_dispatch:
