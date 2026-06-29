@@ -1,12 +1,20 @@
 [
   {
-  "slug": "2026-06-25-o-seu-oee-e-provavelmente-uma-ficcao-e-os-dados-provam",
-  "title": "O seu OEE é provavelmente uma ficção — e os dados provam",
-  "date": "2026-06-25",
-  "excerpt": "Benchmarks de 450+ plantas mostram que OEE auto-declarado é 10-18 pontos percentuais acima do valor real medido por sensores.",
-  "image": "../assets/img/02_metrologia.webp",
-  "readingTime": "3 min"
-},
+    "slug": "2026-06-29-dfss-deixou-de-ser-metodologia-virou-sistema-operacional",
+    "title": "DFSS Deixou de Ser Metodologia. Virou Sistema Operacional.",
+    "date": "2026-06-29",
+    "excerpt": "O DFSS não desapareceu — foi embutido em sistemas autônomos de IA. Entenda o que isso significa para líderes de excelência operacional.",
+    "image": "../assets/img/03_manometro.webp",
+    "readingTime": "4 min"
+  },
+  {
+    "slug": "2026-06-25-o-seu-oee-e-provavelmente-uma-ficcao-e-os-dados-provam",
+    "title": "O seu OEE é provavelmente uma ficção — e os dados provam",
+    "date": "2026-06-25",
+    "excerpt": "Benchmarks de 450+ plantas mostram que OEE auto-declarado é 10-18 pontos percentuais acima do valor real medido por sensores.",
+    "image": "../assets/img/02_metrologia.webp",
+    "readingTime": "3 min"
+  },
   {
     "slug": "2026-06-17-84-das-empresas-estao-automatizando-processos-quebrados-e-ch",
     "title": "84% das empresas estão automatizando processos quebrados — e chamando isso de transformação",
