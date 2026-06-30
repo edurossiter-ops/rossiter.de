@@ -1,0 +1,23 @@
+Eu já vi isso acontecer mais vezes do que gostaria de contar: o projeto está tecnicamente impecável. O mapeamento do processo, os testes de hipótese, o modelo de regressão — tudo no lugar. E mesmo assim, noventa dias depois do encerramento, a melhoria simplesmente sumiu. O indicador voltou ao patamar anterior. A equipe encolheu os ombros. E alguém, em alguma sala de reunião, concluiu que "Six Sigma não funciona aqui."
+
+O problema não era o Six Sigma. Era a arquitetura ao redor dele.
+
+O relatório Global Lighthouse Network 2025 do Fórum Econômico Mundial — cobrindo 189 fábricas em 33 países, o maior benchmarking de excelência operacional do planeta — traz um dado que deveria fazer todo Black Belt pausar antes do próximo kick-off: as fábricas Lighthouse não atribuem seus avanços ao rigor analítico. Elas atribuem ao que o relatório chama de *mindset architecture* — a construção deliberada de uma mentalidade coletiva orientada à melhoria contínua. Setenta e cinco por cento dos sites Lighthouse adotaram o desenvolvimento de competências da linha de frente como estratégia central de transformação. A coorte mais recente registrou, em média, 53% de ganho em produtividade do trabalho e 26% de redução nos custos de conversão. Não por conta de ferramentas mais sofisticadas. Por conta de soluções desenhadas *com* os trabalhadores — e não *para* eles.
+
+Essa distinção de uma preposição muda tudo.
+
+O Compêndio de Indicadores de Produtividade 2025 da OCDE confirma o mecanismo pelo lado macroeconômico: fatores de capital humano — qualidade da força de trabalho e qualidade da gestão — respondem por aproximadamente um terço do gap de produtividade entre empresas no decil superior e a mediana do mesmo setor. Um terço. Não é ruído estatístico. É a maior alavanca disponível, e a mais subutilizada em projetos DMAIC convencionais.
+
+Aqui está a provocação que a maioria dos profissionais evita dizer em voz alta: resistência à mudança não é um problema de pessoas. É uma falha de design. Quando o seu projeto DMAIC trava na fase Control, o tollgate que você pulou não era estatístico — era cultural. O WEF tem um nome para esse fenômeno: *pilot purgatory*. Iniciativas de melhoria que demonstram resultado em escala piloto, mas nunca se propagam. A causa raiz, de forma recorrente, é a implantação de cima para baixo sem co-design da linha de frente. O modelo estava certo. A arquitetura de mudança estava errada.
+
+Eu chamo esse espaço de **margem escondida**: o potencial de resultado que existe na operação, mas que permanece inacessível não por falta de método, e sim por falta de engajamento genuíno de quem executa o processo todos os dias. É ali que a maioria dos projetos sangra — silenciosamente, depois que o consultor foi embora e o relatório final foi arquivado.
+
+O Fórum Global sobre Produtividade da OCDE reforça esse ponto em escala macro: as práticas de gestão explicam mais do gap de desempenho entre empresas líderes e retardatárias do que a escolha de metodologia. A ferramenta não é o diferencial. O líder que a conduz — e a forma como ele constrói o ambiente ao redor dela — é o que separa projetos que sustentam ganhos de projetos que viram slide de case.
+
+A implicação prática é direta: insira um checkpoint de prontidão para mudança em cada tollgate do DMAIC. Não como overhead burocrático, mas como o principal controle de risco para sustentar resultados além de noventa dias. Na fase Define, mapeie não apenas o escopo técnico, mas quem são os stakeholders da linha de frente e como eles serão co-autores da solução. Na fase Analyze, inclua o conhecimento tácito dos operadores como fonte primária de dados — não como validação simbólica depois que o modelo já foi fechado. Na fase Improve, teste protótipos com as pessoas que vão viver com o processo, não apenas com quem vai apresentar o resultado. E na fase Control, o plano de controle precisa ser de propriedade da equipe operacional, não da equipe do projeto.
+
+Antes do próximo kick-off, vale uma pergunta honesta: quem desenhou essa solução — e as pessoas que vão conviver com ela todos os dias estavam na sala?
+
+Se a resposta for não, você já encontrou a causa raiz do seu próximo problema de Control. E se quiser mapear onde essa margem escondida está na sua operação antes que o próximo projeto comece, é exatamente isso que eu faço em um diagnóstico inicial. A conversa começa aqui.
+
+Qual é a fase do DMAIC mais negligenciada na sua prática — e quanto isso custou ao projeto?
