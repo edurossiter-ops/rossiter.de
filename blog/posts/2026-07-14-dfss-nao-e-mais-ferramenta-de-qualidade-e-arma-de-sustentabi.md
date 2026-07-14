@@ -1,0 +1,23 @@
+## DFSS não é mais ferramenta de qualidade — é arma de sustentabilidade
+
+Existe uma mudança acontecendo no núcleo do Design for Six Sigma, e a maioria dos líderes operacionais ainda não percebeu. Não estou falando de uma atualização metodológica menor. Estou falando de uma reconfiguração do que conta como parâmetro crítico de projeto — e de quem, afinal, define a Voz do Cliente.
+
+Durante décadas, o DFSS foi posicionado como instrumento de qualidade e confiabilidade. Eu mesmo o apliquei dessa forma por anos. O objetivo era claro: capturar os requisitos do cliente, traduzi-los em CTQs — *Critical-to-Quality* — e garantir que o produto nascesse robusto, sem precisar de correções caras depois. Esse modelo funcionou. Ainda funciona. Mas ele ficou incompleto.
+
+Um estudo publicado em 2025 no *International Journal of Lean Six Sigma* documentou com precisão o que muitos de nós suspeitávamos: um fabricante farmacêutico aplicou uma variante híbrida do DFSS — o chamado Design for Green Lean Six Sigma, ou DFGLSS — ao redesenho de uma embalagem a granel. O resultado foi a eliminação de **13,33 toneladas de CO₂ por ciclo de entrega** e uma redução de custos de aquisição superior a **€15.000 por ciclo**. Ao mesmo tempo. No mesmo projeto. Sem que isso fosse tratado como iniciativa de sustentabilidade.
+
+Esse último ponto é o que importa. A redução de emissões não veio de um programa ESG paralelo, de um comitê de responsabilidade ambiental, nem de pressão regulatória. Veio de tratar a emissão de carbono como um parâmetro Crítico-para-a-Qualidade desde a fase de concepção do produto. Quando você move a conversa sobre impacto ambiental para o início do funil de projeto — e não para o fim do ciclo de vida —, o resultado muda completamente de natureza.
+
+Isso é o que eu chamo de **margem escondida**. Não é ineficiência visível no processo. É custo e risco que ainda não apareceram na conta — mas aparecerão. O passivo de carbono funciona exatamente assim: invisível no curto prazo, inevitável no médio. E o setor aeroespacial já demonstrou o mecanismo: simulações de Monte Carlo confirmam que mais de 85% dos custos do ciclo de vida de um produto são determinados durante as fases iniciais de projeto. Se você não captura o impacto ambiental nessa janela, não existe retrofit eficiente. Você paga depois, pelo preço cheio — em multas, retrabalho, redesenho forçado ou desvalorização de ativos frente a investidores ESG.
+
+O setor de dispositivos médicos oferece outro dado relevante. Um fabricante que aplicou DFSS ao redesenho de um sistema de monitoramento de pacientes obteve **85% de redução em falhas de campo** e **US$ 2,3 milhões em economia anual com garantia**, com um ciclo de desenvolvimento **25% mais curto**. Qualidade superior, menor custo e mais velocidade — não como trade-offs, mas como consequência simultânea de fazer o projeto certo desde o início. Esse é o retorno composto que um DFSS bem executado produz quando o escopo do que se considera "crítico" está correto.
+
+A implicação prática é direta. Os organismos regulatórios, os investidores ESG e as metas climáticas já fazem parte da Voz do Cliente. Se os seus programas de DFSS não estão capturando métricas Críticas-para-a-Sustentabilidade ao lado dos CTQs tradicionais, você está projetando produtos para um ambiente de conformidade que deixou de existir. Não é uma questão de adesão a valores — é uma questão de onde o risco financeiro vai aparecer nos próximos três a cinco anos.
+
+A pergunta que faço aos líderes com quem trabalho é sempre a mesma: quem na sua organização tem autoridade para incluir emissão de carbono como CTQ em um projeto DFSS? Se a resposta for "ninguém ainda" ou "depende do projeto", esse é o gap. Não metodológico — estrutural. A expansão do escopo do DFSS precisa ser uma decisão deliberada de liderança, tomada antes que os mandatos de reporte ESG forcem redesenhos reativos e caros.
+
+Líderes que redefinirem agora o que conta como parâmetro crítico nos seus processos de projeto terão vantagem dupla: menor exposição a passivos futuros e maior velocidade de aprovação regulatória. Os que esperarem responderão à evolução em vez de liderá-la.
+
+Se você quer entender onde a sustentabilidade está — ou deveria estar — na hierarquia de CTQs da sua operação, o primeiro passo é um diagnóstico honesto do estado atual. Eu faço isso com os meus clientes antes de qualquer intervenção metodológica.
+
+E você: quem, hoje, tem a responsabilidade formal de transformar impacto ambiental em parâmetro de projeto na sua organização — e esse alguém tem assento real nas decisões de design?
