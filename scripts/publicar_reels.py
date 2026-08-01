@@ -76,7 +76,31 @@ def execute(action, arguments):
         raise ApiError(action, e.code, e.read().decode())
 
 
-# ---------------------------------------------------------------- MCP (principal)
+# ---------------------------------------------------------------- PROXY (principal)
+# Por que existe (2026-08-01): 'collaborators' e um recurso REAL da Graph API do Instagram
+# (POST /{ig_user_id}/media, ate 3 contas publicas), mas NAO esta exposto nos tools prontos
+# da Composio -- eles declaram additionalProperties:false e recusam campo extra. Campo
+# ausente no tool nao e recurso inexistente: o caminho e a chamada CRUA via Proxy Execute,
+# que injeta o token da conexao e repassa o corpo tal como esta. Os tools prontos ficam
+# como fallback (e o fallback sem colaboradores segue proibido pela trava mais abaixo).
+PROXY_URL = "https://backend.composio.dev/api/v3.1/tools/execute/proxy"
+IG_ID = os.environ.get("IG_USER_ID", "17841443819114261")
+
+
+def proxy(endpoint, body, method="POST"):
+    """Chamada crua na Graph API pelo Proxy Execute da Composio."""
+    payload = {"connected_account_id": CONN, "endpoint": endpoint,
+               "method": method, "body": body}
+    req = urllib.request.Request(PROXY_URL, data=json.dumps(payload).encode(), method="POST",
+                                 headers={"x-api-key": KEY, "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=320) as r:
+            return json.loads(r.read().decode())
+    except urllib.error.HTTPError as e:
+        raise ApiError(f"proxy {endpoint}", e.code, e.read().decode())
+
+
+# ---------------------------------------------------------------- MCP (fallback 1)
 _MCP_HEADERS = {"x-api-key": KEY or "", "Content-Type": "application/json",
                 "Accept": "application/json, text/event-stream"}
 _mcp_ready = False
@@ -142,6 +166,22 @@ def _create_container(post):
             "video_url": post["video_url"], "cover_url": post["cover_url"], "caption": post["caption"]}
     colab = (post.get("colaboradores") or [])[:3]   # API: maximo 3 colaboradores
 
+    # 0) PROXY -- chamada crua na Graph API, o UNICO caminho que carrega 'collaborators'.
+    if colab:
+        cru = {k: v for k, v in base.items() if k != "ig_user_id"}
+        cru["share_to_feed"] = "true"
+        cru["collaborators"] = json.dumps(colab)   # a Graph espera array JSON serializado
+        for ep in (f"/{IG_ID}/media", f"/v21.0/{IG_ID}/media", "/me/media"):
+            try:
+                res = proxy(ep, cru)
+                cid = _extract_id(res)
+                if _ok(res) and cid:
+                    log(f"    proxy OK em {ep}")
+                    return cid, "proxy", True
+                log(f"    proxy {ep} sem sucesso: {json.dumps(res)[:280]}")
+            except Exception as e:
+                log(f"    proxy {ep} falhou: {str(e)[:280]}")
+
     # 1) MCP -- slug nova, com colaboradores
     try:
         args = dict(base)
@@ -155,19 +195,6 @@ def _create_container(post):
         log(f"    MCP create sem sucesso: {json.dumps(res)[:200]}")
     except Exception as e:
         log(f"    MCP create indisponivel ({str(e)[:160]}) -> fallback REST")
-
-    # 2) REST COM colaboradores -- a slug antiga do endpoint tools/execute pode aceitar o
-    # campo mesmo quando a slug nova do MCP recusa. Testar antes de desistir.
-    if colab:
-        try:
-            res = execute("INSTAGRAM_CREATE_MEDIA_CONTAINER", dict(base, collaborators=colab))
-            if _ok(res):
-                cid = _extract_id(res)
-                if cid:
-                    return cid, "rest", True
-            log(f"    REST create COM colaboradores sem sucesso: {json.dumps(res)[:300]}")
-        except Exception as e:
-            log(f"    REST create COM colaboradores falhou: {str(e)[:300]}")
 
     # 3) REST -- slug antiga, SEM colaboradores (rede de seguranca)
     # TRAVA (2026-08-01): se o slot exige colaboradores, o fallback esta PROIBIDO.
@@ -196,7 +223,9 @@ def _publish_container(creation_id, transport):
     last = None
     for i in range(15):
         try:
-            if transport == "mcp":
+            # o container criado pelo proxy publica igual: 'collaborators' so existe
+            # na criacao, o publish so precisa do creation_id.
+            if transport in ("mcp", "proxy"):
                 res = mcp_call("INSTAGRAM_POST_IG_USER_MEDIA_PUBLISH",
                                {"ig_user_id": "me", "creation_id": creation_id,
                                 "max_wait_seconds": 120, "poll_interval_seconds": 5})
