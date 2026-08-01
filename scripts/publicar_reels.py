@@ -22,7 +22,7 @@ Env:
   COMPOSIO_MCP_URL  (default: servidor MCP cf910f90)  -- override opcional
   DRY_RUN=1  -> nao chama a API, so mostra o que faria
 """
-import os, json, sys, time, urllib.request, urllib.error
+import os, json, sys, time, urllib.request, urllib.error, urllib.parse
 from datetime import datetime, timezone, timedelta
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -156,7 +156,20 @@ def _create_container(post):
     except Exception as e:
         log(f"    MCP create indisponivel ({str(e)[:160]}) -> fallback REST")
 
-    # 2) REST -- slug antiga, SEM colaboradores (rede de seguranca)
+    # 2) REST COM colaboradores -- a slug antiga do endpoint tools/execute pode aceitar o
+    # campo mesmo quando a slug nova do MCP recusa. Testar antes de desistir.
+    if colab:
+        try:
+            res = execute("INSTAGRAM_CREATE_MEDIA_CONTAINER", dict(base, collaborators=colab))
+            if _ok(res):
+                cid = _extract_id(res)
+                if cid:
+                    return cid, "rest", True
+            log(f"    REST create COM colaboradores sem sucesso: {json.dumps(res)[:300]}")
+        except Exception as e:
+            log(f"    REST create COM colaboradores falhou: {str(e)[:300]}")
+
+    # 3) REST -- slug antiga, SEM colaboradores (rede de seguranca)
     # TRAVA (2026-08-01): se o slot exige colaboradores, o fallback esta PROIBIDO.
     # Colaborador nao pode ser adicionado depois de publicado (so apagando manualmente
     # no app e repostando), entao falhar aqui sem publicar nada e sempre melhor do que
