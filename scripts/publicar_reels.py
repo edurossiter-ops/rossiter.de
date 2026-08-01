@@ -167,20 +167,22 @@ def _create_container(post):
     colab = (post.get("colaboradores") or [])[:3]   # API: maximo 3 colaboradores
 
     # 0) PROXY -- chamada crua na Graph API, o UNICO caminho que carrega 'collaborators'.
+    # UM endpoint so: cada chamada cria um container de verdade, entao varrer varias
+    # formas gerava containers duplicados a cada tentativa.
     if colab:
         cru = {k: v for k, v in base.items() if k != "ig_user_id"}
         cru["share_to_feed"] = "true"
         cru["collaborators"] = json.dumps(colab)   # a Graph espera array JSON serializado
-        for ep in (f"/{IG_ID}/media", f"/v21.0/{IG_ID}/media", "/me/media"):
-            try:
-                res = proxy(ep, cru)
-                cid = _extract_id(res)
-                if _ok(res) and cid:
-                    log(f"    proxy OK em {ep}")
-                    return cid, "proxy", True
-                log(f"    proxy {ep} sem sucesso: {json.dumps(res)[:280]}")
-            except Exception as e:
-                log(f"    proxy {ep} falhou: {str(e)[:280]}")
+        res = proxy(f"/{IG_ID}/media", cru)
+        # A resposta do proxy e NATIVA da Meta: {"data": {"id": ...}, "status": 200}.
+        # Nao tem o envelope 'successful' dos tools da Composio -- checar 200 + data.id.
+        cid = (res.get("data") or {}).get("id")
+        if res.get("status") == 200 and cid:
+            log(f"    proxy OK: container {cid} com colaboradores {', '.join(colab)}")
+            return cid, "proxy", True
+        # Sem fallback aqui: os tools prontos nunca aceitam 'collaborators', entao cair
+        # neles nao e rede de seguranca, e publicar errado. Falha e o proximo cron repete.
+        raise RuntimeError(f"proxy nao criou o container: {json.dumps(res)[:400]}")
 
     # 1) MCP -- slug nova, com colaboradores
     try:
