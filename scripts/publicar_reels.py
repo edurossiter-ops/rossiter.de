@@ -157,6 +157,15 @@ def _create_container(post):
         log(f"    MCP create indisponivel ({str(e)[:160]}) -> fallback REST")
 
     # 2) REST -- slug antiga, SEM colaboradores (rede de seguranca)
+    # TRAVA (2026-08-01): se o slot exige colaboradores, o fallback esta PROIBIDO.
+    # Colaborador nao pode ser adicionado depois de publicado (so apagando manualmente
+    # no app e repostando), entao falhar aqui sem publicar nada e sempre melhor do que
+    # publicar um Reel errado. O proximo cron tenta de novo com o slot ainda pendente.
+    if colab:
+        raise RuntimeError(
+            "transporte MCP indisponivel e este slot exige colaboradores "
+            f"({', '.join(colab)}); o fallback REST nao os suporta. NADA publicado.")
+
     res = execute("INSTAGRAM_CREATE_MEDIA_CONTAINER", base)
     if not _ok(res):
         raise RuntimeError(f"REST create falhou: {json.dumps(res)[:300]}")
