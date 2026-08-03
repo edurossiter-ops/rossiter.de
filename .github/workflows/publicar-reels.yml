@@ -7,7 +7,12 @@ on:
     # (2) NUNCA dentro da janela de pico 09:00-10:00 UTC (jobs sao descartados ali).
     # (3) disparar < 3h antes do publish_at (cabe no timeout-minutes:200) e < WAIT_HORIZON_S=4h.
     # POLITICA (Eduardo 2026-07-23): publicar SO de segunda a sexta, sempre 12:00 BRT (15:00 UTC).
-    - cron: "18 12 * * 1-5"  # 12:18 UTC (09:18 BRT), seg-sex; dorme ~2h42 ate 15:00 UTC = 12:00 BRT
+    # MEDIDO 2026-08-03: o cron "18 12" sobe de fato as 14:30-14:35 UTC (atraso real
+    # de ~2h12 do GitHub, nao os poucos minutos que se supunha). Serve para alvo 15:00
+    # UTC (dorme ~25min), mas chega TARDE para qualquer alvo anterior. Por isso existe
+    # o cron das 11:23: mesmo com 2h15 de atraso ele sobe ~13:38 e ainda dorme ate 14:00.
+    - cron: "23 11 * * 1-5"  # 11:23 UTC; cobre alvos a partir de ~14:00 UTC (11:00 BRT)
+    - cron: "18 12 * * 1-5"  # 12:18 UTC; rede de seguranca e alvo 15:00 UTC (12:00 BRT)
     # cada cron publica/espera TODOS os slots devidos -> idempotente, sem duplicar.
   workflow_dispatch:
     inputs:
@@ -26,9 +31,16 @@ concurrency:
 jobs:
   publicar:
     runs-on: ubuntu-latest
-    timeout-minutes: 200   # o runner sobe cedo e dorme ate o publish_at exato (ate ~2h23)
+    timeout-minutes: 260   # tem de ser MAIOR que WAIT_HORIZON_S (4h), senao o job morre dormindo
     steps:
+      # ref: main -- NAO o SHA congelado do evento. Com dois crons no mesmo dia, o
+      # segundo runner era criado antes de o primeiro commitar o published.json e,
+      # lendo o SHA antigo, republicava o mesmo Reel (foi a causa da duplicata do
+      # slot-06). A concurrency ja serializa os dois; com ref:main o segundo enxerga
+      # o estado que o primeiro gravou e vira no-op.
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
