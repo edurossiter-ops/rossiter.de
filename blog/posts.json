@@ -1,5 +1,13 @@
 [
   {
+    "slug": "2026-08-13-seu-workshop-de-vsm-virou-peca-de-museu",
+    "title": "Seu workshop de VSM virou peça de museu",
+    "date": "2026-08-13",
+    "excerpt": "O VSM clássico fotografa um rio e depois estranha que a água se moveu. Veja por que a lógica de evento está estruturalmente defasada para operações de alta velocidade.",
+    "image": "../assets/img/03_manometro.webp",
+    "readingTime": "4 min"
+  },
+  {
     "slug": "2026-08-12-voce-nao-precisa-implantar-tpm-em-toda-a-fabrica-para-ter-re",
     "title": "Você não precisa implantar TPM em toda a fábrica para ter resultado",
     "date": "2026-08-12",
