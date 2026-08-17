@@ -1,0 +1,21 @@
+A maioria dos fabricantes que estão implementando IA agora mesmo está caminhando direto para uma armadilha — e os próprios roadmaps de melhoria contínua estão conduzindo-os até ela. Eu vejo esse padrão repetidamente em projetos no Brasil e na Europa, e o que me preocupa não é a tecnologia em si. É a ilusão de que a tecnologia é a intervenção principal.
+
+O MIT Sloan Management Review documentou na sua pesquisa da primavera de 2026 um fenômeno que chamou de curva-J: organizações que implantam IA enfrentam quedas de produtividade de até 60 pontos percentuais antes de registrar qualquer ganho real. Não estamos falando de uma turbulência passageira. Estamos falando de um precipício. E o dado mais perturbador não é a magnitude da queda — é que as empresas continuam entrando nessa curva sem nenhuma preparação para atravessá-la.
+
+E enquanto isso acontece, os playbooks de Kaizen não mudaram.
+
+Continuamos tratando a implantação tecnológica como se fosse a intervenção em si. Continuamos medindo sucesso pela data de go-live. Continuamos confundindo investimento digital com maturidade digital — e essa confusão tem um custo que raramente aparece no dashboard do projeto, mas que eu chamo de margem escondida: o valor que já existe na operação e que escapa silenciosamente por falta de estrutura humana para capturá-lo.
+
+Os dados corroboram o que eu observo no campo. A BCG, em sua pesquisa global de 2025, identificou que 60% dos respondentes afirmaram que seus investimentos em IA geraram pouco valor material em receita ou redução de custos. O estudo da Gartner com 4.200 líderes revelou que apenas 48% das iniciativas digitais atingiram os resultados esperados. Esses não são casos isolados de má execução técnica. Esse é um padrão sistemático — e continuamos ignorando-o.
+
+A conclusão contraintuitiva que o MIT Sloan traz à tona é esta: os líderes que evitaram a curva-J não tinham tecnologia melhor. Eles construíram o que os pesquisadores chamam de uma força de trabalho "digitalmente dextra" — em tradução livre, uma equipe com destreza digital — antes da implantação. Cultura primeiro. Tecnologia depois.
+
+Isso muda tudo sobre o que significa fazer Kaizen na era da IA. O Gemba, o PDCA e o trabalho padronizado sobrevivem décadas porque mudam a forma como as pessoas pensam, observam e agem. A IA não substitui essa lógica — ela a amplifica quando a cultura está pronta, e destrói valor quando ela não está. Colocar uma ferramenta poderosa nas mãos de uma equipe sem a mentalidade adequada não acelera a melhoria contínua: acelera os erros e solidifica as resistências.
+
+As organizações que estão obtendo resultados reais agora não são necessariamente as que implantaram IA primeiro. São as que investiram na integração entre pessoas e sistemas como prioridade estratégica — não como um treinamento de onboarding realizado às pressas na semana do lançamento. O MIT CISR reforça isso com números concretos: empresas com estratégia de dados clara geram quatro vezes mais receita a partir da monetização de dados — 17% contra 4%. Essa diferença não é uma lacuna tecnológica. É uma lacuna cultural.
+
+O que eu proponho aos meus clientes é uma inversão na pergunta de partida. Em vez de "qual IA devemos implementar?", a pergunta certa é "qual infraestrutura de aprendizado precisamos construir primeiro?". Isso significa avaliar honestamente onde a organização está no espectro de maturidade cultural antes de qualquer iniciativa digital. Significa identificar onde está a margem escondida — não nos sistemas, mas nos comportamentos, nos processos de tomada de decisão e na capacidade de absorver mudanças sem perder cadência operacional.
+
+A curva-J é evitável. Mas não com mais um roadmap tecnológico. Ela se evita com diagnóstico cultural rigoroso, com preparação estruturada das equipes e com a humildade de reconhecer que a ferramenta mais sofisticada do mundo é inútil — ou pior, prejudicial — em um ambiente que ainda não aprendeu a aprender.
+
+Antes de sua próxima iniciativa digital ser lançada, eu te faço uma pergunta direta: onde sua organização realmente está no espectro de prontidão cultural — e você tem dados para sustentar essa resposta, ou está apostando na intuição?
