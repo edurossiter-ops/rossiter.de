@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conectar WhatsApp · Rossiter Consulting</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/v3.css">
+<style>
+.subhero--legal{min-height:auto;padding-top:clamp(8rem,18vh,12rem)}
+.es p,.es li{color:var(--ice);line-height:1.65}
+.es ol{padding-left:1.2rem;margin:0 0 1.5rem}
+.es__btn{display:inline-block;background:var(--signal);color:#fff;border:0;padding:.9rem 1.6rem;font:600 1rem var(--sans,'IBM Plex Sans',sans-serif);cursor:pointer}
+.es__btn[disabled]{opacity:.5;cursor:default}
+.es__log{font-family:var(--mono);font-size:.85rem;color:var(--sky);white-space:pre-wrap;margin-top:1.5rem;min-height:3rem}
+</style>
+</head>
+<body>
+<header class="subhero subhero--legal" id="conteudo">
+  <div class="subhero__in">
+    <p class="kick">Uso interno</p>
+    <h1>Conectar o <em>WhatsApp</em></h1>
+    <p class="lead">Liga o número do aplicativo WhatsApp Business da Rossiter à API em nuvem da Meta, mantendo o aplicativo no celular.</p>
+  </div>
+</header>
+
+<section class="section"><div class="wrap lf es">
+  <ol>
+    <li>Tenha o celular com o WhatsApp Business por perto.</li>
+    <li>Clique no botão, entre com o Facebook e digite o número +49 176 21110258.</li>
+    <li>Escaneie o QR code com o WhatsApp Business e aceite compartilhar o histórico.</li>
+  </ol>
+  <button class="es__btn" id="botao" onclick="launchWhatsAppSignup()" disabled>Carregando…</button>
+  <div class="es__log" id="log"></div>
+</div></section>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js"></script>
+<script>
+  // Preencher depois da aprovação do ZapApp como Tech Provider:
+  const APP_ID = '2322581551853094';
+  const CONFIG_ID = '1551217556776775';   // Facebook Login for Business > Configurations
+  const RECEPTOR_URL = 'https://manger-image-amends.ngrok-free.dev';  // endereço público fixo do receptor, sem barra no fim
+
+  const logEl = document.getElementById('log');
+  const log = (t) => { logEl.textContent += t + '\n'; };
+  let sessao = null;
+
+  window.fbAsyncInit = function () {
+    FB.init({ appId: APP_ID, autoLogAppEvents: true, xfbml: true, version: 'v25.0' });
+    const b = document.getElementById('botao');
+    b.disabled = false; b.textContent = 'Conectar o WhatsApp Business';
+  };
+
+  window.addEventListener('message', (event) => {
+    if (!event.origin.endsWith('facebook.com')) return;
+    try {
+      const data = JSON.parse(event.data);
+      if (data.type === 'WA_EMBEDDED_SIGNUP') {
+        sessao = data;
+        log('evento: ' + data.event + ' ' + JSON.stringify(data.data || {}));
+        enviar({ event: data.event, data: data.data || {} });
+      }
+    } catch (_) { /* mensagens que não são JSON não interessam */ }
+  });
+
+  async function enviar(obj) {
+    try {
+      const r = await fetch(RECEPTOR_URL + '/es', { method: 'POST', headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': '1' }, body: JSON.stringify(obj) });
+      const j = await r.json();
+      log('receptor: ' + JSON.stringify(j));
+    } catch (e) { log('receptor indisponível: ' + e); }
+  }
+
+  const fbLoginCallback = (response) => {
+    if (response.authResponse && response.authResponse.code) {
+      log('code recebido; enviando ao receptor (válido por 30 s)…');
+      enviar({ code: response.authResponse.code, event: sessao && sessao.event, data: (sessao && sessao.data) || {} });
+    } else {
+      log('fluxo encerrado sem code: ' + JSON.stringify(response));
+    }
+  };
+
+  const launchWhatsAppSignup = () => {
+    FB.login(fbLoginCallback, {
+      config_id: CONFIG_ID,
+      response_type: 'code',
+      override_default_response_type: true,
+      extras: {
+        version: 'v4-public-preview',
+        setup: {},
+        featureType: 'whatsapp_business_app_onboarding',
+        sessionInfoVersion: '3'
+      }
+    });
+  };
+</script>
+</body>
+</html>
