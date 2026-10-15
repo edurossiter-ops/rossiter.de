@@ -1,0 +1,23 @@
+A maioria das implantações DMAIC fracassa antes mesmo de chegar na fase de Controle. Não por falta de rigor estatístico. Não por dados ruins. Mas por uma lacuna estrutural que poucos líderes operacionais têm coragem de nomear com clareza: a arquitetura de mudança simplesmente não existe.
+
+Um estudo global publicado em 2025 na revista *Production Planning & Control* (Alsadi, Antony et al.) trouxe um dado que considero um dos mais reveladores dos últimos anos para quem trabalha com excelência operacional. A pesquisa ouviu praticantes de Lean Six Sigma 4.0 em múltiplos países e identificou que a grande maioria das organizações não utiliza nenhum framework formal de gestão da mudança dentro dos seus ciclos DMAIC — nenhum. Ao mesmo tempo, o mesmo grupo apontou a resistência de mindset das pessoas como o obstáculo mais frequente ao sucesso dos projetos de melhoria. Ou seja: o maior inimigo é conhecido, identificado, documentado — e ainda assim não existe um plano estruturado para enfrentá-lo.
+
+Isso não é descuido. É um ponto cego sistêmico.
+
+O que acontece na prática é o seguinte: as equipes investem tempo, energia e orçamento em gêmeos digitais, índices de capacidade de processo e cartas de controle sofisticadas. Desenvolvem soluções tecnicamente impecáveis. E então entregam essa solução a uma força de trabalho que nunca participou do processo de concepção. O resultado é previsível — e evitável. A resistência não surge do nada. Ela surge da exclusão.
+
+Aqui reside o que eu chamo de **margem escondida** dessas organizações: o potencial de desempenho que já existe no sistema, mas que permanece bloqueado não por falta de tecnologia ou método, e sim por ausência de engajamento real com quem opera os processos no dia a dia. Essa margem não aparece nos dashboards. Não é capturada nos relatórios de fase. Mas ela determina se os ganhos vão durar ou evaporar nos primeiros meses após o encerramento do projeto.
+
+Os dados estruturais reforçam essa leitura. A Pesquisa Econômica da França publicada pela OCDE em 2026 documentou de forma quantitativa que a gestão vertical é um obstáculo estatisticamente relevante para o desempenho industrial. Mais do que uma questão cultural, hierarquia excessiva tem peso econômico mensurável: déficits de capital humano respondem por aproximadamente 20% da desaceleração de produtividade observada no país. A França é apenas o exemplo com dados mais detalhados — o padrão se repete em diferentes economias industriais. Quando a hierarquia impede que o conhecimento do operador chegue ao desenho da solução, o custo aparece na linha de resultado, não no organograma.
+
+O Fórum Econômico Mundial adiciona outro vetor de pressão. Seu *Intelligent Industrial Operations Outlook 2026* classifica cerca de 40% das competências industriais futuras como novas ou emergentes. Isso significa que o gap de prontidão não é uma ameaça abstrata no horizonte — ele já está presente nos chãos de fábrica e nas linhas de montagem de hoje. E ele se agrava toda vez que um projeto de melhoria é implementado sem preparar genuinamente as pessoas para operá-lo.
+
+Os dados da Rede de Faróis do WEF apontam na mesma direção. As organizações que sustentam ganhos operacionais ao longo do tempo são aquelas que co-projetam os sistemas com os operadores de linha de frente, até que esses sistemas se tornem compreensíveis — e portanto confiáveis. A palavra aqui não é "comunicação". É co-design. Há uma diferença fundamental: comunicar é entregar uma solução com explicação. Co-projetar é construir a solução com quem vai executá-la.
+
+Isso reposiciona a fase de Controle do DMAIC de forma completa. Sustentar os ganhos não é um problema de métricas. É um problema de liderança e cultura vestindo uma fantasia de processo. Quando uma organização tem uma fase de Medição robusta e um plano de mudança vago, ela não reduziu o risco do projeto — ela apenas o transferiu para a fase de implementação, onde o custo de falha é muito maior.
+
+A implicação prática é direta: antes de fechar a fase de Analyze ou iniciar o Improve, vale perguntar com honestidade — existe um framework estruturado de gestão da mudança ativo nesse projeto? Quem da operação participou do desenho da solução? O que foi feito para que os ganhos projetados sejam sustentáveis por pessoas reais, não por procedimentos que ninguém consulta?
+
+Se você está mapeando onde sua organização perde desempenho sem conseguir localizar a causa no processo técnico, é provável que a margem escondida esteja exatamente nessa lacuna entre a solução projetada e a adesão de quem precisa sustentá-la.
+
+Como está estruturada a gestão da mudança dentro dos ciclos DMAIC da sua organização — framework formal, repertório informal ou, na maior parte das vezes, improviso?
