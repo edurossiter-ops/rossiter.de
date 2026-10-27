@@ -1,0 +1,21 @@
+Há uma estatística que deveria travar qualquer líder de excelência operacional no meio de uma reunião de planejamento: em 2026, as grandes corporações dobraram seus investimentos em inteligência artificial, e 60% delas relatam impacto zero no EBIT em escala empresarial. Zero. Não crescimento abaixo do esperado — zero. Depois de bilhões comprometidos, de pilotos celebrados em press releases, de decks de transformação digital que prometiam eficiência histórica.
+
+A PwC aperta ainda mais o diagnóstico no seu Global CEO Survey de 2026: apenas 12% dos CEOs relatam ganhos simultâneos de receita e redução de custo a partir dos seus investimentos em IA. Doze por cento. Esse número precisa ser lido com calma, porque ele diz algo que a maioria das organizações ainda não está disposta a ouvir.
+
+O problema não é a tecnologia. É a filosofia.
+
+Eu trabalho com excelência operacional há mais de duas décadas, entre o Brasil e a Europa, e o padrão que estou vendo agora é quase sempre o mesmo. As organizações fazem exatamente o que a sua cultura Kaizen as treinou a fazer: identificam o desperdício, reduzem o atrito, melhoram a etapa. E então entregam essa etapa otimizada para um agente de IA e chamam isso de transformação. Não é. É automação de um processo velho com uma ferramenta nova — e os números da McKinsey confirmam isso com uma clareza desconfortável.
+
+Existe um conceito que eu uso com os meus clientes que chamo de *margem escondida* — aquela faixa de valor que não aparece nos relatórios de eficiência porque está embutida na arquitetura do próprio processo. Não é desperdício visível no gemba. É o desperdício estrutural de um processo que não deveria existir da forma como existe. Nenhuma rodada de Kaizen vai encontrar essa margem, porque o Kaizen, por definição, melhora o que está lá — ele não questiona se o que está lá deveria estar.
+
+A pesquisa publicada pela Harvard Business Review em setembro de 2026, conduzida por Shunko e Netessine, é direta nesse ponto: o gap de EBIT existe porque as empresas não redesenharam nada. Automatizaram tudo como estava. O resultado é precisão no erro — uma expressão que uso deliberadamente, porque há algo mais perigoso do que um processo ruim sendo executado lentamente. É esse mesmo processo ruim sendo executado com velocidade e consistência algorítmica.
+
+O que o MIT Sloan Management Review trouxe em outubro de 2026 com o framework *Rehearsal Intelligence* aponta para o que as operações de elite estão fazendo de diferente. Elas usam gêmeos digitais — modelos computacionais que replicam o ambiente operacional — não para otimizar os fluxos existentes, mas para simular arquiteturas de processo completamente reimaginadas. Elas testam sob estresse uma nova lógica operacional antes de alocar um único recurso. A decisão de automação vem depois da decisão de redesenho, não junto com ela, e definitivamente não antes.
+
+Essa inversão de sequência é a mudança cultural mais difícil que eu vejo nas empresas com quem trabalho. O Kaizen construiu décadas de disciplina em torno da melhoria incremental — e essa disciplina tem valor real. Mas quando a IA oferece a capacidade de saltar etapas inteiras de evolução incremental, o "passo pequeno" deixa de ser virtude e passa a ser limitação. A caminhada no gemba precisa evoluir para uma rodada de simulação. A pergunta "onde está o desperdício nessa etapa?" precisa dar lugar à pergunta "essa etapa deveria existir?"
+
+Na prática, o que eu recomendo é simples de enunciar e difícil de executar: escolha um processo crítico essa semana e faça uma auditoria diferente. Não para encontrar desperdício dentro dele, mas para questionar se ele deveria existir na sua forma atual. Pergunte qual seria o processo ideal se você o desenhasse do zero hoje, com as capacidades que a IA coloca à disposição. Só depois de responder isso, pense em automação.
+
+As organizações que estão capturando resultado agora — aquelas que compõem os 12% da PwC — não estão melhorando seus processos para depois automatizá-los. Elas estão desenhando processos novos e automatizando esses. A sequência importa mais do que a tecnologia.
+
+A minha pergunta para você é esta: o que está impedindo a sua organização de redesenhar antes de automatizar — e essa resistência vem da cultura, da estrutura, ou da crença de que otimizar o que existe é suficiente?
